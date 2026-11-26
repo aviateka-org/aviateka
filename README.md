@@ -2,12 +2,16 @@
 
 <!-- mcp-name: io.github.aviateka-org/aviateka -->
 
+[![PyPI](https://img.shields.io/pypi/v/aviateka-mcp?label=PyPI)](https://pypi.org/project/aviateka-mcp/) [![Проверка / Check](https://github.com/aviateka-org/aviateka/actions/workflows/check.yml/badge.svg)](https://github.com/aviateka-org/aviateka/actions/workflows/check.yml) [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey)](LICENSE-DATA.md) [![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)](LICENSE)
+
 **Открытая библиотека инструментов для проектирования летательных аппаратов, экранопланов и судов на подводных крыльях.** Для людей — страница с картой, для ИИ-агентов — MCP-сервер. Данные на русском и английском.
 
 **An open library of design tools for aircraft, WIG craft and hydrofoil craft.** A chart page for people and an MCP server for AI agents. Data in Russian and English.
 
 - О проекте / About: <https://aviateka-org.github.io/aviateka/>
 - Каталог / Catalog: <https://aviateka-org.github.io/aviateka/catalog.html>
+- Все инструменты списком / All tools as a list: <https://aviateka-org.github.io/aviateka/tools/>
+- Для ИИ-агентов / For AI agents: [llms.txt](https://aviateka-org.github.io/aviateka/llms.txt), [data.json](https://aviateka-org.github.io/aviateka/data.json), `uvx aviateka-mcp`
 - Как помочь / Contribute: [CONTRIBUTING.md](CONTRIBUTING.md)
 - Журнал версий / Changelog: [CHANGELOG.md](CHANGELOG.md)
 

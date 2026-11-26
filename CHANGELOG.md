@@ -4,6 +4,16 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.5.0 — 2026-11-26
+
+- Каждый инструмент получил свою обычную страницу (tools/…), есть общий список. Их видят поисковики и роботы ИИ, которые не запускают скрипты: раньше карточки каталога рисовались только скриптом и для них были невидимы.
+- Карта сайта sitemap.xml, путеводители для ИИ llms.txt и llms-full.txt, описание набора данных для Google Dataset Search, превью ссылок в мессенджерах.
+- Заготовки под счётчик посещений GoatCounter и проверку в Google Search Console: включаются одной строкой в data/meta.yaml. В README — значки версии и проверки.
+
+- Every tool now has its own plain page (tools/…), plus a full list. Search engines and AI crawlers that do not run scripts can read them; before, the catalog cards were drawn only by a script and were invisible to them.
+- A sitemap.xml, AI guides llms.txt and llms-full.txt, a dataset description for Google Dataset Search, link previews in messengers.
+- Hooks for a GoatCounter visit counter and Google Search Console verification, switched on by one line in data/meta.yaml. Version and check badges in the README.
+
 ## 0.4.2 — 2026-11-26
 
 - Сервер опубликован: пакет aviateka-mcp на PyPI и запись io.github.aviateka-org/aviateka в каталоге MCP (выпуск 0.4.1). Страница теперь предлагает ставить его одной командой uvx aviateka-mcp.

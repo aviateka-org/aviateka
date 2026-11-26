@@ -1,4 +1,13 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.5.0
+  date: '2026-11-26'
+  changes:
+  - ru: 'Каждый инструмент получил свою обычную страницу (tools/…), есть общий список. Их видят поисковики и роботы ИИ, которые не запускают скрипты: раньше карточки каталога рисовались только скриптом и для них были невидимы.'
+    en: 'Every tool now has its own plain page (tools/…), plus a full list. Search engines and AI crawlers that do not run scripts can read them; before, the catalog cards were drawn only by a script and were invisible to them.'
+  - ru: 'Карта сайта sitemap.xml, путеводители для ИИ llms.txt и llms-full.txt, описание набора данных для Google Dataset Search, превью ссылок в мессенджерах.'
+    en: 'A sitemap.xml, AI guides llms.txt and llms-full.txt, a dataset description for Google Dataset Search, link previews in messengers.'
+  - ru: 'Заготовки под счётчик посещений GoatCounter и проверку в Google Search Console: включаются одной строкой в data/meta.yaml. В README — значки версии и проверки.'
+    en: 'Hooks for a GoatCounter visit counter and Google Search Console verification, switched on by one line in data/meta.yaml. Version and check badges in the README.'
 - version: 0.4.2
   date: '2026-11-26'
   changes:

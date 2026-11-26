@@ -173,6 +173,7 @@ def build():
         "name": meta["name"], "tagline": meta["tagline"],
         "version": changelog[0]["version"], "as_of": meta["as_of"],
         "repo": meta["repo"], "pypi_published": bool(meta.get("pypi_published")),
+        "site": {k: (meta.get("site") or {}).get(k) for k in ("google_site_verification", "goatcounter")},
         "license": {"code": meta["license_code"], "data": meta["license_data"]},
         "versioning": meta["versioning"], "changelog": changelog, "method": meta["method"],
         "statuses": meta["statuses"],
