@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: panelaero
+name: PanelAero
+url: https://github.com/DLR-AE/PanelAero
+org: DLR
+last_commit: '2025-11-10'
+license: BSD-3-Clause
+code: Python
+disciplines: [aeroelastic, aero]
+map: [aeroelastic, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Вихревая и дуплетная решётки на Python как библиотека.
+  en: Vortex- and doublet-lattice methods in Python, as a library.
+use:
+  ru: Нестационарная аэродинамика для флаттера внутри своих программ.
+  en: Unsteady aerodynamics for flutter inside your own code.
+sources:
+- https://github.com/DLR-AE/PanelAero
+- https://pypi.org/project/PanelAero/

@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: ardupilot
+name: ArduPilot (SITL + System ID)
+url: https://github.com/ArduPilot/ardupilot
+org: ArduPilot
+last_commit: '2026-11-25'
+code: C++, Lua
+disciplines: [sysid, flightsim]
+map: [sysid, EXP]
+fidelity: [EXP]
+stages: [test]
+aircraft: [rc, uav, evtol, hydrofoil, wig]
+summary:
+  ru: 'Автопилот с режимом идентификации: качает рули с нарастающей частотой и пишет отклик.'
+  en: 'Autopilot with a System ID mode: frequency-sweep excitation with synchronous logging.'
+use:
+  ru: Измерить производные на летающей модели; на моделях судов на крыльях держит крен, тангаж и высоту хода.
+  en: Measure derivatives on a flying model; on hydrofoil models it holds roll, pitch and ride height.
+caveat:
+  ru: Разработчики просят не ставить ArduPilot управлять аппаратом с людьми на борту.
+  en: Developers ask not to let ArduPilot control craft with people aboard.
+sources:
+- https://github.com/ArduPilot/ardupilot
+- https://ardupilot.org/plane/docs/common-systemid-mode-operation.html
+- https://discuss.ardupilot.org/t/hydrofoiling-sailboat-flight-control/48142
+- https://odr.chalmers.se/bitstreams/2724699c-0d21-4786-93e5-8cc6a1113095/download

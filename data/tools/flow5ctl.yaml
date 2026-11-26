@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: flow5ctl
+name: flow5ctl
+url: https://pypi.org/project/flow5ctl/
+org: PyPI
+code: Python
+disciplines: [aero]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [hpa, glider, rc]
+summary:
+  ru: Обёртка для скриптового управления flow5 с описанием его ошибок.
+  en: A scripting wrapper for flow5 that documents its bugs.
+use:
+  ru: Пакетные расчёты во flow5; читать список ошибок до расчёта.
+  en: Batch flow5 runs; read its bug list before you rely on results.

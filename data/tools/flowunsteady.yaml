@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: flowunsteady
+name: FLOWUnsteady
+url: https://github.com/byuflowlab/FLOWUnsteady
+org: FLOW Lab, BYU
+last_commit: '2026-09-22'
+code: Julia
+disciplines: [aero, propulsion]
+map: [aero, L2]
+fidelity: [L2]
+stages: [preliminary]
+aircraft: [evtol, rotorcraft, uav]
+summary:
+  ru: Вихревые частицы на Julia для винтов, крыльев и их взаимодействия.
+  en: Julia vortex-particle solver for rotors, wings and their interaction.
+use:
+  ru: Альтернатива DUST.
+  en: An alternative to DUST.

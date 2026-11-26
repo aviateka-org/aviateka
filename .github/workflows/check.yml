@@ -1,0 +1,30 @@
+# Проверка каждого предложения и каждого изменения основной ветки.
+# Checks every pull request and every change to the main branch.
+name: Проверка / Check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Установка / Install
+        run: pip install pyyaml jsonschema "mcp>=1.2"
+      - name: Данные по схеме и ссылкам между разделами / Data against schema and cross-references
+        run: python scripts/build_catalog.py --check
+      - name: Сборка каталога и страницы / Build catalog and page
+        run: |
+          python scripts/build_catalog.py
+          python web/build_page.py
+      - name: Сквозная проверка MCP-сервера / MCP end-to-end test
+        run: python tests/test_mcp.py

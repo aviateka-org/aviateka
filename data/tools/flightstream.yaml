@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: flightstream
+name: Simcenter FlightStream
+url: https://www.siemens.com/zh-cn/products/simcenter/fluids-thermal-simulation/flightstream/
+org: Siemens
+license: commercial
+status: commercial
+disciplines: [aero]
+map: [aero, L2]
+fidelity: [L2]
+stages: [preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping]
+summary:
+  ru: Коммерческий панельный метод с учётом вязкости; для сравнения.
+  en: Commercial viscous-coupled panel method; listed for reference.
+use:
+  ru: 'Справочно: так выглядит промышленный уровень этого класса.'
+  en: Reference for the industrial state of this class.

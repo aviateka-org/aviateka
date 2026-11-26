@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: aeropython
+name: AeroPython
+url: https://github.com/barbagroup/AeroPython
+org: L. Barba group
+last_commit: '2025-05-21'
+code: Python
+disciplines: [aero]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: 'Учебный курс: панельные методы шаг за шагом в тетрадках Jupyter.'
+  en: 'A course: panel methods step by step in Jupyter notebooks.'
+use:
+  ru: Понять, что внутри вихревых и панельных программ.
+  en: Learn what is inside lattice and panel codes.

@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: vlmjl
+name: VortexLattice.jl
+url: https://github.com/byuflowlab/VortexLattice.jl
+org: FLOW Lab, BYU
+last_commit: '2026-11-03'
+code: Julia
+disciplines: [aero, stability]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Вихревая решётка на Julia с производными устойчивости.
+  en: A Julia vortex lattice with stability derivatives.
+use:
+  ru: Запасной путь к AVL, если удобна Julia.
+  en: An alternative to AVL if you work in Julia.

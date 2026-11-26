@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: unicado
+name: UNICADO
+url: https://unicado.pages.rwth-aachen.de/unicado.gitlab.io/
+org: RWTH Aachen и др.
+code: C++, Python
+disciplines: [mdo]
+map: [mdo, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [transport]
+summary:
+  ru: Среда проектирования транспортного самолёта немецких университетов.
+  en: German universities' transport-aircraft design environment.
+use:
+  ru: Транспортные самолёты.
+  en: Transport aircraft.

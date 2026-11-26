@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: xrotor
+name: XROTOR
+url: https://web.mit.edu/drela/Public/web/xrotor/
+org: M. Drela (MIT)
+license: GPL
+code: Fortran
+disciplines: [propulsion]
+map: [propulsion, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol]
+summary:
+  ru: Проектирование и расчёт винтов, в том числе в кольце; простая прочность лопасти.
+  en: Propeller design and analysis, ducted or free; simple blade structural check.
+use:
+  ru: КПД и шаг винта на расчётных режимах.
+  en: Efficiency and pitch at design points.

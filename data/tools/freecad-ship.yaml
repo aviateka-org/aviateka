@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: freecad-ship
+name: FreeCAD Ship (Savitsky)
+url: https://wiki.freecad.org/Ship_ResistanceSavitsky
+org: FreeCAD
+code: Python
+disciplines: [hydro, geometry]
+map: [hydro, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [wig, hydrofoil]
+summary:
+  ru: 'Модуль FreeCAD: сопротивление и дифферент глиссирующего корпуса по Савицкому прямо по модели.'
+  en: 'FreeCAD module: Savitsky resistance and trim straight from the hull model.'
+use:
+  ru: Если корпус уже нарисован во FreeCAD.
+  en: If the hull is already modelled in FreeCAD.

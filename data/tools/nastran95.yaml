@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: nastran95
+name: NASTRAN-95
+url: https://github.com/nasa/NASTRAN-95
+org: NASA
+last_commit: '2015-12-03'
+code: Fortran
+disciplines: [structures]
+map: [structures, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping]
+summary:
+  ru: Старый открытый решатель МКЭ NASA.
+  en: NASA's old open-source FEM solver.
+use:
+  ru: Справочно; для работы нужны знания старого формата.
+  en: Reference; needs knowledge of the legacy format.

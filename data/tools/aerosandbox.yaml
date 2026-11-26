@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: aerosandbox
+name: AeroSandbox
+url: https://github.com/peterdsharpe/AeroSandbox
+org: P. Sharpe (MIT)
+last_commit: '2026-10-07'
+license: MIT
+code: Python
+disciplines: [mdo, aero, structures, propulsion, stability]
+map: [mdo, L1]
+fidelity: [L0, L1]
+stages: [concept, preliminary]
+aircraft: [ga, racer, glider, rc, uav, hale, hpa]
+summary:
+  ru: Дифференцируемые модели аэродинамики, массы, винтов и траектории; оптимизация по градиентам.
+  en: Differentiable models of aero, weights, propulsion and trajectory; gradient-based optimisation.
+use:
+  ru: Концепт малых и необычных аппаратов, сверка своих моделей сопротивления и массы.
+  en: Concepts of small and unusual aircraft, cross-checking your drag and weight models.
+sources:
+- https://github.com/peterdsharpe/AeroSandbox
+- https://pypi.org/project/AeroSandbox/

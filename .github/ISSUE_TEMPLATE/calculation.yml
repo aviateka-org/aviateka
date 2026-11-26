@@ -1,0 +1,67 @@
+# Форма GitHub для новых предложений / GitHub issue form
+name: Свой расчёт для таблицы сверки / Calculation for the validation matrix
+description: Насколько программа совпала с опытом / How well a code matched a test
+title: '[сверка / validation] '
+labels:
+- validation
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Расчёт, сравнённый с опытом или с надёжным эталоном, — самое ценное, что можно прислать. Подойдут и отрицательные результаты: «не совпало» тоже знание.
+
+      Файлы (таблицы, графики, входные данные) можно перетащить в любое поле.
+
+      A calculation compared with a test or a trusted reference is the most valuable thing you can send. Negative results count too: 'did not match' is knowledge.
+
+      Drag files (tables, plots, inputs) into any field.
+- type: input
+  id: tool
+  attributes:
+    label: Программа и версия / Code and version
+    description: Из каталога или любая другая / From the catalog or any other
+    placeholder: AVL 3.40
+  validations:
+    required: true
+- type: textarea
+  id: case
+  attributes:
+    label: Случай / Case
+    description: 'Что считали: геометрия, условия, числа Рейнольдса и Маха, высота над экраном… / What you computed: geometry, conditions, Re, Mach, height above ground…'
+  validations:
+    required: true
+- type: textarea
+  id: reference
+  attributes:
+    label: С чем сравнивали / Compared with
+    description: Опыт (труба, бассейн, полёт) или эталон — со ссылкой / Test (tunnel, tank, flight) or a reference — with a link
+  validations:
+    required: true
+- type: textarea
+  id: results
+  attributes:
+    label: Цифры / Numbers
+    description: 'Таблица: параметр | расчёт | опыт | расхождение, % / Table: parameter | computed | measured | mismatch, %'
+    placeholder: |-
+      | alpha, ° | CL расчёт | CL опыт | % |
+      |---|---|---|---|
+      | 2 | 0.31 | 0.29 | +7 |
+  validations:
+    required: true
+- type: textarea
+  id: notes
+  attributes:
+    label: Оговорки / Caveats
+    description: Что могло исказить сравнение / What could skew the comparison
+- type: input
+  id: credit
+  attributes:
+    label: Как вас указать / How to credit you
+    description: Имя или логин; можно оставить пусто / Name or handle; may be empty
+- type: checkboxes
+  id: consent
+  attributes:
+    label: Лицензия вклада / Contribution licence
+    options:
+    - label: Я согласен, что мой вклад публикуется под CC BY 4.0 (данные) и MIT (код). / I agree my contribution is published under CC BY 4.0 (data) and MIT (code).
+      required: true

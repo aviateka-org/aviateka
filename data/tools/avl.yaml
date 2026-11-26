@@ -1,0 +1,21 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: avl
+name: AVL
+url: https://web.mit.edu/drela/Public/web/avl/
+org: M. Drela, H. Youngren (MIT)
+code: Fortran
+disciplines: [aero, stability]
+map: [stability, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, hpa, wig]
+summary:
+  ru: Вихревая решётка для балансировки, производных устойчивости и форм движения; умеет зеркальный экран.
+  en: Vortex lattice for trim, stability derivatives and flight modes; supports a mirror ground plane.
+use:
+  ru: Второе мнение по нейтральной точке и производным; экранный эффект проверен на крыле «Орлёнка» (Cranfield, 2024).
+  en: A second opinion on neutral point and derivatives; ground effect validated on the Orlyonok wing (Cranfield, 2024).
+sources:
+- https://mdolab.engin.umich.edu/wiki/aircraft-design-software
+- https://dspace.lib.cranfield.ac.uk/handle/1826/20872

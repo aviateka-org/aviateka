@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openfoam
+name: OpenFOAM
+url: https://www.openfoam.com
+org: OpenCFD / OpenFOAM Foundation
+code: C++
+disciplines: [cfd, hydro]
+map: [cfd, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil]
+summary:
+  ru: 'Универсальный открытый пакет расчёта течений, в том числе двухфазных: свободная поверхность, кавитация.'
+  en: 'A general open-source CFD toolbox, including two-phase flows: free surface, cavitation.'
+use:
+  ru: Когда нужна гибкость больше, чем у SU2; экраноплан над волной, подводное крыло с кавитацией.
+  en: When you need more flexibility than SU2; WIG over waves, cavitating hydrofoils.
+caveat:
+  ru: Дату последнего изменения не проверяли.
+  en: Last-change date not checked.
+sources:
+- https://habr.com/ru/users/KAYANO/comments

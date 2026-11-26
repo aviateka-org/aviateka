@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aviateka-mcp"
+version = "0.4.1"
+description = "Aviateka: open catalog of aircraft, WIG craft and hydrofoil design tools (RU/EN) with calculators, as an MCP server"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "LICENSE-DATA.md"]
+requires-python = ">=3.10"
+authors = [{ name = "Aviateka contributors" }]
+dependencies = ["mcp>=1.2"]
+keywords = ["mcp", "aircraft design", "aerodynamics", "ekranoplan", "wing in ground effect", "hydrofoil", "vortex lattice"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering",
+  "Intended Audience :: Science/Research",
+  "Natural Language :: Russian",
+  "Natural Language :: English",
+]
+
+[project.urls]
+Homepage = "https://aviateka-org.github.io/aviateka/"
+Repository = "https://github.com/aviateka-org/aviateka"
+Issues = "https://github.com/aviateka-org/aviateka/issues"
+Changelog = "https://github.com/aviateka-org/aviateka/blob/main/CHANGELOG.md"
+
+[project.scripts]
+aviateka-mcp = "aviateka_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["aviateka_mcp"]
+artifacts = ["aviateka_mcp/catalog.json"]
+
+[tool.hatch.build.targets.sdist]
+include = ["aviateka_mcp", "README.md", "LICENSE", "LICENSE-DATA.md", "CHANGELOG.md"]
+artifacts = ["aviateka_mcp/catalog.json"]

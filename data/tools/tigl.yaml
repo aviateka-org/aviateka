@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: tigl
+name: TiGL / CPACS
+url: https://github.com/DLR-SC/tigl
+org: DLR
+last_commit: '2026-11-25'
+code: C++, Python
+disciplines: [geometry]
+map: [geometry, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Открытый формат описания самолёта CPACS и генератор геометрии по нему.
+  en: The open CPACS aircraft description format and a geometry generator for it.
+use:
+  ru: Когда проект передаётся между командами и программами.
+  en: When a design is passed between teams and programs.

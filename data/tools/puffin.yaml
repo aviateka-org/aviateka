@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: puffin
+name: PUFFIn
+url: https://www.ensta-bretagne.fr/fr/optifoil
+org: ENSTA Bretagne (OptiFoil)
+code: Fortran
+status: freeware
+disciplines: [hydro]
+map: [hydro, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [hydrofoil]
+summary:
+  ru: Панельный метод для трёхмерных подводных крыльев у свободной поверхности, в том числе несколько крыльев сразу; расчёт около минуты.
+  en: Panel method for 3D hydrofoils near the free surface, including multibody cases; about a minute per run.
+use:
+  ru: Влияние глубины погружения и волнообразования на силы крыла.
+  en: Depth and wave-making effects on foil forces.
+caveat:
+  ru: Бесплатные исполняемые файлы для Windows и Linux; исходники не найдены. Нестационарный режим обещан в версии 2.0.
+  en: Free executables for Windows and Linux; source not found. Unsteady mode promised for v2.0.
+sources:
+- https://www.ensta-bretagne.fr/fr/optifoil
+- https://archimer.ifremer.fr/doc/00904/101579

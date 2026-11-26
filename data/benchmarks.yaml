@@ -1,0 +1,100 @@
+# Эталонные цифры с источниками / reference numbers with sources
+- id: nihon-200g
+  title:
+    ru: Модель 200 г в трубе
+    en: 200 g model in a wind tunnel
+  value:
+    ru: 'Re 33 000: максимальное качество 9,02 при 4,96°; фюзеляж ~8% подъёмной силы.'
+    en: 'Re 33,000: max L/D 9.02 at 4.96°; fuselage ~8% of lift.'
+  use:
+    ru: Проверка расчёта авиамоделей.
+    en: Sanity check for RC-model predictions.
+  source: https://www.cst.nihon-u.ac.jp/research/gakujutu/63/pdf/K-49.pdf
+- id: dlr-dc3-flutter
+  title:
+    ru: 'Флаттер DC-3: Loads Kernel против Nastran'
+    en: 'DC-3 flutter: Loads Kernel vs Nastran'
+  value:
+    ru: 195 м/с против 203 м/с.
+    en: 195 m/s vs 203 m/s.
+  use:
+    ru: Ожидаемое расхождение открытого и коммерческого кода.
+    en: Expected gap between open and commercial codes.
+  source: https://elib.dlr.de/205195/1/DLR-IB-AE-GO-2024-103_signed.pdf
+- id: openvsp-prop
+  title:
+    ru: Винты в OpenVSP
+    en: Propellers in OpenVSP
+  value:
+    ru: Ошибка КПД до 6,1% (нестационарная решётка) и 3,6% (квазистационарная); 4 минуты на 4 потоках; при больших углах лопастей неточно.
+    en: Efficiency error up to 6.1% (unsteady VLM) and 3.6% (quasi-steady); 4 min on 4 threads; inaccurate at high pitch.
+  use:
+    ru: Когда можно верить винтам в OpenVSP.
+    en: When to trust OpenVSP propellers.
+  source: https://cjournal.hep.com.cn/2095-1248/CN/10.3969/j.issn.2095-1248.2025.06.004
+- id: beihang-fusion
+  title:
+    ru: Смешивание решётки и CFD
+    en: VLM–CFD data fusion
+  value:
+    ru: 25 обучающих примеров хватило для точности полного расчёта.
+    en: 25 training samples were enough for high-fidelity accuracy.
+  use:
+    ru: Сколько дорогих расчётов нужно.
+    en: How many expensive runs you need.
+  source: https://hkxb.buaa.edu.cn/CN/abstract/article/1000-6893/21329
+- id: emmi-wing
+  title:
+    ru: Набор Emmi-Wing
+    en: Emmi-Wing dataset
+  value:
+    ru: ~30 000 расчётов трёхмерных крыльев около скорости звука.
+    en: ~30,000 RANS runs of 3D transonic wings.
+  use:
+    ru: Обучение и проверка нейросетевых заменителей CFD.
+    en: Training and testing neural CFD surrogates.
+  source: https://arxiv.org/abs/2511.21474
+- id: joined-wing-flutter
+  title:
+    ru: Флаттер сочленённого крыла
+    en: Joined-wing flutter
+  value:
+    ru: При равной массе жёстче обычного и с более высокой скоростью флаттера; подъёмная сила на градус растёт со скоростным напором.
+    en: At equal mass, stiffer than conventional with higher flutter speed; lift slope grows with dynamic pressure.
+  use:
+    ru: Чего ждать от сочленённых крыльев.
+    en: What to expect from joined wings.
+  source: https://engineeringmechanics.cn/article/id/1231
+- id: wig-two-section
+  title:
+    ru: Крыло экраноплана с расширенным корнем
+    en: WIG wing with a widened root
+  value:
+    ru: У экрана качество до 26,6; рост CL до 19,5%, снижение сопротивления до 29,1%, рост качества до 66,1% против прямого крыла.
+    en: In ground effect L/D up to 26.6; CL up to +19.5%, drag down to −29.1%, L/D up to +66.1% versus a straight wing.
+  use:
+    ru: Порядок выигрыша от экрана для компоновки.
+    en: The order of ground-effect gain for a layout.
+  source: https://english.ship-research.com/article/doi/10.19693/j.issn.1673-3185.04736
+- id: hydrofoil-opt
+  title:
+    ru: Оптимизация подводного крыла NACA 0009
+    en: NACA 0009 hydrofoil optimisation
+  value:
+    ru: Качество +12,4%, масса −2,5%, скорость начала кавитации +45%; вне расчётного режима хуже исходного.
+    en: L/D +12.4%, mass −2.5%, cavitation-inception speed +45%; worse than baseline off-design.
+  use:
+    ru: Зачем оптимизировать по нескольким режимам сразу.
+    en: Why to optimise over several operating points.
+  source: https://mdolab.engin.umich.edu/bibliography/Garg2017a
+- id: shallow-foil
+  title:
+    ru: Подводное крыло на малой глубине
+    en: Hydrofoil at shallow submergence
+  value:
+    ru: На малой глубине подъёмная сила падает сильнее, чем даёт формула Wadlin (опыты Токайского университета, NACA 0016, удлинение 9,5).
+    en: At shallow depth lift drops more than the Wadlin formula predicts (Tokai University tests, NACA 0016, aspect ratio 9.5).
+  use:
+    ru: Не верить простым поправкам на глубину у самой поверхности.
+    en: Do not trust simple depth corrections right at the surface.
+  source: https://kaken.nii.ac.jp/en/report/KAKENHI-PROJECT-09751027/097510271998jisseki

@@ -1,0 +1,20 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: xflrpy
+name: xflrpy
+url: https://github.com/nikhil-sethi/xflrpy
+org: N. Sethi
+last_commit: '2025-10-04'
+license: GPL-3.0
+code: Python, C++
+disciplines: [aero]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [rc, uav, glider, hpa]
+summary:
+  ru: Скриптовая версия XFLR5 для оптимизации.
+  en: A scriptable XFLR5 for optimisation.
+use:
+  ru: Если нужен именно XFLR5 из Python.
+  en: If you specifically need XFLR5 from Python.

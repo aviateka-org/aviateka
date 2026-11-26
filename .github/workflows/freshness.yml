@@ -1,0 +1,38 @@
+# Раз в неделю: обновить даты последних коммитов, пересчитать статусы, проверить ссылки.
+# Итог приходит запросом на слияние — хранитель смотрит и принимает.
+# Weekly: refresh last-commit dates, recompute statuses, check links; the result arrives as a pull request.
+name: Свежесть данных / Data freshness
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"   # понедельник 03:17 UTC / Mondays 03:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml jsonschema
+      - name: Даты и ссылки / Dates and links
+        run: python scripts/freshness.py --write --report freshness-report.md
+      - name: Проверка данных / Data check
+        run: python scripts/build_catalog.py
+      - name: Запрос на слияние / Pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: bot/freshness
+          commit-message: "Свежесть данных / Data freshness"
+          title: "Свежесть данных / Data freshness"
+          body-path: freshness-report.md
+          add-paths: |
+            data/**
+            CHANGELOG.md
+          labels: freshness

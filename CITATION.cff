@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Если вы используете Авиатеку, укажите её так. / If you use Aviateka, please cite it as below."
+title: "Авиатека / Aviateka: open library of design tools for aircraft, WIG craft and hydrofoil craft"
+type: dataset
+authors:
+  - name: "Aviateka contributors"
+version: "0.4.1"
+date-released: "2026-11-26"
+license: CC-BY-4.0
+repository-code: "https://github.com/aviateka-org/aviateka"
+url: "https://aviateka-org.github.io/aviateka/"
+keywords:
+  - aircraft design
+  - wing in ground effect
+  - ekranoplan
+  - hydrofoil
+  - vortex lattice
+  - MCP

@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: suave
+name: SUAVE
+url: https://github.com/suavecode/SUAVE
+org: Stanford
+last_commit: '2022-12-23'
+license: LGPL-2.1
+code: Python
+disciplines: [mdo]
+map: [mdo, L0]
+fidelity: [L0, L1]
+stages: [concept]
+aircraft: [transport, ga, evtol, uav]
+summary:
+  ru: Прежняя среда концептуального проектирования Стэнфорда.
+  en: Stanford's former conceptual design environment.
+use:
+  ru: Справочно; новые проекты — в RCAIDE.
+  en: Reference; start new work in RCAIDE.
+sources:
+- https://github.com/suavecode/SUAVE
+- https://suave.stanford.edu

@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: avl-aero-tables
+name: avl-aero-tables
+url: https://pypi.org/project/avl-aero-tables/
+org: PyPI
+code: Python
+disciplines: [aero, flightsim]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Гоняет AVL по сетке углов и строит аэродинамические таблицы.
+  en: Drives AVL over an angle grid and builds aerodynamic lookup tables.
+use:
+  ru: Подготовка таблиц для тренажёра (JSBSim).
+  en: Building tables for a simulator such as JSBSim.

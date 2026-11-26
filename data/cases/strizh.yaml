@@ -1,0 +1,66 @@
+# Кейс / case study
+id: strizh
+title:
+  ru: «Стриж» — гоночный самолёт с ромбовидным сочленённым крылом
+  en: Strizh — a pylon racer with a joined diamond wing
+summary:
+  ru: 'Концепт класса Unlimited: Griffon 3000 л. с., соосные винты, кабина сзади. Расчётный круг 57,1 с, максимальная скорость 815 км/ч.'
+  en: 'Unlimited-class concept: Griffon 3000 hp, contra-rotating propellers, aft cockpit. Predicted lap 57.1 s, top speed 815 km/h.'
+own_tools:
+  ru: 'Свои программы: модель самолёта и круга (JS), вихревая решётка, динамика по MIL-F-8785C, балочный МКЭ с линейным выпучиванием и дивергенцией, Монте-Карло; NeuralFoil, trimesh.'
+  en: 'Own code: aircraft and lap model (JS), vortex lattice, MIL-F-8785C dynamics, beam FEM with linear buckling and divergence, Monte Carlo; NeuralFoil, trimesh.'
+backlog:
+- tool: loadskernel
+  task:
+    ru: Посчитать флаттер по 6 формам крыла (6,9–32,9 Гц)
+    en: Compute flutter from 6 wing modes (6.9–32.9 Hz)
+  cost: 3–5 d
+  priority: 1
+- tool: gxbeam
+  task:
+    ru: Нелинейная проверка заднего крыла (сжатие 22 кН)
+    en: Nonlinear check of the rear wing (22 kN compression)
+  cost: 1–2 d
+  priority: 1
+- tool: optvl
+  task:
+    ru: 'Второе мнение: нейтральная точка 1,42–1,45 м ±2% хорды'
+    en: 'Second opinion: neutral point 1.42–1.45 m ±2% chord'
+  cost: 1 d
+  priority: 2
+- tool: crotor
+  task:
+    ru: КПД соосных винтов 0,79 ± 0,03
+    en: Contra-prop efficiency 0.79 ± 0.03
+  cost: 1–2 d
+  priority: 2
+- tool: aerosandbox
+  task:
+    ru: Масса крыла 289–295 кг ±15%
+    en: Wing mass 289–295 kg ±15%
+  cost: 1 d
+  priority: 2
+- tool: ardupilot
+  task:
+    ru: Идентификация модели 1:16 в полёте
+    en: Flight identification of the 1:16 model
+  cost: model + 2 d
+  priority: 3
+- tool: su2
+  task:
+    ru: 'Сопротивление при числе Маха 0,66: поправка 0,865 ±10%'
+    en: 'Drag at Mach 0.66: correction 0.865 ±10%'
+  cost: 1–2 wk
+  priority: 3
+- tool: dust
+  task:
+    ru: Струя винтов на кили и корень крыла
+    en: Prop slipstream on fins and wing root
+  cost: 3–5 d
+  priority: 3
+- tool: jsbsim
+  task:
+    ru: 'Тренажёр: пролёт круга руками'
+    en: 'Simulator: hand-flown lap'
+  cost: 2–3 d
+  priority: 3

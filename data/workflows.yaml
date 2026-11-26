@@ -1,0 +1,399 @@
+# Рабочие цепочки / workflows
+- id: concept-aero
+  aircraft: [transport, ga, racer, glider, rc, uav, hale, hpa]
+  stage: concept
+  title:
+    ru: Первая геометрия и аэродинамика
+    en: First geometry and aerodynamics
+  goal:
+    ru: Получить подъёмную силу, сопротивление, нейтральную точку и центровку из первой трёхмерной модели.
+    en: Get lift, drag, neutral point and CG range from the first 3D model.
+  steps:
+  - tool: openvsp
+    what:
+      ru: Построить геометрию по параметрам
+      en: Build parametric geometry
+  - tool: optvl
+    what:
+      ru: 'Вихревая решётка: CL, e, нейтральная точка'
+      en: 'Vortex lattice: CL, e, neutral point'
+  - tool: vlmjl
+    what:
+      ru: Вторая решётка для сверки
+      en: A second lattice for cross-check
+  - tool: aerosandbox
+    what:
+      ru: Сопротивление по частям и масса
+      en: Component drag build-up and weights
+  check:
+    ru: Две решётки дают нейтральную точку в пределах ±2% хорды.
+    en: The two lattices agree on neutral point within ±2% chord.
+- id: airfoil-lowre
+  aircraft: [rc, uav, glider, hpa, evtol]
+  stage: concept
+  title:
+    ru: Профиль для малых чисел Рейнольдса
+    en: Airfoil for low Reynolds numbers
+  goal:
+    ru: Выбрать профиль под реальную хорду и скорость модели или беспилотника.
+    en: Pick an airfoil for the real chord and speed of a model or UAV.
+  steps:
+  - tool: neuralfoil
+    what:
+      ru: Быстрый перебор профилей
+      en: Fast airfoil sweep
+  - tool: xfoil
+    what:
+      ru: Проверка лучших в XFOIL
+      en: Check the best in XFOIL
+  - tool: flow5
+    what:
+      ru: Крыло и самолёт целиком
+      en: Whole wing and aircraft
+  check:
+    ru: 'Сравнить с продувкой модели 200 г: качество около 9 при Re 33 000.'
+    en: 'Compare with a 200 g model tunnel test: L/D about 9 at Re 33,000.'
+- id: stability
+  aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol]
+  stage: preliminary
+  title:
+    ru: Устойчивость и управляемость
+    en: Stability and handling
+  goal:
+    ru: Производные, формы движения и проверка по нормам лётных качеств.
+    en: Derivatives, flight modes and a handling-qualities check.
+  steps:
+  - tool: avl
+    what:
+      ru: Производные и формы движения
+      en: Derivatives and modes
+  - tool: datcom
+    what:
+      ru: Сверка вклада фюзеляжа и оперения
+      en: Cross-check fuselage and tail contributions
+  - tool: jsbsim
+    what:
+      ru: 'Тренажёр: нелинейные режимы'
+      en: 'Simulator: nonlinear regimes'
+  - tool: ardupilot
+    what:
+      ru: Измерение на летающей модели
+      en: Measurement on a flying model
+  check:
+    ru: Частоты из полёта в пределах ±15% от расчёта.
+    en: Flight-measured frequencies within ±15% of prediction.
+- id: propeller
+  aircraft: [ga, racer, uav, rc, evtol]
+  stage: preliminary
+  title:
+    ru: Винт под режим, в том числе соосный
+    en: Propeller for the mission, including contra-rotating
+  goal:
+    ru: КПД, шаг и диаметр; для соосной пары — взаимное влияние винтов.
+    en: Efficiency, pitch and diameter; for a coaxial pair, rotor interaction.
+  steps:
+  - tool: xrotor
+    what:
+      ru: Винт минимальных потерь
+      en: Minimum-loss propeller
+  - tool: crotor
+    what:
+      ru: Соосная пара
+      en: Contra-rotating pair
+  - tool: dust
+    what:
+      ru: Струя на крыле и оперении
+      en: Slipstream on wing and tail
+  - tool: su2
+    what:
+      ru: Если концы лопастей близки к скорости звука
+      en: If blade tips approach the speed of sound
+  check:
+    ru: КПД сходится между двумя методами в пределах ±0,03.
+    en: Efficiency agrees between two methods within ±0.03.
+- id: structure
+  aircraft: [transport, ga, racer, glider, rc, uav, hale, hpa]
+  stage: preliminary
+  title:
+    ru: Конструкция и масса крыла
+    en: Wing structure and mass
+  goal:
+    ru: Сечения лонжеронов, масса, прогибы и потеря устойчивости.
+    en: Spar sizing, mass, deflections and buckling.
+  steps:
+  - tool: aerosandbox
+    what:
+      ru: Весовая оценка
+      en: Weight estimate
+  - tool: openaerostruct
+    what:
+      ru: Совместная оптимизация с аэродинамикой
+      en: Coupled aero-structural sizing
+  - tool: gxbeam
+    what:
+      ru: Нелинейная проверка больших прогибов и выпучивания
+      en: Nonlinear check of large deflection and buckling
+  - tool: pynastran
+    what:
+      ru: Экспорт в подробный МКЭ
+      en: Export to detailed FEM
+  check:
+    ru: Масса крыла по двум методам расходится не больше чем на 15%.
+    en: Wing mass from two methods within 15%.
+- id: flutter
+  aircraft: [transport, ga, racer, uav, hale, glider]
+  stage: preliminary
+  title:
+    ru: Флаттер и нагрузки от порывов
+    en: Flutter and gust loads
+  goal:
+    ru: Убедиться, что флаттера нет во всём диапазоне скоростей с запасом.
+    en: Show freedom from flutter across the speed range with margin.
+  steps:
+  - tool: pynastran
+    what:
+      ru: Формы колебаний из своей модели МКЭ
+      en: Modes from your FEM model
+  - tool: loadskernel
+    what:
+      ru: Флаттер и порывы (дуплетная решётка)
+      en: Flutter and gusts (doublet lattice)
+  - tool: sharpy
+    what:
+      ru: Нелинейная проверка гибких и сочленённых крыльев
+      en: Nonlinear check for flexible and joined wings
+  - tool: sdpmflut
+    what:
+      ru: Второе мнение, когда код выйдет
+      en: Second opinion once released
+  check:
+    ru: Флаттера нет до скорости на 20% выше расчётной предельной.
+    en: No flutter up to 20% above the design dive speed.
+- id: high-speed-drag
+  aircraft: [racer, transport, ga]
+  stage: detail
+  title:
+    ru: Сопротивление на большой скорости
+    en: High-speed drag
+  goal:
+    ru: Проверить поправки простых методов при числах Маха 0,5–0,8.
+    en: Check simple-method corrections at Mach 0.5–0.8.
+  steps:
+  - tool: su2
+    what:
+      ru: Несколько точек полного расчёта
+      en: A few full CFD points
+  - tool: optvl
+    what:
+      ru: Решётка в тех же точках для смешивания
+      en: Lattice at the same points for data fusion
+  - tool: dafoam
+    what:
+      ru: Доводка формы
+      en: Shape refinement
+  check:
+    ru: Смешивание решётки и CFD требует десятков, а не тысяч дорогих расчётов.
+    en: Lattice–CFD fusion needs tens, not thousands, of expensive runs.
+- id: mdo
+  aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping]
+  stage: concept
+  title:
+    ru: Оптимизация всей машины
+    en: Whole-aircraft optimisation
+  goal:
+    ru: Связать дисциплины и оптимизировать по градиенту.
+    en: Couple disciplines and optimise with gradients.
+  steps:
+  - tool: aerosandbox
+    what:
+      ru: Малые и необычные аппараты
+      en: Small and unusual aircraft
+  - tool: openmdao
+    what:
+      ru: Свои модели в одной среде
+      en: Your own models in one framework
+  - tool: pyoptsparse
+    what:
+      ru: Оптимизатор
+      en: Optimiser
+  - tool: aviary
+    what:
+      ru: Транспортные и лёгкие самолёты
+      en: Transport and GA aircraft
+  check:
+    ru: Оптимум устойчив к разбросу входных данных (Монте-Карло).
+    en: The optimum is robust to input scatter (Monte Carlo).
+- id: evtol
+  aircraft: [evtol, rotorcraft]
+  stage: preliminary
+  title:
+    ru: 'Винты плюс крыло: eVTOL и конвертопланы'
+    en: 'Rotors plus wing: eVTOL and tiltrotors'
+  goal:
+    ru: Взаимное влияние винтов и крыла на висении и в переходе.
+    en: Rotor–wing interaction in hover and transition.
+  steps:
+  - tool: openvsp
+    what:
+      ru: Геометрия
+      en: Geometry
+  - tool: dust
+    what:
+      ru: Взаимодействие винтов и крыла
+      en: Rotor–wing interaction
+  - tool: flowunsteady
+    what:
+      ru: Вторая программа того же класса
+      en: A second code of the same class
+  - tool: ardupilot
+    what:
+      ru: Испытания модели
+      en: Model testing
+  check:
+    ru: Нагрузки на винтах по двум программам согласуются.
+    en: Rotor loads agree between the two codes.
+- id: model-test
+  aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol]
+  stage: test
+  title:
+    ru: Летающая модель и идентификация
+    en: Flying model and system ID
+  goal:
+    ru: Проверить расчёт устойчивости на подобной модели.
+    en: Validate stability predictions on a scaled model.
+  steps:
+  - tool: aerosandbox
+    what:
+      ru: Модель на малых числах Рейнольдса
+      en: The model at low Reynolds numbers
+  - tool: flow5
+    what:
+      ru: Формы движения модели
+      en: Model flight modes
+  - tool: ardupilot
+    what:
+      ru: Возбуждение и запись в полёте
+      en: In-flight excitation and logging
+  - tool: pyaircraftiden
+    what:
+      ru: Восстановление производных
+      en: Derivative identification
+  check:
+    ru: Для динамического подобия модель догружают по числу Фруда (калькулятор ниже).
+    en: For dynamic similarity, ballast the model per Froude scaling (calculator below).
+- id: flapping
+  aircraft: [flapping]
+  stage: concept
+  title:
+    ru: Машущее крыло
+    en: Flapping wing
+  goal:
+    ru: Силы на машущем крыле.
+    en: Forces on a flapping wing.
+  steps:
+  - tool: pterasoftware
+    what:
+      ru: Нестационарная решётка
+      en: Unsteady lattice
+  check:
+    ru: Сравнить с опубликованными опытами на машущих крыльях.
+    en: Compare with published flapping-wing experiments.
+- id: hpa
+  aircraft: [hpa, glider]
+  stage: concept
+  title:
+    ru: Мускулолёт и рекордный планёр
+    en: Human-powered aircraft and record sailplane
+  goal:
+    ru: 'Крыло огромного удлинения: аэродинамика, масса, прогибы.'
+    en: 'Very high aspect ratio wing: aerodynamics, mass, deflection.'
+  steps:
+  - tool: flow5
+    what:
+      ru: Аэродинамика крыла
+      en: Wing aerodynamics
+  - tool: flow5ctl
+    what:
+      ru: Пакетные расчёты
+      en: Batch runs
+  - tool: aerosandbox
+    what:
+      ru: Оптимизация массы и размаха
+      en: Mass and span optimisation
+  - tool: gxbeam
+    what:
+      ru: Большие прогибы лонжерона
+      en: Large spar deflection
+  check:
+    ru: Прогиб под расчётной нагрузкой совпадает с наземным нагрузочным испытанием.
+    en: Deflection under design load matches the ground load test.
+- id: wig
+  aircraft: [wig]
+  stage: concept
+  title:
+    ru: 'Экраноплан: крыло у экрана, устойчивость по высоте, разбег'
+    en: 'WIG craft: wing in ground effect, height stability, take-off run'
+  goal:
+    ru: Подъёмная сила и сопротивление у экрана, два фокуса (по высоте и по углу атаки), «горб» сопротивления на разбеге.
+    en: Lift and drag in ground effect, the two aerodynamic centres (height and pitch), the take-off resistance hump.
+  steps:
+  - tool: openvsp
+    what:
+      ru: Геометрия и решётка с экраном; так оптимизировали крыло экраноплана в KTH
+      en: Geometry and lattice with ground plane; used for WIG wing optimisation at KTH
+  - tool: avl
+    what:
+      ru: 'Зеркальный экран: CL, Cm по высоте и углу атаки'
+      en: 'Mirror ground plane: CL, Cm versus height and angle'
+  - tool: wig-stab-matlab
+    what:
+      ru: Критерии продольной устойчивости по методике
+      en: Longitudinal stability criteria per the method
+  - tool: openplaning
+    what:
+      ru: 'Разбег на корпусе: сопротивление и дифферент'
+      en: 'Hull take-off run: resistance and trim'
+  - tool: openfoam
+    what:
+      ru: Проверка над волной полным расчётом
+      en: Full CFD check over waves
+  check:
+    ru: Фокус по высоте лежит впереди фокуса по углу атаки, центр масс — между ними (критерий Иродова).
+    en: The height aerodynamic centre lies ahead of the pitch centre, with the CG between them (Irodov's criterion).
+- id: hydrofoil
+  aircraft: [hydrofoil]
+  stage: preliminary
+  title:
+    ru: 'Судно на подводных крыльях: крыло у поверхности, кавитация, высота хода'
+    en: 'Hydrofoil craft: foils near the surface, cavitation, ride height'
+  goal:
+    ru: Силы на крыльях у свободной поверхности, запас по кавитации, гидроупругость и автомат высоты хода.
+    en: Foil forces near the free surface, cavitation margin, hydroelasticity and ride-height control.
+  steps:
+  - tool: xfoil
+    what:
+      ru: 'Профиль: минимум давления для кавитации'
+      en: 'Section: minimum pressure for cavitation'
+  - tool: puffin
+    what:
+      ru: Крыло у поверхности, несколько крыльев
+      en: Foil near the surface, multibody
+  - tool: typhoon
+    what:
+      ru: Динамическая устойчивость со свободной поверхностью
+      en: Dynamic stability with a free surface
+  - tool: dcfoil
+    what:
+      ru: Дивергенция, флаттер, вентиляция
+      en: Divergence, flutter, ventilation
+  - tool: openplaning
+    what:
+      ru: Выход на крылья с корпуса
+      en: Take-off from the hull
+  - tool: ardupilot
+    what:
+      ru: Автомат высоты хода на модели
+      en: Ride-height control on a model
+  check:
+    ru: Число кавитации на максимальной скорости больше −Cp min профиля (калькулятор ниже); скорость дивергенции выше максимальной.
+    en: Cavitation number at top speed exceeds the section's −Cp min (calculator below); divergence speed above top speed.

@@ -1,0 +1,21 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: crotor
+name: CROTOR
+url: https://nl.overleaf.com/articles/aerodynamic-optimization-of-the-donut-dron-with-oriented-thrust-rotor/xxkqpgbkvtwh.pdf
+org: Esotec (надстройка XROTOR)
+code: Fortran
+disciplines: [propulsion]
+map: [propulsion, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [racer, ga, evtol, rotorcraft]
+summary:
+  ru: Надстройка XROTOR для соосных винтов противоположного вращения.
+  en: XROTOR add-on for coaxial contra-rotating propellers.
+use:
+  ru: 'Соосные винты: КПД пары и влияние переднего винта на задний.'
+  en: 'Contra-rotating pairs: efficiency and upstream-rotor effect.'
+caveat:
+  ru: Где сейчас скачать — не подтверждено.
+  en: Current download location not confirmed.

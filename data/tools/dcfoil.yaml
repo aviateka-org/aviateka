@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: dcfoil
+name: DCFoil.jl
+url: https://github.com/mdolab/DCFoil.jl
+org: MDO Lab, U. Michigan
+last_commit: '2026-05-09'
+code: Julia
+disciplines: [aeroelastic, hydro, structures]
+map: [aeroelastic, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [hydrofoil]
+summary:
+  ru: 'Композитная балка + нестационарная несущая линия: гидроупругость, флаттер, формы колебаний в воде и на воздухе.'
+  en: 'Composite beam + unsteady lifting line: hydroelasticity, flutter, wet and dry modes.'
+use:
+  ru: 'Композитные Т-крылья: дивергенция, флаттер и ограничения по вентиляции.'
+  en: 'Composite T-foils: divergence, flutter and ventilation constraints.'
+sources:
+- https://gawng.github.io/software.html
+- https://foils.org/wp-content/uploads/2025/08/Gelen-Ng-submission.pdf

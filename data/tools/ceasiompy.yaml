@@ -1,0 +1,24 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: ceasiompy
+name: CEASIOMpy
+url: https://github.com/cfsengineering/CEASIOMpy
+org: CFS Engineering
+last_commit: '2026-03-11'
+license: proprietary (source-available)
+code: Python
+status: proprietary
+disciplines: [mdo]
+map: [mdo, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Среда проектирования на CPACS.
+  en: A CPACS-based design environment.
+use:
+  ru: Только для ознакомления и учёбы.
+  en: Evaluation and academic use only.
+caveat:
+  ru: В 2026 году перешёл на закрытую лицензию; открыты только версии 1.x.
+  en: Moved to a proprietary licence in 2026; only v1.x remain open-source.

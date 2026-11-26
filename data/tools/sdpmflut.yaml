@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: sdpmflut
+name: SDPMflut
+url: https://orbi.uliege.be/handle/2268/349146
+org: G. Dimitriadis (U. Liège)
+code: Python, C
+status: announced
+disciplines: [aeroelastic]
+map: [aeroelastic, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Нестационарный панельный метод и дуплетная решётка для флаттера целого самолёта (статья 06.2026).
+  en: Unsteady panel and doublet-lattice code for whole-aircraft flutter (paper, Jun 2026).
+use:
+  ru: Второе мнение по флаттеру, когда код станет доступен.
+  en: A second flutter opinion once the code is available.
+caveat:
+  ru: 'Репозиторий не найден: записано как «заявлено».'
+  en: 'Repository not found: recorded as announced.'

@@ -1,0 +1,41 @@
+# Форма GitHub для новых предложений / GitHub issue form
+name: Исправление / Correction
+description: Ошибка, устаревшая дата, битая ссылка / A mistake, outdated date or dead link
+title: '[правка / fix] '
+labels:
+- correction
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Что не так и где правильный ответ. Ссылка на источник ускоряет правку.
+
+      What is wrong and where the right answer is. A source link speeds things up.
+- type: input
+  id: tool
+  attributes:
+    label: Инструмент (id или название) / Tool (id or name)
+    description: Например / e.g. openvsp
+- type: textarea
+  id: what
+  attributes:
+    label: Что не так / What is wrong
+  validations:
+    required: true
+- type: textarea
+  id: right
+  attributes:
+    label: Как правильно / What is right
+    description: Ваш вариант текста или цифры / Your text or numbers
+- type: input
+  id: source
+  attributes:
+    label: Источник / Source
+    description: Ссылка, где это видно / Link where it can be seen
+- type: checkboxes
+  id: consent
+  attributes:
+    label: Лицензия вклада / Contribution licence
+    options:
+    - label: Я согласен, что мой вклад публикуется под CC BY 4.0 (данные) и MIT (код). / I agree my contribution is published under CC BY 4.0 (data) and MIT (code).
+      required: true

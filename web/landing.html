@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Авиатека</title>
+<meta name="description" content="Открытая библиотека инструментов для проектирования самолётов, экранопланов и судов на подводных крыльях. Open library of design tools for aircraft, WIG craft and hydrofoils.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE work, open-source project front page: plain, exact, a little proud
+   IDEA the same aeronautical sectional chart as the catalog: the project's life is a magenta route
+   PICTURE a racetrack route through six waypoints (catalog → people → contributions → maintainers → checks → release) around the validation matrix as the home airfield
+   COLOUR chart paper ground, sea blue fields, ink, route magenta
+   TYPE Overpass 800 for titles, Overpass for text
+   LAYOUT laptop: title and lead left, key figures right, route picture full width beneath; phone: title, figures, route as a vertical strip */
+:root{color-scheme:light dark;--bg:light-dark(#fbfbf2,#0d1c24);--ink:light-dark(#13242e,#e6eee8);--sea:light-dark(#bfe3ee,#123341);--card:light-dark(#ffffff,#10293a);--route:light-dark(#d6127e,#ff5fb0);--muted:light-dark(#4b5f68,#a3b7bd);--line:light-dark(#13242e22,#e6eee822)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Overpass,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit;text-underline-offset:3px}
+h1,h2,h3{font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font-size:clamp(30px,3.4vw,44px);max-width:24ch}
+h2{font-size:clamp(24px,3vw,34px);margin-bottom:16px;max-width:30ch}
+h3{font-size:19px;letter-spacing:-.01em}
+p{margin:0 0 12px}
+.band{padding-block:clamp(28px,4vw,60px);padding-left:max(4vw,16px);padding-right:max(4vw,16px)}
+.band.sea{background:var(--sea)}
+.wrap{max-width:1240px;margin:0 auto}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-inline:max(4vw,16px)}
+.top .wrap{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;padding-block:8px}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.02em;text-decoration:none;margin-right:auto}
+.nav{display:flex;gap:4px;overflow-x:auto;flex-wrap:nowrap}
+.nav a{flex:none;text-decoration:none;padding:8px 10px;border-radius:8px;font-size:15px}
+.nav a:hover{background:var(--sea)}
+@media(max-width:900px){.nav{order:3;width:100%}}
+.lang{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:none;color:var(--ink);font:600 15px Overpass,sans-serif;padding:8px 14px;min-height:40px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-block;font:600 16px Overpass,sans-serif;color:var(--bg);background:var(--route);border:1.5px solid var(--route);border-radius:10px;padding:11px 16px;min-height:44px;text-decoration:none;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink);border-color:var(--ink)}
+.btn:hover{filter:brightness(1.08)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--route);outline-offset:2px}
+.hero{display:grid;gap:24px 48px;align-items:end}
+@media(min-width:900px){.hero{grid-template-columns:minmax(0,1.9fr) minmax(0,1fr)}}
+@media(max-width:899px){.first{display:flex;flex-direction:column}.hero{display:contents}.route{order:1}.cap{order:2}.figs{order:3;margin-top:22px}}
+.lead{font-size:18px;max-width:66ch;margin:12px 0 18px}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.figs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fig1{border-top:3px solid var(--ink);padding-top:8px}
+.fig1 b{display:block;font-size:clamp(34px,4vw,48px);font-weight:800;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.fig1 span{font-size:15px;color:var(--muted)}
+.route{position:relative;height:340px;margin-top:24px;border-radius:16px;background:var(--sea);overflow:hidden}
+.route>svg{position:absolute;inset:0;width:100%;height:100%}
+.route svg text{paint-order:stroke;stroke:var(--sea);stroke-width:5px;stroke-linejoin:round;fill:var(--ink)}
+.cap{font-size:15px;color:var(--muted);margin-top:10px;max-width:80ch}
+.rows{display:grid;border-top:1.5px solid var(--ink)}
+.rows .r{display:grid;gap:4px 32px;padding:14px 0;border-bottom:1px solid var(--line)}
+@media(min-width:760px){.rows .r{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}}
+.rows .r b{font-size:18px}
+.inside{display:grid;gap:0 40px}
+@media(min-width:760px){.inside{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.item{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.item:hover h3{text-decoration:underline;text-underline-offset:4px}
+.item b{font-size:34px;font-weight:800;line-height:1;letter-spacing:-.02em;color:var(--route);font-variant-numeric:tabular-nums;text-align:right}
+.item p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.two{display:grid;gap:28px 48px}
+@media(min-width:860px){.two{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+.form{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.form div{flex:1 1 260px}
+.form p{margin:2px 0 0;color:var(--muted);font-size:15px}
+.rules{margin:0;padding-left:1.2em}
+.rules li{margin-bottom:10px}
+pre{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;font:14px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:0 0 12px}
+code{font:15px ui-monospace,Menlo,Consolas,monospace}
+.news li{margin-bottom:8px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.cta h2{margin:0}
+footer{border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px}
+.nw{white-space:nowrap}
+.small{font-size:15px}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="#top" data-t="brand">Авиатека</a>
+  <nav class="nav" id="nav"></nav>
+  <a class="btn" href="catalog.html" data-t="openShort">Каталог</a>
+  <div class="lang" role="group" aria-label="Language"><button id="lru" aria-pressed="true">RU</button><button id="len" aria-pressed="false">EN</button></div>
+</div></header>
+
+<main id="top">
+<section class="band" style="padding-top:clamp(20px,3vw,40px)"><div class="wrap first">
+  <div class="hero">
+    <div>
+      <h1 data-t="h1">Открытая библиотека инструментов для проектирования летательных аппаратов</h1>
+      <p class="lead" data-t="lead">Авиатека собирает на одной карте открытые программы для самолётов, экранопланов и судов на подводных крыльях: что каждая считает, жива ли она и насколько её числа совпадают с опытом. Пользоваться можно бесплатно, улучшать — каждому.</p>
+      <div class="actions"><a class="btn" href="catalog.html" data-t="open">Открыть каталог</a><a class="btn ghost" href="#help" data-t="helpBtn">Как помочь</a></div>
+    </div>
+    <div class="figs" id="figs"></div>
+  </div>
+  <div class="route" id="route" role="img" aria-label="Круг: каталог, люди пользуются, присылают вклад, хранители проверяют, автопроверка, новая версия; в центре таблица сверки"></div>
+  <p class="cap" data-t="cap">Так растёт библиотека: каждый вклад проходит круг и возвращается новой версией. Раз в неделю робот обновляет даты последних изменений программ и проверяет ссылки, поэтому заброшенное видно сразу.</p>
+</div></section>
+
+<section class="band sea" id="why"><div class="wrap">
+  <h2 data-t="hWhy">Программ много, но они разбросаны, часть заброшена, и неясно, чьим числам верить</h2>
+  <div class="rows" id="whyrows"></div>
+</div></section>
+
+<section class="band" id="inside"><div class="wrap">
+  <h2 data-t="hInside">Что внутри каталога</h2>
+  <div class="inside" id="items"></div>
+</div></section>
+
+<section class="band sea" id="help"><div class="wrap">
+  <h2 data-t="hHelp">Её улучшают те, кто ей пользуется</h2>
+  <div class="two">
+    <div>
+      <p data-t="helpLead">Git знать не нужно: формы принимают обычный текст, а хранители переводят его в формат каталога со ссылкой на источник.</p>
+      <div id="forms"></div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:12px" data-t="hRules">Правила данных</h3>
+      <ol class="rules" id="rules"></ol>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="ai"><div class="wrap two">
+  <div>
+    <h2 data-t="hAi">Те же данные — для ИИ-агентов</h2>
+    <p data-t="aiLead">MCP-сервер Авиатеки даёт агенту поиск по программам, рабочие цепочки, пустые ниши, таблицу сверки и шесть инженерных калькуляторов. Агент сам подберёт программу под задачу и проверит, каким её числам можно верить.</p>
+    <p id="aiinst"></p>
+  </div>
+  <div><pre id="cfg"></pre><p class="small"><a href="catalog.html#ai" data-t="aiMore">Все 17 инструментов MCP</a></p></div>
+</div></section>
+
+<section class="band sea" id="news"><div class="wrap">
+  <h2 id="newsh"></h2>
+  <ul class="news" id="newslist"></ul>
+  <p><a id="chlog" href="#" data-t="allVers">Все версии и правила нумерации</a></p>
+</div></section>
+
+<section class="band"><div class="wrap cta">
+  <h2 data-t="ctaH">Знаете программу, которой здесь нет?</h2>
+  <a class="btn" id="ctabtn" href="#" data-t="ctaBtn">Предложить инструмент</a>
+</div></section>
+</main>
+
+<footer class="band"><div class="wrap" id="foot"></div></footer>
+
+<script>
+{
+const S = __SUMMARY__;
+let lang = 'ru';
+try { const s = localStorage.getItem('aviateka-lang'); if (s === 'en' || s === 'ru') lang = s; } catch (e) {}
+const $ = id => document.getElementById(id);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const tr = o => o == null ? '' : (typeof o === 'string' ? o : (o[lang] || o.ru));
+const REPO = 'https://github.com/' + S.repo;
+const form = t => REPO + '/issues/new?template=' + t + '.yml';
+const dt = d => new Intl.DateTimeFormat(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(d + 'T00:00:00'));
+const C = S.counts;
+const UI = {
+ ru: {
+  brand: 'Авиатека', openShort: 'Каталог', open: 'Открыть каталог', helpBtn: 'Как помочь',
+  nav: [['why', 'Зачем'], ['inside', 'Что внутри'], ['help', 'Как помочь'], ['ai', 'Для ИИ'], ['news', 'Что нового']],
+  h1: 'Открытая библиотека инструментов для проектирования летательных аппаратов',
+  lead: 'Авиатека собирает на одной карте открытые программы для самолётов, экранопланов и судов на подводных крыльях: что каждая считает, жива ли она и насколько её числа совпадают с опытом. Пользоваться можно бесплатно, улучшать — каждому.',
+  figs: [[C.tools, 'открытых программ'], [C.active, 'обновлялись за год'], [C.workflows, 'рабочих цепочек'], [C.validation, 'строки сверки с опытом']],
+  st: [['Каталог', 'карта, цепочки, сверка'], ['Люди пользуются', 'конструкторы, моделисты, ИИ'], ['Присылают вклад', 'инструмент, правка, расчёт'], ['Хранители проверяют', 'источник, дата, формат'], ['Автопроверка', 'схема, ссылки, тесты'], ['Новая версия', 'страница, PyPI, MCP']],
+  hub: ['Таблица сверки', 'насколько числа совпали с опытом'],
+  cap: 'Так растёт библиотека: каждый вклад проходит круг и возвращается новой версией. Раз в неделю робот обновляет даты последних изменений программ и проверяет ссылки, поэтому заброшенное видно сразу.',
+  hWhy: 'Программ много, но они разбросаны, часть заброшена, и неясно, чьим числам верить',
+  why: [['Программы разбросаны по сайтам университетов, GitHub и форумам', 'Одна карта: строки — дисциплины, столбцы — уровень точности. Видно, чем закрыта каждая задача и где пусто.'],
+        ['Половина заброшена, но об этом нигде не сказано', 'У каждой программы дата последнего изменения и статус. Робот обновляет их каждую неделю.'],
+        ['Неясно, каким числам программы можно верить', 'Таблица сверки: кто чем считал и насколько совпало с опытом, с источником и оговорками.'],
+        ['Новичку непонятно, с чего начать', 'Рабочие цепочки: какой программой начать, чем продолжить и чем проверить.']],
+  hInside: 'Что внутри каталога',
+  items: [['map', C.tools, 'Карта программ', 'Аэродинамика, профили, винты, устойчивость, полёт, конструкция, оптимизация, гидродинамика'],
+          ['flows', C.workflows, 'Рабочие цепочки', 'Пути от первой геометрии до проверки: для самолёта, планера, экраноплана, судна на крыльях'],
+          ['check', C.validation, 'Таблица сверки', 'Расхождение расчёта с опытом, в процентах, с оговорками'],
+          ['gaps', C.gaps, 'Пустые ниши', 'Чего нет нигде, с разметкой: «окно» — занять можно, «запрещено» — мешает физика'],
+          ['calc', 6, 'Калькуляторы', 'Атмосфера, Рейнольдс и Мах, сваливание, нагрузка на крыло, подобие по Фруду, кавитация'],
+          ['gaps', C.benchmarks, 'Эталонные цифры', 'Опорные значения с источниками, чтобы проверить свой расчёт'],
+          ['terms', C.glossary, 'Термины', 'Русский и английский, с подсказкой, как искать'],
+          ['case', 1, 'Кейс «Стриж»', 'Как каталог работал на реальном проекте гоночного самолёта']],
+  hHelp: 'Её улучшают те, кто ей пользуется',
+  helpLead: 'Git знать не нужно: формы принимают обычный текст, а хранители переводят его в формат каталога со ссылкой на источник.',
+  forms: [['new_tool', 'Новый инструмент', 'Дайте ссылку и пару слов о программе'], ['correction', 'Исправление', 'Ошибка, устаревшая дата или битая ссылка'], ['calculation', 'Свой расчёт', 'Сравнили с опытом — цифры пойдут в таблицу сверки'], ['new_topic', 'Новая тема', 'Дирижабли, ракеты, парусные крылья — что угодно']],
+  send: 'Отправить', hRules: 'Правила данных',
+  rules: ['У каждого факта есть источник и дата.', 'Заявленное производителем помечается как заявленное, а не измеренное.', 'Ничего не копируем: своими словами и ссылкой.', '«Не совпало с опытом» — тоже результат, и он ценен.', 'Если источник сравнивает со своей же моделью, об этом пишется рядом с цифрой.'],
+  hAi: 'Те же данные — для ИИ-агентов',
+  aiLead: 'MCP-сервер Авиатеки даёт агенту поиск по программам, рабочие цепочки, пустые ниши, таблицу сверки и шесть инженерных калькуляторов. Агент сам подберёт программу под задачу и проверит, каким её числам можно верить.',
+  instPypi: 'Установка одной командой: uvx aviateka-mcp. Для Claude Desktop — настройка справа.',
+  instRepo: 'Пакет на PyPI выйдет с первым выпуском. Пока: склонируйте репозиторий, выполните pip install -e . и python scripts/build_catalog.py.',
+  aiMore: 'Все 17 инструментов MCP', news: (v, d) => `Версия ${v} от ${d}`, allVers: 'Все версии и правила нумерации',
+  ctaH: 'Знаете программу, которой здесь нет?', ctaBtn: 'Предложить инструмент',
+  foot: (c, d) => [`Код — ${c}, данные — CC BY 4.0: берите что угодно, только укажите источник.`, `Данные на ${d}`],
+  repo: 'Исходники и обсуждение на GitHub', guide: 'Правила участия', aria: 'Круг: каталог, люди пользуются, присылают вклад, хранители проверяют, автопроверка, новая версия; в центре таблица сверки'
+ },
+ en: {
+  brand: 'Aviateka', openShort: 'Catalog', open: 'Open the catalog', helpBtn: 'Contribute',
+  nav: [['why', 'Why'], ['inside', 'Inside'], ['help', 'Contribute'], ['ai', 'For AI'], ['news', 'What’s new']],
+  h1: 'An open library of design tools for flying machines',
+  lead: 'Aviateka puts open design codes for aircraft, WIG craft and hydrofoil craft on one chart: what each computes, whether it is alive and how well its numbers match tests. Free to use, open for anyone to improve.',
+  figs: [[C.tools, 'open tools'], [C.active, 'updated within a year'], [C.workflows, 'workflows'], [C.validation, 'validation rows']],
+  st: [['Catalog', 'chart, workflows, validation'], ['People use it', 'designers, modellers, AI'], ['They contribute', 'tool, fix, calculation'], ['Maintainers check', 'source, date, format'], ['Automatic checks', 'schema, links, tests'], ['New version', 'page, PyPI, MCP']],
+  hub: ['Validation matrix', 'how well numbers matched tests'],
+  cap: 'This is how the library grows: every contribution goes round the loop and comes back as a new version. Once a week a bot refreshes the tools’ last-change dates and checks links, so abandoned code shows at once.',
+  hWhy: 'There are many tools, but they are scattered, many are abandoned, and nobody says whose numbers to trust',
+  why: [['Tools are scattered across university sites, GitHub and forums', 'One chart: rows are disciplines, columns are fidelity. You see what covers each task and where nothing does.'],
+        ['Half are abandoned, and nobody says so', 'Every tool has its last-change date and a status. A bot refreshes them weekly.'],
+        ['It is unclear which numbers a code can be trusted with', 'The validation matrix: who computed what and how well it matched tests, with sources and caveats.'],
+        ['A newcomer does not know where to start', 'Workflows: which tool to start with, what comes next and how to check it.']],
+  hInside: 'What is inside the catalog',
+  items: [['map', C.tools, 'Tool chart', 'Aero, airfoils, propellers, stability, flight, structures, optimisation, hydrodynamics'],
+          ['flows', C.workflows, 'Workflows', 'Paths from first geometry to checks: aircraft, glider, WIG craft, hydrofoil'],
+          ['check', C.validation, 'Validation matrix', 'Mismatch between computation and test, in percent, with caveats'],
+          ['gaps', C.gaps, 'Gaps', 'What exists nowhere, marked "window" (can be filled) or "forbidden" (physics says no)'],
+          ['calc', 6, 'Calculators', 'Atmosphere, Reynolds and Mach, stall, wing loading, Froude scaling, cavitation'],
+          ['gaps', C.benchmarks, 'Reference numbers', 'Anchor values with sources, to check your own results'],
+          ['terms', C.glossary, 'Glossary', 'Russian and English, with search hints'],
+          ['case', 1, 'The Strizh case', 'How the catalog served a real racing-aircraft project']],
+  hHelp: 'The people who use it make it better',
+  helpLead: 'No Git needed: the forms take plain text, and maintainers turn it into catalog format with a source link.',
+  forms: [['new_tool', 'New tool', 'A link and a few words about it'], ['correction', 'Correction', 'A mistake, an outdated date or a dead link'], ['calculation', 'Your calculation', 'Compared with a test? The numbers go into the validation matrix'], ['new_topic', 'New topic', 'Airships, rockets, sail wings — anything']],
+  send: 'Send', hRules: 'Data rules',
+  rules: ['Every fact has a source and a date.', 'Maker’s claims are marked as claimed, not measured.', 'We copy nothing: own words and a link.', '"Did not match the test" is a result, and a valuable one.', 'If a source checks against its own model, it is said next to the number.'],
+  hAi: 'The same data for AI agents',
+  aiLead: 'The Aviateka MCP server gives an agent tool search, workflows, gaps, the validation matrix and six engineering calculators. The agent can pick a tool for the task and check which of its numbers to trust.',
+  instPypi: 'Install in one command: uvx aviateka-mcp. For Claude Desktop, see the settings on the right.',
+  instRepo: 'The PyPI package arrives with the first release. Until then: clone the repository, run pip install -e . and python scripts/build_catalog.py.',
+  aiMore: 'All 17 MCP tools', news: (v, d) => `Version ${v}, ${d}`, allVers: 'All versions and numbering rules',
+  ctaH: 'Know a tool that is missing here?', ctaBtn: 'Suggest a tool',
+  foot: (c, d) => [`Code is ${c}, data is CC BY 4.0: use anything, just credit the source.`, `Data as of ${d}`],
+  repo: 'Source and discussion on GitHub', guide: 'Contributing guide', aria: 'Loop: catalog, people use it, they contribute, maintainers check, automatic checks, new version; the validation matrix in the middle'
+ }
+};
+const U = k => UI[lang][k];
+
+const fig = $('route');
+function drawRoute() {
+  const W = fig.clientWidth, narrow = W < 640;
+  const st = U('st'), hub = U('hub');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  fig.style.height = narrow ? (st.length * 84 + 130) + 'px' : '';
+  let showSub = true;
+  const H = fig.clientHeight;
+  let path, pts, arrows = '', hubSvg = '';
+  if (!narrow) {
+    const T = 78, B = H - 78, r = (B - T) / 2, xl = 28 + r, xr = W - 28 - r;
+    path = `M${xl},${T} H${xr} A${r},${r} 0 0 1 ${xr},${B} H${xl} A${r},${r} 0 0 1 ${xl},${T} Z`;
+    const xs = (W < 900 ? [0, 0.5, 1] : [0.12, 0.5, 0.88]).map(f => xl + (xr - xl) * f);
+    showSub = xs[1] - xs[0] >= 240;
+    pts = [...xs.map(x => [x, T, -1]), ...xs.slice().reverse().map(x => [x, B, 1])];
+    const ar = (x, y, a) => `<path d="M-7,-6 L5,0 L-7,6" transform="translate(${x},${y}) rotate(${a})" fill="none" stroke="var(--route)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+    arrows = [(xs[0] + xs[1]) / 2, (xs[1] + xs[2]) / 2].map(x => ar(x, T, 0)).join('') + [(xs[0] + xs[1]) / 2, (xs[1] + xs[2]) / 2].map(x => ar(x, B, 180)).join('') + ar(xr + r, H / 2, 90) + ar(xl - r, H / 2, -90);
+    const cx = W / 2, cy = H / 2;
+    hubSvg = `<g><circle cx="${cx}" cy="${cy - 8}" r="17" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.5"/><path d="M${cx - 11},${cy - 8} H${cx + 11} M${cx},${cy - 19} V${cy + 3}" stroke="var(--ink)" stroke-width="2.5"/>
+      <text x="${cx}" y="${cy + 30}" text-anchor="middle" font-weight="800" font-size="17">${esc(hub[0])}</text><text x="${cx}" y="${cy + 50}" text-anchor="middle" font-size="14">${esc(hub[1])}</text></g>`;
+  } else {
+    const x0 = 40, y0 = 40, step = 84, yN = y0 + step * (st.length - 1);
+    path = `M${x0},${y0} V${yN} C${x0},${yN + 30} 12,${yN + 20} 12,${yN - 10} V${y0 + 10} C12,${y0 - 20} ${x0},${y0 - 30} ${x0},${y0}`;
+    pts = st.map((_, i) => [x0, y0 + i * step, 0]);
+    const hy = yN + 92;
+    hubSvg = `<g><circle cx="${x0}" cy="${hy}" r="15" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.5"/><path d="M${x0 - 9},${hy} H${x0 + 9} M${x0},${hy - 9} V${hy + 9}" stroke="var(--ink)" stroke-width="2.5"/><text x="${x0 + 28}" y="${hy - 2}" font-weight="800" font-size="16">${esc(hub[0])}</text><text x="${x0 + 28}" y="${hy + 16}" font-size="14">${esc(hub[1])}</text></g>`;
+    arrows = st.slice(1).map((_, i) => `<path d="M-6,-7 L0,5 L6,-7" transform="translate(${x0},${y0 + i * step + step / 2})" fill="none" stroke="var(--route)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
+  }
+  let grid = '';
+  for (let x = 48; x < W; x += 96) grid += `<line x1="${x}" y1="0" x2="${x}" y2="${H}"/>`;
+  for (let y = 48; y < H; y += 96) grid += `<line x1="0" y1="${y}" x2="${W}" y2="${y}"/>`;
+  const stations = pts.map(([x, y, side], i) => {
+    const lx = narrow ? x + 28 : x, anchor = narrow ? 'start' : 'middle';
+    const ly1 = narrow ? y - 2 : (side < 0 ? y - 40 : y + 36), ly2 = ly1 + 18;
+    return `<g><circle cx="${x}" cy="${y}" r="15" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.5"/><text x="${x}" y="${y + 5}" text-anchor="middle" font-weight="800" font-size="14" style="stroke:var(--bg)">${i + 1}</text>
+      <text x="${lx}" y="${ly1}" text-anchor="${anchor}" font-weight="800" font-size="16">${esc(st[i][0])}</text>${showSub ? `<text x="${lx}" y="${ly2}" text-anchor="${anchor}" font-size="14">${esc(st[i][1])}</text>` : ''}</g>`;
+  }).join('');
+  const token = reduce ? '' : `<circle r="7" fill="var(--route)" stroke="var(--bg)" stroke-width="2"><animateMotion dur="16s" repeatCount="indefinite" path="${path}"/></circle>`;
+  fig.innerHTML = `<svg viewBox="0 0 ${W} ${H}" aria-hidden="true">
+    <g stroke="var(--line)" stroke-width="1">${grid}</g>
+    <path d="${path}" fill="none" stroke="var(--route)" stroke-width="4" stroke-linejoin="round"/>
+    ${arrows}${hubSvg}${stations}${token}</svg>`;
+  fig.setAttribute('aria-label', U('aria'));
+}
+const ro = new ResizeObserver(() => { if (fig.dataset.w !== String(fig.clientWidth)) { fig.dataset.w = fig.clientWidth; drawRoute(); } });
+ro.observe(fig);
+
+function render() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-t]').forEach(el => { const v = U(el.dataset.t); if (typeof v === 'string') el.textContent = v; });
+  $('nav').innerHTML = U('nav').map(([id, t]) => `<a href="#${id}">${esc(t)}</a>`).join('');
+  $('figs').innerHTML = U('figs').map(([n, t]) => `<div class="fig1"><b>${esc(n)}</b><span>${esc(t)}</span></div>`).join('');
+  $('whyrows').innerHTML = U('why').map(([a, b]) => `<div class="r"><b>${esc(a)}</b><span>${esc(b)}</span></div>`).join('');
+  $('items').innerHTML = U('items').map(([id, n, h, p]) => `<a class="item" href="catalog.html#${id}"><b>${esc(n)}</b><div><h3>${esc(h)}</h3><p>${esc(p)}</p></div></a>`).join('');
+  $('forms').innerHTML = U('forms').map(([t, h, p]) => `<div class="form"><div><h3>${esc(h)}</h3><p>${esc(p)}</p></div><a class="btn ghost" href="${esc(form(t))}">${esc(U('send'))}</a></div>`).join('');
+  $('rules').innerHTML = U('rules').map(r => `<li>${esc(r)}</li>`).join('');
+  $('aiinst').textContent = S.pypi_published ? U('instPypi') : U('instRepo');
+  $('cfg').textContent = JSON.stringify({ mcpServers: { aviateka: S.pypi_published ? { command: 'uvx', args: ['aviateka-mcp'] } : { command: 'python', args: ['-m', 'aviateka_mcp'], cwd: '/path/to/aviateka' } } }, null, 2);
+  $('newsh').textContent = U('news')(S.latest.version, dt(S.latest.date));
+  $('newslist').innerHTML = S.latest.changes.map(c => `<li>${esc(tr(c))}</li>`).join('');
+  $('chlog').href = REPO + '/blob/main/CHANGELOG.md';
+  $('ctabtn').href = form('new_tool');
+  const [l1, l2] = U('foot')(S.license.code, dt(S.as_of));
+  $('foot').innerHTML = `<span>${esc(l1)}</span><span>${esc(l2)} · ${esc('v' + S.version)}</span><a href="${esc(REPO)}">${esc(U('repo'))}</a><a href="${esc(REPO + '/blob/main/CONTRIBUTING.md')}">${esc(U('guide'))}</a>`;
+  $('lru').setAttribute('aria-pressed', lang === 'ru'); $('len').setAttribute('aria-pressed', lang === 'en');
+  document.title = lang === 'ru' ? 'Авиатека' : 'Aviateka';
+  drawRoute();
+}
+function setLang(l) { lang = l; try { localStorage.setItem('aviateka-lang', l); } catch (e) {} render(); }
+$('lru').onclick = () => setLang('ru'); $('len').onclick = () => setLang('en');
+render();
+}
+</script>
+</body>
+</html>

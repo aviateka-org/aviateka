@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pyaircraftiden
+name: pyAircraftIden
+url: https://github.com/Astik-2002/pyAircraftIden
+org: GSoC 2024
+last_commit: '2021-06-21'
+code: Python
+disciplines: [sysid]
+map: [sysid, EXP]
+fidelity: [EXP]
+stages: [test]
+aircraft: [rc, uav, evtol]
+summary:
+  ru: Восстановление модели аппарата по журналам полёта.
+  en: Aircraft model identification from flight logs.
+use:
+  ru: Разбор журналов ArduPilot.
+  en: Processing ArduPilot logs.
+caveat:
+  ru: Основная ветка 2021 года; работа GSoC 2024 в ветке development.
+  en: Main branch from 2021; GSoC 2024 work is on the development branch.
+sources:
+- https://github.com/Astik-2002/pyAircraftIden
+- https://discuss.ardupilot.org/t/gsoc24-all-in-one-system-identification-toolkit-for-ardupilot-update/121116

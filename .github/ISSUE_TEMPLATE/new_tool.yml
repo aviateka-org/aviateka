@@ -1,0 +1,82 @@
+# Форма GitHub для новых предложений / GitHub issue form
+name: Новый инструмент / New tool
+description: Предложить открытую программу для каталога / Suggest an open tool for the catalog
+title: '[инструмент / tool] '
+labels:
+- new-tool
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Спасибо! Пишите своими словами, формат каталога сделают хранители. Обязательно только ссылка.
+
+      Thank you! Plain words are fine; maintainers turn it into catalog format. Only the link is required.
+- type: input
+  id: url
+  attributes:
+    label: Ссылка на программу / Link
+    description: Репозиторий или страница / Repository or home page
+    placeholder: https://github.com/…
+  validations:
+    required: true
+- type: textarea
+  id: what
+  attributes:
+    label: Что она делает / What it does
+    description: 'Пара фраз: что считает и для каких аппаратов / A few sentences: what it computes and for which craft'
+- type: dropdown
+  id: discipline
+  attributes:
+    label: Дисциплина / Discipline
+    description: Можно несколько / Pick any
+    multiple: true
+    options:
+    - Геометрия и CAD / Geometry & CAD
+    - Профили / Airfoils
+    - Аэродинамика аппарата / Aircraft aerodynamics
+    - Полный расчёт течения (CFD) / High-fidelity CFD
+    - Винты и тяга / Propellers & propulsion
+    - Устойчивость и управляемость / Stability & control
+    - Моделирование полёта / Flight simulation
+    - Испытания и идентификация / Flight test & system ID
+    - Конструкция и масса / Structures & weights
+    - Аэроупругость и флаттер / Aeroelasticity & flutter
+    - Оптимизация и среды проектирования / MDO & design frameworks
+    - 'Гидродинамика: корпус, крыло у поверхности, кавитация / Hydrodynamics: hull, near-surface foils, cavitation'
+- type: dropdown
+  id: aircraft
+  attributes:
+    label: Тип аппарата / Craft type
+    description: Можно несколько / Pick any
+    multiple: true
+    options:
+    - Транспортный самолёт / Transport aircraft
+    - Лёгкий самолёт / General aviation
+    - Гоночный и пилотажный / Racer & aerobatic
+    - Планёр / Sailplane
+    - Авиамодель / RC model
+    - Беспилотник самолётной схемы / Fixed-wing UAV
+    - Высотный, гибкое крыло / HALE & flexible wing
+    - eVTOL, мультикоптер, конвертоплан / eVTOL, multirotor, tiltrotor
+    - Вертолёт / Helicopter
+    - Мускулолёт / Human-powered
+    - Машущее крыло / Flapping wing
+    - Экраноплан / WIG craft (ekranoplan)
+    - Судно на подводных крыльях / Hydrofoil craft
+- type: textarea
+  id: experience
+  attributes:
+    label: Ваш опыт / Your experience
+    description: Пользовались? Что получилось, что нет, с чем сверяли / Used it? What worked, what did not, what you checked it against
+- type: input
+  id: source
+  attributes:
+    label: Где подтверждение / Evidence
+    description: Статья, документация, обсуждение — что подтверждает сказанное / Paper, docs or thread that backs it up
+- type: checkboxes
+  id: consent
+  attributes:
+    label: Лицензия вклада / Contribution licence
+    options:
+    - label: Я согласен, что мой вклад публикуется под CC BY 4.0 (данные) и MIT (код). / I agree my contribution is published under CC BY 4.0 (data) and MIT (code).
+      required: true

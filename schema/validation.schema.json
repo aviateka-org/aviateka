@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aviateka-org/aviateka/schema/validation.schema.json",
+  "title": "Aviateka validation row / строка таблицы сверки",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "tool", "case", "reference", "parameter", "points", "summary", "source", "kind", "added", "added_by"],
+  "$defs": {
+    "text": {"type": "object", "additionalProperties": false, "required": ["ru", "en"],
+             "properties": {"ru": {"type": "string", "minLength": 3}, "en": {"type": "string", "minLength": 3}}}
+  },
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "tool": {"description": "Tool id from data/tools, or null for a code outside the catalog / id из каталога или null", "type": ["string", "null"]},
+    "tool_name": {"description": "Required when tool is null / обязательно, если tool = null", "type": "string"},
+    "tool_version": {"type": ["string", "null"]},
+    "case": {"$ref": "#/$defs/text"},
+    "reference": {"description": "What it was compared with / с чем сравнивали", "$ref": "#/$defs/text"},
+    "parameter": {"description": "What varies along the points, e.g. trim_deg, alpha_deg, h_over_c / что меняется по точкам", "type": "string"},
+    "points": {"type": "array", "minItems": 1, "items": {
+      "type": "object", "additionalProperties": false, "required": ["at", "quantity", "diff_pct"],
+      "properties": {
+        "at": {"type": ["number", "string"]},
+        "quantity": {"description": "CL, CD, Cm, neutral point, flutter speed… / величина", "type": "string"},
+        "computed": {"type": "number"}, "measured": {"type": "number"},
+        "diff_pct": {"description": "Mismatch with the reference, % as the source gives it / расхождение, %", "type": "number"},
+        "direction": {"enum": ["over", "under", null]}}}},
+    "summary": {"$ref": "#/$defs/text"},
+    "caveats": {"$ref": "#/$defs/text"},
+    "source": {"type": "string", "pattern": "^https?://"},
+    "source_date": {"type": "string"},
+    "kind": {"description": "published = from a paper or report; community = sent by a user / из статьи или от участника", "enum": ["published", "community"]},
+    "added": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "added_by": {"description": "GitHub login or 'editorial' / логин или editorial", "type": "string"}
+  }
+}

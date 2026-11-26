@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pynastran
+name: pyNastran
+url: https://github.com/SteveDoyle2/pyNastran
+org: S. Doyle
+last_commit: '2026-11-25'
+code: Python
+disciplines: [structures]
+map: [structures, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping]
+summary:
+  ru: Чтение и запись моделей формата Nastran.
+  en: Reads and writes Nastran-format models.
+use:
+  ru: Переходник к программам, которые понимают формат Nastran.
+  en: A bridge to tools that speak Nastran.

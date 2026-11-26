@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: hydroptere-sim
+name: Hydroptère simulator
+url: https://www.epfl.ch/labs/la/?p=2572
+org: EPFL
+code: C/C++
+disciplines: [flightsim]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [hydrofoil]
+summary:
+  ru: Симулятор парусного тримарана на крыльях в реальном времени с исходным кодом.
+  en: Real-time simulator of a foiling sailing trimaran, with source code.
+use:
+  ru: Пример построения модели движения судна на крыльях.
+  en: An example of building a hydrofoil-craft motion model.

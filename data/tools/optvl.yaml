@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: optvl
+name: OptVL
+url: https://github.com/joanibal/optvl
+org: J. Anibal
+last_commit: '2026-08-27'
+code: Python, Fortran
+disciplines: [aero, stability, mdo]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, hpa]
+summary:
+  ru: AVL с Python-обёрткой и производными для оптимизации по градиенту.
+  en: AVL with a Python wrapper and derivatives for gradient-based optimisation.
+use:
+  ru: Пакетные расчёты AVL и встраивание в оптимизацию.
+  en: Batch AVL runs and embedding AVL in optimisation.
+caveat:
+  ru: 'Открытая ошибка #72 (10.2026): балансировка не сходится, если включено сопротивление CDCL.'
+  en: 'Open bug #72 (Oct 2026): trim fails to converge when CDCL drag is used.'
+sources:
+- https://github.com/joanibal/optvl
+- https://github.com/joanibal/optvl/issues

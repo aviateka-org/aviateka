@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pyfme
+name: PyFME
+url: https://github.com/AeroPython/PyFME
+org: AeroPython
+last_commit: '2020-08-13'
+code: Python
+disciplines: [flightsim]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Учебная динамика полёта на Python.
+  en: Teaching-grade flight dynamics in Python.
+use:
+  ru: Только для обучения; для дела брать JSBSim.
+  en: Learning only; use JSBSim for real work.

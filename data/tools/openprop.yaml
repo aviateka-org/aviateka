@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openprop
+name: OpenProp
+url: https://openprop.engineering.dartmouth.edu/files/Kravitz_MS_Thesis_2011.pdf
+org: MIT / Dartmouth
+code: MATLAB
+disciplines: [propulsion]
+map: [propulsion, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [racer, ga, hydrofoil]
+summary:
+  ru: Судовые винты, включая расчёт соосной пары на нерасчётных режимах.
+  en: Marine propellers, including off-design contra-rotating pairs.
+use:
+  ru: Сверка соосной пары другим методом.
+  en: Cross-checking a contra-rotating pair with another method.

@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: ccblade
+name: CCBlade.jl
+url: https://github.com/byuflowlab/CCBlade.jl
+org: FLOW Lab, BYU
+last_commit: '2025-10-07'
+code: Julia
+disciplines: [propulsion]
+map: [propulsion, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [rc, uav, glider, hpa, evtol]
+summary:
+  ru: Теория элемента лопасти для винтов и ветряков.
+  en: Blade-element momentum theory for propellers and turbines.
+use:
+  ru: Быстрый винт внутри оптимизации.
+  en: A fast propeller model inside optimisation.

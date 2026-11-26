@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: dust
+name: DUST
+url: https://www.aero.polimi.it/en/research-projects/dust
+org: Politecnico di Milano
+license: MIT
+code: Fortran, Python
+disciplines: [aero, propulsion]
+map: [aero, L2]
+fidelity: [L2]
+stages: [preliminary]
+aircraft: [evtol, rotorcraft, ga, uav]
+summary:
+  ru: 'Вихревые частицы: взаимодействие винтов с крылом и друг с другом.'
+  en: 'Vortex particles: rotor–wing and rotor–rotor interaction.'
+use:
+  ru: Струя от винта на крыле и оперении, конвертопланы.
+  en: Propeller slipstream on wing and tail, tiltrotors.
+caveat:
+  ru: Дата основного кода не установлена; утилиты pydust-utils обновлялись 27.10.2025.
+  en: Main code date not established; pydust-utils was updated on 2025-10-27.
+sources:
+- https://www.aero.polimi.it/en/research-projects/dust
+- https://www.piwheels.org/project/pydust-utils/

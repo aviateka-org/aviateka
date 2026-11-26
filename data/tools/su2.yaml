@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: su2
+name: SU2
+url: https://github.com/su2code/SU2
+org: SU2 Foundation
+last_commit: '2026-10-30'
+code: C++, Python
+disciplines: [cfd, aeroelastic]
+map: [cfd, L3]
+fidelity: [L3]
+stages: [preliminary, detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig]
+summary:
+  ru: Полный расчёт течения с вязкостью и сжимаемостью, оптимизация формы, связка с конструкцией.
+  en: Viscous compressible CFD, shape optimisation, fluid–structure coupling.
+use:
+  ru: Сопротивление на больших скоростях и проверка поправок простых методов.
+  en: High-speed drag and checking corrections of simpler methods.
+sources:
+- https://github.com/su2code/SU2
+- https://arxiv.org/pdf/2109.12332.pdf

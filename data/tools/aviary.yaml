@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: aviary
+name: Aviary
+url: https://github.com/OpenMDAO/Aviary
+org: NASA
+last_commit: '2026-11-24'
+code: Python
+disciplines: [mdo, structures]
+map: [mdo, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [transport, ga]
+summary:
+  ru: Проектирование самолёта под миссию на OpenMDAO с весовыми методиками NASA.
+  en: Mission-based aircraft design on OpenMDAO with NASA weight methods.
+use:
+  ru: Транспортные и лёгкие самолёты.
+  en: Transport and GA aircraft.

@@ -1,0 +1,96 @@
+# Выпуск по метке v*: пакет на PyPI, сервер в каталоге MCP, релиз на GitHub (его подхватывает Zenodo и выдаёт DOI).
+# Release on a v* tag: PyPI package, MCP Registry entry, GitHub release (Zenodo picks it up and mints a DOI).
+#
+# Разовая настройка / one-time setup:
+#   1. PyPI → Publishing → добавить «доверенного издателя» / add a trusted publisher:
+#      репозиторий / repo aviateka-org/aviateka, workflow release.yml, environment pypi.
+#   2. GitHub → Settings → Environments → создать / create «pypi».
+#   3. Zenodo → GitHub → включить репозиторий / enable the repository (по желанию / optional).
+name: Выпуск / Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml jsonschema build "mcp>=1.2"
+      - name: Метка совпадает с версией / Tag matches version
+        run: |
+          python scripts/build_catalog.py --check
+          python scripts/build_catalog.py
+          v=$(python -c "import json;print(json.load(open('aviateka_mcp/catalog.json'))['version'])")
+          test "v$v" = "${GITHUB_REF_NAME}" || { echo "Метка ${GITHUB_REF_NAME} не совпадает с версией $v / tag does not match version"; exit 1; }
+      - run: python tests/test_mcp.py
+      - run: python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  pypi:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  mcp-registry:
+    needs: pypi
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    env:
+      MCP_PUBLISHER_VERSION: v1.8.1
+    steps:
+      - uses: actions/checkout@v5
+      - uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+      - name: Скачать и проверить mcp-publisher / Download and verify mcp-publisher
+        run: |
+          set -euo pipefail
+          os="$(uname -s | tr '[:upper:]' '[:lower:]')"
+          arch="$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')"
+          archive="mcp-publisher_${os}_${arch}.tar.gz"
+          base_url="https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}"
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          curl --fail --location --silent --show-error --output "$archive.sigstore.json" "$base_url/$archive.sigstore.json"
+          cosign verify-blob \
+            --bundle "$archive.sigstore.json" \
+            --certificate-identity "https://github.com/modelcontextprotocol/registry/.github/workflows/release.yml@refs/tags/${MCP_PUBLISHER_VERSION}" \
+            --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
+            "$archive"
+          tar xzf "$archive" mcp-publisher
+          rm -f "$archive" "$archive.sigstore.json"
+      - run: ./mcp-publisher login github-oidc
+      - run: ./mcp-publisher publish
+
+  github-release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Заметки из журнала / Notes from the changelog
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          awk -v v="$v" '$0 ~ "^## "v" " {f=1; next} /^## / {f=0} f' CHANGELOG.md > notes.md
+      - uses: softprops/action-gh-release@v2
+        with:
+          body_path: notes.md

@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: loadskernel
+name: Loads Kernel
+url: https://www.dlr.de/en/ae/research-transfer/software-solutions/loads-kernel
+org: DLR
+last_commit: '2026-10-26'
+code: Python
+disciplines: [aeroelastic]
+map: [aeroelastic, L1]
+fidelity: [L1]
+stages: [preliminary, detail]
+aircraft: [transport, ga, racer, uav, hale]
+summary:
+  ru: Нагрузки при манёврах, порывах и посадке; проверка флаттера.
+  en: Manoeuvre, gust and landing loads; flutter check.
+use:
+  ru: Флаттер по своим формам колебаний без лицензий.
+  en: Flutter from your own modes with no licence fees.
+sources:
+- https://www.dlr.de/en/ae/research-transfer/software-solutions/loads-kernel
+- https://github.com/DLR-AE/LoadsKernel

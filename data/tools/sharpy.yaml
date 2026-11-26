@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: sharpy
+name: SHARPy
+url: https://github.com/ImperialCollegeLondon/sharpy
+org: Imperial College London
+last_commit: '2026-10-12'
+code: Python, C++
+disciplines: [aeroelastic, structures, flightsim]
+map: [aeroelastic, L2]
+fidelity: [L2]
+stages: [preliminary]
+aircraft: [hale, transport, uav, racer]
+summary:
+  ru: 'Нелинейная балка + нестационарная вихревая решётка: флаттер, порывы, динамика упругого самолёта.'
+  en: 'Nonlinear beam + unsteady VLM: flutter, gusts, flexible-aircraft dynamics.'
+use:
+  ru: Гибкие и сочленённые крылья, нелинейные эффекты.
+  en: Flexible and joined wings, nonlinear effects.
+caveat:
+  ru: 'Хвост открытых жалоб: несовместимость с NumPy 2 (с 06.2024), ошибки установки.'
+  en: 'Backlog of open issues: NumPy 2 incompatibility (since Jun 2024), install problems.'
+sources:
+- https://github.com/ImperialCollegeLondon/sharpy
+- https://github.com/ImperialCollegeLondon/sharpy/issues

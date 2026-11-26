@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: qprop
+name: QPROP / QMIL
+url: https://web.mit.edu/drela/Public/web/xrotor/
+org: M. Drela (MIT)
+code: Fortran
+disciplines: [propulsion]
+map: [propulsion, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [rc, uav, glider, hpa, evtol]
+summary:
+  ru: 'Винт вместе с электромотором: перебор режимов.'
+  en: 'Propeller with an electric motor: parameter sweeps.'
+use:
+  ru: Подбор мотора и винта для моделей и беспилотников.
+  en: Motor and propeller matching for models and UAVs.

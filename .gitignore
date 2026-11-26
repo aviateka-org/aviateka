@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+/aviateka_mcp/catalog.json
+/web/dist/
+/dist/
+/build/
+*.egg-info/
+.venv/

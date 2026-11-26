@@ -1,0 +1,65 @@
+# Таблица сверки: кто чем считал и насколько совпало с опытом.
+# Validation matrix: who computed what, and how well it matched measurements.
+# Поля описаны в schema/validation.schema.json. Fields: schema/validation.schema.json
+# diff_pct — расхождение с опытом в процентах, как его дал источник; direction — over (завышает), under (занижает) или null (не сказано).
+- id: ombor2023-autowing-wig-h0113
+  tool: autowing
+  tool_version: null
+  case:
+    ru: Модель экраноплана на воде (Ombor, Ньюкасл, 2023), высота крыла 0,113 хорды, нулевая осадка
+    en: Water-borne WIG craft model (Ombor, Newcastle, 2023), wing height 0.113 chord, zero draught
+  reference:
+    ru: Привязные модельные испытания из той же диссертации
+    en: Captive model tests from the same thesis
+  parameter: trim_deg
+  points:
+  - {at: 0, quantity: CL, diff_pct: 110.76, direction: over}
+  - {at: 2, quantity: CL, diff_pct: 20.75, direction: over}
+  - {at: 4, quantity: CL, diff_pct: 22.54, direction: over}
+  - {at: 6, quantity: CL, diff_pct: 26.34, direction: over}
+  - {at: 0, quantity: CD, diff_pct: 294.31, direction: under}
+  - {at: 2, quantity: CD, diff_pct: 114.02, direction: under}
+  - {at: 4, quantity: CD, diff_pct: 104.71, direction: under}
+  - {at: 6, quantity: CD, diff_pct: 105.16, direction: under}
+  summary:
+    ru: Форму кривой подъёмной силы ловит хорошо, но завышает её на 21–26 % при дифференте 2–6°; сопротивление занижает примерно вдвое.
+    en: Captures the shape of the lift curve well but over-predicts lift by 21–26 % at 2–6° trim; under-predicts drag by about half.
+  caveats:
+    ru: Сравнение сделал автор конкурирующей модели. Версия и режим Autowing не указаны. При 0° сила мала, процент раздут. Направление ошибки взято из текста, в таблице знака нет.
+    en: The comparison was made by the author of a competing model. Autowing version and mode are not stated. At 0° the force is small, so the percentage is inflated. Error direction is taken from the text; the table has no sign.
+  source: https://theses.ncl.ac.uk/jspui/bitstream/10443/6199/1/Ombor%20P%20G%202023.pdf
+  source_date: 2023-08
+  kind: published
+  added: 2026-11-26
+  added_by: editorial
+- id: ombor2023-own-model-wig-h0113
+  tool: null
+  tool_name: Ombor 2.5D aero-hydrodynamic model (not distributed)
+  tool_version: null
+  case:
+    ru: Та же модель экраноплана на воде, высота 0,113 хорды, нулевая осадка
+    en: Same water-borne WIG model, height 0.113 chord, zero draught
+  reference:
+    ru: Привязные модельные испытания из той же диссертации
+    en: Captive model tests from the same thesis
+  parameter: trim_deg
+  points:
+  - {at: 0, quantity: CL, diff_pct: 21.75, direction: null}
+  - {at: 2, quantity: CL, diff_pct: 12.34, direction: null}
+  - {at: 4, quantity: CL, diff_pct: 6.72, direction: null}
+  - {at: 6, quantity: CL, diff_pct: 17.68, direction: null}
+  - {at: 0, quantity: CD, diff_pct: 53.17, direction: under}
+  - {at: 2, quantity: CD, diff_pct: 54.02, direction: under}
+  - {at: 4, quantity: CD, diff_pct: 34.52, direction: under}
+  - {at: 6, quantity: CD, diff_pct: 28.35, direction: under}
+  summary:
+    ru: Подъёмная сила ближе к опыту, чем у Autowing (7–22 %); сопротивление тоже занижено, до 54 %.
+    en: Lift closer to the test than Autowing (7–22 %); drag also under-predicted, by up to 54 %.
+  caveats:
+    ru: Автор сверял собственную модель; код не опубликован.
+    en: The author checked his own model; the code is not published.
+  source: https://theses.ncl.ac.uk/jspui/bitstream/10443/6199/1/Ombor%20P%20G%202023.pdf
+  source_date: 2023-08
+  kind: published
+  added: 2026-11-26
+  added_by: editorial

@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: machuphydro
+name: MachUpHydro
+url: https://github.com/lev-chern/MachUpHydro
+org: L. Chernyshev (форк MachUpX)
+last_commit: '2024-01-26'
+code: Python
+disciplines: [aero, hydro]
+map: [hydro, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [hydrofoil, wig]
+summary:
+  ru: 'Форк MachUpX: несущая линия с экраном и свободной поверхностью.'
+  en: 'MachUpX fork: lifting line with ground and free-surface effects.'
+use:
+  ru: Быстрая несущая линия для крыла у воды.
+  en: A quick lifting line for wings near water.
+sources:
+- https://github.com/lev-chern/MachUpHydro
+- https://groups.google.com/g/machup_forum/c/miFKE63GtRQ

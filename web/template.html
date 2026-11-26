@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Авиатека</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE work: a reference tool for engineers and agents, dense and ordered
+   IDEA an aeronautical sectional chart: tools are waypoints, design workflows are magenta routes
+   PICTURE the chart itself — disciplines × fidelity grid of tool waypoints, a route drawn through them
+   COLOUR chart paper ground, sea-blue frame, ink, route magenta, contour brown for stale
+   TYPE Overpass 800 for titles, Overpass for text
+   LAYOUT laptop: chart 2/3 + sticky tool card 1/3 under a modest title and filters; phone: title, filters, chart (scrolls sideways), card */
+:root{color-scheme:light dark;--bg:light-dark(#fbfbf2,#0d1c24);--ink:light-dark(#13242e,#e6eee8);--sea:light-dark(#bfe3ee,#123341);--card:light-dark(#ffffff,#10293a);--route:light-dark(#d6127e,#ff5fb0);--brown:light-dark(#a8551b,#e39a5f);--muted:light-dark(#4b5f68,#a3b7bd);--line:light-dark(#13242e22,#e6eee822);--tint:light-dark(#fde7f2,#3b1430)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Overpass,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit;text-underline-offset:3px}
+h1,h2,h3{font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font-size:clamp(32px,4.4vw,48px)}
+h2{font-size:clamp(24px,3vw,34px);margin-bottom:14px}
+h3{font-size:19px;letter-spacing:-.01em}
+.band{padding-block:clamp(24px,3.5vw,52px);padding-left:max(4vw,16px);padding-right:max(4vw,16px)}
+.wrap{max-width:1320px;margin:0 auto}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:8px 14px;flex-wrap:wrap;padding:8px max(4vw,16px)}
+.brand{font-weight:800;font-size:20px;letter-spacing:-.02em;text-decoration:none;margin-right:auto;order:1}
+.nav{display:flex;gap:4px;overflow-x:auto;flex-wrap:nowrap;max-width:100%;order:2}
+.lang{order:3}
+@media(max-width:1000px){.lang{order:2}.nav{order:3;width:100%}html{scroll-padding-top:116px}}
+.nav a{flex:none;text-decoration:none;padding:8px 10px;border-radius:8px;font-size:15px}
+.nav a:hover{background:var(--sea)}
+.lang{display:flex;border:1.5px solid var(--ink);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:none;color:var(--ink);font:600 15px Overpass,sans-serif;padding:8px 14px;min-height:40px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.lead{font-size:18px;max-width:64ch;margin:10px 0 18px}
+.filters{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+label.f{display:grid;gap:4px;font-size:14px;font-weight:600}
+select,input{font:16px Overpass,sans-serif;color:var(--ink);background:var(--card);border:1.5px solid color-mix(in srgb,var(--ink) 55%,transparent);border-radius:10px;padding:9px 10px;min-height:44px;width:100%}
+select:focus,input:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--route);outline-offset:2px}
+.chartbox{display:grid;gap:16px}
+@media(min-width:1100px){.chartbox{grid-template-columns:minmax(0,2.7fr) minmax(0,1fr);align-items:start}.card.side{position:sticky;top:72px}}
+.sea{background:var(--sea);border-radius:16px;padding:12px}
+.scroll{overflow-x:auto}
+.map{--lab:150px;position:relative;display:grid;gap:6px;min-width:820px}
+@media(max-width:600px){.map{--lab:104px;min-width:700px}.map .rl{font-size:13px}}
+.map .hd{font-size:13px;font-weight:800;padding:2px 4px;align-self:end}
+.map .hd small{display:block;font-weight:400;color:var(--muted);line-height:1.25}
+.map .rl{font-size:14px;font-weight:600;line-height:1.2;align-self:center;padding-right:4px}
+.cell{background:var(--bg);border-radius:8px;padding:6px;min-height:48px;display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start}
+.cell.empty{background:repeating-linear-gradient(135deg,var(--bg) 0 7px,color-mix(in srgb,var(--sea) 70%,var(--bg)) 7px 9px)}
+.pill{position:relative;overflow-wrap:anywhere;font:600 13px/1.15 Overpass,sans-serif;color:var(--ink);background:var(--card);border:1.5px solid var(--ink);border-radius:999px;padding:5px 8px;min-height:28px;max-width:100%;cursor:pointer;text-align:left;transition:opacity .2s;z-index:2}
+.pill:hover{background:var(--tint)}
+.pill.stale,.pill.legacy{border-style:dashed;border-color:var(--brown);color:var(--brown)}
+.pill.unknown{border-style:dotted}
+.pill.announced{border-style:dashed;border-color:var(--route)}
+.pill.proprietary,.pill.commercial{border-color:var(--muted);color:var(--muted);font-style:italic}
+.pill.on_request,.pill.freeware{border-style:dashed;border-color:var(--muted)}
+.vers{display:grid;gap:14px}.vers article{border-left:3px solid var(--route);padding:2px 0 2px 14px}.vers h3{font-size:20px}
+.vers ul{margin:6px 0 0;padding-left:20px}
+.pill.dim{color:color-mix(in srgb,currentColor 28%,var(--card));border-color:color-mix(in srgb,currentColor 30%,var(--card))}
+.pill.far{color:color-mix(in srgb,currentColor 55%,var(--card));border-color:color-mix(in srgb,currentColor 55%,var(--card))}
+.pill.on{border-color:var(--route);border-width:2.5px;color:var(--ink);opacity:1}
+.pill.sel,.pill.sel.on{background:var(--ink);color:var(--bg);opacity:1}
+.pill.sel.on{border-color:var(--route)}
+.pill[data-n]::before{content:attr(data-n);position:absolute;top:-9px;left:-7px;width:19px;height:19px;border-radius:50%;background:var(--route);color:#fff;font-size:11px;line-height:19px;text-align:center}
+svg.route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:1}
+svg.route path{fill:none;stroke:var(--route);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;align-items:center}
+.legend .pill{cursor:default;pointer-events:none}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.card h3{font-size:24px;margin-bottom:4px}
+.meta{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 12px;font-size:14px;margin:12px 0}
+.meta dt{color:var(--muted)}.meta dd{margin:0}
+.tag{display:inline-block;font-size:13px;border-radius:6px;background:color-mix(in srgb,var(--sea) 60%,transparent);padding:1px 7px;margin:0 4px 4px 0}
+.warn{border-left:3px solid var(--brown);padding:6px 10px;background:color-mix(in srgb,var(--brown) 10%,transparent);border-radius:0 8px 8px 0;font-size:15px}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:15px}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+th{font-size:13px;color:var(--muted);font-weight:600}
+.nw{white-space:nowrap}
+tr.click{cursor:pointer}tr.click:hover{background:var(--tint)}
+.flows{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px}
+.flow ol{margin:10px 0;padding-left:22px}.flow li{margin:4px 0}
+.btn{font:600 15px Overpass,sans-serif;color:var(--bg);background:var(--route);border:0;border-radius:10px;padding:10px 14px;min-height:44px;cursor:pointer}
+.btn.ghost{background:none;color:var(--ink);border:1.5px solid var(--ink)}
+a.btn{display:inline-block;text-decoration:none}
+.helpgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:14px 0}.helpgrid .card{display:flex;flex-direction:column;gap:8px}.helpgrid .card p{margin:0;flex:1}.helpgrid .btn{text-align:center;text-decoration:none}
+.dir{font-weight:800}.dir.over{color:var(--brown)}.dir.under{color:var(--route)}
+.mark{font-weight:800;white-space:nowrap}.mark.window{color:var(--route)}.mark.forbidden{color:var(--brown)}
+.calcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.calc .ins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
+.calc .big{font-size:clamp(28px,3.4vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1;white-space:nowrap}
+.calc .res{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:2px 12px;font-size:15px;margin-top:8px}
+.calc .res dd{margin:0;font-variant-numeric:tabular-nums}
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:4px 28px;margin-top:12px}
+.terms div{padding:10px 0;border-bottom:1px solid var(--line)}
+pre{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:14px;overflow-x:auto}
+code{overflow-wrap:anywhere}
+.alt{background:color-mix(in srgb,var(--sea) 45%,var(--bg))}
+footer{font-size:14px;color:var(--muted)}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8.5em}.stack td::before{content:attr(data-l);float:inline-start;width:8em;margin-inline-start:-8.5em;color:var(--muted);font-size:13px}.stack td:empty{display:none}.nav{order:3;width:100%}}
+@media(prefers-reduced-motion:reduce){.pill{transition:none}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html" data-t="title">Авиатека</a>
+  <nav class="nav" id="nav"></nav>
+  <div class="lang" role="group" aria-label="Language"><button id="lru" aria-pressed="true">RU</button><button id="len" aria-pressed="false">EN</button></div>
+</div></header>
+
+<main>
+<section class="band" id="map"><div class="wrap">
+  <h1 data-t="h1">Карта открытых инструментов: самолёты, экранопланы, суда на подводных крыльях</h1>
+  <p class="lead" id="finding"></p>
+  <div class="filters">
+    <label class="f"><span data-t="fAircraft">Аппарат</span><select id="fa"></select></label>
+    <label class="f"><span data-t="fStage">Этап</span><select id="fs"></select></label>
+    <label class="f"><span data-t="fRoute">Цепочка на карте</span><select id="fw"></select></label>
+    <label class="f"><span data-t="fSearch">Поиск</span><input id="fq" type="search" autocomplete="off"></label>
+  </div>
+  <div class="chartbox">
+    <div>
+      <div class="sea"><div class="scroll"><div class="map" id="grid"></div></div></div>
+      <div class="legend" id="legend"></div>
+    </div>
+    <aside class="card side" id="detail" aria-live="polite"></aside>
+  </div>
+</div></section>
+
+<section class="band" id="tools"><div class="wrap">
+  <h2 data-t="hTools">Все инструменты</h2>
+  <p class="muted small"><span id="tcount"></span> <a id="addtool" href="#"></a></p>
+  <div class="scroll"><table class="stack" id="ttable"></table></div>
+</div></section>
+
+<section class="band alt" id="flows"><div class="wrap">
+  <h2 data-t="hFlows">Рабочие цепочки: с чего начать и чем проверить</h2>
+  <div class="flows" id="flowlist"></div>
+</div></section>
+
+<section class="band" id="gaps"><div class="wrap">
+  <h2 data-t="hGaps">Чего в открытом доступе нет</h2>
+  <div class="scroll"><table class="stack" id="gaptable"></table></div>
+  <ul id="oos" class="small muted"></ul>
+  <h2 style="margin-top:28px" data-t="hBench">Эталонные цифры для проверки</h2>
+  <div class="scroll"><table class="stack" id="benchtable"></table></div>
+</div></section>
+
+<section class="band alt" id="check"><div class="wrap">
+  <h2 data-t="hCheck">Таблица сверки: кто чем считал и насколько совпало с опытом</h2>
+  <p class="lead" data-t="checkLead">Здесь собираются сравнения программ с опытом: из статей и от участников. Это главная ценность каталога — по ней видно, каким числам программы можно верить.</p>
+  <div class="scroll"><table class="stack" id="valtable"></table></div>
+  <p><a class="btn" id="sendcalc" href="#" data-t="sendCalc">Прислать свой расчёт</a></p>
+</div></section>
+
+<section class="band" id="calc"><div class="wrap">
+  <h2 data-t="hCalc">Калькуляторы</h2>
+  <p class="muted small" data-t="calcNote">Заполнено примерами: «Стриж» на гонке в Рино и его летающая модель 1:16.</p>
+  <div class="calcs">
+    <div class="card calc"><h3 data-t="cAtm">Атмосфера, Рейнольдс и Мах</h3>
+      <div class="ins">
+        <label class="f"><span data-t="iH">Высота, м</span><input id="a_h" type="number" value="1119" step="100"></label>
+        <label class="f"><span data-t="iDT">ΔT к стандарту, °C</span><input id="a_dt" type="number" value="15" step="1"></label>
+        <label class="f"><span data-t="iV">Скорость, км/ч</span><input id="a_v" type="number" value="815" step="5"></label>
+        <label class="f"><span data-t="iC">Хорда, м</span><input id="a_c" type="number" value="1.92" step="0.01"></label>
+      </div>
+      <div class="big" id="a_big"></div><dl class="res" id="a_res"></dl></div>
+    <div class="card calc"><h3 data-t="cStall">Скорость сваливания</h3>
+      <div class="ins">
+        <label class="f"><span data-t="iM">Масса, кг</span><input id="s_m" type="number" value="2282" step="10"></label>
+        <label class="f"><span data-t="iS">Площадь крыла, м²</span><input id="s_s" type="number" value="21.87" step="0.1"></label>
+        <label class="f"><span data-t="iCL">CL max</span><input id="s_cl" type="number" value="1.05" step="0.05"></label>
+        <label class="f"><span data-t="iH">Высота, м</span><input id="s_h" type="number" value="1119" step="100"></label>
+      </div>
+      <div class="big" id="s_big"></div><dl class="res" id="s_res"></dl></div>
+    <div class="card calc"><h3 data-t="cLoad">Нагрузка на крыло</h3>
+      <div class="ins">
+        <label class="f"><span data-t="iM">Масса, кг</span><input id="l_m" type="number" value="0.218" step="0.01"></label>
+        <label class="f"><span data-t="iS">Площадь крыла, м²</span><input id="l_s" type="number" value="0.0854" step="0.001"></label>
+      </div>
+      <div class="big" id="l_big"></div><dl class="res" id="l_res"></dl></div>
+    <div class="card calc"><h3 data-t="cCav">Кавитация подводного крыла</h3>
+      <div class="ins">
+        <label class="f"><span data-t="iV">Скорость, км/ч</span><input id="c_v" type="number" value="74" step="1"></label>
+        <label class="f"><span data-t="iD">Глубина крыла, м</span><input id="c_d" type="number" value="0.5" step="0.1"></label>
+        <label class="f"><span data-t="iCp">Cp min профиля</span><input id="c_cp" type="number" value="-0.6" step="0.05"></label>
+        <label class="f"><span data-t="iTw">Вода, °C</span><input id="c_t" type="number" value="28" step="1"></label>
+        <label class="f"><span data-t="iSalt">Вода</span><select id="c_s"><option value="1" data-t="sea">морская</option><option value="0" data-t="fresh">пресная</option></select></label>
+      </div>
+      <div class="big" id="c_big"></div><dl class="res" id="c_res"></dl></div>
+    <div class="card calc"><h3 data-t="cFr">Подобная модель по Фруду</h3>
+      <div class="ins">
+        <label class="f"><span data-t="iK">Масштаб 1:</span><input id="f_k" type="number" value="16" step="1"></label>
+        <label class="f"><span data-t="iM">Масса, кг</span><input id="f_m" type="number" value="2699" step="10"></label>
+        <label class="f"><span data-t="iV">Скорость, км/ч</span><input id="f_v" type="number" value="198" step="5"></label>
+        <label class="f"><span data-t="iI">Iyy, кг·м²</span><input id="f_i" type="number" value="13508" step="100"></label>
+        <label class="f"><span data-t="iRf">ρ оригинала</span><input id="f_rf" type="number" value="1.225" step="0.01"></label>
+        <label class="f"><span data-t="iRm">ρ модели</span><input id="f_rm" type="number" value="1.17" step="0.01"></label>
+      </div>
+      <div class="big" id="f_big"></div><dl class="res" id="f_res"></dl></div>
+  </div>
+</div></section>
+
+<section class="band alt" id="terms"><div class="wrap">
+  <h2 data-t="hTerms">Термины</h2>
+  <label class="f" style="max-width:420px"><span data-t="fSearch">Поиск</span><input id="gq" type="search" autocomplete="off"></label>
+  <div class="terms" id="termlist"></div>
+</div></section>
+
+<section class="band" id="case"><div class="wrap">
+  <h2 id="caseh"></h2>
+  <p id="cases" class="lead"></p>
+  <p id="caseo" class="small muted"></p>
+  <div class="scroll"><table class="stack" id="casetable"></table></div>
+</div></section>
+
+<section class="band alt" id="help"><div class="wrap">
+  <h2 data-t="hHelp">Как помочь</h2>
+  <p class="lead" data-t="helpLead">Авиатека открыта и бесплатна. Её улучшают те, кто ей пользуется: присылайте инструменты, исправления, свои расчёты и новые темы. Git знать не нужно — формы принимают обычный текст.</p>
+  <div class="helpgrid" id="helpgrid"></div>
+  <p class="small muted" id="licline"></p>
+</div></section>
+
+<section class="band" id="versions"><div class="wrap">
+  <h2 id="verh"></h2>
+  <p class="small muted" id="verrule"></p>
+  <div class="vers" id="verlist"></div>
+</div></section>
+
+<section class="band alt" id="ai"><div class="wrap">
+  <h2 data-t="hAi">Для ИИ-агентов: MCP-сервер</h2>
+  <p class="lead" data-t="aiLead">Те же данные доступны агентам через MCP-сервер на Python. Он работает с официальным SDK версий 1.x и 2.x, по stdio или HTTP. Данные также лежат рядом со страницей в data.json.</p>
+  <div class="scroll"><table class="stack" id="mcptable"></table></div>
+  <h3 style="margin:22px 0 8px" data-t="aiCfg">Подключение к Claude Desktop</h3>
+  <p class="small" id="aiinst"></p>
+  <pre id="cfg">{
+  "mcpServers": {
+    "aviateka": {
+      "command": "python",
+      "args": ["/path/to/aviateka-mcp/server.py"]
+    }
+  }
+}</pre>
+  <p><button class="btn ghost" id="copy" data-t="copy">Копировать</button> <a href="data.json" data-t="dl">Каталог в JSON</a></p>
+</div></section>
+</main>
+
+<footer class="band"><div class="wrap"><p id="method"></p></div></footer>
+
+<script type="application/json" id="cat">__CATALOG__</script>
+<script>
+/*CALC*/
+{
+const CAT = JSON.parse(document.getElementById('cat').textContent);
+const UI = {
+ ru:{title:'Авиатека',h1:'Карта открытых инструментов: самолёты, экранопланы, суда на подводных крыльях',fAircraft:'Аппарат',fStage:'Этап',fRoute:'Цепочка на карте',fSearch:'Поиск',all:'все',none:'нет',ph:'флаттер, винт, low Reynolds…',
+  nav:{map:'Карта',tools:'Инструменты',flows:'Цепочки',gaps:'Ниши',check:'Сверка',calc:'Калькуляторы',terms:'Термины',case:'«Стриж»',help:'Помочь',versions:'Версии',ai:'Для ИИ'},
+  hCheck:'Таблица сверки: кто чем считал и насколько совпало с опытом',checkLead:'Здесь собираются сравнения программ с опытом: из статей и от участников. По ним видно, каким числам программы можно верить.',sendCalc:'Прислать свой расчёт',vth:['Программа','Случай','Расхождение с опытом','Вывод','Источник'],vref:'с чем сравнивали',over:'завышает',under:'занижает',published:'статья',community:'участник',valIn:'Сверка',
+  fix:'Предложить правку этой карточки',fixTag:'правка',addTool:'Нет нужного инструмента? Предложите.',
+  hHelp:'Как помочь',helpLead:'Авиатека открыта и бесплатна. Её улучшают те, кто ей пользуется: присылайте инструменты, исправления, свои расчёты и новые темы. Git знать не нужно — формы принимают обычный текст.',
+  help:[['new_tool','Новый инструмент','Знаете открытую программу для проектирования, которой здесь нет? Дайте ссылку и пару слов.','Добавить инструмент'],['correction','Исправление','Нашли ошибку, устаревшую дату или битую ссылку? Напишите, что не так и где правильно.','Исправить'],['calculation','Свой расчёт','Считали эталонный случай и сравнивали с опытом? Пришлите цифры — они попадут в таблицу сверки.','Прислать расчёт'],['new_topic','Новая тема','Нужен раздел: дирижабли, ракеты, парусные крылья? Опишите, что искать.','Предложить тему']],
+  lic2:(c,d)=>`Код — ${c}, данные — ${d === 'CC-BY-4.0' ? 'CC BY 4.0: берите что угодно, только укажите источник' : d}.`,guide:'Правила участия',
+  instPypi:'Установка: uvx aviateka-mcp (или pip install aviateka-mcp, затем команда aviateka-mcp).',instRepo:'Пока пакета на PyPI нет: склонируйте репозиторий, выполните pip install -e . и python scripts/build_catalog.py.',
+  finding:(n,a,g)=>`${n} открытых инструментов для самолётов, экранопланов и судов на подводных крыльях, из них ${a} менялись за последний год. Строки карты — дисциплины, столбцы — уровень точности. Заштрихованные клетки — то, чего в каталоге нет; выберите цепочку, и она проляжет маршрутом.`,
+  pick:'Нажмите на инструмент на карте или в таблице.',org:'Кто',lic:'Лицензия',licUnk:'не проверена',date:'Последний код',dateUnk:'не проверяли',status:'Статус',disc:'Дисциплины',fid:'Точность',stages:'Этапы',ac:'Аппараты',use:'Когда брать',caveat:'Осторожно',src:'Источники',inflows:'В цепочках',
+  hTools:'Все инструменты',tcount:(n,t)=>`Показано ${n} из ${t}; фильтры сверху действуют и здесь.`,th:['Инструмент','Дисциплина','Точность','Последний код','Статус','Лицензия'],
+  hFlows:'Рабочие цепочки: с чего начать и чем проверить',check:'Проверка',show:'Показать на карте',
+  hGaps:'Чего в открытом доступе нет',gth:['Ниша','Что нашлось рядом','Разметка','Почему'],hBench:'Эталонные цифры для проверки',bth:['Что','Цифры','Зачем'],
+  hCalc:'Калькуляторы',calcNote:'Заполнено примерами: «Стриж» на гонке в Рино, его летающая модель 1:16 и судно на подводных крыльях на 40 узлах.',cCav:'Кавитация подводного крыла',iD:'Глубина крыла, м',iCp:'Cp min профиля',iTw:'Вода, °C',iSalt:'Вода',sea:'морская',fresh:'пресная',rSig:'Число кавитации σ',rNeed:'Порог −Cp min',rVi:'Начало кавитации',rPv:'Давление пара',cavYes:'кавитирует',rState:'Итог',cavNo:'без кавитации',hVer:v=>`Версии: сейчас ${v}`,cAtm:'Атмосфера, Рейнольдс и Мах',cStall:'Скорость сваливания',cLoad:'Нагрузка на крыло',cFr:'Подобная модель по Фруду',
+  iH:'Высота, м',iDT:'ΔT к стандарту, °C',iV:'Скорость, км/ч',iC:'Хорда, м',iM:'Масса, кг',iS:'Площадь крыла, м²',iCL:'CL max',iK:'Масштаб 1:',iI:'Iyy, кг·м²',iRf:'ρ оригинала',iRm:'ρ модели',
+  rT:'Температура',rRho:'Плотность',rA:'Скорость звука',rNu:'Кин. вязкость',rM:'Число Маха',rRe:'Число Рейнольдса',rVs:'Сваливание',rApp:'Заход 1,3 Vs',rKg:'На м²',rG:'На дм²',rW:'Кубическая',rCls:'Класс модели',
+  rMm:'Масса модели',rMv:'Скорость модели',rMi:'Iyy модели',rT2:'Время',rRe2:'Рейнольдс',tNote:k=>`×${nf(k,3)}; замедлите видео в ${nf(1/k,1)} раза`,bad:'Проверьте ввод',
+  wcl0:'очень лёгкая: комнатные',wcl1:'парители и парк-флаеры',wcl2:'спортивные и тренеры',wcl3:'копии и пилонные',wcl4:'реактивные с импеллером',wcl5:'выше обычного для моделей',
+  hTerms:'Термины',hCase:'Кейс',cth:['Очередь','Задача','Инструмент','Цена'],prio:['','сначала','затем','потом'],
+  hAi:'Для ИИ-агентов: MCP-сервер',aiCfg:'Подключение к Claude Desktop',copy:'Копировать',copied:'Скопировано',dl:'Каталог в JSON',mth:['Инструмент MCP','Что делает'],
+  mcp:[['get_taxonomy','Справочники: дисциплины, уровни точности, этапы, типы аппаратов'],['search_tools','Поиск по тексту на русском или английском и по фильтрам'],['get_tool','Полная карточка инструмента и цепочки, где он используется'],['find_workflows','Цепочки под задачу или тип аппарата, с критерием проверки'],['list_gaps','Пустые ниши и что не входит в каталог'],['list_benchmarks','Эталонные цифры с источниками'],['glossary','Термины RU/EN'],['get_case','Кейс «Стриж» и план проверок'],['atmosphere','Стандартная атмосфера 0–20 км'],['reynolds_mach','Числа Рейнольдса и Маха'],['stall_speed','Скорость сваливания'],['wing_loading','Нагрузка и кубическая нагрузка на крыло'],['froude_model','Динамически подобная модель'],['cavitation','Число кавитации и скорость её начала для подводного крыла'],['get_changelog','Версия, правила нумерации и журнал изменений'],['get_validation','Таблица сверки: насколько программы совпали с опытом'],['how_to_contribute','Куда прислать инструмент, правку или расчёт']]},
+ en:{title:'Aviateka',h1:'A chart of open design tools: aircraft, WIG craft, hydrofoils',fAircraft:'Aircraft',fStage:'Stage',fRoute:'Route on the chart',fSearch:'Search',all:'all',none:'none',ph:'flutter, propeller, low Reynolds…',
+  nav:{map:'Chart',tools:'Tools',flows:'Workflows',gaps:'Gaps',check:'Validation',calc:'Calculators',terms:'Glossary',case:'Strizh',help:'Contribute',versions:'Versions',ai:'For AI'},
+  hCheck:'Validation matrix: who computed what and how well it matched measurements',checkLead:'Comparisons of codes against measurements, from papers and from users. They show which numbers a code can be trusted with.',sendCalc:'Send your calculation',vth:['Code','Case','Mismatch with test','Takeaway','Source'],vref:'compared with',over:'over-predicts',under:'under-predicts',published:'paper',community:'user',valIn:'Validation',
+  fix:'Suggest a correction to this card',fixTag:'fix',addTool:'Missing a tool? Suggest it.',
+  hHelp:'Contribute',helpLead:'Aviateka is open and free. The people who use it make it better: send tools, corrections, your calculations and new topics. No Git needed — the forms take plain text.',
+  help:[['new_tool','New tool','Know an open design code that is missing here? Give a link and a few words.','Add a tool'],['correction','Correction','Found a mistake, an outdated date or a dead link? Say what is wrong and where the right answer is.','Correct'],['calculation','Your calculation','Ran a reference case and compared with a test? Send the numbers for the validation matrix.','Send a calculation'],['new_topic','New topic','Need a section on airships, rockets or sail wings? Describe what to look for.','Suggest a topic']],
+  lic2:(c,d)=>`Code is ${c}, data is ${d === 'CC-BY-4.0' ? 'CC BY 4.0: use anything, just credit the source' : d}.`,guide:'Contributing guide',
+  instPypi:'Install: uvx aviateka-mcp (or pip install aviateka-mcp, then run aviateka-mcp).',instRepo:'Not on PyPI yet: clone the repository, run pip install -e . and python scripts/build_catalog.py.',
+  finding:(n,a,g)=>`${n} open tools for aircraft, WIG craft and hydrofoils, ${a} of them changed within the last year. Rows are disciplines, columns are fidelity. Hatched cells are what the catalog lacks; pick a workflow to draw it as a route.`,
+  pick:'Tap a tool on the chart or in the table.',org:'Who',lic:'Licence',licUnk:'not checked',date:'Last commit',dateUnk:'not checked',status:'Status',disc:'Disciplines',fid:'Fidelity',stages:'Stages',ac:'Aircraft',use:'When to use',caveat:'Watch out',src:'Sources',inflows:'In workflows',
+  hTools:'All tools',tcount:(n,t)=>`Showing ${n} of ${t}; the filters above apply here too.`,th:['Tool','Discipline','Fidelity','Last commit','Status','Licence'],
+  hFlows:'Workflows: where to start and how to check',check:'Check',show:'Show on chart',
+  hGaps:'What open source does not have',gth:['Gap','Found nearby','Mark','Why'],hBench:'Reference numbers for sanity checks',bth:['What','Numbers','Why it matters'],
+  hCalc:'Calculators',calcNote:'Prefilled with examples: Strizh racing at Reno, its 1:16 flying model and a hydrofoil craft at 40 knots.',cCav:'Hydrofoil cavitation',iD:'Foil depth, m',iCp:'Section Cp min',iTw:'Water, °C',iSalt:'Water',sea:'sea',fresh:'fresh',rSig:'Cavitation number σ',rNeed:'Threshold −Cp min',rVi:'Cavitation starts at',rPv:'Vapour pressure',cavYes:'cavitates',rState:'Result',cavNo:'no cavitation',hVer:v=>`Versions: now ${v}`,cAtm:'Atmosphere, Reynolds and Mach',cStall:'Stall speed',cLoad:'Wing loading',cFr:'Froude-scaled model',
+  iH:'Altitude, m',iDT:'ΔT to standard, °C',iV:'Speed, km/h',iC:'Chord, m',iM:'Mass, kg',iS:'Wing area, m²',iCL:'CL max',iK:'Scale 1:',iI:'Iyy, kg·m²',iRf:'ρ full size',iRm:'ρ model',
+  rT:'Temperature',rRho:'Density',rA:'Speed of sound',rNu:'Kin. viscosity',rM:'Mach number',rRe:'Reynolds number',rVs:'Stall',rApp:'Approach 1.3 Vs',rKg:'Per m²',rG:'Per dm²',rW:'Cubic',rCls:'Model class',
+  rMm:'Model mass',rMv:'Model speed',rMi:'Model Iyy',rT2:'Time',rRe2:'Reynolds',tNote:k=>`×${nf(k,3)}; slow video down ${nf(1/k,1)}×`,bad:'Check the input',
+  wcl0:'very light: indoor',wcl1:'gliders and park flyers',wcl2:'sport and trainers',wcl3:'scale and pylon',wcl4:'EDF jets',wcl5:'above the usual model range',
+  hTerms:'Glossary',hCase:'Case',cth:['Order','Task','Tool','Cost'],prio:['','first','next','later'],
+  hAi:'For AI agents: MCP server',aiCfg:'Connect to Claude Desktop',copy:'Copy',copied:'Copied',dl:'Catalog as JSON',mth:['MCP tool','What it does'],
+  mcp:[['get_taxonomy','Lookups: disciplines, fidelity levels, stages, aircraft types'],['search_tools','Text search in Russian or English plus filters'],['get_tool','Full tool card and the workflows that use it'],['find_workflows','Tool chains for a task or aircraft type, with an acceptance check'],['list_gaps','Gaps and what the catalog does not cover'],['list_benchmarks','Reference numbers with sources'],['glossary','RU/EN terms'],['get_case','The Strizh case and its check plan'],['atmosphere','Standard atmosphere 0–20 km'],['reynolds_mach','Reynolds and Mach numbers'],['stall_speed','Stall speed'],['wing_loading','Wing and cubic loading'],['froude_model','Dynamically similar model'],['cavitation','Cavitation number and inception speed for a hydrofoil'],['get_changelog','Version, numbering rules and change history'],['get_validation','Validation matrix: how well codes matched measurements'],['how_to_contribute','Where to send a tool, a correction or a calculation']]}
+};
+UI.en.aiLead='The same data is available to agents through a Python MCP server. It works with the official SDK 1.x and 2.x over stdio or HTTP. The data also sits next to this page as data.json.';
+UI.ru.aiLead=document.querySelector('[data-t=aiLead]').textContent;
+
+let lang = 'ru';
+try { const s = localStorage.getItem('aviateka-lang'); if (s === 'en' || s === 'ru') lang = s; } catch (e) {}
+const st = { ac: '', stage: '', q: '', sel: null, wf: '' };
+const $ = id => document.getElementById(id);
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const tr = o => o == null ? '' : (typeof o === 'string' ? o : (o[lang] || o.ru));
+const U = k => UI[lang][k];
+const byId = (arr, id) => arr.find(x => x.id === id);
+const TOOLS = Object.fromEntries(CAT.tools.map(t => [t.id, t]));
+const VAL = CAT.validation || [];
+const REPO = 'https://github.com/' + CAT.repo;
+const form = (tpl, fields) => REPO + '/issues/new?template=' + tpl + '.yml' + Object.entries(fields || {}).map(([k, v]) => '&' + encodeURIComponent(k) + '=' + encodeURIComponent(v)).join('');
+const nf = (x, d) => new Intl.NumberFormat(lang === 'ru' ? 'ru-RU' : 'en-US', { minimumFractionDigits: d, maximumFractionDigits: d }).format(x);
+const sci = x => { const e = Math.floor(Math.log10(Math.abs(x))); const m = x / 10 ** e; const sup = String(e).split('').map(c => '⁰¹²³⁴⁵⁶⁷⁸⁹'['0123456789'.indexOf(c)] || '⁻').join(''); return `${nf(m, 2)}·10${sup}`; };
+const fmtDate = d => d ? new Date(d + 'T00:00:00Z').toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : U('dateUnk');
+
+function matches(t) {
+  if (st.ac && !t.aircraft.includes(st.ac)) return false;
+  if (st.stage && !t.stages.includes(st.stage)) return false;
+  if (st.q) {
+    const hay = [t.name, t.org, t.summary.ru, t.summary.en, t.use.ru, t.use.en, t.caveat?.ru, t.caveat?.en, ...t.disciplines].join(' ').toLowerCase();
+    if (!st.q.toLowerCase().split(/\s+/).filter(Boolean).every(w => hay.includes(w))) return false;
+  }
+  return true;
+}
+function wfSteps() { const w = st.wf && byId(CAT.workflows, st.wf); return w ? w.steps.map(s => s.tool) : []; }
+
+function renderStatic() {
+  document.documentElement.lang = lang;
+  document.title = U('title');
+  $('lru').setAttribute('aria-pressed', lang === 'ru'); $('len').setAttribute('aria-pressed', lang === 'en');
+  document.querySelectorAll('[data-t]').forEach(el => { const v = UI[lang][el.dataset.t]; if (typeof v === 'string') el.textContent = v; });
+  $('nav').innerHTML = Object.entries(U('nav')).map(([k, v]) => `<a href="#${k}">${esc(v)}</a>`).join('');
+  const nAct = CAT.tools.filter(t => t.status === 'active').length;
+  $('finding').textContent = U('finding')(CAT.tools.length, nAct, CAT.gaps.length);
+  $('fq').placeholder = U('ph'); $('gq').placeholder = U('ph');
+  $('fa').innerHTML = `<option value="">${esc(U('all'))}</option>` + CAT.aircraft.map(a => `<option value="${a.id}">${esc(tr(a.name))}</option>`).join('');
+  $('fs').innerHTML = `<option value="">${esc(U('all'))}</option>` + CAT.stages.map(a => `<option value="${a.id}">${esc(tr(a.name))}</option>`).join('');
+  $('fw').innerHTML = `<option value="">${esc(U('none'))}</option>` + CAT.workflows.map(w => `<option value="${w.id}">${esc(tr(w.title))}</option>`).join('');
+  $('fa').value = st.ac; $('fs').value = st.stage; $('fw').value = st.wf;
+  $('legend').innerHTML = ['active', 'stale', 'unknown', 'announced', 'on_request', 'proprietary'].map(s => `<span><span class="pill ${s}">${esc(tr(CAT.statuses[s]))}</span></span>`).join('') +
+    `<span><svg width="34" height="10" aria-hidden="true"><path d="M2 5H32" stroke="var(--route)" stroke-width="3.5" stroke-linecap="round"/></svg> ${esc(U('fRoute').toLowerCase())}</span>`;
+  renderFlows(); renderGaps(); renderValidation(); renderHelp(); renderTerms(); renderCase(); renderMcp(); renderVersions(); calcAll(); calcCav();
+  $('method').textContent = `${tr(CAT.name)} ${CAT.version}. ${tr(CAT.method)}`;
+}
+
+function renderMap() {
+  const steps = wfSteps();
+  let h = `<div></div>` + CAT.fidelity.map(f => `<div class="hd">${esc(f.id)}<small>${esc(tr(f.name))}</small></div>`).join('');
+  for (const d of CAT.disciplines) {
+    h += `<div class="rl">${esc(tr(d.name))}</div>`;
+    for (const f of CAT.fidelity) {
+      const ts = CAT.tools.filter(t => t.map[0] === d.id && t.map[1] === f.id);
+      const vis = ts.filter(matches);
+      h += `<div class="cell${vis.length ? '' : ' empty'}">` + ts.map(t => {
+        const n = steps.indexOf(t.id);
+        const cls = ['pill', t.status, matches(t) || n >= 0 ? '' : 'dim', st.sel === t.id ? 'sel' : '', n >= 0 ? 'on' : '', steps.length && n < 0 && st.sel !== t.id ? 'far' : ''].join(' ');
+        return `<button class="${cls}" data-id="${t.id}"${n >= 0 ? ` data-n="${n + 1}"` : ''} title="${esc(tr(t.summary))}">${esc(t.name)}</button>`;
+      }).join('') + `</div>`;
+    }
+  }
+  const cnt = CAT.fidelity.map(f => CAT.tools.filter(t => t.map[1] === f.id).length);
+  $('grid').style.gridTemplateColumns = 'var(--lab) ' + cnt.map(c => `minmax(96px,${(1 + Math.sqrt(c)).toFixed(2)}fr)`).join(' ');
+  $('grid').innerHTML = h + `<svg class="route" id="rsvg" aria-hidden="true"></svg>`;
+  drawRoute();
+}
+
+function drawRoute() {
+  const svg = $('rsvg'); if (!svg) return;
+  const steps = wfSteps(); const g = $('grid').getBoundingClientRect();
+  const boxes = steps.map(id => { const el = $('grid').querySelector(`.pill[data-id="${id}"]`); if (!el) return null; const r = el.getBoundingClientRect(); return { x: r.left - g.left + r.width / 2, y: r.top - g.top + r.height / 2, w: r.width / 2 + 4, h: r.height / 2 + 4 }; }).filter(Boolean);
+  let d = '';
+  for (let i = 0; i + 1 < boxes.length; i++) {
+    const a = boxes[i], b = boxes[i + 1], dx = b.x - a.x, dy = b.y - a.y;
+    const ta = Math.min(dx ? a.w / Math.abs(dx) : 1e9, dy ? a.h / Math.abs(dy) : 1e9), tb = Math.min(dx ? b.w / Math.abs(dx) : 1e9, dy ? b.h / Math.abs(dy) : 1e9);
+    if (ta + tb >= 1) continue;
+    d += `M${a.x + dx * ta} ${a.y + dy * ta}L${b.x - dx * tb} ${b.y - dy * tb}`;
+  }
+  svg.innerHTML = d ? `<path d="${d}"/>` : '';
+}
+
+function renderDetail() {
+  const t = st.sel && TOOLS[st.sel];
+  if (!t) { $('detail').innerHTML = `<h3>${esc(tr(CAT.tagline))}</h3><p class="muted">${esc(U('pick'))}</p>`; return; }
+  const names = (arr, ids) => ids.map(i => `<span class="tag">${esc(tr(byId(arr, i).name))}</span>`).join('');
+  const wf = CAT.workflows.filter(w => w.steps.some(s => s.tool === t.id));
+  $('detail').innerHTML = `<h3><a href="${esc(t.url)}">${esc(t.name)}</a></h3><p>${esc(tr(t.summary))}</p>
+   <dl class="meta"><dt>${esc(U('org'))}</dt><dd>${esc(t.org)}</dd><dt>${esc(U('status'))}</dt><dd>${esc(tr(CAT.statuses[t.status]))}</dd>
+   <dt>${esc(U('date'))}</dt><dd>${esc(fmtDate(t.last_commit))}</dd><dt>${esc(U('lic'))}</dt><dd>${esc(t.license || U('licUnk'))}</dd>
+   <dt>${esc(U('fid'))}</dt><dd>${t.fidelity.map(f => `<span class="tag">${esc(f)}</span>`).join('')}</dd>
+   <dt>${esc(U('disc'))}</dt><dd>${names(CAT.disciplines, t.disciplines)}</dd><dt>${esc(U('ac'))}</dt><dd>${names(CAT.aircraft, t.aircraft)}</dd></dl>
+   <p><b>${esc(U('use'))}.</b> ${esc(tr(t.use))}</p>${t.caveat ? `<p class="warn"><b>${esc(U('caveat'))}.</b> ${esc(tr(t.caveat))}</p>` : ''}
+   ${wf.length ? `<p class="small"><b>${esc(U('inflows'))}:</b> ${wf.map(w => `<a href="#map" data-wf="${w.id}">${esc(tr(w.title))}</a>`).join(', ')}</p>` : ''}
+   ${VAL.filter(v => v.tool === t.id).length ? `<p class="small"><b>${esc(U('valIn'))}:</b> <a href="#check">${VAL.filter(v => v.tool === t.id).map(v => esc(tr(v.summary))).join(' ')}</a></p>` : ''}
+   <p class="small"><b>${esc(U('src'))}:</b> ${t.sources.map((s, i) => `<a href="${esc(s)}">${i + 1}</a>`).join(' · ')}</p>
+   <p class="small"><a href="${esc(form('correction', { tool: t.id, title: '[' + U('fixTag') + '] ' + t.name }))}">${esc(U('fix'))}</a></p>`;
+}
+
+function renderTable() {
+  const rows = CAT.tools.filter(matches).sort((a, b) => (b.last_commit || '').localeCompare(a.last_commit || ''));
+  const th = U('th');
+  $('tcount').textContent = U('tcount')(rows.length, CAT.tools.length);
+  $('ttable').innerHTML = `<thead><tr>${th.map(x => `<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>` + rows.map(t =>
+    `<tr class="click" data-id="${t.id}"><td><b>${esc(t.name)}</b></td><td>${esc(tr(byId(CAT.disciplines, t.map[0]).name))}</td><td class="nw">${esc(t.fidelity.join(', '))}</td><td class="nw">${esc(fmtDate(t.last_commit))}</td><td>${esc(tr(CAT.statuses[t.status]))}</td><td>${esc(t.license || '—')}</td></tr>`).join('') + '</tbody>';
+}
+
+function renderFlows() {
+  $('flowlist').innerHTML = CAT.workflows.map(w => `<article class="card flow"><h3>${esc(tr(w.title))}</h3><p class="small muted">${w.aircraft.map(a => esc(tr(byId(CAT.aircraft, a).name))).join(', ')}</p>
+   <p>${esc(tr(w.goal))}</p><ol>${w.steps.map(s => `<li><a href="#map" data-sel="${s.tool}"><b>${esc(TOOLS[s.tool].name)}</b></a> — ${esc(tr(s.what))}</li>`).join('')}</ol>
+   <p class="small"><b>${esc(U('check'))}:</b> ${esc(tr(w.check))}</p><button class="btn" data-wf="${w.id}">${esc(U('show'))}</button></article>`).join('');
+}
+
+function renderGaps() {
+  const [a, b, c, d] = U('gth');
+  $('gaptable').innerHTML = `<thead><tr><th>${a}</th><th>${b}</th><th>${c}</th><th>${d}</th></tr></thead><tbody>` + CAT.gaps.map(g =>
+    `<tr><td><b>${esc(tr(g.title))}</b></td><td>${esc(tr(g.near))}</td><td><span class="mark ${g.mark}">${esc(tr(CAT.gap_marks[g.mark]))}</span></td><td>${esc(tr(g.why))} ${g.sources.map(s => `<a href="${esc(s)}">↗</a>`).join(' ')}</td></tr>`).join('') + '</tbody>';
+  $('oos').innerHTML = CAT.out_of_scope.map(o => `<li>${esc(tr(o))}</li>`).join('');
+  const [x, y, z] = U('bth');
+  $('benchtable').innerHTML = `<thead><tr><th>${x}</th><th>${y}</th><th>${z}</th></tr></thead><tbody>` + CAT.benchmarks.map(b =>
+    `<tr><td><b><a href="${esc(b.source)}">${esc(tr(b.title))}</a></b></td><td>${esc(tr(b.value))}</td><td>${esc(tr(b.use))}</td></tr>`).join('') + '</tbody>';
+}
+
+function renderTerms() {
+  const q = $('gq').value.toLowerCase().trim();
+  $('termlist').innerHTML = CAT.glossary.filter(g => !q || (g.term.ru + g.term.en + g.definition.ru + g.definition.en).toLowerCase().includes(q)).map(g =>
+    `<div><b>${esc(tr(g.term))}</b> <span class="muted small">${esc(lang === 'ru' ? g.term.en : g.term.ru)}${g.search.zh ? ' · ' + esc(g.search.zh) : ''}${g.search.ja ? ' · ' + esc(g.search.ja) : ''}</span><br>${esc(tr(g.definition))}</div>`).join('');
+}
+
+function renderCase() {
+  const c = CAT.cases[0]; const p = U('prio'); const th = U('cth');
+  $('caseh').textContent = tr(c.title); $('cases').textContent = tr(c.summary); $('caseo').textContent = tr(c.own_tools);
+  $('casetable').innerHTML = `<thead><tr>${th.map(x => `<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>` + c.backlog.map(b =>
+    `<tr class="click" data-id="${b.tool}"><td class="nw">${esc(p[b.priority])}</td><td>${esc(tr(b.task))}</td><td><b>${esc(TOOLS[b.tool].name)}</b></td><td class="nw">${esc(b.cost)}</td></tr>`).join('') + '</tbody>';
+}
+
+function renderValidation() {
+  const th = U('vth');
+  $('valtable').innerHTML = `<thead><tr>${th.map(x => `<th>${esc(x)}</th>`).join('')}</tr></thead><tbody>` + VAL.map(v => {
+    const name = v.tool ? `<a href="#map" data-sel="${v.tool}"><b>${esc(TOOLS[v.tool].name)}</b></a>` : `<b>${esc(v.tool_name)}</b>`;
+    const qs = [...new Set(v.points.map(p => p.quantity))];
+    const diff = qs.map(q => {
+      const ps = v.points.filter(p => p.quantity === q);
+      const dirs = [...new Set(ps.map(p => p.direction))];
+      const d = dirs.length === 1 && dirs[0] ? `<span class="dir ${dirs[0]}">${esc(U(dirs[0]))}</span> ` : '';
+      return `${esc(q)}: ${d}${ps.map(p => `<span class="nw">${esc(String(p.at))}${v.parameter.endsWith('_deg') ? '°' : ''}: ${nf(p.diff_pct, 0)}\u00a0%</span>`).join(', ')}`;
+    }).join('<br>');
+    return `<tr><td>${name}</td><td>${esc(tr(v.case))}<br><span class="small muted">${esc(U('vref'))}: ${esc(tr(v.reference))}</span></td><td>${diff}</td><td>${esc(tr(v.summary))}${v.caveats ? `<br><span class="small muted">${esc(tr(v.caveats))}</span>` : ''}</td><td class="nw"><a href="${esc(v.source)}">${esc(U(v.kind))}</a>${v.source_date ? ' · ' + esc(v.source_date) : ''}</td></tr>`;
+  }).join('') + '</tbody>';
+  $('sendcalc').href = form('calculation');
+}
+
+function renderHelp() {
+  $('helpgrid').innerHTML = U('help').map(([tpl, h, p, b]) => `<div class="card"><h3>${esc(h)}</h3><p>${esc(p)}</p><a class="btn" href="${esc(form(tpl))}">${esc(b)}</a></div>`).join('');
+  $('licline').innerHTML = `${esc(U('lic2')(CAT.license.code, CAT.license.data))} <a href="${esc(REPO)}">${esc('github.com/' + CAT.repo)}</a> · <a href="${esc(REPO + '/blob/main/CONTRIBUTING.md')}">${esc(U('guide'))}</a>`;
+  $('addtool').href = form('new_tool'); $('addtool').textContent = U('addTool');
+}
+
+function renderMcp() {
+  const [a, b] = U('mth');
+  $('cfg').textContent = JSON.stringify({ mcpServers: { aviateka: CAT.pypi_published ? { command: 'uvx', args: ['aviateka-mcp'] } : { command: 'python', args: ['-m', 'aviateka_mcp'], cwd: '/path/to/aviateka' } } }, null, 2);
+  $('aiinst').textContent = CAT.pypi_published ? U('instPypi') : U('instRepo');
+  $('mcptable').innerHTML = `<thead><tr><th>${a}</th><th>${b}</th></tr></thead><tbody>` + U('mcp').map(([n, d]) => `<tr><td class="nw"><code>${n}</code></td><td>${esc(d)}</td></tr>`).join('') + '</tbody>';
+}
+
+const num = id => parseFloat($(id).value);
+const UNITS = { ru: { kgm3: ' кг/м³', ms: ' м/с', kmh: ' км/ч', m2s: ' м²/с', kgm2: ' кг/м²', gdm2: ' г/дм²', g: ' г', kg: ' кг', kgm2i: ' кг·м²', kn: ' уз', pa: ' Па' }, en: { kgm3: ' kg/m³', ms: ' m/s', kmh: ' km/h', m2s: ' m²/s', kgm2: ' kg/m²', gdm2: ' g/dm²', g: ' g', kg: ' kg', kgm2i: ' kg·m²', kn: ' kn', pa: ' Pa' } };
+const un = k => UNITS[lang][k];
+const res = (id, rows) => { $(id).innerHTML = rows.map(([k, v]) => `<dt class="muted">${esc(k)}</dt><dd>${esc(v)}</dd>`).join(''); };
+function guard(big, list, fn) { try { fn(); } catch (e) { $(big).textContent = '—'; res(list, [[U('bad'), '']]); } }
+function calcAll() {
+  guard('a_big', 'a_res', () => {
+    const V = num('a_v') / 3.6, r = CALC.reMach(V, num('a_c'), num('a_h'), num('a_dt') || 0);
+    if (!isFinite(r.re)) throw 0;
+    $('a_big').textContent = `Re ${sci(r.re)}`;
+    res('a_res', [[U('rM'), nf(r.mach, 3)], [U('rRho'), nf(r.atm.rho, 3) + un('kgm3')], [U('rT'), nf(r.atm.T - 273.15, 1) + ' °C'], [U('rA'), nf(r.atm.a, 1) + un('ms')], [U('rNu'), sci(r.atm.nu) + un('m2s')]]);
+  });
+  guard('s_big', 's_res', () => {
+    const r = CALC.stall(num('s_m'), num('s_s'), num('s_cl'), num('s_h'), 0);
+    if (!isFinite(r.vs)) throw 0;
+    $('s_big').textContent = nf(r.vs * 3.6, 0) + un('kmh');
+    res('s_res', [[U('rVs'), nf(r.vs, 1) + un('ms')], [U('rApp'), nf(r.vs * 3.6 * 1.3, 0) + un('kmh')], [U('rRho'), nf(r.rho, 3) + un('kgm3')]]);
+  });
+  guard('l_big', 'l_res', () => {
+    const r = CALC.loading(num('l_m'), num('l_s'));
+    if (!isFinite(r.wcl) || r.wcl <= 0) throw 0;
+    $('l_big').textContent = nf(r.gdm2, 1) + un('gdm2');
+    res('l_res', [[U('rKg'), nf(r.kgm2, 2) + un('kgm2')], [U('rW'), nf(r.wcl, 1) + ' oz/ft¹·⁵'], [U('rCls'), U(r.cls)]]);
+  });
+  guard('f_big', 'f_res', () => {
+    const r = CALC.froude(num('f_k'), num('f_m'), num('f_v'), [num('f_i')], num('f_rf'), num('f_rm'));
+    if (!isFinite(r.m) || r.m <= 0) throw 0;
+    $('f_big').textContent = r.m < 10 ? nf(r.m * 1000, 0) + un('g') : nf(r.m, 1) + un('kg');
+    res('f_res', [[U('rMv'), nf(r.V, 1) + un('kmh')], [U('rMi'), nf(r.I[0], 5) + un('kgm2i')], [U('rT2'), U('tNote')(r.t)], [U('rRe2'), '×' + nf(r.re, 4)]]);
+  });
+}
+
+function calcCav() {
+  guard('c_big', 'c_res', () => {
+    const r = CALC.cav(num('c_v') / 3.6, num('c_d'), num('c_cp'), num('c_t'), $('c_s').value === '1');
+    $('c_big').textContent = `σ ${nf(r.sigma, 2)}`;
+    res('c_res', [[U('rState'), U(r.cav ? 'cavYes' : 'cavNo')], [U('rNeed'), nf(-num('c_cp'), 2)], [U('rVi'), nf(r.vi * 3.6, 0) + un('kmh') + ' · ' + nf(r.vi / 0.514444, 1) + un('kn')], [U('rPv'), nf(r.pv, 0) + un('pa')]]);
+  });
+}
+function renderVersions() {
+  $('verh').textContent = U('hVer')(CAT.version);
+  $('verrule').textContent = tr(CAT.versioning);
+  $('verlist').innerHTML = CAT.changelog.map(e => `<article><h3>${esc(e.version)} <span class="muted small">${esc(fmtDate(e.date))}</span></h3><ul>${e.changes.map(c => `<li>${esc(tr(c))}</li>`).join('')}</ul></article>`).join('');
+}
+function renderAll() { renderMap(); renderDetail(); renderTable(); }
+function setLang(l) { lang = l; try { localStorage.setItem('aviateka-lang', l); } catch (e) {} renderStatic(); renderAll(); }
+
+document.addEventListener('click', e => {
+  const p = e.target.closest('[data-id]'); const w = e.target.closest('[data-wf]'); const s = e.target.closest('[data-sel]');
+  if (w) { st.wf = w.dataset.wf; $('fw').value = st.wf; if (!st.sel) st.sel = byId(CAT.workflows, st.wf).steps[0].tool; renderAll(); if (w.tagName === 'BUTTON') $('map').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); return; }
+  if (s) { st.sel = s.dataset.sel; renderAll(); return; }
+  if (p && (p.classList.contains('pill') || p.tagName === 'TR')) { st.sel = p.dataset.id; renderAll(); if (p.tagName === 'TR') $('map').scrollIntoView(); }
+});
+$('lru').onclick = () => setLang('ru'); $('len').onclick = () => setLang('en');
+$('fa').onchange = e => { st.ac = e.target.value; renderAll(); };
+$('fs').onchange = e => { st.stage = e.target.value; renderAll(); };
+$('fw').onchange = e => { st.wf = e.target.value; renderAll(); };
+$('fq').oninput = e => { st.q = e.target.value; renderAll(); };
+$('gq').oninput = renderTerms;
+document.querySelectorAll('.calc input').forEach(i => i.addEventListener('input', () => { calcAll(); calcCav(); }));
+$('c_s').addEventListener('change', calcCav);
+$('copy').onclick = async () => { try { await navigator.clipboard.writeText($('cfg').textContent); $('copy').textContent = U('copied'); } catch (e) { $('copy').textContent = '—'; } };
+const ro = new ResizeObserver(() => drawRoute()); ro.observe($('grid'));
+if (document.fonts) document.fonts.ready.then(drawRoute);
+st.wf = 'concept-aero'; st.sel = 'openvsp';
+renderStatic(); renderAll();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+# Справочники: дисциплины, уровни точности, этапы, типы аппаратов
+# Lookups: disciplines, fidelity levels, stages, aircraft types
+disciplines:
+- id: geometry
+  name:
+    ru: Геометрия и CAD
+    en: Geometry & CAD
+- id: airfoil
+  name:
+    ru: Профили
+    en: Airfoils
+- id: aero
+  name:
+    ru: Аэродинамика аппарата
+    en: Aircraft aerodynamics
+- id: cfd
+  name:
+    ru: Полный расчёт течения (CFD)
+    en: High-fidelity CFD
+- id: propulsion
+  name:
+    ru: Винты и тяга
+    en: Propellers & propulsion
+- id: stability
+  name:
+    ru: Устойчивость и управляемость
+    en: Stability & control
+- id: flightsim
+  name:
+    ru: Моделирование полёта
+    en: Flight simulation
+- id: sysid
+  name:
+    ru: Испытания и идентификация
+    en: Flight test & system ID
+- id: structures
+  name:
+    ru: Конструкция и масса
+    en: Structures & weights
+- id: aeroelastic
+  name:
+    ru: Аэроупругость и флаттер
+    en: Aeroelasticity & flutter
+- id: mdo
+  name:
+    ru: Оптимизация и среды проектирования
+    en: MDO & design frameworks
+- id: hydro
+  name:
+    ru: 'Гидродинамика: корпус, крыло у поверхности, кавитация'
+    en: 'Hydrodynamics: hull, near-surface foils, cavitation'
+fidelity:
+- id: L0
+  name:
+    ru: Справочные формулы
+    en: Handbook & empirical
+  desc:
+    ru: Формулы и таблицы по статистике прошлых машин. Секунды на расчёт.
+    en: Statistical formulas and tables from past aircraft. Seconds per run.
+- id: L1
+  name:
+    ru: Потенциальные методы
+    en: Potential-flow & linear
+  desc:
+    ru: Вихревая решётка, панели, несущая линия, линейные балки. Без вязкости или с поправками.
+    en: Vortex lattice, panels, lifting line, linear beams. Inviscid or with corrections.
+- id: L2
+  name:
+    ru: Средняя точность
+    en: Mid-fidelity
+  desc:
+    ru: Вихревые частицы, нестационарные решётки, нелинейные балки. Минуты–часы.
+    en: Vortex particles, unsteady lattices, nonlinear beams. Minutes to hours.
+- id: L3
+  name:
+    ru: Высокая точность
+    en: High-fidelity
+  desc:
+    ru: Уравнения Навье–Стокса (RANS), оболочечный МКЭ. Часы–сутки и кластер.
+    en: Navier–Stokes (RANS), shell FEM. Hours to days, often a cluster.
+- id: EXP
+  name:
+    ru: Опыт
+    en: Measured
+  desc:
+    ru: Аэродинамическая труба, лётные испытания, идентификация по записям.
+    en: Wind tunnel, flight test, identification from logs.
+stages:
+- id: concept
+  name:
+    ru: Концепт
+    en: Concept
+- id: preliminary
+  name:
+    ru: Эскизный проект
+    en: Preliminary design
+- id: detail
+  name:
+    ru: Рабочий проект
+    en: Detailed design
+- id: test
+  name:
+    ru: Испытания
+    en: Testing
+aircraft:
+- id: transport
+  name:
+    ru: Транспортный самолёт
+    en: Transport aircraft
+- id: ga
+  name:
+    ru: Лёгкий самолёт
+    en: General aviation
+- id: racer
+  name:
+    ru: Гоночный и пилотажный
+    en: Racer & aerobatic
+- id: glider
+  name:
+    ru: Планёр
+    en: Sailplane
+- id: rc
+  name:
+    ru: Авиамодель
+    en: RC model
+- id: uav
+  name:
+    ru: Беспилотник самолётной схемы
+    en: Fixed-wing UAV
+- id: hale
+  name:
+    ru: Высотный, гибкое крыло
+    en: HALE & flexible wing
+- id: evtol
+  name:
+    ru: eVTOL, мультикоптер, конвертоплан
+    en: eVTOL, multirotor, tiltrotor
+- id: rotorcraft
+  name:
+    ru: Вертолёт
+    en: Helicopter
+- id: hpa
+  name:
+    ru: Мускулолёт
+    en: Human-powered
+- id: flapping
+  name:
+    ru: Машущее крыло
+    en: Flapping wing
+- id: wig
+  name:
+    ru: Экраноплан
+    en: WIG craft (ekranoplan)
+- id: hydrofoil
+  name:
+    ru: Судно на подводных крыльях
+    en: Hydrofoil craft

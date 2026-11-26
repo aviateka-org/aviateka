@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pterasoftware
+name: Ptera Software
+url: https://github.com/camUrban/PteraSoftware
+org: C. Urban
+last_commit: '2026-11-23'
+code: Python
+disciplines: [aero]
+map: [aero, L2]
+fidelity: [L2]
+stages: [concept, preliminary]
+aircraft: [flapping]
+summary:
+  ru: Нестационарная вихревая решётка для машущих крыльев.
+  en: Unsteady vortex lattice for flapping wings.
+use:
+  ru: Орнитоптеры и машущие крылья.
+  en: Ornithopters and flapping wings.

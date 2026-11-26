@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: rcaide
+name: RCAIDE
+url: https://github.com/leadsgroup/RCAIDE_LEADS
+org: LEADS group
+last_commit: '2026-07-25'
+code: Python
+disciplines: [mdo]
+map: [mdo, L0]
+fidelity: [L0, L1]
+stages: [concept]
+aircraft: [transport, ga, evtol, uav]
+summary:
+  ru: 'Преемник SUAVE: концептуальное проектирование, в том числе необычных схем.'
+  en: 'Successor of SUAVE: conceptual design, including unconventional layouts.'
+use:
+  ru: Электрические и необычные аппараты на этапе концепта.
+  en: Electric and unconventional concepts.

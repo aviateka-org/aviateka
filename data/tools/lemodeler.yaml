@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: lemodeler
+name: LEModeler
+url: https://github.com/hugo-nicolas/LEModeler
+org: H. Nicolas
+last_commit: '2024-03-06'
+code: Python (Rhino)
+disciplines: [geometry]
+map: [geometry, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [hydrofoil]
+summary:
+  ru: Параметрическая геометрия подводных крыльев в Rhino.
+  en: Parametric hydrofoil geometry in Rhino.
+use:
+  ru: Быстро получить семейство крыльев для расчёта.
+  en: Quickly generate a family of foils for analysis.

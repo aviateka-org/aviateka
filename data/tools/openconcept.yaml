@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openconcept
+name: OpenConcept
+url: https://github.com/mdolab/openconcept
+org: MDO Lab
+last_commit: '2026-10-27'
+code: Python
+disciplines: [mdo, propulsion]
+map: [mdo, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [ga, transport, evtol]
+summary:
+  ru: Концепт с электрической и гибридной тягой и тепловыми системами.
+  en: Concepts with electric and hybrid propulsion and thermal systems.
+use:
+  ru: Электросамолёты.
+  en: Electric aircraft.
+sources:
+- https://github.com/mdolab/openconcept
+- https://pypi.org/project/openconcept/

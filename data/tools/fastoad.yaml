@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: fastoad
+name: FAST-OAD
+url: https://github.com/fast-aircraft-design/FAST-OAD
+org: ONERA, ISAE-SUPAERO
+last_commit: '2026-11-12'
+code: Python
+disciplines: [mdo]
+map: [mdo, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [transport, ga]
+summary:
+  ru: Проектирование самолёта на OpenMDAO.
+  en: Aircraft sizing on OpenMDAO.
+use:
+  ru: Транспортные самолёты.
+  en: Transport aircraft.

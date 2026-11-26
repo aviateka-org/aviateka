@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openvsp
+name: OpenVSP + VSPAERO
+url: https://github.com/OpenVSP/OpenVSP
+org: NASA
+last_commit: '2026-11-23'
+license: NOSA 1.3
+code: C++, Python API
+disciplines: [geometry, aero]
+map: [geometry, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, wig]
+summary:
+  ru: Параметрическая геометрия самолёта плюс вихревая решётка и панельный метод VSPAERO.
+  en: Parametric aircraft geometry plus the VSPAERO vortex-lattice and panel solver.
+use:
+  ru: Первая трёхмерная модель, экспорт в CFD и МКЭ, сверка своей решётки.
+  en: First 3D model, export to CFD and FEM, cross-check of your own lattice.
+caveat:
+  ru: В версии 3.45 решатель VSPAERO сильно переделан; старые уроки частично устарели.
+  en: VSPAERO was heavily reworked in v3.45; older tutorials are partly outdated.
+sources:
+- https://github.com/OpenVSP/OpenVSP
+- https://www.nasa.gov/reference/openvsp-vspaero-basics
+- https://www.icas.org/icas_archive/ICAS2022/data/papers/ICAS2022_0126_paper.pdf

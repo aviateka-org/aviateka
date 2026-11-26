@@ -1,0 +1,37 @@
+# Форма GitHub для новых предложений / GitHub issue form
+name: Новая тема / New topic
+description: 'Раздел, которого нет: новый тип аппарата, дисциплина / A missing section: craft type, discipline'
+title: '[тема / topic] '
+labels:
+- new-topic
+body:
+- type: markdown
+  attributes:
+    value: |-
+      Опишите, что добавить и зачем. Если знаете, где искать, — это половина работы.
+
+      Describe what to add and why. Knowing where to look is half the job.
+- type: input
+  id: topic
+  attributes:
+    label: Тема / Topic
+    description: 'Например: дирижабли, ракеты, парусные крылья / e.g. airships, rockets, sail wings'
+  validations:
+    required: true
+- type: textarea
+  id: why
+  attributes:
+    label: Зачем / Why
+    description: Какую задачу это решит / What problem it solves
+- type: textarea
+  id: where
+  attributes:
+    label: Где искать / Where to look
+    description: Программы, статьи, сообщества, ключевые слова на любых языках / Tools, papers, communities, keywords in any language
+- type: checkboxes
+  id: consent
+  attributes:
+    label: Лицензия вклада / Contribution licence
+    options:
+    - label: Я согласен, что мой вклад публикуется под CC BY 4.0 (данные) и MIT (код). / I agree my contribution is published under CC BY 4.0 (data) and MIT (code).
+      required: true

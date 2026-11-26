@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: machupx
+name: MachUpX
+url: https://github.com/usuaero/MachUpX
+org: AeroLab, Utah State U.
+last_commit: '2024-05-23'
+code: Python
+disciplines: [aero]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Численная несущая линия с нелинейными профилями.
+  en: Numerical lifting line with nonlinear airfoil data.
+use:
+  ru: Порядок срыва по размаху с учётом реальных профилей.
+  en: Spanwise stall progression with real airfoil data.

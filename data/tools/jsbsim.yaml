@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: jsbsim
+name: JSBSim
+url: https://github.com/JSBSim-Team/jsbsim
+org: JSBSim Team
+last_commit: '2026-11-25'
+code: C++, Python
+disciplines: [flightsim]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [preliminary, test]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol]
+summary:
+  ru: Движок динамики полёта по таблицам (используется в FlightGear).
+  en: A table-driven flight dynamics engine (used by FlightGear).
+use:
+  ru: 'Тренажёр проекта: пролететь задачу руками, нелинейные режимы.'
+  en: 'A project simulator: fly the mission by hand, nonlinear regimes.'

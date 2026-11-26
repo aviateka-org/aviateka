@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: gxbeam
+name: GXBeam.jl
+url: https://github.com/byuflowlab/GXBeam.jl
+org: FLOW Lab, BYU
+last_commit: '2026-03-27'
+code: Julia
+disciplines: [structures]
+map: [structures, L2]
+fidelity: [L2]
+stages: [preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, hpa]
+summary:
+  ru: 'Геометрически точные балки: нелинейная статика и динамика.'
+  en: 'Geometrically exact beams: nonlinear statics and dynamics.'
+use:
+  ru: Большие прогибы и потеря устойчивости, в том числе у сочленённых крыльев.
+  en: Large deflections and instability, including joined wings.

@@ -1,0 +1,18 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: tornado
+name: Tornado
+url: https://mdolab.engin.umich.edu/wiki/aircraft-design-software
+org: KTH
+code: MATLAB
+disciplines: [aero]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Вихревая решётка на MATLAB для обучения и концепта.
+  en: A MATLAB vortex lattice for teaching and concept work.
+use:
+  ru: Если команда работает в MATLAB.
+  en: If your team works in MATLAB.

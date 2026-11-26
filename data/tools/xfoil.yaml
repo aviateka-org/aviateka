@@ -1,0 +1,20 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: xfoil
+name: XFOIL
+url: https://web.mit.edu/drela/Public/web/xfoil/
+org: M. Drela (MIT)
+code: Fortran
+disciplines: [airfoil]
+map: [airfoil, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil]
+summary:
+  ru: Классический расчёт профиля с пограничным слоем.
+  en: The classic airfoil solver with a coupled boundary layer.
+use:
+  ru: Эталон для поляр дозвуковых профилей; для подводного крыла — минимум давления для оценки кавитации.
+  en: Reference for subsonic airfoil polars; for hydrofoils, minimum pressure for cavitation estimates.
+sources:
+- https://mdolab.engin.umich.edu/wiki/aircraft-design-software

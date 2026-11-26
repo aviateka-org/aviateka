@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: xflr5
+name: XFLR5
+url: https://sourceforge.net/projects/xflr5/
+org: A. Deperrois
+license: GPL-3.0
+code: C++
+status: legacy
+disciplines: [airfoil, aero, stability]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [rc, uav, glider, hpa]
+summary:
+  ru: Прежняя версия flow5, по ней больше всего уроков.
+  en: The predecessor of flow5, with the largest body of tutorials.
+use:
+  ru: Обучение; новые проекты лучше вести во flow5.
+  en: Learning; start new work in flow5.
+caveat:
+  ru: Автор писал, что код сделан для моделей планёров, а не для полноразмерных самолётов.
+  en: The author states it was written for model sailplanes, not full-size aircraft.
+sources:
+- https://sourceforge.net/projects/xflr5/
+- https://amslaurea.unibo.it/id/eprint/29062/3/ALLEGATO_1-TESI-GIACOMO-_PIERINI-Guidelines_XFLR5.pdf

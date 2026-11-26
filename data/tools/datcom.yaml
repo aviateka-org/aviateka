@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: datcom
+name: Digital DATCOM
+url: https://www.pdas.com/datcom.html
+org: USAF
+code: Fortran
+status: legacy
+disciplines: [stability]
+map: [stability, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [transport, ga, racer, uav]
+summary:
+  ru: 'Справочник ВВС США в виде программы: производные устойчивости по формулам.'
+  en: 'The USAF handbook as a program: stability derivatives from formulas.'
+use:
+  ru: Сверка эмпирических добавок от фюзеляжа и оперения.
+  en: Cross-check of empirical fuselage and tail contributions.

@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openaerostruct
+name: OpenAeroStruct
+url: https://github.com/mdolab/OpenAeroStruct
+org: MDO Lab
+last_commit: '2026-11-10'
+code: Python
+disciplines: [structures, aero, mdo]
+map: [structures, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: 'Вихревая решётка + балка или кессон: совместная оптимизация аэродинамики и конструкции.'
+  en: 'VLM + beam or wingbox: coupled aero-structural optimisation.'
+use:
+  ru: Статическая аэроупругость и масса крыла.
+  en: Static aeroelasticity and wing mass.
+caveat:
+  ru: Флаттер не считает.
+  en: Does not compute flutter.

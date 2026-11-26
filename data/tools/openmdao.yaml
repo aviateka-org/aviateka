@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openmdao
+name: OpenMDAO
+url: https://github.com/OpenMDAO/OpenMDAO
+org: NASA Glenn
+last_commit: '2026-11-23'
+code: Python
+disciplines: [mdo]
+map: [mdo, L1]
+fidelity: [L1]
+stages: [concept, preliminary, detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping]
+summary:
+  ru: Каркас, который связывает расчёты разных дисциплин в одну модель с производными.
+  en: A framework coupling multi-discipline analyses into one model with derivatives.
+use:
+  ru: Когда своих расчётов много и их надо оптимизировать вместе.
+  en: When many analyses must be optimised together.

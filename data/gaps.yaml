@@ -1,0 +1,117 @@
+# Пустые ниши (window = окно, forbidden = запрещено) / gaps
+gaps:
+- id: racer-lap
+  mark: window
+  title:
+    ru: Проектирование гоночного самолёта с моделью круга
+    en: Racing aircraft design with a lap model
+  near:
+    ru: Оптимизация траекторий в AeroSandbox; студенческие проекты гоночных самолётов.
+    en: Trajectory optimisation in AeroSandbox; student air-racer projects.
+  why:
+    ru: Все части существуют, собранного открытого инструмента нет. Свой код «Стрижа» уже занимает эту нишу.
+    en: All parts exist, no assembled open tool. Strizh's own code already fills it.
+  sources:
+  - https://core.ac.uk/download/268734405.pdf
+- id: joined-wing-nonlinear
+  mark: window
+  title:
+    ru: Готовая проверка скачкообразной потери устойчивости сочленённого крыла
+    en: Ready-made check of snap instability in joined wings
+  near:
+    ru: SHARPy, GXBeam.jl; исследовательские коды Cavallaro и Demasi.
+    en: SHARPy, GXBeam.jl; research codes by Cavallaro and Demasi.
+  why:
+    ru: Нелинейные решатели есть; не хватает сборки под эту схему.
+    en: Nonlinear solvers exist; only the setup for this layout is missing.
+  sources:
+  - https://escholarship.org/uc/item/1p85h6q2
+- id: transonic-coaxial
+  mark: forbidden
+  title:
+    ru: Соосные винты с околозвуковыми концами в быстрых методах
+    en: Contra-rotating props with near-sonic tips in fast methods
+  near:
+    ru: XROTOR + CROTOR, OpenProp, DUST.
+    en: XROTOR + CROTOR, OpenProp, DUST.
+  why:
+    ru: У концов лопастей возникают скачки уплотнения; быстрые методы учитывают их лишь поправками. Нужен полный расчёт или испытание.
+    en: Shock waves form at the blade tips; fast methods handle them only with corrections. Full CFD or testing is needed.
+  sources:
+  - https://web.mit.edu/drela/Public/web/xrotor/
+- id: nn-unconventional
+  mark: window
+  title:
+    ru: Нейросетевая аэродинамика необычных схем
+    en: Neural surrogates for unconventional layouts
+  near:
+    ru: Набор Emmi-Wing (обычные крылья); смешивание решётки и CFD (Бэйхан).
+    en: Emmi-Wing dataset (conventional wings); VLM–CFD fusion (Beihang).
+  why:
+    ru: Смешивание обходится десятками дорогих расчётов, а не тысячами.
+    en: Fusion needs tens of expensive runs, not thousands.
+  sources:
+  - https://arxiv.org/abs/2511.21474
+  - https://hkxb.buaa.edu.cn/CN/abstract/article/1000-6893/21329
+- id: scaled-model-chain
+  mark: window
+  title:
+    ru: Открытая цепочка «подобная модель → идентификация → сверка» для сочленённого крыла
+    en: Open chain 'scaled model → system ID → comparison' for joined wings
+  near:
+    ru: ArduPilot System ID; идентификация модели Cessna 182; модели сочленённых крыльев UVic.
+    en: ArduPilot System ID; subscale Cessna 182 identification; UVic joined-wing models.
+  why:
+    ru: Все звенья есть по отдельности.
+    en: All links exist separately.
+  sources:
+  - https://www.icas.org/ICAS_ARCHIVE/ICAS2022/data/papers/ICAS2022_0873_paper.pdf
+- id: wig-integrated
+  mark: window
+  title:
+    ru: 'Открытый расчёт экраноплана целиком: аэродинамика + корпус + устойчивость по высоте'
+    en: 'Open whole-WIG analysis: aerodynamics + hull + height stability'
+  near:
+    ru: Autowing (лицензия по запросу); AVL и VSPAERO с экраном; OpenPlaning; MatLab-комплекс Вшивкова (не опубликован).
+    en: Autowing (licence on request); AVL and VSPAERO with a ground plane; OpenPlaning; Vshivkov's MatLab tool (unpublished).
+  why:
+    ru: Все звенья есть по отдельности, открытой связки нет.
+    en: All links exist separately; no open integration.
+  sources:
+  - https://www.lemos.uni-rostock.de/lehre/sonstiges/downloads/autowing
+- id: foiling-vpp
+  mark: window
+  title:
+    ru: Открытая программа скорости для парусников на крыльях
+    en: Open velocity prediction program for foiling sailboats
+  near:
+    ru: Python-VPP (тяжёлые однокорпусные яхты), gvpp на MATLAB, студенческие VPP для Nacra 17 и IMOCA.
+    en: Python-VPP (heavy monohulls), gvpp in MATLAB, student VPPs for Nacra 17 and IMOCA.
+  why:
+    ru: Каркас VPP открыт; не хватает модели крыльев и перехода в полёт.
+    en: The VPP frame is open; the foil model and take-off transition are missing.
+  sources:
+  - https://github.com/marinlauber/Python-VPP
+  - https://www.sourceforge.net/projects/gvpp
+- id: cavitation-ventilation
+  mark: forbidden
+  title:
+    ru: Развитая кавитация и вентиляция в быстрых методах
+    en: Developed cavitation and ventilation in fast methods
+  near:
+    ru: Панельные методы дают только начало кавитации по минимуму давления; OpenFOAM для двухфазных течений.
+    en: Panel methods give only cavitation inception from minimum pressure; OpenFOAM for two-phase flow.
+  why:
+    ru: Каверна и прорыв воздуха с поверхности — двухфазные явления; потенциальная теория их не описывает. Нужен полный расчёт или опыт.
+    en: Cavities and air drawn from the surface are two-phase; potential theory cannot describe them. Full CFD or tests are needed.
+  sources:
+  - https://www.ensta.fr/en/accueil/actualites/how-can-performance-hydrofoils-be-improved
+out_of_scope:
+- ru: Глиссеры, катамараны и суда на воздушной подушке — только как разбег экраноплана; отдельно не искали.
+  en: Planing boats, catamarans and hovercraft — only as a WIG take-off run; not searched separately.
+- ru: Аэростаты и дирижабли — в каталоге нет, не искали.
+  en: Balloons and airships — not covered, not searched.
+- ru: Ракеты — в каталоге нет, не искали.
+  en: Rockets — not covered, not searched.
+- ru: 'Вертолёты покрыты частично: только программы винтов и вихревых частиц.'
+  en: 'Helicopters are covered only partly: rotor and vortex-particle codes.'

@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pyoptsparse
+name: pyOptSparse
+url: https://github.com/mdolab/pyoptsparse
+org: MDO Lab
+last_commit: '2026-11-19'
+code: Python
+disciplines: [mdo]
+map: [mdo, L1]
+fidelity: [L1]
+stages: [concept, preliminary, detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping]
+summary:
+  ru: Единый интерфейс к оптимизаторам (SNOPT, IPOPT и др.).
+  en: A common interface to optimisers (SNOPT, IPOPT and others).
+use:
+  ru: Замена случайного перебора на оптимизацию по градиенту.
+  en: Replacing random search with gradient-based optimisation.

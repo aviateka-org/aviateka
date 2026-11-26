@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openplaning
+name: OpenPlaning
+url: https://github.com/elcf/python-openplaning
+org: E. Castro-Feliciano
+last_commit: '2026-09-10'
+license: MIT
+code: Python
+disciplines: [hydro]
+map: [hydro, L0]
+fidelity: [L0]
+stages: [concept, preliminary]
+aircraft: [wig, hydrofoil]
+summary:
+  ru: 'Глиссирующий корпус по методу Савицкого: равновесный дифферент, сопротивление, проверка на дельфинирование.'
+  en: 'Planing hull by the Savitsky method: equilibrium trim, resistance, porpoising check.'
+use:
+  ru: Разбег на корпусе до выхода на экран или на крылья — «горб» сопротивления.
+  en: 'Hull take-off run before ground-effect or foil flight: the resistance hump.'
+caveat:
+  ru: Метод Савицкого — про дифферент и сопротивление, не про поперечную остойчивость.
+  en: Savitsky covers trim and resistance, not transverse stability.
+sources:
+- https://github.com/elcf/python-openplaning
+- https://pypi.org/project/openplaning/0.2.0
+- https://www.boatdesign.net/threads/chine-location.70164/previous

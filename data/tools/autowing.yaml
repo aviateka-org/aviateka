@@ -1,0 +1,30 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: autowing
+name: Autowing
+url: https://www.lemos.uni-rostock.de/lehre/sonstiges/downloads/autowing
+org: N. Kornev (U. Rostock)
+code: —
+status: on_request
+disciplines: [aero, hydro]
+map: [hydro, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [wig, hydrofoil]
+summary:
+  ru: 'Нелинейный нестационарный метод дискретных вихрей для аэро- и гидродинамики быстроходных аппаратов: экранопланы, подводные крылья, глиссирующие и реданные корпуса; разбег, отрыв и полёт с динамикой движения. Корень метода — работы Корнева и Трешкова (1992), версия 2.4 — 1998 год.'
+  en: 'Nonlinear unsteady vortex-lattice aero- and hydrodynamics of high-speed craft: WIG, hydrofoils, planing and stepped hulls; take-off run, lift-off and flight with motion simulation. Method dates back to Kornev & Treshkov (1992); version 2.4 dates from 1998.'
+use:
+  ru: Единственная найденная распространяемая программа, которая считает экраноплан вместе с корпусом на воде. Годится для сравнения компоновок и поиска опасных режимов взлёта.
+  en: The only distributable code found that models a WIG craft together with its hull on the water. Good for comparing layouts and finding dangerous take-off regimes.
+caveat:
+  ru: Лицензия — по запросу у автора; версий и дат на странице нет. Разбег до глиссирования опирается на буксировочные испытания, вязкость — на эмпирику. Независимая сверка (Ombor, 2023, высота 0,11 хорды) показала завышение подъёмной силы на 21–26 % и занижение сопротивления примерно вдвое. Судя по публикациям кафедры, экранопланами там активно занимались в 1997–2014 годах (последняя статья — 2019); код, скорее всего, раздаётся как есть. Вход в динамику экраноплана — бесплатный учебник автора Lectures on ship manoeuvrability (2013).
+  en: Licence on request from the author; no versions or dates on the page. The pre-planing run relies on towing-tank data, viscosity on empirical formulas. An independent check (Ombor, 2023, h/c 0.11) found lift over-predicted by 21–26 % and drag under-predicted by about half. Judging by the chair's publications, active WIG work ran 1997–2014 (last paper 2019); the code is most likely distributed as is. Entry point to WIG dynamics is the author's free textbook Lectures on ship manoeuvrability (2013).
+sources:
+- https://www.lemos.uni-rostock.de/lehre/sonstiges/downloads/autowing
+- https://resolver.caltech.edu/CaltechAUTHORS:20101210-094204604
+- https://www.sciencedirect.com/science/article/abs/pii/S0029801801000026
+- https://onlinelibrary.wiley.com/doi/10.1155/2019/8351293
+- https://theses.ncl.ac.uk/jspui/bitstream/10443/6199/1/Ombor%20P%20G%202023.pdf
+- https://www.lemos.uni-rostock.de/en/publications/journals/
+- https://bookboon.com/de/lectures-on-ship-manoeuvrability-ebook

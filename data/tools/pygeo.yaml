@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pygeo
+name: pyGeo
+url: https://github.com/mdolab/pygeo
+org: MDO Lab, U. Michigan
+last_commit: '2026-11-18'
+code: Python
+disciplines: [geometry, mdo]
+map: [geometry, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Деформация формы для оптимизации по полному расчёту течения.
+  en: Shape parametrisation and deformation for CFD-based optimisation.
+use:
+  ru: Доводка обтекателей и стыков вместе с DAFoam или ADflow.
+  en: Fine-tuning fairings and junctions together with DAFoam or ADflow.

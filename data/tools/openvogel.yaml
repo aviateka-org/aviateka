@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openvogel
+name: OpenVOGEL
+url: https://github.com/OpenVOGEL/OpenVOGEL
+org: OpenVOGEL
+last_commit: '2026-06-03'
+code: .NET
+disciplines: [aeroelastic, aero]
+map: [aeroelastic, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Аэродинамика компоновки, аэроупругость крыла и отклик на порыв.
+  en: Configuration aerodynamics, wing aeroelasticity and gust response.
+use:
+  ru: Лёгкий вход для Windows.
+  en: An easy entry point on Windows.

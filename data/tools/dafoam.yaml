@@ -1,0 +1,19 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: dafoam
+name: DAFoam
+url: https://github.com/mdolab/dafoam
+org: MDO Lab
+last_commit: '2026-11-06'
+code: C++, Python
+disciplines: [cfd, mdo]
+map: [cfd, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [transport, ga, racer, glider, rc, uav, hale]
+summary:
+  ru: Оптимизация формы по градиенту на OpenFOAM.
+  en: Gradient-based shape optimisation on OpenFOAM.
+use:
+  ru: Доводка формы, когда геометрия уже выбрана.
+  en: Shape refinement once the layout is fixed.

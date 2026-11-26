@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: flow5
+name: flow5
+url: https://github.com/techwinder/flow5
+org: A. Deperrois
+last_commit: '2026-11-25'
+license: GPL-3.0
+code: C++
+disciplines: [airfoil, aero, stability]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [rc, uav, glider, hpa, ga, hydrofoil]
+summary:
+  ru: 'Преемник XFLR5: профили, крылья и самолёты на малых числах Рейнольдса, формы колебаний.'
+  en: 'Successor of XFLR5: airfoils, wings and planes at low Reynolds numbers, flight modes.'
+use:
+  ru: Авиамодели, планёры, мускулолёты, малые беспилотники; по описанию автора — также подводные крылья и паруса.
+  en: RC models, sailplanes, human-powered aircraft, small UAVs; per its author, also hydrofoils and sails.
+caveat:
+  ru: Автор стабилизирует код и API к концу 2026; известные ошибки описаны в flow5ctl.
+  en: Author aims to stabilise code and API by end of 2026; known bugs are documented by flow5ctl.
+sources:
+- https://github.com/techwinder/flow5/wiki
+- https://pypi.org/project/flow5ctl/

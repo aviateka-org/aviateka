@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: fluidx3d
+name: FluidX3D
+url: https://github.com/ProjectPhysX/FluidX3D
+org: M. Lehmann
+code: OpenCL C++
+disciplines: [cfd]
+map: [cfd, L3]
+fidelity: [L3]
+stages: [concept]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping]
+summary:
+  ru: Расчёт течения на видеокарте методом решёточных уравнений Больцмана.
+  en: GPU lattice-Boltzmann flow simulation.
+use:
+  ru: Наглядная картина обтекания на одной видеокарте.
+  en: Quick visual flow pictures on a single GPU.
+caveat:
+  ru: Дату и лицензию не проверяли; советуют на Хабре.
+  en: Date and licence not checked; recommended on Habr.
+sources:
+- https://habr.com/ru/articles/849400/comments/

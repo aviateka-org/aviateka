@@ -1,0 +1,21 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: fastships
+name: FASTSHIPS
+url: https://www.ntnu.edu/imt/software/fastships
+org: NTNU
+status: announced
+disciplines: [flightsim, hydro]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [hydrofoil]
+summary:
+  ru: 'Симулятор быстроходных судов: модель судна на крыльях с волнами и системой активного управления.'
+  en: 'High-speed vessel simulator: hydrofoil model with waves and an active flight-control loop.'
+use:
+  ru: Настройка автомата высоты хода в замкнутом контуре.
+  en: Closed-loop tuning of ride-height control.
+caveat:
+  ru: В разработке; условия доступа не найдены.
+  en: Under development; access terms not found.

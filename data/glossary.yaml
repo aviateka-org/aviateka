@@ -1,0 +1,271 @@
+# Термины RU/EN / glossary
+- id: vlm
+  term:
+    ru: Вихревая решётка
+    en: Vortex lattice method (VLM)
+  definition:
+    ru: Крыло заменяют сеткой вихрей и считают подъёмную силу без вязкости.
+    en: The wing is replaced by a grid of vortices; lift is computed without viscosity.
+  search:
+    zh: 涡格法
+    ja: 渦格子法
+- id: panel
+  term:
+    ru: Панельный метод
+    en: Panel method
+  definition:
+    ru: Поверхность разбивают на панели с источниками и дуплетами; учитывает толщину.
+    en: The surface is split into source/doublet panels; captures thickness.
+  search:
+    zh: 面元法
+    ja: パネル法
+- id: lifting-line
+  term:
+    ru: Несущая линия
+    en: Lifting line
+  definition:
+    ru: Крыло как одна вихревая линия; быстро, для прямых крыльев большого удлинения.
+    en: The wing as a single vortex line; fast, for straight high-aspect wings.
+  search: {}
+- id: reynolds
+  term:
+    ru: Число Рейнольдса
+    en: Reynolds number
+  definition:
+    ru: Скорость × хорда / вязкость. Ниже 100 тыс. профили работают заметно хуже.
+    en: Speed × chord / viscosity. Below about 100k airfoils lose much performance.
+  search: {}
+- id: mach
+  term:
+    ru: Число Маха
+    en: Mach number
+  definition:
+    ru: Скорость / скорость звука. С 0,3–0,5 начинает сказываться сжимаемость.
+    en: Speed / speed of sound. Compressibility matters from about 0.3–0.5.
+  search: {}
+- id: neutral-point
+  term:
+    ru: Нейтральная точка
+    en: Neutral point
+  definition:
+    ru: Точка, относительно которой момент тангажа не меняется с углом атаки.
+    en: The point about which pitching moment does not change with angle of attack.
+  search: {}
+- id: static-margin
+  term:
+    ru: Запас устойчивости
+    en: Static margin
+  definition:
+    ru: Расстояние от центра тяжести до нейтральной точки в долях средней хорды.
+    en: Distance from CG to neutral point as a fraction of mean chord.
+  search: {}
+- id: short-period
+  term:
+    ru: Короткопериодическое движение
+    en: Short-period mode
+  definition:
+    ru: Быстрое качание носа по тангажу, секунды и доли секунды.
+    en: Fast pitch oscillation, a second or less.
+  search: {}
+- id: phugoid
+  term:
+    ru: Фугоида
+    en: Phugoid
+  definition:
+    ru: Медленное «нырянье» с обменом высоты на скорость.
+    en: Slow exchange of height and speed.
+  search: {}
+- id: dutch-roll
+  term:
+    ru: Голландский шаг
+    en: Dutch roll
+  definition:
+    ru: Вилянье хвостом с покачиванием крыльев.
+    en: Coupled yaw–roll wagging.
+  search: {}
+- id: flutter
+  term:
+    ru: Флаттер
+    en: Flutter
+  definition:
+    ru: Самовозбуждающиеся колебания конструкции в потоке; разрушают за секунды.
+    en: Self-excited structural oscillation in airflow; destroys in seconds.
+  search:
+    zh: 颤振
+    ja: フラッター
+- id: divergence
+  term:
+    ru: Дивергенция
+    en: Divergence
+  definition:
+    ru: Закручивание крыла потоком до разрушения без колебаний.
+    en: The wing twists under air load until failure, without oscillation.
+  search: {}
+- id: buckling
+  term:
+    ru: Выпучивание
+    en: Buckling
+  definition:
+    ru: Потеря устойчивости сжатого элемента; у сочленённых крыльев — заднего крыла.
+    en: Loss of stability of a compressed member; for joined wings, the rear wing.
+  search: {}
+- id: joined-wing
+  term:
+    ru: Сочленённое крыло
+    en: Joined wing
+  definition:
+    ru: Переднее и заднее крылья соединены концами в ромб.
+    en: Front and rear wings joined at the tips into a diamond.
+  search:
+    zh: 联翼 / 连翼布局
+    ja: 結合翼
+- id: aeroelasticity
+  term:
+    ru: Аэроупругость
+    en: Aeroelasticity
+  definition:
+    ru: Взаимное влияние упругих деформаций и аэродинамических сил.
+    en: Interaction of elastic deformation and air loads.
+  search:
+    zh: 气动弹性
+    ja: 空力弾性
+- id: cubic-loading
+  term:
+    ru: Кубическая нагрузка на крыло
+    en: Cubic wing loading
+  definition:
+    ru: Вес / площадь в степени 1,5 (унции и квадратные футы); сравнивает модели разного размера.
+    en: Weight / area^1.5 (oz and ft²); compares models of different size.
+  search: {}
+- id: froude
+  term:
+    ru: Подобие по Фруду
+    en: Froude scaling
+  definition:
+    ru: 'Модель повторяет движения оригинала: скорость /√k, время /√k, масса /k³, инерция /k⁵.'
+    en: 'The model repeats full-size motion: speed /√k, time /√k, mass /k³, inertia /k⁵.'
+  search: {}
+- id: sysid
+  term:
+    ru: Идентификация по полёту
+    en: System identification
+  definition:
+    ru: Восстановление производных по записи отклика на заданные отклонения рулей.
+    en: Recovering derivatives from the logged response to control inputs.
+  search:
+    zh: 系统辨识
+    ja: システム同定
+- id: rans
+  term:
+    ru: RANS
+    en: RANS
+  definition:
+    ru: Осреднённые уравнения Навье–Стокса с моделью турбулентности; основа промышленного CFD.
+    en: Averaged Navier–Stokes equations with a turbulence model; the industrial CFD workhorse.
+  search: {}
+- id: mdo
+  term:
+    ru: Многодисциплинарная оптимизация
+    en: Multidisciplinary design optimisation (MDO)
+  definition:
+    ru: Оптимизация, в которой аэродинамика, конструкция и прочее считаются вместе.
+    en: Optimisation with aerodynamics, structures and more computed together.
+  search: {}
+- id: contra-rotating
+  term:
+    ru: Соосные винты противоположного вращения
+    en: Contra-rotating propellers
+  definition:
+    ru: Два винта на одной оси вращаются навстречу; гасят закрутку струи и реактивный момент.
+    en: Two coaxial propellers spinning opposite ways; cancel swirl and torque.
+  search:
+    zh: 对转螺旋桨
+    ja: 二重反転プロペラ
+- id: conceptual-design
+  term:
+    ru: Концептуальное проектирование
+    en: Conceptual design
+  definition:
+    ru: 'Первый этап: выбор схемы и основных размеров.'
+    en: 'The first stage: choosing layout and main dimensions.'
+  search:
+    zh: 飞机总体设计
+    ja: 概念設計
+- id: ground-effect
+  term:
+    ru: Экранный эффект
+    en: Ground effect
+  definition:
+    ru: Рост подъёмной силы и падение индуктивного сопротивления у земли или воды, заметные примерно с высоты половины размаха.
+    en: Lift rises and induced drag falls near ground or water, noticeably from about half a span.
+  search:
+    zh: 地面效应 / 地效飞行器
+    ja: 地面効果
+- id: height-ac
+  term:
+    ru: Фокус по высоте и критерий Иродова
+    en: Height aerodynamic centre and Irodov's criterion
+  definition:
+    ru: У экрана сила зависит и от угла атаки, и от высоты, поэтому фокусов два. Для устойчивости фокус по высоте должен лежать впереди фокуса по углу атаки.
+    en: Near the ground force depends on both angle and height, so there are two centres. For stability the height centre must lie ahead of the pitch centre.
+  search: {}
+- id: hump
+  term:
+    ru: «Горб» сопротивления
+    en: Resistance hump
+  definition:
+    ru: Пик сопротивления на разбеге перед выходом корпуса на глиссирование или на крылья; задаёт нужную тягу.
+    en: The drag peak during the take-off run before planing or foil flight; sets the thrust needed.
+  search: {}
+- id: planing
+  term:
+    ru: Глиссирование
+    en: Planing
+  definition:
+    ru: Режим, когда корпус поддерживается в основном динамическим давлением воды, а не плавучестью.
+    en: The hull is carried mainly by dynamic water pressure rather than buoyancy.
+  search: {}
+- id: porpoising
+  term:
+    ru: Дельфинирование
+    en: Porpoising
+  definition:
+    ru: Самовозбуждающиеся колебания глиссирующего корпуса по тангажу и вертикали.
+    en: Self-excited pitch–heave oscillation of a planing hull.
+  search: {}
+- id: cavitation
+  term:
+    ru: Кавитация и число кавитации
+    en: Cavitation and cavitation number
+  definition:
+    ru: Вскипание воды там, где давление падает до давления пара. Начинается, когда число кавитации σ меньше −Cp min профиля.
+    en: Water boils where pressure drops to vapour pressure. Starts when the cavitation number σ falls below the section's −Cp min.
+  search:
+    zh: 空化
+    ja: キャビテーション
+- id: ventilation
+  term:
+    ru: Вентиляция крыла
+    en: Foil ventilation
+  definition:
+    ru: Прорыв воздуха с поверхности на разрежённую сторону крыла; подъёмная сила резко падает.
+    en: Air drawn from the surface onto the suction side; lift collapses.
+  search: {}
+- id: foil-types
+  term:
+    ru: Пересекающие поверхность и полностью погружённые крылья
+    en: Surface-piercing vs fully submerged foils
+  definition:
+    ru: Первые сами держат высоту за счёт смоченной площади; вторым нужен автомат высоты хода.
+    en: The former self-regulate height through wetted area; the latter need ride-height control.
+  search:
+    zh: 水翼船
+    ja: 水中翼船
+- id: hydro-divergence
+  term:
+    ru: Гидроупругая дивергенция
+    en: Hydroelastic divergence
+  definition:
+    ru: 'У подводных крыльев обычно раньше флаттера наступает именно дивергенция: вода в ~800 раз плотнее воздуха.'
+    en: 'For hydrofoils divergence usually comes before flutter: water is ~800 times denser than air.'
+  search: {}

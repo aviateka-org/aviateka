@@ -1,0 +1,60 @@
+# Журнал версий, новые сверху / changelog, newest first
+- version: 0.4.1
+  date: '2026-11-26'
+  changes:
+  - ru: 'Постоянный адрес проекта: организация aviateka-org на GitHub, репозиторий aviateka-org/aviateka, страница aviateka-org.github.io/aviateka, имя в каталоге MCP io.github.aviateka-org/aviateka.'
+    en: 'Permanent home: the aviateka-org organisation on GitHub, repository aviateka-org/aviateka, page aviateka-org.github.io/aviateka, MCP Registry name io.github.aviateka-org/aviateka.'
+- version: 0.4.0
+  date: '2026-11-26'
+  changes:
+  - ru: 'Страница «О проекте» стала главной: что такое Авиатека, зачем она, как растёт (круг вклада), что внутри, как помочь, что нового. Числа и новости берутся из каталога сами.'
+    en: 'An About page is now the front page: what Aviateka is, why, how it grows (the contribution loop), what is inside, how to help, what is new. Numbers and news come from the catalog automatically.'
+  - ru: Каталог переехал по адресу catalog.html; название в шапке каталога ведёт на главную.
+    en: The catalog moved to catalog.html; the name in its header links back to the front page.
+- version: 0.3.0
+  date: '2026-11-26'
+  changes:
+  - ru: 'Открытый проект: каталог разложен на файлы (одна карточка — один файл), появились схемы данных и проверка каждого изменения.'
+    en: 'Open project: the catalog is split into files (one card per file), with data schemas and a check on every change.'
+  - ru: Таблица сверки «кто чем считал и насколько совпало с опытом»; первые строки — Autowing и модель Ombor по диссертации 2023 года.
+    en: Validation matrix "who computed what and how well it matched"; first rows are Autowing and Ombor's model from the 2023 thesis.
+  - ru: Формы вклада без Git (инструмент, правка, свой расчёт, тема), раздел «Как помочь» и ссылка «Предложить правку» на каждой карточке.
+    en: Contribution forms without Git (tool, correction, calculation, topic), a Contribute section and a "Suggest a correction" link on every card.
+  - ru: 'Инструменты MCP get_validation и how_to_contribute; сервер ставится пакетом aviateka-mcp.'
+    en: 'MCP tools get_validation and how_to_contribute; the server installs as the aviateka-mcp package.'
+  - ru: 'Робот раз в неделю обновляет даты коммитов, статусы и проверяет ссылки; выпуск по метке публикует пакет и сервер в каталоге MCP.'
+    en: 'A weekly bot refreshes commit dates and statuses and checks links; a tagged release publishes the package and the MCP Registry entry.'
+  - ru: 'Лицензии: код — MIT, данные — CC BY 4.0. Карточки внутри клетки карты теперь идут по алфавиту.'
+    en: 'Licences: code MIT, data CC BY 4.0. Cards within a chart cell are now in alphabetical order.'
+- version: 0.2.2
+  date: '2026-11-26'
+  changes:
+  - ru: 'Карточка Autowing: по спискам публикаций кафедры добавлены период активной работы (1997–2014, последняя статья 2019) и ссылка на бесплатный учебник автора с главой о динамике экраноплана.'
+    en: 'Autowing card: from the chair''s publication lists, added the active period (1997–2014, last paper 2019) and the author''s free textbook with a chapter on WIG dynamics.'
+- version: 0.2.1
+  date: '2026-11-26'
+  changes:
+  - ru: 'Карточка Autowing уточнена по разбору: история метода (1992 → версия 2.4 в 1998 → 2019), нелинейный нестационарный метод, оговорка о точности по независимой сверке 2023 года, пять источников.'
+    en: 'Autowing card refined after a deep review: method history (1992 → v2.4 in 1998 → 2019), nonlinear unsteady method, accuracy caveat from an independent 2023 check, five sources.'
+- version: 0.2.0
+  date: '2026-11-26'
+  changes:
+  - ru: 'Новые типы аппаратов: экраноплан и судно на подводных крыльях; новая дисциплина «Гидродинамика».'
+    en: 'New craft types: WIG craft and hydrofoil craft; new discipline ''Hydrodynamics''.'
+  - ru: '11 новых инструментов: Autowing, PUFFIn, Typhoon, MachUpHydro, DCFoil.jl, OpenPlaning, FreeCAD Ship, LEModeler, FASTSHIPS, симулятор Hydroptère, комплекс устойчивости экраноплана.'
+    en: '11 new tools: Autowing, PUFFIn, Typhoon, MachUpHydro, DCFoil.jl, OpenPlaning, FreeCAD Ship, LEModeler, FASTSHIPS, Hydroptère simulator, WIG stability tool.'
+  - ru: У AVL, OpenVSP, flow5, XFOIL, NeuralFoil, OpenFOAM, SU2, OpenProp и ArduPilot добавлено применение к экранопланам и крыльям в воде.
+    en: AVL, OpenVSP, flow5, XFOIL, NeuralFoil, OpenFOAM, SU2, OpenProp and ArduPilot now tagged for WIG and hydrofoil use.
+  - ru: 2 цепочки (экраноплан, судно на крыльях), 3 ниши, 3 эталона, 9 терминов.
+    en: 2 workflows (WIG, hydrofoil), 3 gaps, 3 benchmarks, 9 terms.
+  - ru: Калькулятор кавитации; инструменты MCP get_changelog и cavitation.
+    en: Cavitation calculator; MCP tools get_changelog and cavitation.
+  - ru: Журнал версий и правила нумерации в каталоге, на странице и в MCP.
+    en: Version log and numbering rules in the catalog, page and MCP.
+- version: 0.1.0
+  date: '2026-11-26'
+  changes:
+  - ru: 'Первая версия: 54 инструмента, 12 цепочек, 5 ниш, 6 эталонов, 22 термина, кейс «Стриж».'
+    en: 'First release: 54 tools, 12 workflows, 5 gaps, 6 benchmarks, 22 terms, the Strizh case.'
+  - ru: Страница с картой «дисциплина × точность» и MCP-сервер с 13 инструментами и 5 калькуляторами.
+    en: Page with a discipline × fidelity chart and an MCP server with 13 tools and 5 calculators.

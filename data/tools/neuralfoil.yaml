@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: neuralfoil
+name: NeuralFoil
+url: https://github.com/peterdsharpe/NeuralFoil
+org: P. Sharpe (MIT)
+last_commit: '2026-10-07'
+code: Python
+disciplines: [airfoil]
+map: [airfoil, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil]
+summary:
+  ru: 'Нейросетевое приближение XFOIL: поляры профиля за миллисекунды.'
+  en: 'A neural approximation of XFOIL: airfoil polars in milliseconds.'
+use:
+  ru: Быстрый перебор профилей, особенно на малых числах Рейнольдса.
+  en: Fast airfoil sweeps, especially at low Reynolds numbers.
+caveat:
+  ru: На краях диапазона менее надёжен; брать только участок до срыва.
+  en: Less reliable at range edges; use the pre-stall branch only.

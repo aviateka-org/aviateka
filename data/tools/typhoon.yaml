@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: typhoon
+name: Typhoon
+url: https://github.com/AlecBague/Typhoon
+org: A. Bagué (Ghent U.)
+last_commit: '2020-09-30'
+code: Python
+disciplines: [hydro, stability, aeroelastic]
+map: [hydro, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [hydrofoil]
+summary:
+  ru: Вихревая решётка со свободной поверхностью для динамической устойчивости судов на крыльях, включая пересекающие поверхность крылья.
+  en: Vortex lattice with a free-surface condition for hydrofoil-craft dynamic stability, including surface-piercing foils.
+use:
+  ru: Сравнение вариантов на раннем этапе по устойчивости.
+  en: Early comparison of designs for stability.
+sources:
+- https://github.com/AlecBague/Typhoon
+- https://content.iospress.com/articles/international-shipbuilding-progress/isp210006

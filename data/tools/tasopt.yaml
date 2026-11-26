@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: tasopt
+name: TASOPT.jl
+url: https://github.com/MIT-LAE/TASOPT.jl
+org: MIT LAE
+last_commit: '2026-11-10'
+code: Julia
+disciplines: [mdo]
+map: [mdo, L0]
+fidelity: [L0, L1]
+stages: [concept]
+aircraft: [transport]
+summary:
+  ru: Проектирование транспортного самолёта (соавтор — M. Drela).
+  en: Transport aircraft design (co-authored by M. Drela).
+use:
+  ru: Только транспортные самолёты.
+  en: Transport aircraft only.
+sources:
+- https://github.com/MIT-LAE/TASOPT.jl
+- https://joss.theoj.org/papers/10.21105/joss.08521

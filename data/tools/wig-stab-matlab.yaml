@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: wig-stab-matlab
+name: Комплекс устойчивости экраноплана (MatLab)
+url: https://journals.eco-vector.com/2712-8970/article/view/503394
+org: Ю. Вшивков, С. Кривель
+code: MATLAB
+status: announced
+disciplines: [stability]
+map: [stability, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [wig]
+summary:
+  ru: Расчёт критериев продольной статической устойчивости экраноплана и поиск области устойчивости по компоновке.
+  en: WIG longitudinal static-stability criteria and the stable region versus layout.
+use:
+  ru: Как образец методики; код не опубликован.
+  en: As a method reference; code not published.
+caveat:
+  ru: Описан в статье, исходники не найдены.
+  en: Described in a paper; source not found.
+sources:
+- https://journals.eco-vector.com/2712-8970/article/view/503394
+- https://journals.eco-vector.com/2712-8970/article/download/503394/125817
