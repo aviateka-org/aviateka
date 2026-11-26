@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.4.2 — 2026-11-26
+
+- Сервер опубликован: пакет aviateka-mcp на PyPI и запись io.github.aviateka-org/aviateka в каталоге MCP (выпуск 0.4.1). Страница теперь предлагает ставить его одной командой uvx aviateka-mcp.
+
+- The server is published: the aviateka-mcp package on PyPI and the io.github.aviateka-org/aviateka entry in the MCP Registry (release 0.4.1). The page now suggests installing it with one command, uvx aviateka-mcp.
+
 ## 0.4.1 — 2026-11-26
 
 - Постоянный адрес проекта: организация aviateka-org на GitHub, репозиторий aviateka-org/aviateka, страница aviateka-org.github.io/aviateka, имя в каталоге MCP io.github.aviateka-org/aviateka.

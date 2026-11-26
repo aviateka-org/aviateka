@@ -50,6 +50,6 @@ gap_marks:
   forbidden:
     ru: запрещено
     en: forbidden
-pypi_published: false
+pypi_published: true
 license_code: MIT
 license_data: CC-BY-4.0

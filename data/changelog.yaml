@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.4.2
+  date: '2026-11-26'
+  changes:
+  - ru: 'Сервер опубликован: пакет aviateka-mcp на PyPI и запись io.github.aviateka-org/aviateka в каталоге MCP (выпуск 0.4.1). Страница теперь предлагает ставить его одной командой uvx aviateka-mcp.'
+    en: 'The server is published: the aviateka-mcp package on PyPI and the io.github.aviateka-org/aviateka entry in the MCP Registry (release 0.4.1). The page now suggests installing it with one command, uvx aviateka-mcp.'
 - version: 0.4.1
   date: '2026-11-26'
   changes:
