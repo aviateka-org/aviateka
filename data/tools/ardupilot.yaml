@@ -4,7 +4,7 @@ id: ardupilot
 name: ArduPilot (SITL + System ID)
 url: https://github.com/ArduPilot/ardupilot
 org: ArduPilot
-last_commit: '2026-11-25'
+last_commit: '2026-11-26'
 code: C++, Lua
 disciplines: [sysid, flightsim]
 map: [sysid, EXP]

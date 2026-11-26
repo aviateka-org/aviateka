@@ -4,6 +4,7 @@ id: fluidx3d
 name: FluidX3D
 url: https://github.com/ProjectPhysX/FluidX3D
 org: M. Lehmann
+last_commit: '2026-11-25'
 code: OpenCL C++
 disciplines: [cfd]
 map: [cfd, L3]
