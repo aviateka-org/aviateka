@@ -56,4 +56,4 @@ license_data: CC-BY-4.0
 # Счётчик и проверка в Google; пусто — выключено / visit counter and Google verification; empty means off
 site:
   google_site_verification: null   # код из Search Console (метод «HTML-тег») / code from Search Console (HTML tag method)
-  goatcounter: null                # имя счётчика на goatcounter.com, например aviateka / counter code on goatcounter.com
+  goatcounter: aviateka                # имя счётчика на goatcounter.com, например aviateka / counter code on goatcounter.com

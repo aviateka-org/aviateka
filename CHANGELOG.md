@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.5.2 — 2026-11-26
+
+- Включён счётчик посещений GoatCounter (aviateka.goatcounter.com): без cookies, считает только просмотры страниц.
+
+- The GoatCounter visit counter is on (aviateka.goatcounter.com): no cookies, counts page views only.
+
 ## 0.5.1 — 2026-11-26
 
 - Первый проход робота свежести: новые даты коммитов у ArduPilot, FluidX3D и pyOptSparse, FluidX3D отмечен как живой.

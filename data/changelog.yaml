@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.5.2
+  date: '2026-11-26'
+  changes:
+  - ru: 'Включён счётчик посещений GoatCounter (aviateka.goatcounter.com): без cookies, считает только просмотры страниц.'
+    en: 'The GoatCounter visit counter is on (aviateka.goatcounter.com): no cookies, counts page views only.'
 - version: 0.5.1
   date: '2026-11-26'
   changes:
