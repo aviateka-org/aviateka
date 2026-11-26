@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.5.3 — 2026-11-26
+
+- Сайт подключён к Google Search Console: на страницах стоит метка владельца.
+
+- The site is connected to Google Search Console: pages carry the owner verification tag.
+
 ## 0.5.2 — 2026-11-26
 
 - Включён счётчик посещений GoatCounter (aviateka.goatcounter.com): без cookies, считает только просмотры страниц.
