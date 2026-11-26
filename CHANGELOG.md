@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.5.4 — 2026-11-26
+
+- Autowing: программа, учебник, справка и описание математических моделей скачиваются со страницы кафедры в Ростоке свободно; статус сменён с «по запросу» на «бесплатно, без исходников». Условия лицензии на странице не указаны, за ними — к автору.
+
+- Autowing: the program, tutorial, help file and description of the mathematical models can be downloaded freely from the Rostock chair page; status changed from on request to freeware. Licence terms are not stated there; ask the author.
+
 ## 0.5.3 — 2026-11-26
 
 - Сайт подключён к Google Search Console: на страницах стоит метка владельца.
