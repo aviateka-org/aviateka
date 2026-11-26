@@ -4,6 +4,14 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.5.1 — 2026-11-26
+
+- Первый проход робота свежести: новые даты коммитов у ArduPilot, FluidX3D и pyOptSparse, FluidX3D отмечен как живой.
+- Исправлена ссылка на ветку форума boatdesign.net в карточке OpenPlaning.
+
+- First freshness-bot pass: new commit dates for ArduPilot, FluidX3D and pyOptSparse; FluidX3D marked active.
+- Fixed the boatdesign.net forum thread link on the OpenPlaning card.
+
 ## 0.5.0 — 2026-11-26
 
 - Каждый инструмент получил свою обычную страницу (tools/…), есть общий список. Их видят поисковики и роботы ИИ, которые не запускают скрипты: раньше карточки каталога рисовались только скриптом и для них были невидимы.

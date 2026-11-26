@@ -1,4 +1,11 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.5.1
+  date: '2026-11-26'
+  changes:
+  - ru: 'Первый проход робота свежести: новые даты коммитов у ArduPilot, FluidX3D и pyOptSparse, FluidX3D отмечен как живой.'
+    en: 'First freshness-bot pass: new commit dates for ArduPilot, FluidX3D and pyOptSparse; FluidX3D marked active.'
+  - ru: 'Исправлена ссылка на ветку форума boatdesign.net в карточке OpenPlaning.'
+    en: 'Fixed the boatdesign.net forum thread link on the OpenPlaning card.'
 - version: 0.5.0
   date: '2026-11-26'
   changes:
