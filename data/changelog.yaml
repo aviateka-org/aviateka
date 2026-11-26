@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.5.5
+  date: '2026-11-26'
+  changes:
+  - ru: 'Исправлена ошибка версии 0.5.4: файлы Autowing на странице кафедры не свободные — все ссылки ведут на вход для сотрудников и студентов. Статус возвращён на «по запросу»; открыт без входа только учебный пример potentialVortex, к проектированию он не относится.'
+    en: 'Corrected a mistake in 0.5.4: the Autowing files on the chair page are not free — every link leads to a staff and student login. Status is back to on request; only the potentialVortex teaching case is public, and it is unrelated to design.'
 - version: 0.5.4
   date: '2026-11-26'
   changes:
