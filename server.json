@@ -6,13 +6,15 @@
     "url": "https://github.com/aviateka-org/aviateka",
     "source": "github"
   },
-  "version": "0.5.6",
+  "version": "0.5.7",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "aviateka-mcp",
-      "version": "0.5.6",
-      "transport": { "type": "stdio" }
+      "version": "0.5.7",
+      "transport": {
+        "type": "stdio"
+      }
     }
   ]
 }

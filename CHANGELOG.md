@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.5.7 — 2026-11-27
+
+- Версия поднимается сама: новая команда scripts/bump.py пишет запись в журнал и ставит номер во все файлы, а робот свежести вызывает её, когда меняются карточки. После слияния его правок новая версия сама уходит на PyPI и в каталог MCP.
+
+- The version now bumps itself: the new scripts/bump.py command adds the changelog entry and sets the number in every file, and the freshness bot runs it when cards change. Once its changes are merged, the new version goes to PyPI and the MCP Registry by itself.
+
 ## 0.5.6 — 2026-11-27
 
 - Автовыпуск: как только на основной ветке появляется новый номер версии, пакет сам уходит на PyPI, в каталог MCP и в выпуски GitHub с меткой. Ставить метку руками больше не нужно. Заодно на PyPI догоняет версия: там стояла 0.4.1, теперь будет текущая.

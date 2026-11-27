@@ -1,5 +1,6 @@
 # Раз в неделю: обновить даты последних коммитов, пересчитать статусы, проверить ссылки.
-# Итог приходит запросом на слияние — хранитель смотрит и принимает.
+# Итог приходит запросом на слияние — хранитель смотрит и принимает. Если изменились карточки, робот сам
+# поднимает версию (PATCH); после слияния release.yml выпускает её на PyPI и в каталог MCP.
 # Weekly: refresh last-commit dates, recompute statuses, check links; the result arrives as a pull request.
 name: Свежесть данных / Data freshness
 
@@ -23,8 +24,20 @@ jobs:
       - run: pip install pyyaml jsonschema
       - name: Даты и ссылки / Dates and links
         run: python scripts/freshness.py --write --report freshness-report.md
+      - name: Новая версия, если карточки изменились / New version if cards changed
+        # Только дата проверки (as_of) — не повод для новой версии. / A new check date alone is not a new version.
+        run: |
+          files=$(git diff --name-only -- data ':!data/meta.yaml')
+          if [ -z "$files" ]; then echo "Карточки не менялись / no card changes"; exit 0; fi
+          n=$(echo "$files" | wc -l)
+          names=$(echo "$files" | xargs -n1 basename | sed 's/\.yaml$//' | paste -sd, - | sed 's/,/, /g')
+          python scripts/bump.py \
+            --ru "Робот свежести: новые даты и статусы ($n): $names." \
+            --en "Freshness bot: new dates and statuses ($n): $names."
       - name: Проверка данных / Data check
-        run: python scripts/build_catalog.py
+        run: |
+          python scripts/build_catalog.py
+          python scripts/build_catalog.py --check
       - name: Запрос на слияние / Pull request
         uses: peter-evans/create-pull-request@v7
         with:
@@ -35,4 +48,7 @@ jobs:
           add-paths: |
             data/**
             CHANGELOG.md
+            pyproject.toml
+            server.json
+            CITATION.cff
           labels: freshness

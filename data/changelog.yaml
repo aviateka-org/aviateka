@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.5.7
+  date: '2026-11-27'
+  changes:
+  - ru: 'Версия поднимается сама: новая команда scripts/bump.py пишет запись в журнал и ставит номер во все файлы, а робот свежести вызывает её, когда меняются карточки. После слияния его правок новая версия сама уходит на PyPI и в каталог MCP.'
+    en: 'The version now bumps itself: the new scripts/bump.py command adds the changelog entry and sets the number in every file, and the freshness bot runs it when cards change. Once its changes are merged, the new version goes to PyPI and the MCP Registry by itself.'
 - version: 0.5.6
   date: '2026-11-27'
   changes:
