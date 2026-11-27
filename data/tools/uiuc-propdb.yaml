@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: uiuc-propdb
+name: UIUC Propeller Database
+url: https://m-selig.ae.illinois.edu/props/propDB.html
+org: University of Illinois (M. Selig and others)
+status: freeware
+disciplines: [propulsion]
+map: [propulsion, EXP]
+fidelity: [EXP]
+stages: [concept, preliminary]
+aircraft: [evtol, uav, rc]
+summary:
+  ru: 'Замеры в аэродинамической трубе для сотен малых винтов дронов и моделей: тяга и мощность в висении и в потоке, в четырёх томах.'
+  en: 'Wind-tunnel measurements of hundreds of small drone and model propellers: thrust and power static and in flow, in four volumes.'
+use:
+  ru: Выбрать винт по измеренным данным, а не по каталогу продавца, и сверить с ними свой расчёт.
+  en: Pick a propeller from measured data rather than a seller's catalogue, and check your own calculation against it.
+caveat:
+  ru: Это данные, а не программа. Винты куплены в рознице, у другой партии того же винта цифры могут отличаться.
+  en: This is data, not a program. Propellers were bought at retail; another batch of the same prop may differ.
+sources:
+- https://m-selig.ae.illinois.edu/props/propDB.html
+- https://m-selig.ae.illinois.edu/props/volume-1/propDB-volume-1.html
+- https://m-selig.web.engr.illinois.edu/pubs/DetersAnandaSelig-2014-AIAA-2014-2151.pdf

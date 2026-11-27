@@ -886,3 +886,40 @@
   check:
     ru: Плотность, температура и тяготение взяты из модели этой планеты, а не земной; калькуляторы Авиатеки считают только для Земли.
     en: Density, temperature and gravity come from that planet's model, not Earth's; Aviateka's calculators are for Earth only.
+- id: quadcopter
+  aircraft: [evtol]
+  stage: preliminary
+  title:
+    ru: 'Квадрокоптер: от облика до полёта на автопилоте'
+    en: 'Quadcopter: from sizing to flying on an autopilot'
+  goal:
+    ru: 'Масса, винты, моторы и батарея под груз и время полёта; мощность висения — калькулятор «Винт: мощность висения»; управление в симуляции, затем на аппарате.'
+    en: 'Mass, propellers, motors and battery for the payload and flight time; hover power — the «Rotor hover power» calculator; control in simulation, then on the aircraft.'
+  steps:
+  - tool: fast-uav
+    what:
+      ru: Облик под задание
+      en: Sizing to the mission
+  - tool: uiuc-propdb
+    what:
+      ru: Винт по измеренным данным
+      en: Propeller from measured data
+  - tool: qprop
+    what:
+      ru: Согласование винта и мотора
+      en: Matching propeller and motor
+  - tool: pybamm
+    what:
+      ru: 'Батарея под нагрузкой: просадка и нагрев'
+      en: 'Battery under load: voltage sag and heating'
+  - tool: rotorpy
+    what:
+      ru: Регуляторы и траектории в симуляции
+      en: Controllers and trajectories in simulation
+  - tool: px4
+    what:
+      ru: Тот же автопилот в симуляции, затем на аппарате
+      en: The same autopilot in simulation, then on the aircraft
+  check:
+    ru: В висении остаётся запас тяги на управление и порывы, а время висения по расчёту сходится с замером.
+    en: Hover leaves thrust margin for control and gusts, and the computed hover time matches a measurement.

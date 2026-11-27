@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: fast-uav
+name: FAST-UAV
+url: https://github.com/SizingLab/FAST-UAV
+org: ISAE-SUPAERO, INSA Toulouse
+last_commit: '2026-06-23'
+license: GPL-3.0
+code: Python (FAST-OAD, OpenMDAO)
+disciplines: [mdo]
+map: [mdo, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [evtol, uav]
+summary:
+  ru: 'Подбор облика дрона по заданию: винты, моторы, регуляторы, батарея и рама связаны законами подобия и оптимизируются вместе. Мультикоптер, самолёт и гибрид с вертикальным взлётом.'
+  en: 'Drone sizing to a mission: propellers, motors, speed controllers, battery and frame linked by scaling laws and optimised together. Multirotor, fixed-wing and quad-plane.'
+use:
+  ru: 'Первый шаг для квадрокоптера: масса, размер винтов и батарея под груз и время полёта.'
+  en: 'The first step for a quadcopter: mass, propeller size and battery for the payload and flight time.'
+caveat:
+  ru: Модели простые (законы подобия по каталогам компонентов); точность — уровня облика, не рабочего проекта.
+  en: The models are simple (scaling laws from component catalogues); accuracy is at sizing level, not detailed design.
+sources:
+- https://github.com/SizingLab/FAST-UAV
+- https://pypi.org/project/fastuav
+- https://www.icas.org/icas_archive/ICAS2022/data/papers/ICAS2022_0383_paper.pdf

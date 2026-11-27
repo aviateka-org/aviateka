@@ -27,7 +27,7 @@ async def main():
             tools = (await s.list_tools()).tools
             names = sorted(t.name for t in tools)
             print("tools:", names)
-            assert len(names) == 20, names
+            assert len(names) == 21, names
             p = lambda n, a=None: s.call_tool(n, a or {})
             tax = payload(await p("get_taxonomy", {"lang": "en"}))
             assert tax["fidelity"][4]["name"] == "Measured"
@@ -89,6 +89,16 @@ async def main():
             assert ent == ["reentry"], ent
             rk = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "rocket"}))["workflows"]}
             assert rk == {"model-rocket", "rocket-engine"}, rk
+            hv = payload(await p("rotor_hover", {"mass_kg": 1.5, "diameter_m": 0.254, "rotors": 4, "fm": 0.5,
+                                                 "drive_efficiency": 0.8, "battery_wh": 74, "usable_fraction": 0.8}))
+            print(f"quad 1.5 kg, 4 x 0.254 m, FM 0.5: shaft {hv['shaft_power_total_W']:.1f} W, hover {hv['hover_time_min']:.1f} min")
+            # closed form: P = sqrt((m g)^3 / (2 rho A_total)) / FM
+            ref = ((1.5 * 9.80665) ** 3 / (2 * 1.225 * 4 * 3.141592653589793 * 0.254 ** 2 / 4)) ** 0.5 / 0.5
+            assert abs(hv["shaft_power_total_W"] - ref) < 0.05 and abs(hv["hover_time_min"] - 17.75) < 0.05
+            bad = await p("rotor_hover", {"mass_kg": 1, "diameter_m": 0.2, "fm": 1.5})
+            assert getattr(bad, "isError", False) or getattr(bad, "is_error", False)
+            q = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "evtol"}))["workflows"]}
+            assert "quadcopter" in q, q
             rot = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "autogyro"}))["workflows"]}
             assert rot == {"autogyro"}, rot
             gy = {t["id"] for t in payload(await p("search_tools", {"aircraft": "autogyro"}))["tools"]}

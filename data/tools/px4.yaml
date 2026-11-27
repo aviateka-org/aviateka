@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: px4
+name: PX4
+url: https://github.com/PX4/PX4-Autopilot
+org: PX4 / Dronecode
+last_commit: '2026-11-27'
+license: BSD-3-Clause
+code: C++
+disciplines: [flightsim, sysid]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [test]
+aircraft: [evtol, uav, rc]
+summary:
+  ru: Открытый автопилот для мультикоптеров, самолётов и гибридов; есть полёт в симуляции (SITL) с тем же кодом, что на борту.
+  en: An open autopilot for multirotors, fixed-wing and hybrids; it can fly in simulation (SITL) with the same code as on board.
+use:
+  ru: Проверить настройки и сценарии в симуляции, потом перенести на аппарат; журналы полётов — для идентификации.
+  en: Check settings and scenarios in simulation, then move to the aircraft; flight logs feed identification.
+sources:
+- https://github.com/PX4/PX4-Autopilot

@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: rotorpy
+name: RotorPy
+url: https://github.com/spencerfolk/rotorpy
+org: University of Pennsylvania (S. Folk and others)
+last_commit: '2026-09-07'
+license: MIT
+code: Python
+disciplines: [flightsim]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [preliminary, test]
+aircraft: [evtol]
+summary:
+  ru: Тренажёр мультикоптера на Python с аэродинамическими силами, ветром и датчиками; лёгкий и понятный, для учёбы и отладки управления.
+  en: A Python multirotor simulator with aerodynamic forces, wind and sensors; lightweight and readable, for teaching and control development.
+use:
+  ru: Отладка регуляторов, планирования пути и оценки состояния до полётов.
+  en: Developing controllers, path planning and state estimation before flying.
+sources:
+- https://github.com/spencerfolk/rotorpy

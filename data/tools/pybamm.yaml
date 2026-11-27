@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pybamm
+name: PyBaMM
+url: https://github.com/pybamm-team/PyBaMM
+org: PyBaMM team
+last_commit: '2026-11-27'
+license: BSD-3-Clause
+code: Python
+disciplines: [propulsion]
+map: [propulsion, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [evtol, uav]
+summary:
+  ru: 'Модели литий-ионных аккумуляторов: напряжение, нагрев и старение при заданном токе.'
+  en: 'Lithium-ion battery models: voltage, heating and ageing under a given current.'
+use:
+  ru: Сколько батарея реально отдаст на висении и в рывках, с просадкой напряжения и нагревом, а не по надписи на банке.
+  en: How much the battery really delivers in hover and bursts, with voltage sag and heating, not just the label rating.
+caveat:
+  ru: Параметры конкретных банок нужно найти или измерить — готовых для каждого аккумулятора нет.
+  en: Parameters for a specific cell must be found or measured — there are no ready sets for every battery.
+sources:
+- https://github.com/pybamm-team/PyBaMM

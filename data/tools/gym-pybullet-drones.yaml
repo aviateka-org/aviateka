@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: gym-pybullet-drones
+name: gym-pybullet-drones
+url: https://github.com/utiasDSL/gym-pybullet-drones
+org: University of Toronto (Dynamic Systems Lab)
+last_commit: '2026-11-21'
+license: MIT
+code: Python
+disciplines: [flightsim]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [preliminary, test]
+aircraft: [evtol]
+summary:
+  ru: Среда для обучения управления квадрокоптерами с подкреплением на движке PyBullet; один и несколько аппаратов.
+  en: An environment for reinforcement-learning control of quadcopters on PyBullet; single and multiple drones.
+use:
+  ru: Обучение и проверка регуляторов и роя в симуляции.
+  en: Training and testing controllers and swarms in simulation.
+sources:
+- https://github.com/utiasDSL/gym-pybullet-drones

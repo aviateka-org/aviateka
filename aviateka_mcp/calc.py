@@ -237,3 +237,53 @@ def buoyancy(volume_m3: float | None = None, gas: str = "helium", gas_temp_c: fl
         out.update({"mass_kg": mass_kg, "needed_volume_m3": need, "needed_sphere_diameter_m": (6 * need / math.pi) ** (1 / 3)})
     return out
 
+
+# Висение винта по теории импульса с коэффициентом качества (figure of merit):
+# T = m·g/n, v_i = sqrt(T / (2·ρ·A)), P_ideal = T·v_i, P_shaft = P_ideal / FM.
+# Hover by momentum theory with a figure of merit. FM of small drone rotors is often below 0.5.
+HOVER_SOURCES = {"fm_small_rotors": "https://arxiv.org/pdf/2608.25150",
+                 "fm_definition": "https://rotorcraft.arc.nasa.gov/Publications/files/Young_AIAA_2002.PDF",
+                 "measured_props": "https://m-selig.ae.illinois.edu/props/propDB.html"}
+
+
+def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 0.5, altitude_m: float = 0.0,
+                delta_t: float = 0.0, drive_efficiency: float | None = None, battery_wh: float | None = None,
+                usable_fraction: float = 1.0, lang: str = "ru") -> dict:
+    """Power to hover on n equal, separate rotors; optionally electrical power and hover time from a battery."""
+    lang = lang if lang in ("ru", "en") else "ru"
+    if not mass_kg or mass_kg <= 0:
+        raise ValueError("mass_kg must be positive (the whole aircraft in hover)")
+    if not diameter_m or diameter_m <= 0:
+        raise ValueError("diameter_m must be positive (rotor diameter)")
+    if int(rotors) != rotors or rotors < 1:
+        raise ValueError("rotors must be a whole number, 1 or more")
+    if not 0 < fm <= 1:
+        raise ValueError("fm (figure of merit) must be above 0 and at most 1")
+    if drive_efficiency is not None and not 0 < drive_efficiency <= 1:
+        raise ValueError("drive_efficiency must be above 0 and at most 1")
+    if battery_wh is not None and battery_wh <= 0:
+        raise ValueError("battery_wh must be positive")
+    if not 0 < usable_fraction <= 1:
+        raise ValueError("usable_fraction must be above 0 and at most 1")
+    rho = atmosphere(altitude_m, delta_t)["density_kg_m3"]
+    n = int(rotors)
+    t = mass_kg * G / n
+    area = math.pi * diameter_m ** 2 / 4
+    vi = math.sqrt(t / (2 * rho * area))
+    p_ideal = t * vi
+    p_shaft = p_ideal / fm
+    out = {"rotors": n, "density_kg_m3": rho, "thrust_per_rotor_N": t, "thrust_per_rotor_g": t / G * 1000,
+           "disk_loading_N_m2": t / area, "induced_velocity_m_s": vi, "ideal_power_per_rotor_W": p_ideal,
+           "shaft_power_per_rotor_W": p_shaft, "shaft_power_total_W": p_shaft * n, "fm": fm,
+           "power_loading_g_per_W": mass_kg * 1000 / (p_shaft * n), "sources": HOVER_SOURCES,
+           "note": {"ru": "Винты отдельные и не мешают друг другу; рама, соосные пары и перекрытие не учтены. У малых винтов дронов FM часто ниже 0,5 — лучше взять своё значение из замеров.",
+                    "en": "Rotors are separate and do not interfere; frame, coaxial pairs and overlap are not modelled. Small drone rotors often have FM below 0.5 — better use your own measured value."}[lang]}
+    p_draw = p_shaft * n
+    if drive_efficiency is not None:
+        p_draw = p_shaft * n / drive_efficiency
+        out.update({"drive_efficiency": drive_efficiency, "electrical_power_W": p_draw})
+    if battery_wh is not None:
+        out.update({"battery_wh": battery_wh, "usable_fraction": usable_fraction,
+                    "hover_time_min": battery_wh * usable_fraction / p_draw * 60})
+    return out
+

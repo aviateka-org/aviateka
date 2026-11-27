@@ -70,7 +70,7 @@ INSTRUCTIONS = (
     "Start with find_workflows for a task or aircraft type, then search_tools / get_tool for details. "
     "Check list_gaps before promising that a tool exists, and list_benchmarks for expected accuracy. "
     "Statuses: active = code changed within 365 days; stale = older; unknown = date not checked. "
-    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent, buoyancy. "
+    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent, buoyancy, rotor_hover. "
     "Covers flying craft of every kind: aircraft and rotorcraft, fabric craft and balloons, airships, seaplanes, WIG and hydrofoil craft, high-speed and entry vehicles, civil rockets; get_classifier shows the craft classes and how well each is covered. get_validation shows how well tools matched measurements. "
     "get_changelog lists versions and what changed; how_to_contribute says how to send corrections and calculations. "
     "Pass lang='en' for English, default is Russian."
@@ -272,6 +272,18 @@ def buoyancy(volume_m3: float | None = None, gas: str = "helium", gas_temp_c: fl
     Give volume_m3 to get gross lift (kg); add mass_kg (envelope, structure, load — not the gas) to get net lift and the
     volume needed. Ambient: ISA at altitude_m, or set ambient_temp_c (or delta_t)."""
     return _safe(calc.buoyancy, volume_m3, gas, gas_temp_c, purity, mass_kg, altitude_m, ambient_temp_c, delta_t, _lang(lang))
+
+
+@server.tool()
+def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 0.5, altitude_m: float = 0.0,
+                delta_t: float = 0.0, drive_efficiency: float | None = None, battery_wh: float | None = None,
+                usable_fraction: float = 1.0, lang: str = "ru") -> dict:
+    """Hover power of a multirotor or helicopter by momentum theory: T = m·g/n, v_i = sqrt(T/(2·rho·A)),
+    P_shaft = T·v_i / FM per rotor. fm = figure of merit (small drone rotors often below 0.5; use measured values).
+    drive_efficiency (motor and speed controller) gives electrical power; battery_wh and usable_fraction give hover time.
+    Rotors are treated as separate: no coaxial or overlap correction, no frame blockage."""
+    return _safe(calc.rotor_hover, mass_kg, diameter_m, rotors, fm, altitude_m, delta_t, drive_efficiency,
+                 battery_wh, usable_fraction, _lang(lang))
 
 
 @server.tool()

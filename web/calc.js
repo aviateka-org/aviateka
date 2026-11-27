@@ -54,6 +54,16 @@ const CALC = (() => {
     if (m > 0) { const Vn = m / k; Object.assign(out, { Vn, Dn: Math.cbrt(6 * Vn / Math.PI) }); }
     return out;
   }
-  return { atm, reMach, stall, loading, froude, cav, CHUTES, chute, GASES, lift };
+  // Rotor hover by momentum theory with figure of merit — same as calc.py rotor_hover()
+  function hover(m, D, n, fm, h, eta, wh, usable) {
+    if (!(m > 0) || !(D > 0) || !(n >= 1) || !(fm > 0 && fm <= 1)) throw new Error('input');
+    const rho = atm(h).rho, T = m * G / n, A = Math.PI * D * D / 4, vi = Math.sqrt(T / (2 * rho * A));
+    const Pi = T * vi, Ps = Pi / fm, Pt = Ps * n, out = { T, Tg: T / G * 1000, DL: T / A, vi, Pi, Ps, Pt, gW: m * 1000 / Pt };
+    out.Pe = eta > 0 && eta <= 1 ? Pt / eta : NaN;
+    const draw = isFinite(out.Pe) ? out.Pe : Pt;
+    out.tmin = wh > 0 ? wh * (usable > 0 && usable <= 1 ? usable : 1) / draw * 60 : NaN;
+    return out;
+  }
+  return { atm, reMach, stall, loading, froude, cav, CHUTES, chute, GASES, lift, hover };
 })();
 if (typeof module !== 'undefined') module.exports = CALC;

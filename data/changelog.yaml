@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.14.0
+  date: '2026-11-27'
+  changes:
+  - ru: 'Квадрокоптеры. Лист «мультикоптер» и раньше считался покрытым, но в основном за счёт общих программ и программ для больших аппаратов с вертикальным взлётом; программ именно для малых дронов не было. Добавлены: FAST-UAV (облик дрона под задание, ISAE-SUPAERO), RotorPy и gym-pybullet-drones (тренажёры мультикоптера), PX4 (открытый автопилот с полётом в симуляции), PyBaMM (модель аккумулятора под нагрузкой) и база замеров малых винтов Университета Иллинойса. Цепочка «Квадрокоптер: от облика до полёта на автопилоте». Новый калькулятор «Винт: мощность висения» на странице и инструмент MCP rotor_hover (всего 21): тяга и мощность по теории импульса с коэффициентом качества винта, мощность от батареи и время висения. Проверка: совпадает с формулой в замкнутом виде до сотых ватта.'
+    en: 'Quadcopters. The multicopter leaf already counted as covered, but mainly thanks to general tools and tools for large VTOL aircraft; there were no tools for small drones as such. Added: FAST-UAV (drone sizing to a mission, ISAE-SUPAERO), RotorPy and gym-pybullet-drones (multirotor simulators), PX4 (open autopilot that also flies in simulation), PyBaMM (battery model under load) and the University of Illinois small-propeller measurements. Workflow «Quadcopter: from sizing to flying on an autopilot». New «Rotor hover power» calculator on the page and MCP tool rotor_hover (21 in total): thrust and power by momentum theory with the rotor figure of merit, battery power and hover time. Check: matches the closed-form formula to hundredths of a watt.'
 - version: 0.13.0
   date: '2026-11-27'
   changes:
