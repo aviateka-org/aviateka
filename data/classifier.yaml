@@ -7,8 +7,8 @@ principle:
   ru: 'Главный признак — чем аппарат держится в воздухе: газом легче воздуха, крылом (неподвижным, мягким, вращающимся, машущим), тягой двигателя, опорой на экран или воду, тягой ракеты. Верхние уровни совпадают с таблицей ИКАО; ветви «ракета и космос», «другие миры и необычное», а также винтокрыл и циклокоптер — наше дополнение.'
   en: 'The main split is what holds the craft in the air: a gas lighter than air, a wing (fixed, soft, rotating, flapping), engine thrust, the cushion of air near a surface or the water, or rocket thrust. The upper levels match the ICAO table; the branches "rockets and space" and "other worlds and unusual", as well as compound helicopters and cyclocopters, are our additions.'
 coverage_rule:
-  ru: '«Покрыто» — у листа есть тип в каталоге, от 20 инструментов и от 5 цепочек. «Частично» — тип есть, но инструментов или цепочек меньше. «Не покрыто» — своего типа в каталоге нет.'
-  en: '"Covered" means the leaf has a catalog type with at least 20 tools and 5 workflows. "Partial" means the type exists with fewer. "Not covered" means there is no catalog type for it yet.'
+  ru: '«Покрыто» — у листа есть тип в каталоге, от 20 инструментов и от 5 цепочек. «Частично» — тип есть и под него есть программы, но инструментов или цепочек меньше. «Не покрыто» — своего типа в каталоге нет или под него нет ни одной программы.'
+  en: '"Covered" means the leaf has a catalog type with at least 20 tools and 5 workflows. "Partial" means the type exists and has tools, but fewer. "Not covered" means there is no catalog type for it yet, or no tool under it.'
 branches:
 - id: lta
   name:
@@ -37,7 +37,7 @@ branches:
     name:
       ru: 'Дирижабль: мягкий, жёсткий, гибридный'
       en: 'Airship: non-rigid, rigid, hybrid'
-    types: []
+    types: [airship]
 - id: fixed
   name:
     ru: Неподвижное крыло

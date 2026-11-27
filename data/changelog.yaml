@@ -1,4 +1,11 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.11.0
+  date: '2026-11-27'
+  changes:
+  - ru: 'Ветка аппаратов легче воздуха. Новый калькулятор «Аэростат: подъёмная сила» на странице и инструмент MCP buoyancy (всего 20): гелий, водород с учётом чистоты, горячий воздух; полный и свободный подъём или нужный объём. Проверка: тепловой аэростат 2200 м³ при 100 °C внутри и 10 °C снаружи поднимает 0,301 кг на кубометр — как в независимом расчёте. Новый вид — дирижабль: карточка airship_simulation (мягкая оболочка в ROS и Gazebo), JSBSim (газовые ячейки и баллонеты) и OpenVSP отмечены для дирижаблей, цепочка «Дирижабль». Для стратосферных шаров — PlanetaryBalloon NASA (форма лепестковых шаров, программа 2007 года). Два пробела-окна: открытый расчёт облика дирижабля и модель привязного аэростата. Термины: баллонет, свободная подъёмная сила.'
+    en: 'Lighter-than-air branch. New «Balloon lift» calculator on the page and MCP tool buoyancy (20 in total): helium, hydrogen with purity, hot air; gross and net lift or the volume needed. Check: a 2,200 m³ hot-air balloon at 100 °C inside and 10 °C outside lifts 0.301 kg per cubic metre — as in an independent calculation. New type — airship: airship_simulation card (soft envelope in ROS and Gazebo), JSBSim (gas cells and ballonets) and OpenVSP tagged for airships, an airship workflow. For stratospheric balloons — NASA PlanetaryBalloon (lobed balloon shape, a 2007 program). Two window gaps: open airship sizing and a tethered aerostat model. Terms: ballonet, free lift.'
+  - ru: 'Правило покрытия в классификаторе уточнено: лист, под чей тип нет ни одной программы, считается «не покрыто», а не «частично». Тепловой и привязной аэростаты пока не покрыты — открытых программ под них нет, есть только калькулятор и пробелы.'
+    en: 'Classifier coverage rule refined: a leaf whose type has no tool counts as not covered rather than partial. Hot-air and tethered balloons stay uncovered for now — there are no open tools for them, only the calculator and the gaps.'
 - version: 0.10.0
   date: '2026-11-27'
   changes:

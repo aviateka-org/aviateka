@@ -27,7 +27,7 @@ async def main():
             tools = (await s.list_tools()).tools
             names = sorted(t.name for t in tools)
             print("tools:", names)
-            assert len(names) == 19, names
+            assert len(names) == 20, names
             p = lambda n, a=None: s.call_tool(n, a or {})
             tax = payload(await p("get_taxonomy", {"lang": "en"}))
             assert tax["fidelity"][4]["name"] == "Measured"
@@ -76,6 +76,15 @@ async def main():
             sea_t = {t["id"] for t in payload(await p("search_tools", {"aircraft": "seaplane"}))["tools"]}
             print("seaplane tools:", sorted(sea_t))
             assert {"openplaning", "dualsphysics", "jsbsim"} <= sea_t
+            hab = payload(await p("buoyancy", {"volume_m3": 2200, "gas": "hot_air", "gas_temp_c": 100, "ambient_temp_c": 10, "mass_kg": 500}))
+            print(f"hot-air 2200 m3, 100/10 C: {hab['lift_kg_per_m3']:.4f} kg/m3, net {hab['net_lift_kg']:.1f} kg")
+            assert abs(hab["lift_kg_per_m3"] - 0.3007) < 5e-4 and abs(hab["net_lift_kg"] - 161.5) < 0.5
+            he = payload(await p("buoyancy", {"mass_kg": 1.0557, "gas": "helium", "lang": "en"}))
+            assert abs(he["needed_volume_m3"] - 1.0) < 1e-3 and he["gas"] == "helium"
+            bad = await p("buoyancy", {"volume_m3": 10, "gas": "hot_air", "gas_temp_c": 5})
+            assert getattr(bad, "isError", False) or getattr(bad, "is_error", False)
+            ash = {t["id"] for t in payload(await p("search_tools", {"aircraft": "airship"}))["tools"]}
+            assert {"jsbsim", "airship-simulation", "openvsp"} <= ash, ash
             rot = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "autogyro"}))["workflows"]}
             assert rot == {"autogyro"}, rot
             gy = {t["id"] for t in payload(await p("search_tools", {"aircraft": "autogyro"}))["tools"]}

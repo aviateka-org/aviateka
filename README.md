@@ -40,7 +40,7 @@ Claude Desktop:
 { "mcpServers": { "aviateka": { "command": "uvx", "args": ["aviateka-mcp"] } } }
 ```
 
-19 инструментов MCP / 19 MCP tools: `search_tools`, `get_tool`, `find_workflows`, `list_gaps`, `list_benchmarks`, `get_validation`, `glossary`, `get_case`, `get_classifier`, `get_taxonomy`, `get_changelog`, `how_to_contribute`, `atmosphere`, `reynolds_mach`, `stall_speed`, `wing_loading`, `froude_model`, `cavitation`, `parachute_descent`. Работает с официальным MCP SDK 1.x и 2.x. / Works with the official MCP SDK 1.x and 2.x.
+20 инструментов MCP / 20 MCP tools: `search_tools`, `get_tool`, `find_workflows`, `list_gaps`, `list_benchmarks`, `get_validation`, `glossary`, `get_case`, `get_classifier`, `get_taxonomy`, `get_changelog`, `how_to_contribute`, `atmosphere`, `reynolds_mach`, `stall_speed`, `wing_loading`, `froude_model`, `cavitation`, `parachute_descent`, `buoyancy`. Работает с официальным MCP SDK 1.x и 2.x. / Works with the official MCP SDK 1.x and 2.x.
 
 ## Из исходников / From source
 

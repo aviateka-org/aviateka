@@ -4,6 +4,14 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.11.0 — 2026-11-27
+
+- Ветка аппаратов легче воздуха. Новый калькулятор «Аэростат: подъёмная сила» на странице и инструмент MCP buoyancy (всего 20): гелий, водород с учётом чистоты, горячий воздух; полный и свободный подъём или нужный объём. Проверка: тепловой аэростат 2200 м³ при 100 °C внутри и 10 °C снаружи поднимает 0,301 кг на кубометр — как в независимом расчёте. Новый вид — дирижабль: карточка airship_simulation (мягкая оболочка в ROS и Gazebo), JSBSim (газовые ячейки и баллонеты) и OpenVSP отмечены для дирижаблей, цепочка «Дирижабль». Для стратосферных шаров — PlanetaryBalloon NASA (форма лепестковых шаров, программа 2007 года). Два пробела-окна: открытый расчёт облика дирижабля и модель привязного аэростата. Термины: баллонет, свободная подъёмная сила.
+- Правило покрытия в классификаторе уточнено: лист, под чей тип нет ни одной программы, считается «не покрыто», а не «частично». Тепловой и привязной аэростаты пока не покрыты — открытых программ под них нет, есть только калькулятор и пробелы.
+
+- Lighter-than-air branch. New «Balloon lift» calculator on the page and MCP tool buoyancy (20 in total): helium, hydrogen with purity, hot air; gross and net lift or the volume needed. Check: a 2,200 m³ hot-air balloon at 100 °C inside and 10 °C outside lifts 0.301 kg per cubic metre — as in an independent calculation. New type — airship: airship_simulation card (soft envelope in ROS and Gazebo), JSBSim (gas cells and ballonets) and OpenVSP tagged for airships, an airship workflow. For stratospheric balloons — NASA PlanetaryBalloon (lobed balloon shape, a 2007 program). Two window gaps: open airship sizing and a tethered aerostat model. Terms: ballonet, free lift.
+- Classifier coverage rule refined: a leaf whose type has no tool counts as not covered rather than partial. Hot-air and tethered balloons stay uncovered for now — there are no open tools for them, only the calculator and the gaps.
+
 ## 0.10.0 — 2026-11-27
 
 - Ветка винтокрылых. Три новых вида аппаратов: автожир, винтокрыл (вертолёт с крылом или толкающим винтом) и циклокоптер. Новые карточки: dynbem (винт от висения до авторотации и вихревого кольца), MBDyn (динамика лопастей и земной резонанс), NDARC (облик винтокрылых, только США) и RotaryWingSim (устойчивость автожира, код по запросу). JSBSim, preCICE и OpenFOAM отмечены для новых видов. Четыре цепочки: вертолёт, автожир, винтокрыл, циклокоптер. Три пробела-окна: открытая модель динамики автожира, открытый расчёт облика винтокрыла, быстрая модель циклоидального винта. Термины: авторотация, вихревое кольцо, земной резонанс. В классификаторе не покрыто теперь 11 листьев вместо 14.

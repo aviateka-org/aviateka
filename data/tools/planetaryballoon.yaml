@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: planetaryballoon
+name: PlanetaryBalloon
+url: https://ntrs.nasa.gov/citations/20100011161
+org: NASA Goddard (R. Farley)
+code: Visual Basic 6
+status: legacy
+disciplines: [structures]
+map: [structures, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [balloon]
+summary:
+  ru: 'Программа NASA для формы и нагрузок лепестковых сверхдавленческих шаров: «естественная» форма, постоянный угол, радиус или окружное напряжение лепестка.'
+  en: 'NASA program for the shape and loads of lobed super-pressure balloons: natural shape, constant bulge angle, radius or hoop stress.'
+use:
+  ru: Начальная форма и нагрузки в лентах для шара, который долго держит высоту, в том числе для других планет.
+  en: Initial shape and tape loads for a long-duration balloon, including ones for other planets.
+caveat:
+  ru: Описание — технический бюллетень 2007 года, версия 5.0 под Windows; как получить программу сейчас, мы не нашли.
+  en: Described in a 2007 tech brief, version 5.0 for Windows; we did not find how to obtain it today.
+sources:
+- https://ntrs.nasa.gov/citations/20100011161
+- https://www.techbriefs.com/component/content/article/2509-gsc-15112-1

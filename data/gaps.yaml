@@ -230,6 +230,35 @@ gaps:
   sources:
   - https://re.public.polimi.it/bitstream/11311/1073944/2/GAGNL_OA_01-19.pdf
   - https://fenix.tecnico.ulisboa.pt/downloadFile/844820067126275/Resumo_Diogo_Mauricio_58103.pdf
+- id: airship-sizing
+  mark: window
+  title:
+    ru: Открытый расчёт облика дирижабля
+    en: Open airship sizing
+  near:
+    ru: 'Методы опубликованы: цепочка Политехнического университета Милана от размеров до лётных качеств, параметрический метод для многокорпусных гибридных дирижаблей; для полёта есть JSBSim.'
+    en: 'Methods are published: the Politecnico di Milano chain from sizing to flying qualities, a parametric method for multi-lobed hybrid airships; JSBSim covers flight.'
+  why:
+    ru: В NASA прямо пишут, что инструменты для аппаратов легче воздуха в основном закрытые; открытой программы облика мы не нашли.
+    en: NASA states outright that lighter-than-air design tools are mostly proprietary; we found no open sizing program.
+  sources:
+  - https://ntrs.nasa.gov/api/citations/20160007347/downloads/20160007347.pdf
+  - https://re.public.polimi.it/retrieve/0e894ac8-063c-4101-8efb-09c8b9f04ed5/RIBOC03-26.pdf
+  - https://www.cambridge.org/core/services/aop-cambridge-core/content/view/10037AA7DACDC35344E568C66B396967/S0001924023000374a.pdf/a-parametric-design-approach-for-multi-lobed-hybrid-airships.pdf
+- id: tethered-aerostat
+  mark: window
+  title:
+    ru: Открытая модель привязного аэростата
+    en: Open tethered aerostat model
+  near:
+    ru: 'Модели аэростата на тросе из Университета Макгилла описаны в диссертациях, но код не раздаётся; трос из точечных масс уже есть в открытых программах для энергетических змеев (KiteModels.jl, LAKSA).'
+    en: 'McGill University tethered aerostat models are described in theses, but the code is not distributed; lumped-mass tethers already exist in open airborne wind energy codes (KiteModels.jl, LAKSA).'
+  why:
+    ru: Звенья есть, а программы, где плавучее тело, ветер и трос считаются вместе, мы не нашли.
+    en: The links exist, but we found no program that computes the buoyant body, wind and tether together.
+  sources:
+  - https://www3.eng.cam.ac.uk/~hemh1/SPICE/papers/Coulombe-Pontbriand_2005_MastersThesis.pdf
+  - https://dspace.library.uvic.ca/handle/1828/519
 out_of_scope:
 - ru: Боевые аппараты и ракетное оружие — вне каталога; общие программы аэродинамики подходят и им, но отдельной ветви не будет.
   en: Combat aircraft and missiles are outside the catalog; general aerodynamics codes apply to them too, but there will be no branch for them.

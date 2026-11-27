@@ -367,3 +367,19 @@
     ru: Раскачка вертолёта на земле, когда колебания лопастей в плоскости вращения совпадают с качанием фюзеляжа на шасси; может разрушить машину за секунды.
     en: A helicopter shaking itself apart on the ground when in-plane blade motion couples with the fuselage rocking on its gear.
   search: {}
+- id: ballonet
+  term:
+    ru: Баллонет
+    en: Ballonet
+  definition:
+    ru: Мешок с воздухом внутри газовой оболочки дирижабля. Его надувают или стравливают, чтобы держать давление и форму оболочки, когда газ расширяется или сжимается с высотой.
+    en: An air bag inside an airship's gas envelope. It is inflated or vented to keep the envelope's pressure and shape as the gas expands or contracts with altitude.
+  search: {}
+- id: free-lift
+  term:
+    ru: Свободная подъёмная сила
+    en: Free lift
+  definition:
+    ru: Подъём газа за вычетом веса оболочки, конструкции и груза; от неё зависит, с какой скоростью аэростат пойдёт вверх.
+    en: Gas lift minus the weight of envelope, structure and load; it sets how fast the balloon climbs.
+  search: {}

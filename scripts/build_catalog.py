@@ -209,7 +209,7 @@ def build_classifier(cl, tools, workflows, types):
                 err(rel, f"лист {leaf['id']}: неизвестный тип {t}", f"leaf {leaf['id']}: unknown aircraft type {t}")
             nt = sum(1 for t in tools if lt & set(t["aircraft"]))
             nw = sum(1 for w in workflows if lt & set(w["aircraft"]))
-            status = "none" if not lt else ("covered" if nt >= 20 and nw >= 5 else "partial")
+            status = "none" if not lt or nt == 0 else ("covered" if nt >= 20 and nw >= 5 else "partial")
             leaf["coverage"] = {"tools": nt, "workflows": nw, "status": status}
             total[status] += 1
     cl["summary"] = {"branches": len(cl.get("branches", [])), "leaves": len(seen), **total}

@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: airship-simulation
+name: airship_simulation
+url: https://github.com/robot-perception-group/airship_simulation
+org: Robot Perception Group
+last_commit: '2021-01-01'
+code: ROS, Gazebo
+disciplines: [flightsim]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [preliminary, test]
+aircraft: [airship]
+summary:
+  ru: 'Тренажёр мягкого дирижабля в ROS и Gazebo: деформация оболочки, изменение плавучести от давления, турбулентный ветер, автопилот.'
+  en: 'A soft airship simulator in ROS and Gazebo: envelope deformation, buoyancy change with pressure, turbulent wind, autopilot.'
+use:
+  ru: Отладка управления и автопилота мягкого дирижабля до полётов; авторы сверяли поведение с полётами.
+  en: Tuning control and autopilot of a soft airship before flying; the authors compared behaviour with flights.
+caveat:
+  ru: Файла лицензии в хранилище нет — формально права у авторов, хотя статья называет код открытым. Последний коммит в начале 2021 года.
+  en: No licence file in the repository — formally the authors keep the rights, though the paper calls the code open. Last commit in early 2021.
+sources:
+- https://github.com/robot-perception-group/airship_simulation
+- https://arxiv.org/pdf/2012.15684

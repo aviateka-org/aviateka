@@ -70,7 +70,7 @@ INSTRUCTIONS = (
     "Start with find_workflows for a task or aircraft type, then search_tools / get_tool for details. "
     "Check list_gaps before promising that a tool exists, and list_benchmarks for expected accuracy. "
     "Statuses: active = code changed within 365 days; stale = older; unknown = date not checked. "
-    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent. "
+    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent, buoyancy. "
     "Covers aircraft, fabric craft (paragliders, hang gliders, parachutes, kites, balloons), WIG craft (ekranoplans) and hydrofoil craft. get_validation shows how well tools matched measurements. "
     "get_changelog lists versions and what changed; how_to_contribute says how to send corrections and calculations. "
     "Pass lang='en' for English, default is Russian."
@@ -101,7 +101,7 @@ def search_tools(query: str = "", discipline: str = "", aircraft: str = "", stag
                  include_stale: bool = True, lang: str = "ru", limit: int = 20) -> dict:
     """Search open aircraft-design tools. query: free text in Russian or English (e.g. 'флаттер', 'propeller', 'low Reynolds').
     Filters take taxonomy ids: discipline (aero, airfoil, cfd, propulsion, stability, flightsim, sysid, structures, aeroelastic, mdo, geometry, hydro),
-    aircraft (transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, autogyro, compound, cyclocopter, hpa, flapping, wig, hydrofoil, seaplane, paraglider, hangglider, parachute, kite, balloon), stage (concept, preliminary, detail, test),
+    aircraft (transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, autogyro, compound, cyclocopter, hpa, flapping, wig, hydrofoil, seaplane, paraglider, hangglider, parachute, kite, balloon, airship), stage (concept, preliminary, detail, test),
     fidelity (L0, L1, L2, L3, EXP). Active tools come first."""
     lang = _lang(lang)
     words = [w for w in re.split(r"\W+", query.lower()) if w]
@@ -260,6 +260,18 @@ def parachute_descent(mass_kg: float, canopy: str = "flat_circular", cd0: float 
     disk_gap_band, conical_ribbon, flat_ribbon, guide_surface_ribbed (CD0 ranges from Knacke / AFFDL-TR-78-151), or pass cd0.
     Returns the rate with its range over the CD0 range, landing energy and the equivalent free-fall height."""
     return _safe(calc.parachute_descent, mass_kg, canopy, cd0, area_m2, diameter_m, target_speed_m_s, altitude_m, delta_t, _lang(lang))
+
+
+@server.tool()
+def buoyancy(volume_m3: float | None = None, gas: str = "helium", gas_temp_c: float | None = None, purity: float = 1.0,
+             mass_kg: float | None = None, altitude_m: float = 0.0, ambient_temp_c: float | None = None,
+             delta_t: float = 0.0, lang: str = "ru") -> dict:
+    """Lift of a balloon, airship or tethered aerostat: L = V·(rho_air − rho_gas), gas pressure equal to ambient, dry air.
+    gas: helium, hydrogen or hot_air (gas_temp_c = air inside the envelope, default 100 °C). For helium and hydrogen,
+    gas_temp_c is optional superheat (default: ambient) and purity is the share of lifting gas (rest is air).
+    Give volume_m3 to get gross lift (kg); add mass_kg (envelope, structure, load — not the gas) to get net lift and the
+    volume needed. Ambient: ISA at altitude_m, or set ambient_temp_c (or delta_t)."""
+    return _safe(calc.buoyancy, volume_m3, gas, gas_temp_c, purity, mass_kg, altitude_m, ambient_temp_c, delta_t, _lang(lang))
 
 
 @server.tool()

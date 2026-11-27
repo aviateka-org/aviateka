@@ -36,6 +36,24 @@ const CALC = (() => {
     if (Vt > 0) { const Sn = w2 / (rho * cd * Vt * Vt); Object.assign(out, { Sn, Dn: Math.sqrt(4 * Sn / Math.PI) }); }
     return out;
   }
-  return { atm, reMach, stall, loading, froude, cav, CHUTES, chute };
+  // Lighter than air: same model as calc.py buoyancy() — gas pressure equals ambient, dry air
+  const RU = 8.314462618, GASES = { helium: 4.002602e-3, hydrogen: 2.01588e-3, hot_air: null };
+  function lift(gas, V, tg, purity, m, h, tAmb) {
+    if (!(gas in GASES) || !(h >= -500 && h <= 20000)) throw new Error('input');
+    const dT = isFinite(tAmb) ? tAmb + 273.15 - atm(h).T : 0, s = atm(h, dT), rhoA = s.p / (R * s.T);
+    let Tg, rhoG;
+    if (gas === 'hot_air') { Tg = (isFinite(tg) ? tg : 100) + 273.15; if (!(Tg > s.T)) throw new Error('cold'); rhoG = s.p / (R * Tg); }
+    else {
+      Tg = isFinite(tg) ? tg + 273.15 : s.T; const pu = isFinite(purity) ? purity : 1;
+      if (!(Tg > 0) || !(pu > 0 && pu <= 1)) throw new Error('input');
+      rhoG = pu * s.p * GASES[gas] / (RU * Tg) + (1 - pu) * s.p / (R * Tg);
+    }
+    const k = rhoA - rhoG; if (!(k > 0)) throw new Error('nolift');
+    const out = { rhoA, rhoG, k, Ta: s.T - 273.15 };
+    if (V > 0) Object.assign(out, { gross: V * k, gasM: V * rhoG, net: m >= 0 ? V * k - m : NaN });
+    if (m > 0) { const Vn = m / k; Object.assign(out, { Vn, Dn: Math.cbrt(6 * Vn / Math.PI) }); }
+    return out;
+  }
+  return { atm, reMach, stall, loading, froude, cav, CHUTES, chute, GASES, lift };
 })();
 if (typeof module !== 'undefined') module.exports = CALC;

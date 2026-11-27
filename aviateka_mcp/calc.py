@@ -172,3 +172,68 @@ def parachute_descent(mass_kg: float, canopy: str = "flat_circular", cd0: float 
                     "needed_area_range_m2": [two_w / (rho * hi * target_speed_m_s ** 2), two_w / (rho * lo * target_speed_m_s ** 2)],
                     "needed_diameter_m": math.sqrt(4 * need / math.pi)})
     return out
+
+
+# Аэростаты: подъёмная сила газа при давлении газа, равном наружному (открытый низ или нулевое избыточное давление), сухой воздух.
+# Lighter-than-air lift with gas pressure equal to ambient (open appendix or zero-pressure envelope), dry air.
+RU = 8.314462618                 # J/(mol K), SI 2019 exact
+LTA_SOURCES = {"gases": "https://iupac.qmul.ac.uk/AtWt/AtWt13.html",
+               "hot_air_check": "https://engineeringtoolbox.com/hot-air-balloon-lifting-force-d_562.html"}
+LTA_GASES = {
+    "helium": (4.002602e-3, {"ru": "гелий", "en": "helium"}),
+    "hydrogen": (2.01588e-3, {"ru": "водород", "en": "hydrogen"}),
+    "hot_air": (None, {"ru": "горячий воздух", "en": "hot air"}),
+}
+
+
+def buoyancy(volume_m3: float | None = None, gas: str = "helium", gas_temp_c: float | None = None, purity: float = 1.0,
+             mass_kg: float | None = None, altitude_m: float = 0.0, ambient_temp_c: float | None = None,
+             delta_t: float = 0.0, lang: str = "ru") -> dict:
+    """Lift of a lighter-than-air craft: L = V·(ρ_air − ρ_gas). Give volume_m3 to get lift, and/or mass_kg
+    (envelope, structure and load, gas excluded) to get the net lift or the volume needed."""
+    lang = lang if lang in ("ru", "en") else "ru"
+    if gas not in LTA_GASES:
+        raise ValueError("unknown gas; use one of " + ", ".join(LTA_GASES))
+    if volume_m3 is None and mass_kg is None:
+        raise ValueError("give volume_m3 (to get the lift) and/or mass_kg (to get the net lift or the volume needed)")
+    if volume_m3 is not None and volume_m3 <= 0:
+        raise ValueError("volume_m3 must be positive")
+    if mass_kg is not None and mass_kg < 0:
+        raise ValueError("mass_kg must not be negative")
+    if ambient_temp_c is not None:
+        delta_t = ambient_temp_c + 273.15 - atmosphere(altitude_m)["temperature_K"]
+    a = atmosphere(altitude_m, delta_t)
+    p, t = a["pressure_Pa"], a["temperature_K"]
+    rho_air = p / (R * t)
+    molar, names = LTA_GASES[gas]
+    if gas == "hot_air":
+        tg = (100.0 if gas_temp_c is None else gas_temp_c) + 273.15
+        if tg <= t:
+            raise ValueError("gas_temp_c must be above the ambient air temperature")
+        rho_gas = p / (R * tg)
+        purity = 1.0
+    else:
+        tg = t if gas_temp_c is None else gas_temp_c + 273.15
+        if tg <= 0:
+            raise ValueError("gas_temp_c is below absolute zero")
+        if not 0 < purity <= 1:
+            raise ValueError("purity must be above 0 and at most 1 (share of lifting gas, the rest is air)")
+        rho_gas = purity * p * molar / (RU * tg) + (1 - purity) * p / (R * tg)
+    lift = rho_air - rho_gas
+    if lift <= 0:
+        raise ValueError("no lift: the gas is not lighter than the surrounding air")
+    out = {"gas": names[lang], "purity": purity, "ambient_temp_C": t - 273.15, "gas_temp_C": tg - 273.15,
+           "pressure_Pa": p, "air_density_kg_m3": rho_air, "gas_density_kg_m3": rho_gas, "lift_kg_per_m3": lift,
+           "sources": LTA_SOURCES,
+           "note": {"ru": "Давление газа равно наружному, воздух сухой. Подъём считается в килограммах груза, который можно поднять; масса самого газа уже вычтена.",
+                    "en": "Gas pressure equals ambient, dry air. Lift is in kilograms of load that can be carried; the gas mass is already subtracted."}[lang]}
+    if volume_m3 is not None:
+        out.update({"volume_m3": volume_m3, "gross_lift_kg": volume_m3 * lift, "gas_mass_kg": volume_m3 * rho_gas})
+        if mass_kg is not None:
+            net = volume_m3 * lift - mass_kg
+            out.update({"mass_kg": mass_kg, "net_lift_kg": net, "net_lift_N": net * G})
+    if mass_kg is not None and mass_kg > 0:
+        need = mass_kg / lift
+        out.update({"mass_kg": mass_kg, "needed_volume_m3": need, "needed_sphere_diameter_m": (6 * need / math.pi) ** (1 / 3)})
+    return out
+

@@ -695,3 +695,28 @@
   check:
     ru: Тяга и мощность сверены со стендом — других способов проверки для этой схемы пока нет.
     en: Thrust and power checked against a test stand — there is no other way to check this layout yet.
+- id: airship
+  aircraft: [airship]
+  stage: preliminary
+  title:
+    ru: 'Дирижабль: оболочка, плавучесть, управление на ветру'
+    en: 'Airship: envelope, buoyancy, control in wind'
+  goal:
+    ru: 'Объём и форма оболочки под груз и высоту, газовые ячейки и баллонеты, поведение и управление в порывах. Подъём газа на рабочей высоте — калькулятор «Аэростат: подъёмная сила».'
+    en: 'Envelope volume and shape for the load and altitude, gas cells and ballonets, behaviour and control in gusts. Gas lift at the working altitude — the «Balloon lift» calculator.'
+  steps:
+  - tool: openvsp
+    what:
+      ru: Форма оболочки и оперения, объём и омываемая площадь
+      en: Envelope and fin shape, volume and wetted area
+  - tool: jsbsim
+    what:
+      ru: Газовые ячейки и баллонеты, полёт с плавучестью
+      en: Gas cells and ballonets, flight with buoyancy
+  - tool: airship-simulation
+    what:
+      ru: Деформация мягкой оболочки и автопилот в турбулентном ветре
+      en: Soft envelope deformation and autopilot in turbulent wind
+  check:
+    ru: Плавучесть сходится с запасом на нагрев газа и расход топлива, а баллонеты держат форму оболочки до рабочей высоты.
+    en: Buoyancy balances with margin for gas heating and fuel burn, and the ballonets keep the envelope shape up to the working altitude.

@@ -191,3 +191,7 @@ aircraft:
   name:
     ru: Циклокоптер
     en: Cyclocopter
+- id: airship
+  name:
+    ru: Дирижабль
+    en: Airship
