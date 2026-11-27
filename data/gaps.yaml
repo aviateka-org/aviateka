@@ -174,6 +174,8 @@ gaps:
   sources:
   - https://dspace5old.zcu.cz/bitstream/11025/10628/1/Kubicek.pdf
 out_of_scope:
+- ru: Боевые аппараты и ракетное оружие — вне каталога; общие программы аэродинамики подходят и им, но отдельной ветви не будет.
+  en: Combat aircraft and missiles are outside the catalog; general aerodynamics codes apply to them too, but there will be no branch for them.
 - ru: Глиссеры, катамараны и суда на воздушной подушке — только как разбег экраноплана; отдельно не искали.
   en: Planing boats, catamarans and hovercraft — only as a WIG take-off run; not searched separately.
 - ru: 'Аэростаты — только шары-зонды и стратостаты: заправка, полёт, спуск. Дирижабли не искали.'

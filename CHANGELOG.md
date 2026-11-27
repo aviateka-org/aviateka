@@ -4,6 +4,14 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.8.0 — 2026-11-27
+
+- Классификатор летательных аппаратов: 9 ветвей по тому, чем аппарат держится в воздухе, и 34 листа; для каждого листа каталог сам считает покрытие — инструменты, цепочки и итог «покрыто, частично, не покрыто». Сейчас покрыто 10, частично 9, не покрыто 15. Тут же сквозные признаки (взлёт, скорость, экипаж, двигатель, масса и правила, схема, назначение, среда) и деление аппаратов у ИКАО, Великобритании, FAA, EASA, по Воздушному кодексу РФ и у ИМО — со ссылками. Новый раздел страницы «Классы» и инструмент MCP get_classifier.
+- Вне каталога теперь явно: боевые аппараты и ракетное оружие. Дальше каталог расширяется по непокрытым листьям по очереди: гидросамолёты, винтокрылые, дирижабли и аэростаты, сверхзвук и вход в атмосферу, ракеты, другие миры.
+
+- Craft classifier: 9 branches by what holds a craft in the air and 34 leaves; for each leaf the catalog computes coverage itself — tools, workflows and a covered / partial / not covered verdict. Now 10 covered, 9 partial, 15 not covered. Also cross-cutting facets (take-off, speed, crew, propulsion, mass and rules, layout, purpose, environment) and how ICAO, the UK, FAA, EASA, the Russian Air Code and IMO split craft, with links. New page section 'Classes' and MCP tool get_classifier.
+- Now explicitly out of scope: combat aircraft and missiles. Next, the catalog grows leaf by leaf through the uncovered ones: seaplanes, rotorcraft, airships and balloons, supersonic and entry, rockets, other worlds.
+
 ## 0.7.0 — 2026-11-27
 
 - Новый калькулятор «Парашют: скорость снижения» на странице и в сервере MCP (parachute_descent): скорость спуска по массе, типу купола и его диаметру, разброс по коэффициенту сопротивления, энергия при посадке и с какой высоты это как прыжок; в обратную сторону — какой нужен купол для заданной скорости. Коэффициенты для восьми типов куполов — по Knacke и AFFDL-TR-78-151.

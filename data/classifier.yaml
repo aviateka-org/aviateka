@@ -1,0 +1,402 @@
+# Классификатор летательных аппаратов / aircraft classifier.
+# Главный признак — чем аппарат держится в воздухе; остальные признаки (facets) сквозные.
+# Main split: what holds the craft in the air; the other facets cut across the tree.
+# Покрытие каждого листа считает scripts/build_catalog.py по типам (types) и карточкам.
+# Coverage of every leaf is computed by scripts/build_catalog.py from its types and the tool cards.
+principle:
+  ru: 'Главный признак — чем аппарат держится в воздухе: газом легче воздуха, крылом (неподвижным, мягким, вращающимся, машущим), тягой двигателя, опорой на экран или воду, тягой ракеты. Верхние уровни совпадают с таблицей ИКАО; ветви «ракета и космос», «другие миры и необычное», а также винтокрыл и циклокоптер — наше дополнение.'
+  en: 'The main split is what holds the craft in the air: a gas lighter than air, a wing (fixed, soft, rotating, flapping), engine thrust, the cushion of air near a surface or the water, or rocket thrust. The upper levels match the ICAO table; the branches "rockets and space" and "other worlds and unusual", as well as compound helicopters and cyclocopters, are our additions.'
+coverage_rule:
+  ru: '«Покрыто» — у листа есть тип в каталоге, от 20 инструментов и от 5 цепочек. «Частично» — тип есть, но инструментов или цепочек меньше. «Не покрыто» — своего типа в каталоге нет.'
+  en: '"Covered" means the leaf has a catalog type with at least 20 tools and 5 workflows. "Partial" means the type exists with fewer. "Not covered" means there is no catalog type for it yet.'
+branches:
+- id: lta
+  name:
+    ru: Легче воздуха
+    en: Lighter than air
+  how:
+    ru: Держится за счёт газа легче воздуха — гелия, водорода или нагретого воздуха.
+    en: Held up by a gas lighter than air — helium, hydrogen or heated air.
+  leaves:
+  - id: sounding-balloon
+    name:
+      ru: Шар-зонд, стратостат
+      en: Sounding and stratospheric balloon
+    types: [balloon]
+  - id: hot-air-balloon
+    name:
+      ru: Тепловой аэростат
+      en: Hot-air balloon
+    types: []
+  - id: tethered-balloon
+    name:
+      ru: Привязной аэростат
+      en: Tethered aerostat
+    types: []
+  - id: airship
+    name:
+      ru: 'Дирижабль: мягкий, жёсткий, гибридный'
+      en: 'Airship: non-rigid, rigid, hybrid'
+    types: []
+- id: fixed
+  name:
+    ru: Неподвижное крыло
+    en: Fixed wing
+  how:
+    ru: Подъёмную силу даёт крыло, неподвижное относительно корпуса; тягу — двигатель, а у планёра её нет.
+    en: Lift comes from a wing fixed to the body; thrust from an engine, or none in a glider.
+  leaves:
+  - id: transport
+    name:
+      ru: Транспортный самолёт
+      en: Transport aircraft
+    types: [transport]
+  - id: light-aircraft
+    name:
+      ru: Лёгкий самолёт
+      en: Light aircraft
+    types: [ga]
+  - id: racer
+    name:
+      ru: Гоночный и пилотажный
+      en: Racing and aerobatic
+    types: [racer]
+  - id: fixed-uav
+    name:
+      ru: Беспилотник самолётной схемы
+      en: Fixed-wing drone
+    types: [uav]
+  - id: hale
+    name:
+      ru: Высотный с гибким крылом
+      en: High-altitude, flexible wing
+    types: [hale]
+  - id: model
+    name:
+      ru: Авиамодель
+      en: Model aircraft
+    types: [rc]
+  - id: hpa
+    name:
+      ru: Мускулолёт
+      en: Human-powered aircraft
+    types: [hpa]
+  - id: glider
+    name:
+      ru: Планёр и мотопланёр
+      en: Glider and motor glider
+    types: [glider]
+  - id: seaplane
+    name:
+      ru: Гидросамолёт и амфибия
+      en: Seaplane and amphibian
+    types: []
+  - id: high-speed
+    name:
+      ru: Сверхзвуковой и гиперзвуковой
+      en: Supersonic and hypersonic
+    types: []
+- id: soft
+  name:
+    ru: Мягкое крыло
+    en: Soft wing
+  how:
+    ru: Тканевое крыло держит форму натяжением строп, давлением воздуха внутри или лёгким каркасом.
+    en: A fabric wing holds its shape by line tension, air pressure inside or a light frame.
+  leaves:
+  - id: kite
+    name:
+      ru: Змей и кайт
+      en: Kite
+    types: [kite]
+  - id: parachute
+    name:
+      ru: Парашют и парафойл
+      en: Parachute and parafoil
+    types: [parachute]
+  - id: paraglider
+    name:
+      ru: Параплан и парамотор
+      en: Paraglider and paramotor
+    types: [paraglider]
+  - id: hangglider
+    name:
+      ru: Дельтаплан и мотодельтаплан
+      en: Hang glider and trike
+    types: [hangglider]
+  - id: wingsuit
+    name:
+      ru: Вингсьют
+      en: Wingsuit
+    types: []
+- id: rotary
+  name:
+    ru: Вращающееся крыло
+    en: Rotary wing
+  how:
+    ru: Подъёмную силу дают лопасти, которые вращаются; у вертолёта их крутит двигатель, у автожира — набегающий воздух.
+    en: Lift comes from rotating blades; an engine turns them in a helicopter, the oncoming air in an autogyro.
+  leaves:
+  - id: multicopter
+    name:
+      ru: Мультикоптер
+      en: Multicopter
+    types: [evtol]
+  - id: helicopter
+    name:
+      ru: Вертолёт
+      en: Helicopter
+    types: [rotorcraft]
+  - id: autogyro
+    name:
+      ru: Автожир
+      en: Autogyro
+    types: []
+  - id: compound
+    name:
+      ru: Винтокрыл
+      en: Compound helicopter
+    types: []
+  - id: cyclocopter
+    name:
+      ru: Циклокоптер
+      en: Cyclocopter
+    types: []
+- id: flapping
+  name:
+    ru: Машущее крыло
+    en: Flapping wing
+  how:
+    ru: Крыло машет, как у птицы или насекомого, и даёт сразу подъёмную силу и тягу.
+    en: The wing flaps like a bird's or an insect's, giving both lift and thrust.
+  leaves:
+  - id: ornithopter
+    name:
+      ru: Орнитоптер и энтомоптер
+      en: Ornithopter and entomopter
+    types: [flapping]
+- id: powered-lift
+  name:
+    ru: Подъём двигателем
+    en: Powered lift
+  how:
+    ru: На взлёте и висении держит тяга винтов или двигателей, в полёте — крыло или та же тяга.
+    en: Rotor or engine thrust holds it at take-off and in the hover; a wing or the same thrust in cruise.
+  leaves:
+  - id: tiltrotor
+    name:
+      ru: Конвертоплан и eVTOL
+      en: Tiltrotor and eVTOL
+    types: [evtol]
+  - id: jet-vtol
+    name:
+      ru: Реактивный СВВП и ранец
+      en: Jet VTOL and jetpack
+    types: []
+- id: surface
+  name:
+    ru: Экран и вода
+    en: Ground effect and water
+  how:
+    ru: Опора на воздух, сжатый у поверхности, или на воду. По Воздушному кодексу РФ это не воздушные суда, экраноплан по ИМО — морское судно.
+    en: Supported by air compressed near the surface, or by the water. Under the Russian Air Code these are not aircraft; IMO treats WIG craft as ships.
+  leaves:
+  - id: wig
+    name:
+      ru: Экраноплан
+      en: WIG craft
+    types: [wig]
+  - id: hydrofoil
+    name:
+      ru: Судно на подводных крыльях
+      en: Hydrofoil craft
+    types: [hydrofoil]
+  - id: hovercraft
+    name:
+      ru: Судно на воздушной подушке
+      en: Hovercraft
+    types: []
+- id: space
+  name:
+    ru: Ракета и космос
+    en: Rockets and space
+  how:
+    ru: Держит и разгоняет тяга ракетного двигателя, дальше — полёт по инерции и торможение в атмосфере.
+    en: Rocket thrust lifts and accelerates it; then coasting and braking in the atmosphere.
+  leaves:
+  - id: rocket
+    name:
+      ru: 'Гражданская ракета: метео, геофизика, модели'
+      en: 'Civil rocket: sounding, research, model'
+    types: []
+  - id: reentry
+    name:
+      ru: 'Вход в атмосферу: космоплан, спускаемый аппарат'
+      en: 'Atmospheric entry: spaceplane, capsule'
+    types: []
+- id: other
+  name:
+    ru: Другие миры и необычное
+    en: Other worlds and unusual
+  how:
+    ru: Аппараты для чужих атмосфер и схемы, где подъёмную силу дают вращающийся цилиндр, ротор-крыло или электрическое поле.
+    en: Craft for other atmospheres, and layouts where lift comes from a spinning cylinder, a rotor-wing or an electric field.
+  leaves:
+  - id: planetary
+    name:
+      ru: Аппараты для Марса, Венеры, Титана
+      en: Craft for Mars, Venus, Titan
+    types: []
+  - id: exotic
+    name:
+      ru: 'Необычные схемы: Магнус, FanWing, ионолёт'
+      en: 'Unusual layouts: Magnus, FanWing, ion craft'
+    types: []
+facets:
+- id: takeoff
+  name:
+    ru: Взлёт и посадка
+    en: Take-off and landing
+  values:
+    ru: обычный, короткий, вертикальный, короткий взлёт с вертикальной посадкой; с суши, с воды, амфибия; с руки, с буксира, с катапульты
+    en: conventional, short, vertical, short take-off and vertical landing; land, water, amphibian; hand, tow, catapult
+  why:
+    ru: разбег, шасси, гидродинамика взлёта
+    en: take-off run, landing gear, water take-off
+- id: speed
+  name:
+    ru: Скорость
+    en: Speed
+  values:
+    ru: дозвук, околозвук, сверхзвук, гиперзвук (примерно от M 5)
+    en: subsonic, transonic, supersonic, hypersonic (roughly from Mach 5)
+  why:
+    ru: поток без сжатия или со скачками уплотнения, нагрев
+    en: incompressible flow or shocks, heating
+- id: crew
+  name:
+    ru: Экипаж
+    en: Crew
+  values:
+    ru: пилот на борту, внешний пилот, автономный, с пилотом или без
+    en: pilot on board, remote pilot, autonomous, optionally piloted
+  why:
+    ru: правила, автопилот, отладка на модели
+    en: rules, autopilot, testing on a model
+- id: propulsion
+  name:
+    ru: Двигатель
+    en: Propulsion
+  values:
+    ru: нет, поршневой, газотурбинный, электрический, гибридный, водородный, солнечный, мускульный, ракетный
+    en: none, piston, gas turbine, electric, hybrid, hydrogen, solar, human, rocket
+  why:
+    ru: силовая установка, энергия, масса
+    en: powerplant, energy, mass
+- id: mass
+  name:
+    ru: Масса и правила
+    en: Mass and rules
+  values:
+    ru: 'РФ: сверхлёгкое до 495 кг, лёгкое менее 5700 кг (вертолёт менее 3100 кг); дроны ЕС — классы C0–C6'
+    en: 'Russia: ultralight up to 495 kg, light under 5,700 kg (helicopter under 3,100 kg); EU drones — classes C0–C6'
+  why:
+    ru: нормы прочности и допуска
+    en: strength and certification rules
+- id: layout
+  name:
+    ru: Схема
+    en: Layout
+  values:
+    ru: обычная, утка, бесхвостка, летающее крыло, тандем, сочленённое крыло, несущий фюзеляж
+    en: conventional, canard, tailless, flying wing, tandem, joined wing, lifting body
+  why:
+    ru: аэродинамика и устойчивость
+    en: aerodynamics and stability
+- id: purpose
+  name:
+    ru: Назначение
+    en: Purpose
+  values:
+    ru: транспорт, личный, спорт и гонки, учёба, работы (сельское хозяйство, пожары), наука и зонды, экстрим, государственный
+    en: transport, personal, sport and racing, training, aerial work (farming, firefighting), science and probes, extreme sport, state
+  why:
+    ru: требования и цепочки
+    en: requirements and workflows
+- id: environment
+  name:
+    ru: Среда
+    en: Environment
+  values:
+    ru: атмосфера Земли, стратосфера, Марс, Венера, Титан
+    en: Earth's atmosphere, stratosphere, Mars, Venus, Titan
+  why:
+    ru: плотность воздуха и число Рейнольдса
+    en: air density and Reynolds number
+regulators:
+- id: icao
+  name:
+    ru: ИКАО, Приложение 7
+    en: ICAO, Annex 7
+  split:
+    ru: 'Легче воздуха: без двигателя — свободный и привязной аэростат, с двигателем — дирижабль. Тяжелее воздуха: без двигателя — планёр и змей, с двигателем — самолёт, винтокрылый (вертолёт, автожир) и орнитоптер; каждый — сухопутный, морской или амфибия.'
+    en: 'Lighter than air: unpowered — free and captive balloon, powered — airship. Heavier than air: unpowered — glider and kite, powered — aeroplane, rotorcraft (helicopter, gyroplane) and ornithopter; each land, sea or amphibian.'
+  note:
+    ru: Верхние два уровня нашего дерева.
+    en: The top two levels of our tree.
+  source: https://www.caa.gov.mk/wp-content/uploads/2025/06/4.2-18_25.pdf
+- id: uk
+  name:
+    ru: Великобритания, Air Navigation Order 2016
+    en: United Kingdom, Air Navigation Order 2016
+  split:
+    ru: Таблица ИКАО плюс мотопланёр с самостоятельным взлётом и конвертоплан.
+    en: The ICAO table plus the self-launching motor glider and the tiltrotor.
+  note:
+    ru: Конвертоплан уже признан отдельным видом.
+    en: The tiltrotor is already a separate class.
+  source: https://www.legislation.gov.uk/uksi/2016/765/schedule/4/data.pdf
+- id: faa
+  name:
+    ru: FAA, США (14 CFR 61.5)
+    en: FAA, USA (14 CFR 61.5)
+  split:
+    ru: 'Семь категорий для пилотов: самолёт, винтокрылый, планёр, легче воздуха, подъём двигателем, моторный парашют, балансирное управление. Классы: вертолёт и автожир; дирижабль и шар.'
+    en: 'Seven pilot categories: airplane, rotorcraft, glider, lighter-than-air, powered-lift, powered parachute, weight-shift-control. Classes: helicopter and gyroplane; airship and balloon.'
+  note:
+    ru: Моторный парашют и балансирное управление — отдельные категории, как у нас параплан и дельтаплан.
+    en: Powered parachute and weight-shift control are categories of their own, like our paraglider and hang glider.
+  source: https://www.law.cornell.edu/cfr/text/14/61.5
+- id: easa
+  name:
+    ru: EASA, ЕС
+    en: EASA, EU
+  split:
+    ru: 'Нормы лётной годности по типам: CS-22 планёры и мотопланёры, CS-23 и CS-25 самолёты, CS-27 и CS-29 винтокрылые, CS-31GB, CS-31HB и CS-31TGB газовые, тепловые и привязные аэростаты; дроны — классы C0–C6.'
+    en: 'Airworthiness codes by type: CS-22 sailplanes and powered sailplanes, CS-23 and CS-25 aeroplanes, CS-27 and CS-29 rotorcraft, CS-31GB, CS-31HB and CS-31TGB gas, hot-air and tethered balloons; drones — classes C0–C6.'
+  note:
+    ru: У тепловых и привязных аэростатов свои нормы — поэтому это отдельные листья.
+    en: Hot-air and tethered balloons have their own codes — so they are separate leaves.
+  source: https://www.easa.europa.eu/en/document-library/certification-specifications/group/cs-fstd
+- id: ru
+  name:
+    ru: РФ, Воздушный кодекс, ст. 32
+    en: Russia, Air Code, art. 32
+  split:
+    ru: 'Воздушное судно держится за счёт взаимодействия с воздухом, но не с воздухом, отражённым от земли или воды. Лёгкое — менее 5700 кг (вертолёт менее 3100 кг), сверхлёгкое — до 495 кг.'
+    en: 'An aircraft is supported by interaction with the air other than air reflected from the ground or water. Light — under 5,700 kg (helicopter under 3,100 kg); ultralight — up to 495 kg.'
+  note:
+    ru: Экраноплан и судно на воздушной подушке по этому определению не воздушные суда.
+    en: By this definition WIG craft and hovercraft are not aircraft.
+  source: https://www.consultant.ru/document/cons_doc_LAW_13744/769b1039af2bbe0206b860c00dc12b379cc91553/
+- id: imo
+  name:
+    ru: ИМО
+    en: IMO
+  split:
+    ru: 'Экраноплан — морское судно трёх типов: A — только в экране; B — может ненадолго подняться до 150 м; C — ненадолго и выше 150 м.'
+    en: 'A WIG craft is a ship of three types: A — only in ground effect; B — may briefly climb to 150 m; C — may briefly climb above 150 m.'
+  note:
+    ru: Готовое деление листа «экраноплан».
+    en: A ready split of the WIG leaf.
+  source: https://imo.org/en/OurWork/Safety/Pages/WIG.aspx

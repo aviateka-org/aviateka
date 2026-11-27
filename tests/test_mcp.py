@@ -27,7 +27,7 @@ async def main():
             tools = (await s.list_tools()).tools
             names = sorted(t.name for t in tools)
             print("tools:", names)
-            assert len(names) == 18, names
+            assert len(names) == 19, names
             p = lambda n, a=None: s.call_tool(n, a or {})
             tax = payload(await p("get_taxonomy", {"lang": "en"}))
             assert tax["fidelity"][4]["name"] == "Measured"
@@ -78,6 +78,11 @@ async def main():
             print(f"parachute 1 kg, flat circular D0 1 m: {ch1['descent_m_s']:.2f} m/s, D0 for 5 m/s {ch1['needed_diameter_m']:.3f} m")
             assert abs(ch1["descent_m_s"] - 5.129) < 0.01 and abs(ch1["needed_diameter_m"] - 1.026) < 0.002
             assert ch1["descent_range_m_s"][0] < ch1["descent_m_s"] < ch1["descent_range_m_s"][1]
+            cl = payload(await p("get_classifier", {"lang": "en"}))
+            print("classifier:", cl["summary"])
+            assert cl["summary"]["leaves"] == sum(len(b["leaves"]) for b in cl["branches"]) and len(cl["regulators"]) >= 5
+            heli = payload(await p("get_classifier", {"branch": "rotary"}))
+            assert [l["id"] for l in heli["branches"][0]["leaves"]][1] == "helicopter"
             bad = await p("parachute_descent", {"mass_kg": 1.0})
             assert getattr(bad, "isError", False) or getattr(bad, "is_error", False), bad
             va = payload(await p("get_validation", {"tool_id": "autowing", "quantity": "CL", "lang": "en"}))

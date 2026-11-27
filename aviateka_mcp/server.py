@@ -168,6 +168,24 @@ def list_gaps(lang: str = "ru") -> dict:
 
 
 @server.tool()
+def get_classifier(lang: str = "ru", branch: str = "") -> dict:
+    """Classifier of flying craft: 9 branches by what holds the craft in the air (lighter than air, fixed, soft, rotary
+    and flapping wing, powered lift, ground effect and water, rockets and space, other worlds and unusual), 34 leaves,
+    and for each leaf the catalog types and coverage (tools, workflows, status covered / partial / none).
+    Also cross-cutting facets (take-off, speed, crew, propulsion, mass and rules, layout, purpose, environment) and how
+    ICAO, the UK, FAA, EASA, the Russian Air Code and IMO split craft, with sources. branch: optional branch id."""
+    lang = _lang(lang)
+    cl = CAT["classifier"]
+    branches = cl["branches"]
+    if branch:
+        branches = [b for b in branches if b["id"] == branch]
+        if not branches:
+            raise ToolError("unknown branch; use one of " + ", ".join(b["id"] for b in cl["branches"]))
+    return L({"principle": cl["principle"], "coverage_rule": cl["coverage_rule"], "summary": cl["summary"],
+              "branches": branches, "facets": cl["facets"], "regulators": cl["regulators"]}, lang)
+
+
+@server.tool()
 def list_benchmarks(lang: str = "ru") -> dict:
     """Published reference numbers for sanity checks (wind-tunnel L/D of a 200 g model, open vs commercial flutter speed, OpenVSP propeller error, etc.) with sources."""
     return {"benchmarks": L(CAT["benchmarks"], _lang(lang))}

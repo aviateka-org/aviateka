@@ -27,6 +27,7 @@ summary = {
         "workflows": len(cat["workflows"]), "gaps": len(cat["gaps"]),
         "benchmarks": len(cat["benchmarks"]), "glossary": len(cat["glossary"]),
         "validation": len(cat.get("validation", [])),
+        "leaves": cat["classifier"]["summary"]["leaves"], "uncovered": cat["classifier"]["summary"]["none"],
     },
 }
 dist = os.path.join(H, "dist")

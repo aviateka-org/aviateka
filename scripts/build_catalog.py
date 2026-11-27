@@ -76,8 +76,9 @@ def build():
     glossary = load("glossary.yaml")
     changelog = load("changelog.yaml")
     validation = load("validation.yaml") or []
+    classifier = load("classifier.yaml")
     cases = [load(os.path.relpath(p, DATA)) for p in sorted(glob.glob(os.path.join(DATA, "cases", "*.yaml")))]
-    if errors or any(x is BROKEN for x in [meta, tax, workflows, gaps, benchmarks, glossary, changelog, validation] + cases):
+    if errors or any(x is BROKEN for x in [meta, tax, workflows, gaps, benchmarks, glossary, changelog, validation, classifier] + cases):
         return None, None, None, False
 
     D = [d["id"] for d in tax["disciplines"]]
@@ -169,6 +170,8 @@ def build():
     if vs != sorted(vs, reverse=True) or len(set(vs)) != len(vs):
         err("data/changelog.yaml", "версии должны идти сверху вниз от новой к старой и не повторяться", "versions must be newest-first and unique")
 
+    classifier = build_classifier(classifier, tools, workflows, A)
+
     cat = {
         "name": meta["name"], "tagline": meta["tagline"],
         "version": changelog[0]["version"], "as_of": meta["as_of"],
@@ -181,9 +184,31 @@ def build():
         "tools": tools, "workflows": workflows,
         "gaps": gaps["gaps"], "gap_marks": meta["gap_marks"], "out_of_scope": gaps["out_of_scope"],
         "benchmarks": benchmarks, "glossary": glossary, "cases": cases,
-        "validation": validation,
+        "validation": validation, "classifier": classifier,
     }
     return cat, meta, changelog, validated
+
+
+def build_classifier(cl, tools, workflows, types):
+    """Checks the classifier and adds coverage to every leaf: tools and workflows tagged with its types."""
+    rel = "data/classifier.yaml"
+    seen = set()
+    total = {"covered": 0, "partial": 0, "none": 0}
+    for b in cl.get("branches", []):
+        for leaf in b.get("leaves", []):
+            if leaf["id"] in seen:
+                err(rel, f"повторяется лист {leaf['id']}", f"duplicate leaf {leaf['id']}")
+            seen.add(leaf["id"])
+            lt = set(leaf.get("types") or [])
+            for t in lt - types:
+                err(rel, f"лист {leaf['id']}: неизвестный тип {t}", f"leaf {leaf['id']}: unknown aircraft type {t}")
+            nt = sum(1 for t in tools if lt & set(t["aircraft"]))
+            nw = sum(1 for w in workflows if lt & set(w["aircraft"]))
+            status = "none" if not lt else ("covered" if nt >= 20 and nw >= 5 else "partial")
+            leaf["coverage"] = {"tools": nt, "workflows": nw, "status": status}
+            total[status] += 1
+    cl["summary"] = {"branches": len(cl.get("branches", [])), "leaves": len(seen), **total}
+    return cl
 
 
 def version_files(v):
