@@ -4,11 +4,19 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.10.0 — 2026-11-27
+
+- Ветка винтокрылых. Три новых вида аппаратов: автожир, винтокрыл (вертолёт с крылом или толкающим винтом) и циклокоптер. Новые карточки: dynbem (винт от висения до авторотации и вихревого кольца), MBDyn (динамика лопастей и земной резонанс), NDARC (облик винтокрылых, только США) и RotaryWingSim (устойчивость автожира, код по запросу). JSBSim, preCICE и OpenFOAM отмечены для новых видов. Четыре цепочки: вертолёт, автожир, винтокрыл, циклокоптер. Три пробела-окна: открытая модель динамики автожира, открытый расчёт облика винтокрыла, быстрая модель циклоидального винта. Термины: авторотация, вихревое кольцо, земной резонанс. В классификаторе не покрыто теперь 11 листьев вместо 14.
+- Исправлено: в записи 0.9.0 было «два новых термина», на деле новый один — редан, дельфинирование уже было в словаре. Сборка теперь ловит повторы id в цепочках, пробелах и словаре.
+
+- Rotorcraft branch. Three new craft types: autogyro, compound helicopter and cyclocopter. New cards: dynbem (rotor from hover to autorotation and vortex ring state), MBDyn (blade dynamics and ground resonance), NDARC (rotorcraft sizing, U.S. only) and RotaryWingSim (autogyro stability, source on request). JSBSim, preCICE and OpenFOAM tagged for the new types. Four workflows: helicopter, autogyro, compound, cyclocopter. Three window gaps: open autogyro flight dynamics, open compound sizing, fast cycloidal rotor model. Terms: autorotation, vortex ring state, ground resonance. The classifier now has 11 uncovered leaves instead of 14.
+- Fixed: the 0.9.0 entry said two new terms; only one (step) was new, porpoising was already in the glossary. The build now catches duplicate ids in workflows, gaps and the glossary.
+
 ## 0.9.0 — 2026-11-27
 
-- Новый вид аппаратов — гидросамолёт и амфибия: цепочка от плавучести и остойчивости через разбег по воде и дельфинирование к посадке на воду и на волну. В каталоге DualSPHysics (метод частиц для удара о воду и брызг); для гидросамолётов отмечены JSBSim (упрощённая модель воды), OpenPlaning, FreeCAD Ship, OpenFOAM и Autowing. Новый пробел: открытого расчёта взлёта с воды целиком, вместе с аэродинамикой и дельфинированием, нет. Два новых термина: дельфинирование и редан. В классификаторе лист «гидросамолёт» перешёл из «не покрыто» в «частично».
+- Новый вид аппаратов — гидросамолёт и амфибия: цепочка от плавучести и остойчивости через разбег по воде и дельфинирование к посадке на воду и на волну. В каталоге DualSPHysics (метод частиц для удара о воду и брызг); для гидросамолётов отмечены JSBSim (упрощённая модель воды), OpenPlaning, FreeCAD Ship, OpenFOAM и Autowing. Новый пробел: открытого расчёта взлёта с воды целиком, вместе с аэродинамикой и дельфинированием, нет. Новый термин: редан. В классификаторе лист «гидросамолёт» перешёл из «не покрыто» в «частично».
 
-- New craft type — seaplane and amphibian: a workflow from buoyancy and stability through the water run and porpoising to landing on calm water and waves. Added DualSPHysics (particle method for water impact and spray); JSBSim (simplified water model), OpenPlaning, FreeCAD Ship, OpenFOAM and Autowing are now tagged for seaplanes. New gap: no open whole-aircraft water take-off simulation with aerodynamics and porpoising. Two new terms: porpoising and step. In the classifier the seaplane leaf moved from not covered to partial.
+- New craft type — seaplane and amphibian: a workflow from buoyancy and stability through the water run and porpoising to landing on calm water and waves. Added DualSPHysics (particle method for water impact and spray); JSBSim (simplified water model), OpenPlaning, FreeCAD Ship, OpenFOAM and Autowing are now tagged for seaplanes. New gap: no open whole-aircraft water take-off simulation with aerodynamics and porpoising. New term: step. In the classifier the seaplane leaf moved from not covered to partial.
 
 ## 0.8.0 — 2026-11-27
 

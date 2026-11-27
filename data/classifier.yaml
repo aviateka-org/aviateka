@@ -151,17 +151,17 @@ branches:
     name:
       ru: Автожир
       en: Autogyro
-    types: []
+    types: [autogyro]
   - id: compound
     name:
       ru: Винтокрыл
       en: Compound helicopter
-    types: []
+    types: [compound]
   - id: cyclocopter
     name:
       ru: Циклокоптер
       en: Cyclocopter
-    types: []
+    types: [cyclocopter]
 - id: flapping
   name:
     ru: Машущее крыло

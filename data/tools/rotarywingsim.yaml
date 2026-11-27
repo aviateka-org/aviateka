@@ -1,0 +1,24 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: rotarywingsim
+name: RotaryWingSim
+url: https://www.rotaryforum.com/threads/simulation-program-for-rotary-wing-aircraft-rotarywingsim-2-0.41883/
+org: kolibri282 (rotaryforum.com)
+code: MATLAB, Simulink
+status: on_request
+disciplines: [flightsim, stability]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [rotorcraft, compound, autogyro]
+summary:
+  ru: 'Программа устойчивости и динамики полёта винтокрылых аппаратов: вертолёт, винтокрыл, автожир.'
+  en: 'Stability and flight dynamics program for rotary-wing aircraft: helicopter, compound, autogyro.'
+use:
+  ru: Балансировка и устойчивость автожира — редкий случай, когда это есть в одной программе.
+  en: Trim and stability of an autogyro — a rare case of having it in one program.
+caveat:
+  ru: Исходный код — по запросу у автора на форуме; руководство версии 2.0 датировано ноябрём 2013 года. Нужны платные MATLAB и Simulink.
+  en: Source code on request from the author on the forum; the version 2.0 guide is dated November 2013. Needs paid MATLAB and Simulink.
+sources:
+- https://www.scribd.com/document/441397913/RotaryWingSimUserGuide

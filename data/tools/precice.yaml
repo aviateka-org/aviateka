@@ -11,7 +11,7 @@ disciplines: [aeroelastic]
 map: [aeroelastic, L3]
 fidelity: [L3]
 stages: [detail]
-aircraft: [parachute]
+aircraft: [parachute, rotorcraft, evtol, cyclocopter]
 summary:
   ru: 'Библиотека связи решателей: течение и конструкция считаются разными программами и обмениваются данными на каждом шаге.'
   en: 'A coupling library: flow and structure run in separate codes and exchange data every step.'
@@ -22,5 +22,7 @@ caveat:
   ru: Сама ничего не считает — только связывает решатели.
   en: Computes nothing by itself; it only couples solvers.
 sources:
+- https://elib.uni-stuttgart.de/handle/11682/12149
+- https://www.mdpi.com/1996-1073/14/21/6979/html
 - https://github.com/precice/precice
 - https://AIA.Springeropen.com/counter/pdf/10.1186/s42774-023-00162-0.pdf

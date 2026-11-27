@@ -1,0 +1,28 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: mbdyn
+name: MBDyn
+url: https://www.mbdyn.org/
+org: Politecnico di Milano
+license: GPL
+code: C++, C
+disciplines: [aeroelastic, structures, flightsim]
+map: [aeroelastic, L2]
+fidelity: [L2]
+stages: [preliminary, detail]
+aircraft: [rotorcraft, compound, evtol, autogyro, cyclocopter]
+summary:
+  ru: 'Свободная программа динамики систем тел: гибкие лопасти, шарниры, приводы и простая аэродинамика винта в одной модели. Через preCICE связывается с DUST и OpenFOAM.'
+  en: 'Free multibody dynamics code: flexible blades, hinges, actuators and simple rotor aerodynamics in one model. Couples to DUST and OpenFOAM through preCICE.'
+use:
+  ru: Динамика и устойчивость лопастей и втулки, земной резонанс, флаттер конвертоплана; тренажёр с пилотом (FRAME-Sim).
+  en: Blade and hub dynamics and stability, ground resonance, tiltrotor whirl flutter; a pilot-in-the-loop simulator (FRAME-Sim).
+caveat:
+  ru: 'Дату последнего изменения не проверили: хранилище кода на gitlab.polimi.it закрыто для нашей проверки. Сайт называет лицензию «GPL 2.1». Опубликованные применения — вертолёты и конвертопланы; для автожира и винтокрыла это общий инструмент без готовых моделей.'
+  en: 'Last-change date not checked: the code repository on gitlab.polimi.it is closed to our check. The site names the licence ''GPL 2.1''. Published uses are helicopters and tiltrotors; for autogyros and compounds it is a general tool without ready models.'
+sources:
+- https://mmorandi.github.io/MBDyn-web
+- https://www.aero.polimi.it/en/research-projects/mbdyn
+- https://www.mdpi.com/1996-1073/14/21/6979/html
+- https://re.public.polimi.it/handle/11311/1060793
+- https://elib.uni-stuttgart.de/handle/11682/12149

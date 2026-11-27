@@ -583,3 +583,115 @@
   check:
     ru: Тяга с запасом больше пика сопротивления воды перед выходом на глиссирование, и на всём разбеге нет дельфинирования.
     en: Thrust exceeds the peak water drag before planing with a margin, and there is no porpoising over the whole run.
+- id: helicopter
+  aircraft: [rotorcraft]
+  stage: preliminary
+  title:
+    ru: 'Вертолёт: от размеров под задание до динамики лопастей и тренажёра'
+    en: 'Helicopter: from mission sizing to blade dynamics and a simulator'
+  goal:
+    ru: Подобрать винт и мощность под задание, проверить висение и авторотацию, исключить земной резонанс, полетать на модели.
+    en: Size the rotor and power to the mission, check hover and autorotation, rule out ground resonance, fly the model.
+  steps:
+  - tool: ndarc
+    what:
+      ru: Размеры и мощность под задание — если есть доступ (только США)
+      en: Size and power to the mission — if you have access (U.S. only)
+  - tool: dynbem
+    what:
+      ru: Тяга и мощность винта от висения до авторотации и вихревого кольца
+      en: Rotor thrust and power from hover to autorotation and vortex ring state
+  - tool: dust
+    what:
+      ru: Взаимное влияние несущего винта, фюзеляжа и хвостового винта
+      en: Interaction of main rotor, fuselage and tail rotor
+  - tool: mbdyn
+    what:
+      ru: Махи и изгиб лопастей, устойчивость втулки, земной резонанс
+      en: Blade flapping and bending, hub stability, ground resonance
+  - tool: jsbsim
+    what:
+      ru: Тренажёр с моделью винта FGRotor
+      en: A simulator with the FGRotor rotor model
+  check:
+    ru: Мощности для висения вне влияния земли хватает с запасом, вход в авторотацию возможен, земного резонанса нет.
+    en: Power for hover out of ground effect is available with margin, autorotation entry is possible, no ground resonance.
+- id: autogyro
+  aircraft: [autogyro]
+  stage: preliminary
+  title:
+    ru: 'Автожир: обороты винта в авторотации и устойчивость'
+    en: 'Autogyro: rotor speed in autorotation and stability'
+  goal:
+    ru: Обороты и тяга свободно вращающегося винта на всех скоростях, махи лопастей, балансировка и устойчивость всего аппарата.
+    en: Speed and thrust of the free-spinning rotor at every airspeed, blade flapping, trim and stability of the whole aircraft.
+  steps:
+  - tool: dynbem
+    what:
+      ru: Обороты и тяга винта в авторотации по скоростям
+      en: Rotor speed and thrust in autorotation across airspeeds
+  - tool: mbdyn
+    what:
+      ru: Махи и качание лопастей, устойчивость винта
+      en: Blade flapping and teetering, rotor stability
+  - tool: rotarywingsim
+    what:
+      ru: Балансировка и устойчивость всего автожира — исходный код по запросу у автора
+      en: Trim and stability of the whole autogyro — source on request from the author
+  check:
+    ru: Обороты винта не проваливаются, когда нагрузка на винт падает (отдача ручки от себя), и аппарат устойчив по тангажу.
+    en: Rotor speed does not collapse when rotor load drops (stick pushed forward), and the aircraft is stable in pitch.
+- id: compound
+  aircraft: [compound]
+  stage: concept
+  title:
+    ru: 'Винтокрыл: раздел подъёмной силы и тяги между винтом, крылом и толкающим винтом'
+    en: 'Compound helicopter: sharing lift and thrust between rotor, wing and propeller'
+  goal:
+    ru: Сколько несёт винт и сколько крыло на крейсерской скорости, где начинается срыв на отступающей лопасти и волновой кризис на наступающей.
+    en: How much the rotor and the wing carry at cruise, where retreating-blade stall and advancing-tip compressibility begin.
+  steps:
+  - tool: ndarc
+    what:
+      ru: Облик и раздел нагрузки на задании — если есть доступ (только США)
+      en: Sizing and load sharing on the mission — if you have access (U.S. only)
+  - tool: dust
+    what:
+      ru: Влияние винта на крыло и толкающий винт
+      en: Rotor interference on the wing and the propeller
+  - tool: mbdyn
+    what:
+      ru: Динамика лопастей на большой скорости полёта
+      en: Blade dynamics at high flight speed
+  - tool: precice
+    what:
+      ru: Связка DUST и MBDyn для аэроупругого расчёта
+      en: Coupling DUST and MBDyn for an aeroelastic run
+  check:
+    ru: На крейсерской скорости винт разгружен, а концы наступающих лопастей ниже допустимого числа Маха.
+    en: At cruise the rotor is offloaded and the advancing tips stay below the allowed Mach number.
+- id: cyclocopter
+  aircraft: [cyclocopter]
+  stage: preliminary
+  title:
+    ru: 'Циклокоптер: тяга и мощность циклоидального винта'
+    en: 'Cyclocopter: thrust and power of a cycloidal rotor'
+  goal:
+    ru: Тяга, мощность и направление тяги винта, у которого лопасти идут вдоль оси вращения и меняют угол за оборот; изгиб лопастей.
+    en: Thrust, power and thrust direction of a rotor whose blades run along the axis and change pitch every revolution; blade bending.
+  steps:
+  - tool: openfoam
+    what:
+      ru: Нестационарный расчёт вращающихся и качающихся лопастей
+      en: Unsteady run of the rotating and pitching blades
+  - tool: mbdyn
+    what:
+      ru: Механизм качания и изгиб лопастей
+      en: Pitch mechanism and blade bending
+  - tool: precice
+    what:
+      ru: Связка OpenFOAM и MBDyn
+      en: Coupling OpenFOAM and MBDyn
+  check:
+    ru: Тяга и мощность сверены со стендом — других способов проверки для этой схемы пока нет.
+    en: Thrust and power checked against a test stand — there is no other way to check this layout yet.

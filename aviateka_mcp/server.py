@@ -101,7 +101,7 @@ def search_tools(query: str = "", discipline: str = "", aircraft: str = "", stag
                  include_stale: bool = True, lang: str = "ru", limit: int = 20) -> dict:
     """Search open aircraft-design tools. query: free text in Russian or English (e.g. 'флаттер', 'propeller', 'low Reynolds').
     Filters take taxonomy ids: discipline (aero, airfoil, cfd, propulsion, stability, flightsim, sysid, structures, aeroelastic, mdo, geometry, hydro),
-    aircraft (transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil, seaplane, paraglider, hangglider, parachute, kite, balloon), stage (concept, preliminary, detail, test),
+    aircraft (transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, autogyro, compound, cyclocopter, hpa, flapping, wig, hydrofoil, seaplane, paraglider, hangglider, parachute, kite, balloon), stage (concept, preliminary, detail, test),
     fidelity (L0, L1, L2, L3, EXP). Active tools come first."""
     lang = _lang(lang)
     words = [w for w in re.split(r"\W+", query.lower()) if w]

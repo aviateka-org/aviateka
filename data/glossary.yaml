@@ -335,14 +335,6 @@
     ru: Высота, на которой оболочка шара-зонда растягивается до предела и лопается; дальше груз спускается на парашюте.
     en: The height at which a sounding balloon stretches to its limit and bursts; the payload then descends under a parachute.
   search: {}
-- id: porpoising
-  term:
-    ru: Дельфинирование
-    en: Porpoising
-  definition:
-    ru: Раскачка глиссирующего корпуса вверх-вниз и по тангажу на разбеге; может нарастать и мешать взлёту.
-    en: A coupled heave and pitch oscillation of a planing hull during the run; it can grow and prevent take-off.
-  search: {}
 - id: step
   term:
     ru: Редан
@@ -350,4 +342,28 @@
   definition:
     ru: Уступ на днище лодки или поплавка; за ним вода отрывается от днища, и сопротивление на глиссировании падает.
     en: A break in the bottom of a hull or float; the water separates behind it and planing drag drops.
+  search: {}
+- id: autorotation
+  term:
+    ru: Авторотация
+    en: Autorotation
+  definition:
+    ru: Вращение несущего винта набегающим потоком без двигателя. У автожира это обычный полёт, у вертолёта — посадка при отказе двигателя.
+    en: The rotor turned by the oncoming air without engine power. Normal flight for an autogyro, an engine-out landing for a helicopter.
+  search: {}
+- id: vortex-ring
+  term:
+    ru: Вихревое кольцо
+    en: Vortex ring state
+  definition:
+    ru: Режим при быстром снижении почти без поступательной скорости, когда винт попадает в собственный след; тяга падает и скачет.
+    en: In a fast descent with little forward speed the rotor sinks into its own wake; thrust drops and fluctuates.
+  search: {}
+- id: ground-resonance
+  term:
+    ru: Земной резонанс
+    en: Ground resonance
+  definition:
+    ru: Раскачка вертолёта на земле, когда колебания лопастей в плоскости вращения совпадают с качанием фюзеляжа на шасси; может разрушить машину за секунды.
+    en: A helicopter shaking itself apart on the ground when in-plane blade motion couples with the fuselage rocking on its gear.
   search: {}

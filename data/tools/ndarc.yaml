@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: ndarc
+name: NDARC
+url: https://software.nasa.gov/software/ARC-16265-1
+org: NASA Ames
+status: on_request
+disciplines: [mdo]
+map: [mdo, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [rotorcraft, compound, evtol]
+summary:
+  ru: 'Программа NASA для облика винтокрылых аппаратов: подбирает размеры под задание и считает лётные данные. Вертолёты одно- и двухвинтовые, соосные, винтокрылы, конвертопланы, аппараты городской мобильности.'
+  en: 'NASA''s rotorcraft conceptual design code: sizes the aircraft to a mission and computes performance. Single-rotor, tandem and coaxial helicopters, compounds, tiltrotors, urban air mobility vehicles.'
+use:
+  ru: Эталон для облика винтокрыла и сравнения схем на одном задании.
+  en: The reference tool for compound helicopter sizing and for comparing layouts on one mission.
+caveat:
+  ru: Выдаётся только в США по соглашению об использовании (Software Usage Agreement); для нас недоступен.
+  en: Released in the U.S. only, under a Software Usage Agreement; not available to us.
+sources:
+- https://rotorcraft.arc.nasa.gov/Research/Programs/NDARC.html
+- https://software.nasa.gov/software/ARC-16265-1
+- https://rotorcraft.arc.nasa.gov/Publications/files/SilvaC_AHS_2010.pdf

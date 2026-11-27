@@ -179,3 +179,15 @@ aircraft:
   name:
     ru: Гидросамолёт и амфибия
     en: Seaplane & amphibian
+- id: autogyro
+  name:
+    ru: Автожир
+    en: Autogyro (gyroplane)
+- id: compound
+  name:
+    ru: Винтокрыл (вертолёт с крылом или толкающим винтом)
+    en: Compound helicopter
+- id: cyclocopter
+  name:
+    ru: Циклокоптер
+    en: Cyclocopter

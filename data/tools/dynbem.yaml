@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: dynbem
+name: dynbem
+url: https://github.com/mcroomp/dynbem
+org: mcroomp (один автор / single author)
+last_commit: '2026-11-18'
+license: MIT
+code: Rust, Python
+disciplines: [aero, propulsion]
+map: [aero, L1]
+fidelity: [L1, L2]
+stages: [concept, preliminary]
+aircraft: [rotorcraft, autogyro]
+summary:
+  ru: 'Аэродинамика несущего винта в трёх уровнях: теория элемента лопасти, она же с динамикой притока, и свободный след вихревыми частицами. Один код от висения до авторотации, вихревого кольца и режима ветряка.'
+  en: 'Rotor aerodynamics in three tiers: blade-element momentum, the same with dynamic inflow, and a free vortex-particle wake. One code from hover through autorotation, vortex ring state and windmill state.'
+use:
+  ru: Тяга, мощность и обороты винта на всех режимах, включая авторотацию автожира и снижение вертолёта; есть расчёт балансировки по циклическому шагу.
+  en: Rotor thrust, power and speed in every regime, including autogyro autorotation and helicopter descent; includes a cyclic-trim solver.
+caveat:
+  ru: Молодой проект одного автора; сверка с опытом описана самим автором в файле EMPIRICAL_VALIDATION.md, независимой проверки мы не нашли.
+  en: A young single-author project; the author describes the checks against test data in EMPIRICAL_VALIDATION.md; we found no independent check.
+sources:
+- https://github.com/mcroomp/dynbem

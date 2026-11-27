@@ -138,6 +138,11 @@ def build():
                 t["status"] = "unknown"
     tools.sort(key=lambda t: (D.index(t["map"][0]) if t["map"][0] in D else 99, F.index(t["map"][1]) if t["map"][1] in F else 99, t["name"].lower()))
 
+    for rel, items in (("data/workflows.yaml", workflows), ("data/gaps.yaml", gaps["gaps"]), ("data/glossary.yaml", glossary)):
+        got = [x.get("id") for x in items]
+        dup = sorted({i for i in got if got.count(i) > 1})
+        if dup:
+            err(rel, f"повторяются id: {dup}", f"duplicate ids: {dup}")
     for w in workflows:
         where = f"data/workflows.yaml [{w.get('id')}]"
         for s in w.get("steps", []):

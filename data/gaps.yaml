@@ -187,6 +187,49 @@ gaps:
   sources:
   - https://spiral.imperial.ac.uk/bitstream/10044/1/114177/5/aerospace-08-00010-v2.pdf
   - https://wiki.flightgear.org/Howto:Modelling_hydrodynamics_in_JSBSim
+- id: autogyro-dynamics
+  mark: window
+  title:
+    ru: Открытая модель динамики автожира
+    en: Open autogyro flight dynamics model
+  near:
+    ru: 'Модели Университета Глазго сверены с полётами, но не раздаются; RotaryWingSim — по запросу и на платном MATLAB; модель винта в YASim (FlightGear) дорабатывали под автожир в отдельной статье.'
+    en: 'University of Glasgow models are checked against flight data but not distributed; RotaryWingSim is on request and on paid MATLAB; the YASim rotor model (FlightGear) was adapted to an autogyro in one paper.'
+  why:
+    ru: Задача решена в закрытых кодах и описана в статьях, открытого инструмента нет.
+    en: The problem is solved in closed codes and described in papers; there is no open tool.
+  sources:
+  - https://icas.org/ICAS_ARCHIVE/ICAS2004/PAPERS/353.PDF
+  - https://www.mdpi.com/2226-4310/10/8/680/html
+  - https://www.scribd.com/document/441397913/RotaryWingSimUserGuide
+- id: compound-sizing
+  mark: window
+  title:
+    ru: Открытый расчёт облика винтокрыла
+    en: Open compound helicopter sizing
+  near:
+    ru: 'NDARC умеет, но выдаётся только в США; DynaPyVTOL у ONERA — внутренний; звенья (DUST, MBDyn) открыты.'
+    en: 'NDARC does it but is released only in the U.S.; ONERA DynaPyVTOL is in-house; the links (DUST, MBDyn) are open.'
+  why:
+    ru: Нет открытой программы, которая подбирает раздел нагрузки между винтом, крылом и толкающим винтом под задание.
+    en: No open program sizes the load sharing between rotor, wing and propeller to a mission.
+  sources:
+  - https://software.nasa.gov/software/ARC-16265-1
+  - https://dspace-erf.nlr.nl/bitstreams/44274cf5-d1ac-4ad9-bef1-b796c6305de1/download
+- id: cyclorotor-model
+  mark: window
+  title:
+    ru: Быстрая модель циклоидального винта
+    en: Fast cycloidal rotor model
+  near:
+    ru: 'Открыты только тяжёлые расчёты: OpenFOAM и связка OpenFOAM, MBDyn и preCICE. Быстрые модели по трубкам тока опубликованы в статьях и дипломах.'
+    en: 'Only heavy runs are open: OpenFOAM and the OpenFOAM, MBDyn and preCICE chain. Fast streamtube models are published in papers and theses.'
+  why:
+    ru: Для подбора винта нужна модель на секунды, как теория элемента лопасти для обычного винта; в открытом коде её нет.
+    en: Rotor sizing needs a seconds-fast model like blade-element theory for a normal rotor; there is none in open code.
+  sources:
+  - https://re.public.polimi.it/bitstream/11311/1073944/2/GAGNL_OA_01-19.pdf
+  - https://fenix.tecnico.ulisboa.pt/downloadFile/844820067126275/Resumo_Diogo_Mauricio_58103.pdf
 out_of_scope:
 - ru: Боевые аппараты и ракетное оружие — вне каталога; общие программы аэродинамики подходят и им, но отдельной ветви не будет.
   en: Combat aircraft and missiles are outside the catalog; general aerodynamics codes apply to them too, but there will be no branch for them.

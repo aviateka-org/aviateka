@@ -76,6 +76,11 @@ async def main():
             sea_t = {t["id"] for t in payload(await p("search_tools", {"aircraft": "seaplane"}))["tools"]}
             print("seaplane tools:", sorted(sea_t))
             assert {"openplaning", "dualsphysics", "jsbsim"} <= sea_t
+            rot = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "autogyro"}))["workflows"]}
+            assert rot == {"autogyro"}, rot
+            gy = {t["id"] for t in payload(await p("search_tools", {"aircraft": "autogyro"}))["tools"]}
+            print("autogyro tools:", sorted(gy))
+            assert {"dynbem", "mbdyn", "rotarywingsim"} <= gy
             cav = payload(await p("cavitation", {"speed_m_s": 20.58, "depth_m": 0.5, "cp_min": -0.6, "water_temp_c": 28}))
             print(f"cavitation @40 kn, 0.5 m, Cpmin -0.6: sigma {cav['cavitation_number']:.3f}, cavitates {cav['cavitates']}, inception {cav['inception_speed_kn']:.1f} kn")
             assert 0.45 < cav["cavitation_number"] < 0.5 and cav["cavitates"] is True
