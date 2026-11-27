@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: sparta
+name: SPARTA
+url: https://github.com/sparta/sparta
+org: Sandia National Laboratories
+last_commit: '2026-11-23'
+license: GPL
+code: C++
+disciplines: [cfd]
+map: [cfd, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [reentry, highspeed]
+summary:
+  ru: 'Метод прямого статистического моделирования (DSMC) для разреженного газа: верхние слои атмосферы, где поток уже нельзя считать сплошной средой.'
+  en: 'Direct simulation Monte Carlo (DSMC) for rarefied gas: the upper atmosphere, where the flow is no longer a continuum.'
+use:
+  ru: Начальный участок входа в атмосферу и обтекание на большой высоте; входит в набор NASA Ames для теплозащиты.
+  en: The early part of atmospheric entry and high-altitude flow; part of the NASA Ames thermal protection toolset.
+sources:
+- https://github.com/sparta/sparta
+- https://ntrs.nasa.gov/api/citations/20220008045/downloads/FAR_paper_PMM.pdf

@@ -383,3 +383,27 @@
     ru: Подъём газа за вычетом веса оболочки, конструкции и груза; от неё зависит, с какой скоростью аэростат пойдёт вверх.
     en: Gas lift minus the weight of envelope, structure and load; it sets how fast the balloon climbs.
   search: {}
+- id: wave-drag
+  term:
+    ru: Волновое сопротивление
+    en: Wave drag
+  definition:
+    ru: Сопротивление от ударных волн на сверхзвуке. Его снижают по правилу площадей — площадь поперечных сечений вдоль аппарата должна меняться плавно.
+    en: Drag from shock waves at supersonic speed. It is reduced by the area rule — the cross-section area along the vehicle should change smoothly.
+  search: {}
+- id: ablation
+  term:
+    ru: Абляция (унос)
+    en: Ablation
+  definition:
+    ru: Теплозащита при входе в атмосферу обгорает и уносится потоком, забирая с собой тепло.
+    en: The heatshield burns away during entry and is carried off by the flow, taking heat with it.
+  search: {}
+- id: knudsen
+  term:
+    ru: Число Кнудсена
+    en: Knudsen number
+  definition:
+    ru: Длина свободного пробега молекул, делённая на размер аппарата. Когда оно велико, газ уже не сплошная среда и нужен метод частиц (DSMC).
+    en: Molecular mean free path divided by vehicle size. When it is large the gas is no longer a continuum and a particle method (DSMC) is needed.
+  search: {}

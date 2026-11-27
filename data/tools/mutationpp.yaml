@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: mutationpp
+name: Mutation++
+url: https://github.com/mutationpp/Mutationpp
+org: von Karman Institute for Fluid Dynamics
+last_commit: '2026-10-22'
+license: LGPL-3.0
+code: C++
+disciplines: [cfd]
+map: [cfd, L0]
+fidelity: [L0]
+stages: [preliminary, detail]
+aircraft: [reentry, highspeed]
+summary:
+  ru: 'Библиотека свойств горячего и ионизованного газа: термодинамика, перенос, химия. Подключается к решателям течений.'
+  en: 'Library of hot and ionized gas properties: thermodynamics, transport, chemistry. Plugs into flow solvers.'
+use:
+  ru: Свойства газа для SU2-NEMO, PATO и других кодов гиперзвука и входа в атмосферу, в том числе для атмосферы Марса.
+  en: Gas properties for SU2-NEMO, PATO and other hypersonic and entry codes, including the Martian atmosphere.
+sources:
+- https://github.com/mutationpp/Mutationpp
+- https://software.nasa.gov/software/ARC-16680-1C

@@ -95,7 +95,7 @@ branches:
     name:
       ru: Сверхзвуковой и гиперзвуковой
       en: Supersonic and hypersonic
-    types: []
+    types: [highspeed]
 - id: soft
   name:
     ru: Мягкое крыло
@@ -233,7 +233,7 @@ branches:
     name:
       ru: 'Вход в атмосферу: космоплан, спускаемый аппарат'
       en: 'Atmospheric entry: spaceplane, capsule'
-    types: []
+    types: [reentry]
 - id: other
   name:
     ru: Другие миры и необычное

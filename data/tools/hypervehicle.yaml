@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: hypervehicle
+name: hypervehicle
+url: https://github.com/kieran-mackle/hypervehicle
+org: University of Queensland (K. Mackle)
+last_commit: '2024-10-29'
+license: GPL-3.0
+code: Python
+disciplines: [geometry]
+map: [geometry, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [highspeed]
+summary:
+  ru: Параметрическая геометрия гиперзвуковых аппаратов из гиперпатчей; в примерах — аппараты вроде X-43.
+  en: Parametric geometry of hypersonic vehicles built from hyperpatches; examples include X-43-like vehicles.
+use:
+  ru: Быстро построить и менять форму под расчёт в Eilmer или PySAGAS.
+  en: Quickly build and vary a shape for Eilmer or PySAGAS runs.
+caveat:
+  ru: Последний коммит в 2024 году.
+  en: Last commit in 2024.
+sources:
+- https://github.com/kieran-mackle/hypervehicle

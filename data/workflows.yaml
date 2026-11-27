@@ -720,3 +720,94 @@
   check:
     ru: Плавучесть сходится с запасом на нагрев газа и расход топлива, а баллонеты держат форму оболочки до рабочей высоты.
     en: Buoyancy balances with margin for gas heating and fuel burn, and the ballonets keep the envelope shape up to the working altitude.
+- id: supersonic
+  aircraft: [highspeed]
+  stage: preliminary
+  title:
+    ru: 'Сверхзвуковой самолёт: волновое сопротивление и ближнее поле для звукового удара'
+    en: 'Supersonic aircraft: wave drag and the near field for sonic boom'
+  goal:
+    ru: Гладкое распределение площадей сечений по правилу площадей, волновое сопротивление на крейсерском числе Маха, давление под аппаратом для расчёта звукового удара.
+    en: A smooth cross-section area distribution by the area rule, wave drag at cruise Mach, pressure below the aircraft for the sonic boom.
+  steps:
+  - tool: openvsp
+    what:
+      ru: Волновое сопротивление по правилу площадей
+      en: Wave drag by the area rule
+  - tool: su2
+    what:
+      ru: Сверхзвуковое обтекание (Эйлер или RANS)
+      en: Supersonic flow (Euler or RANS)
+  - tool: openfoam
+    what:
+      ru: Давление в среднем поле под аппаратом для звукового удара (rhoCentralFoam)
+      en: Mid-field pressure below the aircraft for the sonic boom (rhoCentralFoam)
+  check:
+    ru: Волновое сопротивление на крейсерском числе Маха укладывается в бюджет, кривая площадей без скачков. Расчёт удара до земли открытым кодом пока не сделать — см. пробел.
+    en: Wave drag at cruise Mach fits the budget and the area curve has no jumps. Propagating the boom to the ground with open code is not yet possible — see the gap.
+- id: hypersonic
+  aircraft: [highspeed]
+  stage: preliminary
+  title:
+    ru: 'Гиперзвуковой аппарат: форма, химия газа, нагрев'
+    en: 'Hypersonic vehicle: shape, gas chemistry, heating'
+  goal:
+    ru: Форма с нужным аэродинамическим качеством и тепловые потоки на носке и кромках при химически неравновесном обтекании.
+    en: A shape with the required lift-to-drag ratio and heat fluxes at the nose and edges in chemically nonequilibrium flow.
+  steps:
+  - tool: hypervehicle
+    what:
+      ru: Параметрическая форма аппарата
+      en: Parametric vehicle shape
+  - tool: mutationpp
+    what:
+      ru: Свойства горячего воздуха и химия
+      en: Hot-air properties and chemistry
+  - tool: su2
+    what:
+      ru: Обтекание с неравновесной химией (SU2-NEMO)
+      en: Nonequilibrium flow (SU2-NEMO)
+  - tool: eilmer
+    what:
+      ru: Второе мнение по нагреву и ударным волнам
+      en: A second opinion on heating and shocks
+  - tool: pysagas
+    what:
+      ru: Поправки формы по чувствительностям
+      en: Shape updates from sensitivities
+  check:
+    ru: Тепловой поток на носке и передних кромках ниже допустимого для материала, два решателя сходятся.
+    en: Heat flux at the nose and leading edges is below the material limit, and two solvers agree.
+- id: reentry
+  aircraft: [reentry]
+  stage: preliminary
+  title:
+    ru: 'Вход в атмосферу: траектория, нагрев, теплозащита'
+    en: 'Atmospheric entry: trajectory, heating, thermal protection'
+  goal:
+    ru: Коридор входа с допустимой перегрузкой, тепловой поток в самых горячих точках траектории и толщина теплозащиты.
+    en: An entry corridor with acceptable g-load, heat flux at the hottest trajectory points and heatshield thickness.
+  steps:
+  - tool: tudat
+    what:
+      ru: Траектория, перегрузка, история нагрева
+      en: Trajectory, g-load, heating history
+  - tool: sparta
+    what:
+      ru: Верхний разреженный участок
+      en: The upper rarefied part
+  - tool: su2
+    what:
+      ru: Нагрев в точках максимума (SU2-NEMO)
+      en: Heating at peak points (SU2-NEMO)
+  - tool: mutationpp
+    what:
+      ru: Свойства газа, в том числе для Марса
+      en: Gas properties, including Mars
+  - tool: pato
+    what:
+      ru: Прогрев и унос теплозащиты, температура под ней
+      en: Heatshield heating and ablation, temperature beneath it
+  check:
+    ru: Перегрузка и суммарный нагрев в пределах, температура под теплозащитой ниже допустимой для конструкции.
+    en: G-load and total heat load within limits, temperature under the heatshield below the structure's limit.

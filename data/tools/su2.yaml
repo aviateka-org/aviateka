@@ -10,7 +10,7 @@ disciplines: [cfd, aeroelastic]
 map: [cfd, L3]
 fidelity: [L3]
 stages: [preliminary, detail]
-aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, highspeed, reentry]
 summary:
   ru: Полный расчёт течения с вязкостью и сжимаемостью, оптимизация формы, связка с конструкцией.
   en: Viscous compressible CFD, shape optimisation, fluid–structure coupling.
@@ -18,5 +18,7 @@ use:
   ru: Сопротивление на больших скоростях и проверка поправок простых методов.
   en: High-speed drag and checking corrections of simpler methods.
 sources:
+- https://su2code.github.io/docs_v7/Thermochemical-Nonequilibrium
+- https://mdpi.com/2226-4310/8/7/193
 - https://github.com/su2code/SU2
 - https://arxiv.org/pdf/2109.12332.pdf

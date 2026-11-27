@@ -11,7 +11,7 @@ disciplines: [geometry, aero]
 map: [geometry, L1]
 fidelity: [L1]
 stages: [concept, preliminary]
-aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, wig, hangglider, airship]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, wig, hangglider, airship, highspeed]
 summary:
   ru: Параметрическая геометрия самолёта плюс вихревая решётка и панельный метод VSPAERO.
   en: Parametric aircraft geometry plus the VSPAERO vortex-lattice and panel solver.
@@ -22,6 +22,8 @@ caveat:
   ru: В версии 3.45 решатель VSPAERO сильно переделан; старые уроки частично устарели.
   en: VSPAERO was heavily reworked in v3.45; older tutorials are partly outdated.
 sources:
+- https://digitalcommons.calpoly.edu/theses/1435
+- https://mdpi.com/2226-4310/11/5/359
 - https://www.cambridge.org/core/services/aop-cambridge-core/content/view/10037AA7DACDC35344E568C66B396967/S0001924023000374a.pdf/a-parametric-design-approach-for-multi-lobed-hybrid-airships.pdf
 - https://github.com/OpenVSP/OpenVSP
 - https://www.nasa.gov/reference/openvsp-vspaero-basics

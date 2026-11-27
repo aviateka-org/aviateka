@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pato
+name: PATO
+url: https://www.pato.ac/
+org: NASA Ames, University of Bordeaux
+disciplines: [structures, cfd]
+map: [structures, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [reentry]
+summary:
+  ru: 'Расчёт поведения пористых теплозащитных материалов при нагреве: пиролиз, унос (абляция), прогрев по толщине. Модуль OpenFOAM, свойства газа — Mutation++.'
+  en: 'Material response of porous thermal protection under heating: pyrolysis, ablation, in-depth heating. An OpenFOAM module with gas properties from Mutation++.'
+use:
+  ru: Толщина и прогрев теплозащиты спускаемого аппарата; на нём считали теплозащиту Mars Science Laboratory.
+  en: Heatshield thickness and in-depth heating for an entry capsule; used for the Mars Science Laboratory heatshield.
+caveat:
+  ru: Дату последнего изменения и лицензию самого PATO мы не проверили; NASA называет его открытым.
+  en: We did not check PATO's own licence or last-change date; NASA calls it open source.
+sources:
+- https://www.pato.ac/
+- https://ntrs.nasa.gov/citations/20210023171
+- https://software.nasa.gov/software/ARC-16680-1C
+- https://cordis.europa.eu/article/id/422429-eu-research-meets-the-challenges-of-trial-by-fire

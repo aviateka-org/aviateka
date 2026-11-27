@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.12.0 — 2026-11-27
+
+- Ветка сверхзвука, гиперзвука и входа в атмосферу. Два новых вида: сверхзвуковой и гиперзвуковой аппарат; вход в атмосферу. Восемь карточек: Eilmer (гиперзвук с химией, Квинсленд), SPARTA (разреженный газ, Sandia), Mutation++ (свойства горячего газа), hyStrath (гиперзвук в OpenFOAM), PATO (прогрев и унос теплозащиты, NASA), Tudat (траектория входа, TU Delft), PySAGAS и hypervehicle (форма гиперзвукового аппарата). SU2 (решатель NEMO), OpenVSP (волновое сопротивление) и OpenFOAM отмечены для новых видов. Три цепочки: сверхзвуковой самолёт, гиперзвуковой аппарат, вход в атмосферу. Пробел-окно: открытого расчёта звукового удара до земли нет. Термины: волновое сопротивление, абляция, число Кнудсена.
+
+- Supersonic, hypersonic and entry branch. Two new types: supersonic and hypersonic vehicle; atmospheric entry. Eight cards: Eilmer (reacting hypersonics, Queensland), SPARTA (rarefied gas, Sandia), Mutation++ (hot-gas properties), hyStrath (hypersonics in OpenFOAM), PATO (heatshield heating and ablation, NASA), Tudat (entry trajectory, TU Delft), PySAGAS and hypervehicle (hypersonic vehicle shape). SU2 (NEMO solver), OpenVSP (wave drag) and OpenFOAM tagged for the new types. Three workflows: supersonic aircraft, hypersonic vehicle, atmospheric entry. Window gap: no open sonic boom propagation to the ground. Terms: wave drag, ablation, Knudsen number.
+
 ## 0.11.0 — 2026-11-27
 
 - Ветка аппаратов легче воздуха. Новый калькулятор «Аэростат: подъёмная сила» на странице и инструмент MCP buoyancy (всего 20): гелий, водород с учётом чистоты, горячий воздух; полный и свободный подъём или нужный объём. Проверка: тепловой аэростат 2200 м³ при 100 °C внутри и 10 °C снаружи поднимает 0,301 кг на кубометр — как в независимом расчёте. Новый вид — дирижабль: карточка airship_simulation (мягкая оболочка в ROS и Gazebo), JSBSim (газовые ячейки и баллонеты) и OpenVSP отмечены для дирижаблей, цепочка «Дирижабль». Для стратосферных шаров — PlanetaryBalloon NASA (форма лепестковых шаров, программа 2007 года). Два пробела-окна: открытый расчёт облика дирижабля и модель привязного аэростата. Термины: баллонет, свободная подъёмная сила.

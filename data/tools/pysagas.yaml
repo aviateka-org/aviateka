@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: pysagas
+name: PySAGAS
+url: https://github.com/kieran-mackle/pysagas
+org: University of Queensland (K. Mackle)
+last_commit: '2024-11-14'
+license: GPL-3.0
+code: Python
+disciplines: [mdo]
+map: [mdo, L1]
+fidelity: [L1]
+stages: [preliminary]
+aircraft: [highspeed]
+summary:
+  ru: Быстрые оценки того, как аэродинамика гиперзвукового аппарата меняется при изменении формы, по уже готовому решению течения.
+  en: Fast estimates of how a hypersonic vehicle's aerodynamics change with its shape, from an existing flow solution.
+use:
+  ru: 'Оптимизация формы — пример автора: волнолёт на максимальное аэродинамическое качество при М 6.'
+  en: 'Shape optimisation — the author''s example: a waverider optimised for maximum L/D at Mach 6.'
+caveat:
+  ru: Последний коммит в 2024 году.
+  en: Last commit in 2024.
+sources:
+- https://github.com/kieran-mackle/pysagas

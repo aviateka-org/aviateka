@@ -259,6 +259,21 @@ gaps:
   sources:
   - https://www3.eng.cam.ac.uk/~hemh1/SPICE/papers/Coulombe-Pontbriand_2005_MastersThesis.pdf
   - https://dspace.library.uvic.ca/handle/1828/519
+- id: sonic-boom
+  mark: window
+  title:
+    ru: Открытый расчёт звукового удара до земли
+    en: Open sonic boom propagation to the ground
+  near:
+    ru: 'NASA распространяет sBOOM и PCBoom через свой каталог программ; турецкая группа написала свой решатель и сверила его с ними; в МФТИ сделали библиотеку для OpenFOAM. Открытого кода в общем доступе мы не нашли.'
+    en: 'NASA distributes sBOOM and PCBoom through its software catalog; a Turkish group wrote its own solver and checked it against them; MIPT built an OpenFOAM library. We found no openly published code.'
+  why:
+    ru: Метод известен (дополненное уравнение Бюргерса), а открытой программы, доведённой до земли и до громкости, нет.
+    en: The method is known (augmented Burgers equation), but there is no open program carried through to the ground and to loudness.
+  sources:
+  - https://software.nasa.gov/software/LAR-20310-1
+  - https://doaj.org/article/68d76ccf0a49406e88f292c16d9652f3
+  - https://www.iccs-meeting.org/archive/iccs2025/papers/159110349.pdf
 out_of_scope:
 - ru: Боевые аппараты и ракетное оружие — вне каталога; общие программы аэродинамики подходят и им, но отдельной ветви не будет.
   en: Combat aircraft and missiles are outside the catalog; general aerodynamics codes apply to them too, but there will be no branch for them.

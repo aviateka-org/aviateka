@@ -85,6 +85,8 @@ async def main():
             assert getattr(bad, "isError", False) or getattr(bad, "is_error", False)
             ash = {t["id"] for t in payload(await p("search_tools", {"aircraft": "airship"}))["tools"]}
             assert {"jsbsim", "airship-simulation", "openvsp"} <= ash, ash
+            ent = [w["id"] for w in payload(await p("find_workflows", {"aircraft": "reentry"}))["workflows"]]
+            assert ent == ["reentry"], ent
             rot = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "autogyro"}))["workflows"]}
             assert rot == {"autogyro"}, rot
             gy = {t["id"] for t in payload(await p("search_tools", {"aircraft": "autogyro"}))["tools"]}

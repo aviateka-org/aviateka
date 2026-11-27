@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: eilmer
+name: Eilmer (GDTk)
+url: https://github.com/gdtk-uq/gdtk
+org: University of Queensland, Centre for Hypersonics
+last_commit: '2026-11-23'
+license: GPL-3.0
+code: D, Lua
+disciplines: [cfd]
+map: [cfd, L3]
+fidelity: [L3]
+stages: [preliminary, detail]
+aircraft: [highspeed, reentry]
+summary:
+  ru: Решатель течений сжимаемого газа из набора Gas Dynamics Toolkit, заточен под химически реагирующие высокоскоростные потоки, как в ударных трубах.
+  en: Compressible flow solver from the Gas Dynamics Toolkit, built for chemically reacting high-speed flows such as those in shock tunnels.
+use:
+  ru: Обтекание и нагрев гиперзвуковых аппаратов и спускаемых капсул с химией воздуха.
+  en: Flow and heating of hypersonic vehicles and entry capsules with air chemistry.
+sources:
+- https://github.com/gdtk-uq/gdtk

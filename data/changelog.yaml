@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.12.0
+  date: '2026-11-27'
+  changes:
+  - ru: 'Ветка сверхзвука, гиперзвука и входа в атмосферу. Два новых вида: сверхзвуковой и гиперзвуковой аппарат; вход в атмосферу. Восемь карточек: Eilmer (гиперзвук с химией, Квинсленд), SPARTA (разреженный газ, Sandia), Mutation++ (свойства горячего газа), hyStrath (гиперзвук в OpenFOAM), PATO (прогрев и унос теплозащиты, NASA), Tudat (траектория входа, TU Delft), PySAGAS и hypervehicle (форма гиперзвукового аппарата). SU2 (решатель NEMO), OpenVSP (волновое сопротивление) и OpenFOAM отмечены для новых видов. Три цепочки: сверхзвуковой самолёт, гиперзвуковой аппарат, вход в атмосферу. Пробел-окно: открытого расчёта звукового удара до земли нет. Термины: волновое сопротивление, абляция, число Кнудсена.'
+    en: 'Supersonic, hypersonic and entry branch. Two new types: supersonic and hypersonic vehicle; atmospheric entry. Eight cards: Eilmer (reacting hypersonics, Queensland), SPARTA (rarefied gas, Sandia), Mutation++ (hot-gas properties), hyStrath (hypersonics in OpenFOAM), PATO (heatshield heating and ablation, NASA), Tudat (entry trajectory, TU Delft), PySAGAS and hypervehicle (hypersonic vehicle shape). SU2 (NEMO solver), OpenVSP (wave drag) and OpenFOAM tagged for the new types. Three workflows: supersonic aircraft, hypersonic vehicle, atmospheric entry. Window gap: no open sonic boom propagation to the ground. Terms: wave drag, ablation, Knudsen number.'
 - version: 0.11.0
   date: '2026-11-27'
   changes:

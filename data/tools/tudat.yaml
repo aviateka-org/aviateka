@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: tudat
+name: Tudat
+url: https://github.com/tudat-team/tudatpy
+org: TU Delft
+last_commit: '2026-11-26'
+license: BSD-3-Clause
+code: C++, Python
+disciplines: [flightsim]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [reentry]
+summary:
+  ru: 'Набор TU Delft для динамики полёта в космосе и атмосфере: орбиты, выведение, вход в атмосферу, оптимизация траекторий.'
+  en: 'TU Delft toolbox for space and atmospheric flight dynamics: orbits, ascent, atmospheric entry, trajectory optimisation.'
+use:
+  ru: 'Траектория входа: коридор, перегрузка, история теплового потока, точка посадки.'
+  en: 'Entry trajectory: corridor, g-load, heat-flux history, landing point.'
+sources:
+- https://github.com/tudat-team/tudatpy
+- https://docs.tudat.space/en/latest/

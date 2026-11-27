@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: hystrath
+name: hyStrath (hy2Foam, dsmcFoam+)
+url: https://github.com/vincentcasseau/hyStrath
+org: University of Strathclyde
+last_commit: '2022-12-18'
+license: GPL-3.0
+code: C++ (OpenFOAM)
+disciplines: [cfd]
+map: [cfd, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [highspeed, reentry]
+summary:
+  ru: 'Решатели для OpenFOAM: hy2Foam для гиперзвука с двухтемпературной моделью и dsmcFoam+ для разреженного газа.'
+  en: 'OpenFOAM solvers: hy2Foam for hypersonics with a two-temperature model and dsmcFoam+ for rarefied gas.'
+use:
+  ru: Гиперзвуковое обтекание с неравновесной химией и переход к разреженному режиму в одной среде OpenFOAM.
+  en: Hypersonic flow with nonequilibrium chemistry and the transition to rarefied flow in one OpenFOAM environment.
+caveat:
+  ru: Последний коммит в 2022 году; привязан к старой версии OpenFOAM.
+  en: Last commit in 2022; tied to an older OpenFOAM version.
+sources:
+- https://github.com/vincentcasseau/hyStrath
+- https://mdpi.com/2226-4310/8/7/193
