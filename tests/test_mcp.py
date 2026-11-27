@@ -95,6 +95,12 @@ async def main():
             # closed form: P = sqrt((m g)^3 / (2 rho A_total)) / FM
             ref = ((1.5 * 9.80665) ** 3 / (2 * 1.225 * 4 * 3.141592653589793 * 0.254 ** 2 / 4)) ** 0.5 / 0.5
             assert abs(hv["shaft_power_total_W"] - ref) < 0.05 and abs(hv["hover_time_min"] - 17.75) < 0.05
+            ph = payload(await p("rotor_hover", {"mass_kg": 1.28, "diameter_m": 9.4 * 0.0254, "fm": 0.643, "download": 0.10,
+                                                 "drive_efficiency": 0.73, "battery_wh": 68}))
+            print(f"Phantom 3 Advanced, NASA mid values: {ph['electrical_power_W']:.0f} W, hover {ph['hover_time_min']:.1f} min (DJI claims ~23 min flight)")
+            assert 22 < ph["hover_time_min"] < 27 and ph["fm"] == 0.643
+            dflt = payload(await p("rotor_hover", {"mass_kg": 1, "diameter_m": 0.2}))
+            assert dflt["fm"] == 0.6 and dflt["download"] == 0.0
             bad = await p("rotor_hover", {"mass_kg": 1, "diameter_m": 0.2, "fm": 1.5})
             assert getattr(bad, "isError", False) or getattr(bad, "is_error", False)
             q = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "evtol"}))["workflows"]}

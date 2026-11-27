@@ -98,3 +98,26 @@
     ru: Не верить простым поправкам на глубину у самой поверхности.
     en: Do not trust simple depth corrections right at the surface.
   source: https://kaken.nii.ac.jp/en/report/KAKENHI-PROJECT-09751027/097510271998jisseki
+- id: nasa-multicopter-hover
+  title:
+    ru: Серийные квадрокоптеры в висении (NASA, 2016)
+    en: Production quadcopters in hover (NASA, 2016)
+  value:
+    ru: 'FM винтов 0,58–0,72 (Phantom 3: 0,58 при 2500 об/мин и 0,67 при 6500; Iris+: 0,72 при 8000). КПД мотора с регулятором у Phantom — около 50 % на малых оборотах, выше 70 % с 4500 об/мин, до 77 %. Потеря тяги на корпус 5–15 %.'
+    en: 'Rotor FM 0.58–0.72 (Phantom 3: 0.58 at 2,500 rpm and 0.67 at 6,500; Iris+: 0.72 at 8,000). Phantom motor-and-controller efficiency about 50 % at low rpm, above 70 % from 4,500 rpm, up to 77 %. Body download 5–15 %.'
+  use:
+    ru: Значения FM, КПД привода и потерь для калькулятора висения; сверка расчётов винтов малых дронов.
+    en: FM, drive efficiency and download values for the hover calculator; a check for small-drone rotor predictions.
+  source: https://rotorcraft.arc.nasa.gov/Publications/files/72-2016-374.pdf
+- id: phantom3-hover-check
+  title:
+    ru: Сверка калькулятора висения на DJI Phantom 3 Advanced
+    en: Hover calculator check on the DJI Phantom 3 Advanced
+  value:
+    ru: '1280 г, винты 9,4 дюйма, батарея 68 Вт·ч, производитель заявляет до ~23 мин полёта. Калькулятор Авиатеки с разбросом замеров NASA (FM 0,58–0,67, КПД привода 70–77 %, потеря на корпус 5–15 %) даёт 19–29 мин висения на полной батарее, середина — 24 мин.'
+    en: '1,280 g, 9.4 in rotors, 68 Wh battery, the maker claims up to ~23 min of flight. The Aviateka calculator with the NASA spread (FM 0.58–0.67, drive efficiency 70–77 %, download 5–15 %) gives 19–29 min of hover on a full battery, 24 min in the middle.'
+  use:
+    ru: Порядок величины сходится. Время производителя — заявленное, а не замер, и вряд ли до полного разряда; это проверка здравого смысла, а не точности.
+    en: The order of magnitude agrees. The maker's time is a claim, not a measurement, and probably not to full discharge; this is a sanity check, not an accuracy check.
+  source: https://www.dji.com/uk/phantom-3-adv
+

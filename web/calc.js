@@ -61,9 +61,9 @@ const CALC = (() => {
     return out;
   }
   // Rotor hover by momentum theory with figure of merit — same as calc.py rotor_hover()
-  function hover(m, D, n, fm, h, eta, wh, usable) {
-    if (!(m > 0) || !(D > 0) || !(n >= 1) || !(fm > 0 && fm <= 1)) throw new Error('input');
-    const rho = atm(h).rho, T = m * G / n, A = Math.PI * D * D / 4, vi = Math.sqrt(T / (2 * rho * A));
+  function hover(m, D, n, fm, h, eta, wh, usable, dl = 0) {
+    if (!(m > 0) || !(D > 0) || !(n >= 1) || !(fm > 0 && fm <= 1) || !(dl >= 0 && dl < 0.5)) throw new Error('input');
+    const rho = atm(h).rho, T = m * G / n / (1 - dl), A = Math.PI * D * D / 4, vi = Math.sqrt(T / (2 * rho * A));
     const Pi = T * vi, Ps = Pi / fm, Pt = Ps * n, out = { T, Tg: T / G * 1000, DL: T / A, vi, Pi, Ps, Pt, gW: m * 1000 / Pt };
     out.Pe = eta > 0 && eta <= 1 ? Pt / eta : NaN;
     const draw = isFinite(out.Pe) ? out.Pe : Pt;

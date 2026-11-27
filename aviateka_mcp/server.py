@@ -277,15 +277,16 @@ def buoyancy(volume_m3: float | None = None, gas: str = "helium", gas_temp_c: fl
 
 
 @server.tool()
-def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 0.5, altitude_m: float = 0.0,
+def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 0.6, altitude_m: float = 0.0,
                 delta_t: float = 0.0, drive_efficiency: float | None = None, battery_wh: float | None = None,
-                usable_fraction: float = 1.0, lang: str = "ru") -> dict:
+                usable_fraction: float = 1.0, download: float = 0.0, lang: str = "ru") -> dict:
     """Hover power of a multirotor or helicopter by momentum theory: T = m·g/n, v_i = sqrt(T/(2·rho·A)),
-    P_shaft = T·v_i / FM per rotor. fm = figure of merit (small drone rotors often below 0.5; use measured values).
-    drive_efficiency (motor and speed controller) gives electrical power; battery_wh and usable_fraction give hover time.
-    Rotors are treated as separate: no coaxial or overlap correction, no frame blockage."""
+    P_shaft = T·v_i / FM per rotor. fm = figure of merit (NASA measured 0.58–0.72 for production 9–15 in drone rotors;
+    smaller rotors can be below 0.5). download = share of rotor thrust lost on the body (NASA: 5–15 %).
+    drive_efficiency (motor and speed controller, NASA: 50–77 %) gives electrical power; battery_wh and usable_fraction
+    give hover time. Rotors are treated as separate: no coaxial or overlap correction."""
     return _safe(calc.rotor_hover, mass_kg, diameter_m, rotors, fm, altitude_m, delta_t, drive_efficiency,
-                 battery_wh, usable_fraction, _lang(lang))
+                 battery_wh, usable_fraction, download, _lang(lang))
 
 
 @server.tool()

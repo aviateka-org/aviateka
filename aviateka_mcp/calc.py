@@ -266,15 +266,17 @@ def buoyancy(volume_m3: float | None = None, gas: str = "helium", gas_temp_c: fl
 
 # Висение винта по теории импульса с коэффициентом качества (figure of merit):
 # T = m·g/n, v_i = sqrt(T / (2·ρ·A)), P_ideal = T·v_i, P_shaft = P_ideal / FM.
-# Hover by momentum theory with a figure of merit. FM of small drone rotors is often below 0.5.
-HOVER_SOURCES = {"fm_small_rotors": "https://arxiv.org/pdf/2608.25150",
+# Hover by momentum theory with a figure of merit. NASA measured FM 0.58–0.72 for production 9–15 in drone rotors,
+# motor-and-controller efficiency 50–77 % and body download 5–15 % (Russell et al. 2016); smaller rotors can fall below 0.5.
+HOVER_SOURCES = {"nasa_multicopter_tests": "https://rotorcraft.arc.nasa.gov/Publications/files/72-2016-374.pdf",
+                 "fm_small_rotors": "https://arxiv.org/pdf/2608.25150",
                  "fm_definition": "https://rotorcraft.arc.nasa.gov/Publications/files/Young_AIAA_2002.PDF",
                  "measured_props": "https://m-selig.ae.illinois.edu/props/propDB.html"}
 
 
-def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 0.5, altitude_m: float = 0.0,
+def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 0.6, altitude_m: float = 0.0,
                 delta_t: float = 0.0, drive_efficiency: float | None = None, battery_wh: float | None = None,
-                usable_fraction: float = 1.0, lang: str = "ru") -> dict:
+                usable_fraction: float = 1.0, download: float = 0.0, lang: str = "ru") -> dict:
     """Power to hover on n equal, separate rotors; optionally electrical power and hover time from a battery."""
     lang = lang if lang in ("ru", "en") else "ru"
     if not mass_kg or mass_kg <= 0:
@@ -291,19 +293,21 @@ def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 
         raise ValueError("battery_wh must be positive")
     if not 0 < usable_fraction <= 1:
         raise ValueError("usable_fraction must be above 0 and at most 1")
+    if not 0 <= download < 0.5:
+        raise ValueError("download must be at least 0 and below 0.5 (share of rotor thrust lost on the body)")
     rho = atmosphere(altitude_m, delta_t)["density_kg_m3"]
     n = int(rotors)
-    t = mass_kg * G / n
+    t = mass_kg * G / n / (1 - download)
     area = math.pi * diameter_m ** 2 / 4
     vi = math.sqrt(t / (2 * rho * area))
     p_ideal = t * vi
     p_shaft = p_ideal / fm
     out = {"rotors": n, "density_kg_m3": rho, "thrust_per_rotor_N": t, "thrust_per_rotor_g": t / G * 1000,
            "disk_loading_N_m2": t / area, "induced_velocity_m_s": vi, "ideal_power_per_rotor_W": p_ideal,
-           "shaft_power_per_rotor_W": p_shaft, "shaft_power_total_W": p_shaft * n, "fm": fm,
+           "shaft_power_per_rotor_W": p_shaft, "shaft_power_total_W": p_shaft * n, "fm": fm, "download": download,
            "power_loading_g_per_W": mass_kg * 1000 / (p_shaft * n), "sources": HOVER_SOURCES,
-           "note": {"ru": "Винты отдельные и не мешают друг другу; рама, соосные пары и перекрытие не учтены. У малых винтов дронов FM часто ниже 0,5 — лучше взять своё значение из замеров.",
-                    "en": "Rotors are separate and do not interfere; frame, coaxial pairs and overlap are not modelled. Small drone rotors often have FM below 0.5 — better use your own measured value."}[lang]}
+           "note": {"ru": "Винты отдельные и не мешают друг другу; соосные пары и перекрытие не учтены. NASA намерило у серийных винтов дронов 9–15 дюймов FM 0,58–0,72, КПД мотора с регулятором 50–77 % и потерю тяги на корпус 5–15 %; у винтов мельче FM бывает ниже 0,5.",
+                    "en": "Rotors are separate and do not interfere; coaxial pairs and overlap are not modelled. NASA measured FM 0.58–0.72 for production 9–15 in drone rotors, motor-and-controller efficiency 50–77 % and body download 5–15 %; smaller rotors can have FM below 0.5."}[lang]}
     p_draw = p_shaft * n
     if drive_efficiency is not None:
         p_draw = p_shaft * n / drive_efficiency

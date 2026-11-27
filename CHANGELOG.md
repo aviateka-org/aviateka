@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.15.1 — 2026-11-27
+
+- Калькулятор висения сверен с замерами NASA серийных квадрокоптеров (Russell и др., 2016). Исправлено: прежняя подсказка «у малых винтов FM часто ниже 0,5» слишком пессимистична для обычных винтов дронов — NASA намерило у винтов 9–15 дюймов FM 0,58–0,72; ниже 0,5 бывает у винтов мельче. FM по умолчанию теперь 0,6 вместо 0,5. Добавлен параметр download — потеря тяги на корпус (по NASA 5–15 %); на странице — поле «Потеря тяги на корпус». Проверка на DJI Phantom 3 Advanced: с разбросом замеров NASA калькулятор даёт 19–29 мин висения, середина 24 мин; производитель заявляет до ~23 мин полёта. Два новых эталона: «Серийные квадрокоптеры в висении (NASA, 2016)» и «Сверка калькулятора висения на Phantom 3».
+
+- The hover calculator is checked against NASA measurements of production quadcopters (Russell et al., 2016). Fixed: the earlier hint that small rotors often have FM below 0.5 was too pessimistic for ordinary drone propellers — NASA measured FM 0.58–0.72 for 9–15 in rotors; below 0.5 happens with smaller rotors. Default FM is now 0.6 instead of 0.5. New parameter download — thrust lost on the body (NASA: 5–15 %); a matching field on the page. Check on the DJI Phantom 3 Advanced: with the NASA spread the calculator gives 19–29 min of hover, 24 min in the middle; the maker claims up to ~23 min of flight. Two new benchmarks: production quadcopters in hover (NASA, 2016) and the Phantom 3 hover check.
+
 ## 0.15.0 — 2026-11-27
 
 - Калькуляторы для ракет и входа в атмосферу. Стандартная атмосфера расширена с 20 до 86 км (атмосфера США 1976 года, ниже 32 км совпадает с международной): семь слоёв, сверены с таблицами на 20, 32, 50, 70 и 86 км. Высота по-прежнему геопотенциальная, как в таблицах МСА; для высоты над уровнем моря есть параметр geometric. Новые калькуляторы на странице и инструменты MCP (всего 23): «Ракета: прирост скорости» (rocket_delta_v — формула Циолковского, тяга к весу, время работы; сверено с учебным примером ERAU) и «Вход в атмосферу: нагрев носка» (entry_heating — формула Саттона и Грейвса, число Маха, скоростной напор, разброс по постоянной из разных источников). Подъёмная сила аэростата теперь считается и для стратостатов выше 20 км.
