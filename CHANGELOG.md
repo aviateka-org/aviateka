@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.5.6 — 2026-11-27
+
+- Автовыпуск: как только на основной ветке появляется новый номер версии, пакет сам уходит на PyPI, в каталог MCP и в выпуски GitHub с меткой. Ставить метку руками больше не нужно. Заодно на PyPI догоняет версия: там стояла 0.4.1, теперь будет текущая.
+
+- Auto-release: as soon as a new version number lands on the main branch, the package goes to PyPI, the MCP Registry and a tagged GitHub release by itself. No manual tag is needed any more. PyPI also catches up: it had 0.4.1, now it gets the current version.
+
 ## 0.5.5 — 2026-11-26
 
 - Исправлена ошибка версии 0.5.4: файлы Autowing на странице кафедры не свободные — все ссылки ведут на вход для сотрудников и студентов. Статус возвращён на «по запросу»; открыт без входа только учебный пример potentialVortex, к проектированию он не относится.

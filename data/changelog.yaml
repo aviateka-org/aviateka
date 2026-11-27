@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.5.6
+  date: '2026-11-27'
+  changes:
+  - ru: 'Автовыпуск: как только на основной ветке появляется новый номер версии, пакет сам уходит на PyPI, в каталог MCP и в выпуски GitHub с меткой. Ставить метку руками больше не нужно. Заодно на PyPI догоняет версия: там стояла 0.4.1, теперь будет текущая.'
+    en: 'Auto-release: as soon as a new version number lands on the main branch, the package goes to PyPI, the MCP Registry and a tagged GitHub release by itself. No manual tag is needed any more. PyPI also catches up: it had 0.4.1, now it gets the current version.'
 - version: 0.5.5
   date: '2026-11-26'
   changes:

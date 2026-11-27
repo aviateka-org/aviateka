@@ -16,7 +16,7 @@
 
 1. Добавить запись в `data/changelog.yaml` (новые сверху) и поднять версию в `pyproject.toml`, `server.json`, `CITATION.cff`.
 2. `python scripts/build_catalog.py` — проверка сама сверит версии во всех файлах.
-3. Слить в `main`, поставить метку `vX.Y.Z`. Остальное сделает `release.yml`: PyPI, каталог MCP, релиз GitHub (Zenodo выдаст DOI, если включён).
+3. Слить в `main`. Метку ставить не нужно: `release.yml` сам видит, что такой версии ещё нет на PyPI, и выпускает её — PyPI, каталог MCP, релиз GitHub с меткой `vX.Y.Z` (Zenodo выдаст DOI, если включён). Если версия не менялась, выпуск пропускается.
 4. После первого выпуска на PyPI поставить `pypi_published: true` в `data/meta.yaml`, чтобы страница показывала установку одной командой.
 
 ## Разовая настройка / One-time setup
@@ -25,7 +25,7 @@
 bash scripts/setup_repo.sh owner/name
 ```
 
-Вручную: PyPI → Publishing → trusted publisher (репозиторий, `release.yml`, окружение `pypi`); по желанию Zenodo → GitHub → включить репозиторий.
+Вручную: PyPI → Publishing → trusted publisher (репозиторий, `release.yml`, окружение `pypi`); в окружении `pypi` на GitHub не ограничивать ветки (или разрешить `main`); по желанию Zenodo → GitHub → включить репозиторий.
 
 Если владелец или имя репозитория не `aviateka-org/aviateka`, заменить их во всех файлах:
 
@@ -37,4 +37,4 @@ grep -rl "aviateka-org.github.io/aviateka" --exclude-dir=.git . | xargs sed -i "
 
 ---
 
-**English, in short.** Contributions arrive as free text through forms; maintainers turn them into catalog format (the strict second layer). Reply within a week, check the source, write both `ru` and `en`, credit the author, close with thanks. To release: add a `data/changelog.yaml` entry, bump `pyproject.toml`, `server.json`, `CITATION.cff`, run `python scripts/build_catalog.py`, merge and tag `vX.Y.Z`; `release.yml` does PyPI, the MCP Registry and the GitHub release. One-time setup: `scripts/setup_repo.sh`, a PyPI trusted publisher, optionally Zenodo.
+**English, in short.** Contributions arrive as free text through forms; maintainers turn them into catalog format (the strict second layer). Reply within a week, check the source, write both `ru` and `en`, credit the author, close with thanks. To release: add a `data/changelog.yaml` entry, bump `pyproject.toml`, `server.json`, `CITATION.cff`, run `python scripts/build_catalog.py`, merge into `main`. No tag needed: `release.yml` sees the version is not on PyPI yet and releases it (PyPI, MCP Registry, GitHub release tagged `vX.Y.Z`); unchanged versions are skipped. One-time setup: `scripts/setup_repo.sh`, a PyPI trusted publisher, optionally Zenodo.
