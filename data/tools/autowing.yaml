@@ -10,7 +10,7 @@ disciplines: [aero, hydro]
 map: [hydro, L1]
 fidelity: [L1]
 stages: [concept, preliminary]
-aircraft: [wig, hydrofoil]
+aircraft: [wig, hydrofoil, seaplane]
 summary:
   ru: 'Нелинейный нестационарный метод дискретных вихрей для аэро- и гидродинамики быстроходных аппаратов: экранопланы, подводные крылья, глиссирующие и реданные корпуса; разбег, отрыв и полёт с динамикой движения. Корень метода — работы Корнева и Трешкова (1992), версия 2.4 — 1998 год.'
   en: 'Nonlinear unsteady vortex-lattice aero- and hydrodynamics of high-speed craft: WIG, hydrofoils, planing and stepped hulls; take-off run, lift-off and flight with motion simulation. Method dates back to Kornev & Treshkov (1992); version 2.4 dates from 1998.'

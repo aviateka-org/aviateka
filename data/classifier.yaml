@@ -90,7 +90,7 @@ branches:
     name:
       ru: Гидросамолёт и амфибия
       en: Seaplane and amphibian
-    types: []
+    types: [seaplane]
   - id: high-speed
     name:
       ru: Сверхзвуковой и гиперзвуковой

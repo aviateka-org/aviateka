@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.9.0 — 2026-11-27
+
+- Новый вид аппаратов — гидросамолёт и амфибия: цепочка от плавучести и остойчивости через разбег по воде и дельфинирование к посадке на воду и на волну. В каталоге DualSPHysics (метод частиц для удара о воду и брызг); для гидросамолётов отмечены JSBSim (упрощённая модель воды), OpenPlaning, FreeCAD Ship, OpenFOAM и Autowing. Новый пробел: открытого расчёта взлёта с воды целиком, вместе с аэродинамикой и дельфинированием, нет. Два новых термина: дельфинирование и редан. В классификаторе лист «гидросамолёт» перешёл из «не покрыто» в «частично».
+
+- New craft type — seaplane and amphibian: a workflow from buoyancy and stability through the water run and porpoising to landing on calm water and waves. Added DualSPHysics (particle method for water impact and spray); JSBSim (simplified water model), OpenPlaning, FreeCAD Ship, OpenFOAM and Autowing are now tagged for seaplanes. New gap: no open whole-aircraft water take-off simulation with aerodynamics and porpoising. Two new terms: porpoising and step. In the classifier the seaplane leaf moved from not covered to partial.
+
 ## 0.8.0 — 2026-11-27
 
 - Классификатор летательных аппаратов: 9 ветвей по тому, чем аппарат держится в воздухе, и 34 листа; для каждого листа каталог сам считает покрытие — инструменты, цепочки и итог «покрыто, частично, не покрыто». Сейчас покрыто 10, частично 9, не покрыто 15. Тут же сквозные признаки (взлёт, скорость, экипаж, двигатель, масса и правила, схема, назначение, среда) и деление аппаратов у ИКАО, Великобритании, FAA, EASA, по Воздушному кодексу РФ и у ИМО — со ссылками. Новый раздел страницы «Классы» и инструмент MCP get_classifier.

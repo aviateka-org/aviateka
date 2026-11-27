@@ -9,7 +9,7 @@ disciplines: [cfd, hydro]
 map: [cfd, L3]
 fidelity: [L3]
 stages: [detail]
-aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil, parachute, kite]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil, parachute, kite, seaplane]
 summary:
   ru: 'Универсальный открытый пакет расчёта течений, в том числе двухфазных: свободная поверхность, кавитация.'
   en: 'A general open-source CFD toolbox, including two-phase flows: free surface, cavitation.'
@@ -23,3 +23,4 @@ sources:
 - https://habr.com/ru/users/KAYANO/comments
 - https://repository.tudelft.nl/file/File_379eb0bd-b545-48f2-a27f-6ddc1f4ff379?preview=1
 - https://repository.tudelft.nl/record/uuid:865d59fc-ccff-462e-9bac-e81725f1c0c9
+- https://mai.ru/upload/iblock/c0b/Varyukhin_Ovdienko_rus.pdf

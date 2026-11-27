@@ -11,7 +11,7 @@ disciplines: [hydro]
 map: [hydro, L0]
 fidelity: [L0]
 stages: [concept, preliminary]
-aircraft: [wig, hydrofoil]
+aircraft: [wig, hydrofoil, seaplane]
 summary:
   ru: 'Глиссирующий корпус по методу Савицкого: равновесный дифферент, сопротивление, проверка на дельфинирование.'
   en: 'Planing hull by the Savitsky method: equilibrium trim, resistance, porpoising check.'
@@ -25,3 +25,4 @@ sources:
 - https://github.com/elcf/python-openplaning
 - https://pypi.org/project/openplaning/0.2.0
 - https://www.boatdesign.net/threads/chine-location.70164/
+- https://informahealthcare.com/doi/full/10.1080/19942060.2023.2244028

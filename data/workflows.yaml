@@ -550,3 +550,36 @@
   check:
     ru: Высота разрыва и скорость подъёма из калькулятора совпадают с прогнозом; точка посадки Tawhiri лежит внутри облака ASTRA.
     en: Burst altitude and ascent rate from the calculator match the prediction; the Tawhiri landing point lies inside the ASTRA cloud.
+- id: seaplane
+  aircraft: [seaplane]
+  stage: preliminary
+  title:
+    ru: 'Гидросамолёт и амфибия: плавучесть, разбег по воде, посадка'
+    en: 'Seaplane and amphibian: buoyancy, water take-off run, landing'
+  goal:
+    ru: Осадка и остойчивость на плаву, сопротивление корпуса или поплавков на разбеге, отсутствие дельфинирования, нагрузки при посадке на воду.
+    en: Draft and stability afloat, hull or float drag during the take-off run, no porpoising, loads at water landing.
+  steps:
+  - tool: freecad-ship
+    what:
+      ru: Осадка, запас плавучести и остойчивость корпуса или поплавков
+      en: Draft, reserve buoyancy and stability of the hull or floats
+  - tool: openplaning
+    what:
+      ru: Сопротивление и дифферент на глиссировании, проверка дельфинирования
+      en: Planing drag and trim, porpoising check
+  - tool: jsbsim
+    what:
+      ru: Разбег по воде вместе с аэродинамикой — упрощённая модель глиссирования
+      en: Water take-off run together with aerodynamics — a simplified planing model
+  - tool: openfoam
+    what:
+      ru: Разбег в двухфазном потоке со свободным дифферентом и всплытием; брызги
+      en: Take-off run in two-phase flow, free to trim and heave; spray
+  - tool: dualsphysics
+    what:
+      ru: Посадка на спокойную воду и на волну, удар и брызги
+      en: Landing on calm water and on waves, impact and spray
+  check:
+    ru: Тяга с запасом больше пика сопротивления воды перед выходом на глиссирование, и на всём разбеге нет дельфинирования.
+    en: Thrust exceeds the peak water drag before planing with a margin, and there is no porpoising over the whole run.

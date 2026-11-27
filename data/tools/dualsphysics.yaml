@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: dualsphysics
+name: DualSPHysics
+url: https://github.com/DualSPHysics/DualSPHysics
+org: Universidade de Vigo, University of Manchester and partners
+last_commit: '2025-04-16'
+license: LGPL-2.1
+code: C++, CUDA
+disciplines: [hydro]
+map: [hydro, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [seaplane, wig]
+summary:
+  ru: 'Метод частиц (SPH) для течений со свободной поверхностью: удар о воду, брызги, волны; считает на видеокарте.'
+  en: 'Particle method (SPH) for free-surface flows: water impact, spray, waves; runs on a graphics card.'
+use:
+  ru: Посадка поплавка или корпуса на воду и на волну, удары и брызги.
+  en: Float or hull landing on calm water and on waves, impacts and spray.
+caveat:
+  ru: Последний коммит в 2025 году. На посадке на воду его применяли к моделям поплавков; проверки на целом самолёте мы не нашли.
+  en: Last commit in 2025. For water landing it has been applied to float models; we found no check on a whole aircraft.
+sources:
+- https://github.com/DualSPHysics/DualSPHysics
+- https://dual.sphysics.org/
+- https://semarakilmu.com.my/journals/index.php/arnht/article/download/3960/2316/20557

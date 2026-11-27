@@ -9,7 +9,7 @@ disciplines: [hydro, geometry]
 map: [hydro, L0]
 fidelity: [L0]
 stages: [concept]
-aircraft: [wig, hydrofoil]
+aircraft: [wig, hydrofoil, seaplane]
 summary:
   ru: 'Модуль FreeCAD: сопротивление и дифферент глиссирующего корпуса по Савицкому прямо по модели.'
   en: 'FreeCAD module: Savitsky resistance and trim straight from the hull model.'

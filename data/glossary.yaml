@@ -335,3 +335,19 @@
     ru: Высота, на которой оболочка шара-зонда растягивается до предела и лопается; дальше груз спускается на парашюте.
     en: The height at which a sounding balloon stretches to its limit and bursts; the payload then descends under a parachute.
   search: {}
+- id: porpoising
+  term:
+    ru: Дельфинирование
+    en: Porpoising
+  definition:
+    ru: Раскачка глиссирующего корпуса вверх-вниз и по тангажу на разбеге; может нарастать и мешать взлёту.
+    en: A coupled heave and pitch oscillation of a planing hull during the run; it can grow and prevent take-off.
+  search: {}
+- id: step
+  term:
+    ru: Редан
+    en: Step
+  definition:
+    ru: Уступ на днище лодки или поплавка; за ним вода отрывается от днища, и сопротивление на глиссировании падает.
+    en: A break in the bottom of a hull or float; the water separates behind it and planing drag drops.
+  search: {}

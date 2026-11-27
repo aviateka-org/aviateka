@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.9.0
+  date: '2026-11-27'
+  changes:
+  - ru: 'Новый вид аппаратов — гидросамолёт и амфибия: цепочка от плавучести и остойчивости через разбег по воде и дельфинирование к посадке на воду и на волну. В каталоге DualSPHysics (метод частиц для удара о воду и брызг); для гидросамолётов отмечены JSBSim (упрощённая модель воды), OpenPlaning, FreeCAD Ship, OpenFOAM и Autowing. Новый пробел: открытого расчёта взлёта с воды целиком, вместе с аэродинамикой и дельфинированием, нет. Два новых термина: дельфинирование и редан. В классификаторе лист «гидросамолёт» перешёл из «не покрыто» в «частично».'
+    en: 'New craft type — seaplane and amphibian: a workflow from buoyancy and stability through the water run and porpoising to landing on calm water and waves. Added DualSPHysics (particle method for water impact and spray); JSBSim (simplified water model), OpenPlaning, FreeCAD Ship, OpenFOAM and Autowing are now tagged for seaplanes. New gap: no open whole-aircraft water take-off simulation with aerodynamics and porpoising. Two new terms: porpoising and step. In the classifier the seaplane leaf moved from not covered to partial.'
 - version: 0.8.0
   date: '2026-11-27'
   changes:

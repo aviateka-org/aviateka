@@ -175,3 +175,7 @@ aircraft:
   name:
     ru: Аэростат и стратостат
     en: Balloon & stratospheric balloon
+- id: seaplane
+  name:
+    ru: Гидросамолёт и амфибия
+    en: Seaplane & amphibian

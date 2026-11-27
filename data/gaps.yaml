@@ -173,6 +173,20 @@ gaps:
     en: Makers are few and the useful tools are few and expensive; we found no open one.
   sources:
   - https://dspace5old.zcu.cz/bitstream/11025/10628/1/Kubicek.pdf
+- id: seaplane-takeoff
+  mark: window
+  title:
+    ru: Открытый расчёт взлёта гидросамолёта целиком
+    en: Open whole-aircraft seaplane take-off simulation
+  near:
+    ru: 'OpenPlaning для корпуса, упрощённая модель воды в JSBSim, OpenFOAM для двухфазного расчёта; эмпирические методы взлёта с воды опубликованы.'
+    en: 'OpenPlaning for the hull, a simplified water model in JSBSim, OpenFOAM for two-phase runs; empirical water take-off methods are published.'
+  why:
+    ru: Звенья есть, но открытой программы, которая считает разбег по воде вместе с аэродинамикой, дельфинированием и брызгами, мы не нашли.
+    en: The links exist, but we found no open program that computes the water run together with aerodynamics, porpoising and spray.
+  sources:
+  - https://spiral.imperial.ac.uk/bitstream/10044/1/114177/5/aerospace-08-00010-v2.pdf
+  - https://wiki.flightgear.org/Howto:Modelling_hydrodynamics_in_JSBSim
 out_of_scope:
 - ru: Боевые аппараты и ракетное оружие — вне каталога; общие программы аэродинамики подходят и им, но отдельной ветви не будет.
   en: Combat aircraft and missiles are outside the catalog; general aerodynamics codes apply to them too, but there will be no branch for them.
