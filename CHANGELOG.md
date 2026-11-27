@@ -4,6 +4,14 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.7.0 — 2026-11-27
+
+- Новый калькулятор «Парашют: скорость снижения» на странице и в сервере MCP (parachute_descent): скорость спуска по массе, типу купола и его диаметру, разброс по коэффициенту сопротивления, энергия при посадке и с какой высоты это как прыжок; в обратную сторону — какой нужен купол для заданной скорости. Коэффициенты для восьми типов куполов — по Knacke и AFFDL-TR-78-151.
+- Осторожно с исходными числами: коэффициенты плоского круглого купола и купола с удлинённой кромкой прочитаны с распознанного скана руководства Knacke — сверьте с оригиналом. Полусферический, конический и крестообразный купола не включены: их значения со скана надёжно не прочитались. Для них есть поле «свой CD0».
+
+- New calculator 'Parachute descent rate' on the page and in the MCP server (parachute_descent): descent rate from mass, canopy type and diameter, its spread over the drag-coefficient range, landing energy and the equivalent jump height; in reverse, the canopy needed for a target rate. Coefficients for eight canopy types from Knacke and AFFDL-TR-78-151.
+- Mind the inputs: the flat circular and extended-skirt coefficients come from an OCR scan of the Knacke manual — check the original. Hemispherical, conical and cross canopies are left out: their values could not be read reliably from the scan. Use the custom CD0 field for them.
+
 ## 0.6.0 — 2026-11-27
 
 - Тканевые аппараты: пять новых типов — параплан, дельтаплан, парашют, змей и кайт, аэростат — и 21 новая карточка: OpenGlider, LEparagliding с lepg, SingleSkin, parabem, paraFEM, glidersim, наработки Avian для дельтапланов (HG-dev), Vortex Step Method, ASKITE, mem4py, KiteModels.jl, AWEbox, LAKSA, KiteModeler NASA, ChuteMaker, openchute, RocketPy, preCICE, Tawhiri, ASTRA и калькулятор газа CUSF.

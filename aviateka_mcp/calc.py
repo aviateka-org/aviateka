@@ -104,3 +104,71 @@ def cavitation(speed_m_s: float, depth_m: float, cp_min: float, water_temp_c: fl
     return {"cavitation_number": sigma, "minus_cp_min": -cp_min, "cavitates": sigma < -cp_min,
             "inception_speed_m_s": v_inc, "inception_speed_km_h": v_inc * 3.6, "inception_speed_kn": v_inc / 0.514444,
             "vapour_pressure_Pa": pv, "water_density_kg_m3": rho}
+
+
+# Парашюты: коэффициент сопротивления CD0 отнесён к номинальной площади S0 —
+# всей ткани купола вместе с полюсным отверстием и щелями; D0 = sqrt(4·S0/π).
+# Parachutes: CD0 is based on the nominal area S0 — the whole canopy surface including vent and slots; D0 = sqrt(4·S0/π).
+# Ranges: slotted types and guide surface — Recovery Systems Design Guide (AFFDL-TR-78-151) as tabulated in AGARD-AG-319,
+# Table 3.1; flat circular and 10 % extended skirt — Knacke, Parachute Recovery Systems Design Manual (NWC TP 6575), Table 5-1.
+PARACHUTE_SOURCES = {
+    "agard": "https://www.sto.nato.int/publications/AGARD/AGARD-AG-319/AGARD-AG-319.pdf",
+    "knacke": "https://apps.dtic.mil/sti/pdfs/ADA247666.pdf",
+}
+CANOPIES = {
+    "flat_circular": (0.75, 0.80, {"ru": "плоский круглый", "en": "flat circular"}, "knacke"),
+    "extended_skirt_10": (0.78, 0.87, {"ru": "с удлинённой кромкой 10 %", "en": "10 % extended skirt"}, "knacke"),
+    "ringsail": (0.75, 0.90, {"ru": "ленточно-парусный (ringsail)", "en": "ringsail"}, "agard"),
+    "ringslot": (0.56, 0.65, {"ru": "кольцевой щелевой (ringslot)", "en": "ringslot"}, "agard"),
+    "disk_gap_band": (0.52, 0.58, {"ru": "диск-щель-лента", "en": "disk-gap-band"}, "agard"),
+    "conical_ribbon": (0.50, 0.55, {"ru": "конический ленточный", "en": "conical ribbon"}, "agard"),
+    "flat_ribbon": (0.45, 0.50, {"ru": "плоский ленточный", "en": "flat ribbon"}, "agard"),
+    "guide_surface_ribbed": (0.28, 0.42, {"ru": "стабилизирующий с рёбрами (guide surface)", "en": "ribbed guide surface"}, "agard"),
+}
+
+
+def parachute_descent(mass_kg: float, canopy: str = "flat_circular", cd0: float | None = None,
+                      area_m2: float | None = None, diameter_m: float | None = None,
+                      target_speed_m_s: float | None = None, altitude_m: float = 0.0, delta_t: float = 0.0,
+                      lang: str = "ru") -> dict:
+    """Steady descent under a canopy, where drag equals weight: V = sqrt(2·m·g / (ρ·CD0·S0)).
+    Give the canopy (area_m2 = S0 or diameter_m = D0) to get the speed, and/or target_speed_m_s to get the size needed."""
+    lang = lang if lang in ("ru", "en") else "ru"
+    if not mass_kg or mass_kg <= 0:
+        raise ValueError("mass_kg must be positive (everything that hangs under the canopy, canopy included)")
+    if cd0 is not None:
+        if cd0 <= 0:
+            raise ValueError("cd0 must be positive")
+        lo = hi = mid = float(cd0)
+        label, source = {"ru": "свой CD0", "en": "custom CD0"}[lang], None
+    else:
+        if canopy not in CANOPIES:
+            raise ValueError("unknown canopy; use one of " + ", ".join(CANOPIES) + " or give cd0")
+        lo, hi, names, src = CANOPIES[canopy]
+        mid, label, source = (lo + hi) / 2, names[lang], PARACHUTE_SOURCES[src]
+    if area_m2 is None and diameter_m is not None:
+        if diameter_m <= 0:
+            raise ValueError("diameter_m must be positive")
+        area_m2 = math.pi * diameter_m ** 2 / 4
+    if area_m2 is not None and area_m2 <= 0:
+        raise ValueError("area_m2 must be positive")
+    if area_m2 is None and target_speed_m_s is None:
+        raise ValueError("give area_m2 or diameter_m (to get the descent rate) and/or target_speed_m_s (to size the canopy)")
+    rho = atmosphere(altitude_m, delta_t)["density_kg_m3"]
+    two_w = 2 * mass_kg * G
+    out = {"canopy": label, "cd0": mid, "cd0_range": [lo, hi], "density_kg_m3": rho, "cd0_source": source,
+           "note": {"ru": "S0 — вся ткань купола вместе с полюсным отверстием и щелями, D0 = √(4·S0/π). У полусферического купола S0 примерно вдвое больше площади его круга в плане.",
+                    "en": "S0 is the whole canopy fabric including vent and slots, D0 = √(4·S0/π). For a hemispherical canopy S0 is about twice the area of its circle in plan."}[lang]}
+    if area_m2 is not None:
+        v = math.sqrt(two_w / (rho * mid * area_m2))
+        out.update({"nominal_area_m2": area_m2, "nominal_diameter_m": math.sqrt(4 * area_m2 / math.pi),
+                    "descent_m_s": v, "descent_range_m_s": [math.sqrt(two_w / (rho * hi * area_m2)), math.sqrt(two_w / (rho * lo * area_m2))],
+                    "landing_energy_J": 0.5 * mass_kg * v ** 2, "equivalent_drop_height_m": v ** 2 / (2 * G)})
+    if target_speed_m_s is not None:
+        if target_speed_m_s <= 0:
+            raise ValueError("target_speed_m_s must be positive")
+        need = two_w / (rho * mid * target_speed_m_s ** 2)
+        out.update({"target_speed_m_s": target_speed_m_s, "needed_area_m2": need,
+                    "needed_area_range_m2": [two_w / (rho * hi * target_speed_m_s ** 2), two_w / (rho * lo * target_speed_m_s ** 2)],
+                    "needed_diameter_m": math.sqrt(4 * need / math.pi)})
+    return out

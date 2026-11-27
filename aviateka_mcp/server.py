@@ -70,7 +70,7 @@ INSTRUCTIONS = (
     "Start with find_workflows for a task or aircraft type, then search_tools / get_tool for details. "
     "Check list_gaps before promising that a tool exists, and list_benchmarks for expected accuracy. "
     "Statuses: active = code changed within 365 days; stale = older; unknown = date not checked. "
-    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation. "
+    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent. "
     "Covers aircraft, fabric craft (paragliders, hang gliders, parachutes, kites, balloons), WIG craft (ekranoplans) and hydrofoil craft. get_validation shows how well tools matched measurements. "
     "get_changelog lists versions and what changed; how_to_contribute says how to send corrections and calculations. "
     "Pass lang='en' for English, default is Russian."
@@ -230,6 +230,18 @@ def cavitation(speed_m_s: float, depth_m: float, cp_min: float, water_temp_c: fl
     """Hydrofoil cavitation check: cavitation number at the given speed and depth, and the speed where cavitation starts (sigma = -Cp_min).
     cp_min is the section's minimum pressure coefficient (negative, e.g. from XFOIL). Salt water by default."""
     return _safe(calc.cavitation, speed_m_s, depth_m, cp_min, water_temp_c, salt, p_atm)
+
+
+@server.tool()
+def parachute_descent(mass_kg: float, canopy: str = "flat_circular", cd0: float | None = None, area_m2: float | None = None,
+                      diameter_m: float | None = None, target_speed_m_s: float | None = None, altitude_m: float = 0.0,
+                      delta_t: float = 0.0, lang: str = "ru") -> dict:
+    """Parachute steady descent rate, or the canopy size for a target rate: V = sqrt(2·m·g / (rho·CD0·S0)).
+    mass_kg: everything under the canopy, canopy included. Give the canopy as area_m2 (nominal area S0 = whole fabric incl. vent)
+    or diameter_m (nominal D0), and/or target_speed_m_s. canopy: flat_circular, extended_skirt_10, ringsail, ringslot,
+    disk_gap_band, conical_ribbon, flat_ribbon, guide_surface_ribbed (CD0 ranges from Knacke / AFFDL-TR-78-151), or pass cd0.
+    Returns the rate with its range over the CD0 range, landing energy and the equivalent free-fall height."""
+    return _safe(calc.parachute_descent, mass_kg, canopy, cd0, area_m2, diameter_m, target_speed_m_s, altitude_m, delta_t, _lang(lang))
 
 
 @server.tool()

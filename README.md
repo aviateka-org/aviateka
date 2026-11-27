@@ -24,7 +24,7 @@
 | Таблица сверки: насколько программы совпали с опытом | Validation matrix: how well codes matched measurements | `data/validation.yaml` |
 | Пустые ниши с разметкой «окно» и «запрещено» | Gaps marked "window" or "forbidden" | `data/gaps.yaml` |
 | Эталонные цифры, термины, кейс «Стриж» | Reference numbers, glossary, the Strizh case | `data/` |
-| Калькуляторы: атмосфера, Рейнольдс и Мах, сваливание, нагрузка на крыло, подобие по Фруду, кавитация | Calculators: atmosphere, Reynolds and Mach, stall, wing loading, Froude scaling, cavitation | `aviateka_mcp/calc.py`, `web/calc.js` |
+| Калькуляторы: атмосфера, Рейнольдс и Мах, сваливание, нагрузка на крыло, подобие по Фруду, кавитация, спуск на парашюте | Calculators: atmosphere, Reynolds and Mach, stall, wing loading, Froude scaling, cavitation, parachute descent | `aviateka_mcp/calc.py`, `web/calc.js` |
 
 ## MCP-сервер / MCP server
 
@@ -39,7 +39,7 @@ Claude Desktop:
 { "mcpServers": { "aviateka": { "command": "uvx", "args": ["aviateka-mcp"] } } }
 ```
 
-17 инструментов MCP / 17 MCP tools: `search_tools`, `get_tool`, `find_workflows`, `list_gaps`, `list_benchmarks`, `get_validation`, `glossary`, `get_case`, `get_taxonomy`, `get_changelog`, `how_to_contribute`, `atmosphere`, `reynolds_mach`, `stall_speed`, `wing_loading`, `froude_model`, `cavitation`. Работает с официальным MCP SDK 1.x и 2.x. / Works with the official MCP SDK 1.x and 2.x.
+18 инструментов MCP / 18 MCP tools: `search_tools`, `get_tool`, `find_workflows`, `list_gaps`, `list_benchmarks`, `get_validation`, `glossary`, `get_case`, `get_taxonomy`, `get_changelog`, `how_to_contribute`, `atmosphere`, `reynolds_mach`, `stall_speed`, `wing_loading`, `froude_model`, `cavitation`, `parachute_descent`. Работает с официальным MCP SDK 1.x и 2.x. / Works with the official MCP SDK 1.x and 2.x.
 
 ## Из исходников / From source
 

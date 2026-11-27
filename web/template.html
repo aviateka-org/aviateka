@@ -195,6 +195,26 @@ footer{font-size:14px;color:var(--muted)}
         <label class="f"><span data-t="iSalt">Вода</span><select id="c_s"><option value="1" data-t="sea">морская</option><option value="0" data-t="fresh">пресная</option></select></label>
       </div>
       <div class="big" id="c_big"></div><dl class="res" id="c_res"></dl></div>
+    <div class="card calc"><h3 data-t="cChute">Парашют: скорость снижения</h3>
+      <div class="ins">
+        <label class="f"><span data-t="iM">Масса, кг</span><input id="p_m" type="number" value="1" step="0.1"></label>
+        <label class="f"><span data-t="iCan">Купол</span><select id="p_t">
+          <option value="flat_circular" data-t="chFlat">плоский круглый · 0,75–0,80</option>
+          <option value="extended_skirt_10" data-t="chSkirt">с удлинённой кромкой 10 % · 0,78–0,87</option>
+          <option value="ringsail" data-t="chRingsail">ленточно-парусный · 0,75–0,90</option>
+          <option value="ringslot" data-t="chRingslot">кольцевой щелевой · 0,56–0,65</option>
+          <option value="disk_gap_band" data-t="chDgb">диск-щель-лента · 0,52–0,58</option>
+          <option value="conical_ribbon" data-t="chConRib">конический ленточный · 0,50–0,55</option>
+          <option value="flat_ribbon" data-t="chFlatRib">плоский ленточный · 0,45–0,50</option>
+          <option value="guide_surface_ribbed" data-t="chGuide">стабилизирующий с рёбрами · 0,28–0,42</option>
+          <option value="custom" data-t="chCustom">свой CD0</option></select></label>
+        <label class="f"><span data-t="iCd">CD0</span><input id="p_cd" type="number" value="0.775" step="0.01"></label>
+        <label class="f"><span data-t="iD0">Диаметр D0, м</span><input id="p_d" type="number" value="1" step="0.05"></label>
+        <label class="f"><span data-t="iVt">Нужная скорость, м/с</span><input id="p_vt" type="number" value="5" step="0.5"></label>
+        <label class="f"><span data-t="iH">Высота, м</span><input id="p_h" type="number" value="0" step="100"></label>
+      </div>
+      <div class="big" id="p_big"></div><dl class="res" id="p_res"></dl>
+      <p class="muted small" data-t="chuteNote">S0 — вся ткань купола вместе с полюсным отверстием, D0 = √(4·S0/π). У полусферического купола S0 примерно вдвое больше площади его круга в плане. CD0 — по Knacke и AFFDL-TR-78-151.</p></div>
     <div class="card calc"><h3 data-t="cFr">Подобная модель по Фруду</h3>
       <div class="ins">
         <label class="f"><span data-t="iK">Масштаб 1:</span><input id="f_k" type="number" value="16" step="1"></label>
@@ -273,14 +293,14 @@ const UI = {
   hTools:'Все инструменты',tcount:(n,t)=>`Показано ${n} из ${t}; фильтры сверху действуют и здесь.`,th:['Инструмент','Дисциплина','Точность','Последний код','Статус','Лицензия'],
   hFlows:'Рабочие цепочки: с чего начать и чем проверить',check:'Проверка',show:'Показать на карте',
   hGaps:'Чего в открытом доступе нет',gth:['Ниша','Что нашлось рядом','Разметка','Почему'],hBench:'Эталонные цифры для проверки',bth:['Что','Цифры','Зачем'],
-  hCalc:'Калькуляторы',calcNote:'Заполнено примерами: «Стриж» на гонке в Рино, его летающая модель 1:16 и судно на подводных крыльях на 40 узлах.',cCav:'Кавитация подводного крыла',iD:'Глубина крыла, м',iCp:'Cp min профиля',iTw:'Вода, °C',iSalt:'Вода',sea:'морская',fresh:'пресная',rSig:'Число кавитации σ',rNeed:'Порог −Cp min',rVi:'Начало кавитации',rPv:'Давление пара',cavYes:'кавитирует',rState:'Итог',cavNo:'без кавитации',hVer:v=>`Версии: сейчас ${v}`,cAtm:'Атмосфера, Рейнольдс и Мах',cStall:'Скорость сваливания',cLoad:'Нагрузка на крыло',cFr:'Подобная модель по Фруду',
+  hCalc:'Калькуляторы',calcNote:'Заполнено примерами: «Стриж» на гонке в Рино, его летающая модель 1:16, судно на подводных крыльях на 40 узлах и груз шара-зонда 1 кг под парашютом.',cChute:'Парашют: скорость снижения',iCan:'Купол',iCd:'CD0',iD0:'Диаметр D0, м',iVt:'Нужная скорость, м/с',chFlat:'плоский круглый · 0,75–0,80',chSkirt:'с удлинённой кромкой 10 % · 0,78–0,87',chRingsail:'ленточно-парусный · 0,75–0,90',chRingslot:'кольцевой щелевой · 0,56–0,65',chDgb:'диск-щель-лента · 0,52–0,58',chConRib:'конический ленточный · 0,50–0,55',chFlatRib:'плоский ленточный · 0,45–0,50',chGuide:'стабилизирующий с рёбрами · 0,28–0,42',chCustom:'свой CD0',rRange:'Разброс по CD0',rS0:'Площадь ткани S0',rE:'Энергия при посадке',rHeq:'Как прыжок с высоты',rDn:'D0 для нужной скорости',chuteNote:'S0 — вся ткань купола вместе с полюсным отверстием, D0 = √(4·S0/π). У полусферического купола S0 примерно вдвое больше площади его круга в плане. CD0 — по Knacke и AFFDL-TR-78-151.',cCav:'Кавитация подводного крыла',iD:'Глубина крыла, м',iCp:'Cp min профиля',iTw:'Вода, °C',iSalt:'Вода',sea:'морская',fresh:'пресная',rSig:'Число кавитации σ',rNeed:'Порог −Cp min',rVi:'Начало кавитации',rPv:'Давление пара',cavYes:'кавитирует',rState:'Итог',cavNo:'без кавитации',hVer:v=>`Версии: сейчас ${v}`,cAtm:'Атмосфера, Рейнольдс и Мах',cStall:'Скорость сваливания',cLoad:'Нагрузка на крыло',cFr:'Подобная модель по Фруду',
   iH:'Высота, м',iDT:'ΔT к стандарту, °C',iV:'Скорость, км/ч',iC:'Хорда, м',iM:'Масса, кг',iS:'Площадь крыла, м²',iCL:'CL max',iK:'Масштаб 1:',iI:'Iyy, кг·м²',iRf:'ρ оригинала',iRm:'ρ модели',
   rT:'Температура',rRho:'Плотность',rA:'Скорость звука',rNu:'Кин. вязкость',rM:'Число Маха',rRe:'Число Рейнольдса',rVs:'Сваливание',rApp:'Заход 1,3 Vs',rKg:'На м²',rG:'На дм²',rW:'Кубическая',rCls:'Класс модели',
   rMm:'Масса модели',rMv:'Скорость модели',rMi:'Iyy модели',rT2:'Время',rRe2:'Рейнольдс',tNote:k=>`×${nf(k,3)}; замедлите видео в ${nf(1/k,1)} раза`,bad:'Проверьте ввод',
   wcl0:'очень лёгкая: комнатные',wcl1:'парители и парк-флаеры',wcl2:'спортивные и тренеры',wcl3:'копии и пилонные',wcl4:'реактивные с импеллером',wcl5:'выше обычного для моделей',
   hTerms:'Термины',hCase:'Кейс',cth:['Очередь','Задача','Инструмент','Цена'],prio:['','сначала','затем','потом'],
   hAi:'Для ИИ-агентов: MCP-сервер',aiCfg:'Подключение к Claude Desktop',copy:'Копировать',copied:'Скопировано',dl:'Каталог в JSON',mth:['Инструмент MCP','Что делает'],
-  mcp:[['get_taxonomy','Справочники: дисциплины, уровни точности, этапы, типы аппаратов'],['search_tools','Поиск по тексту на русском или английском и по фильтрам'],['get_tool','Полная карточка инструмента и цепочки, где он используется'],['find_workflows','Цепочки под задачу или тип аппарата, с критерием проверки'],['list_gaps','Пустые ниши и что не входит в каталог'],['list_benchmarks','Эталонные цифры с источниками'],['glossary','Термины RU/EN'],['get_case','Кейс «Стриж» и план проверок'],['atmosphere','Стандартная атмосфера 0–20 км'],['reynolds_mach','Числа Рейнольдса и Маха'],['stall_speed','Скорость сваливания'],['wing_loading','Нагрузка и кубическая нагрузка на крыло'],['froude_model','Динамически подобная модель'],['cavitation','Число кавитации и скорость её начала для подводного крыла'],['get_changelog','Версия, правила нумерации и журнал изменений'],['get_validation','Таблица сверки: насколько программы совпали с опытом'],['how_to_contribute','Куда прислать инструмент, правку или расчёт']]},
+  mcp:[['get_taxonomy','Справочники: дисциплины, уровни точности, этапы, типы аппаратов'],['search_tools','Поиск по тексту на русском или английском и по фильтрам'],['get_tool','Полная карточка инструмента и цепочки, где он используется'],['find_workflows','Цепочки под задачу или тип аппарата, с критерием проверки'],['list_gaps','Пустые ниши и что не входит в каталог'],['list_benchmarks','Эталонные цифры с источниками'],['glossary','Термины RU/EN'],['get_case','Кейс «Стриж» и план проверок'],['atmosphere','Стандартная атмосфера 0–20 км'],['reynolds_mach','Числа Рейнольдса и Маха'],['stall_speed','Скорость сваливания'],['wing_loading','Нагрузка и кубическая нагрузка на крыло'],['froude_model','Динамически подобная модель'],['cavitation','Число кавитации и скорость её начала для подводного крыла'],['parachute_descent','Скорость снижения на парашюте или нужный размер купола'],['get_changelog','Версия, правила нумерации и журнал изменений'],['get_validation','Таблица сверки: насколько программы совпали с опытом'],['how_to_contribute','Куда прислать инструмент, правку или расчёт']]},
  en:{title:'Aviateka',h1:'A chart of open design tools: aircraft, fabric craft, WIG craft, hydrofoils',fAircraft:'Aircraft',fStage:'Stage',fRoute:'Route on the chart',fSearch:'Search',all:'all',none:'none',ph:'flutter, propeller, low Reynolds…',
   nav:{map:'Chart',tools:'Tools',flows:'Workflows',gaps:'Gaps',check:'Validation',calc:'Calculators',terms:'Glossary',case:'Strizh',help:'Contribute',versions:'Versions',ai:'For AI'},
   hCheck:'Validation matrix: who computed what and how well it matched measurements',checkLead:'Comparisons of codes against measurements, from papers and from users. They show which numbers a code can be trusted with.',sendCalc:'Send your calculation',vth:['Code','Case','Mismatch with test','Takeaway','Source'],vref:'compared with',over:'over-predicts',under:'under-predicts',published:'paper',community:'user',valIn:'Validation',
@@ -294,14 +314,14 @@ const UI = {
   hTools:'All tools',tcount:(n,t)=>`Showing ${n} of ${t}; the filters above apply here too.`,th:['Tool','Discipline','Fidelity','Last commit','Status','Licence'],
   hFlows:'Workflows: where to start and how to check',check:'Check',show:'Show on chart',
   hGaps:'What open source does not have',gth:['Gap','Found nearby','Mark','Why'],hBench:'Reference numbers for sanity checks',bth:['What','Numbers','Why it matters'],
-  hCalc:'Calculators',calcNote:'Prefilled with examples: Strizh racing at Reno, its 1:16 flying model and a hydrofoil craft at 40 knots.',cCav:'Hydrofoil cavitation',iD:'Foil depth, m',iCp:'Section Cp min',iTw:'Water, °C',iSalt:'Water',sea:'sea',fresh:'fresh',rSig:'Cavitation number σ',rNeed:'Threshold −Cp min',rVi:'Cavitation starts at',rPv:'Vapour pressure',cavYes:'cavitates',rState:'Result',cavNo:'no cavitation',hVer:v=>`Versions: now ${v}`,cAtm:'Atmosphere, Reynolds and Mach',cStall:'Stall speed',cLoad:'Wing loading',cFr:'Froude-scaled model',
+  hCalc:'Calculators',calcNote:'Prefilled with examples: Strizh racing at Reno, its 1:16 flying model, a hydrofoil craft at 40 knots and a 1 kg sounding-balloon payload under a parachute.',cChute:'Parachute descent rate',iCan:'Canopy',iCd:'CD0',iD0:'Diameter D0, m',iVt:'Target rate, m/s',chFlat:'flat circular · 0.75–0.80',chSkirt:'10 % extended skirt · 0.78–0.87',chRingsail:'ringsail · 0.75–0.90',chRingslot:'ringslot · 0.56–0.65',chDgb:'disk-gap-band · 0.52–0.58',chConRib:'conical ribbon · 0.50–0.55',chFlatRib:'flat ribbon · 0.45–0.50',chGuide:'ribbed guide surface · 0.28–0.42',chCustom:'custom CD0',rRange:'Range over CD0',rS0:'Fabric area S0',rE:'Landing energy',rHeq:'Like a jump from',rDn:'D0 for the target rate',chuteNote:'S0 is the whole canopy fabric including the vent, D0 = √(4·S0/π). For a hemispherical canopy S0 is about twice the area of its circle in plan. CD0 from Knacke and AFFDL-TR-78-151.',cCav:'Hydrofoil cavitation',iD:'Foil depth, m',iCp:'Section Cp min',iTw:'Water, °C',iSalt:'Water',sea:'sea',fresh:'fresh',rSig:'Cavitation number σ',rNeed:'Threshold −Cp min',rVi:'Cavitation starts at',rPv:'Vapour pressure',cavYes:'cavitates',rState:'Result',cavNo:'no cavitation',hVer:v=>`Versions: now ${v}`,cAtm:'Atmosphere, Reynolds and Mach',cStall:'Stall speed',cLoad:'Wing loading',cFr:'Froude-scaled model',
   iH:'Altitude, m',iDT:'ΔT to standard, °C',iV:'Speed, km/h',iC:'Chord, m',iM:'Mass, kg',iS:'Wing area, m²',iCL:'CL max',iK:'Scale 1:',iI:'Iyy, kg·m²',iRf:'ρ full size',iRm:'ρ model',
   rT:'Temperature',rRho:'Density',rA:'Speed of sound',rNu:'Kin. viscosity',rM:'Mach number',rRe:'Reynolds number',rVs:'Stall',rApp:'Approach 1.3 Vs',rKg:'Per m²',rG:'Per dm²',rW:'Cubic',rCls:'Model class',
   rMm:'Model mass',rMv:'Model speed',rMi:'Model Iyy',rT2:'Time',rRe2:'Reynolds',tNote:k=>`×${nf(k,3)}; slow video down ${nf(1/k,1)}×`,bad:'Check the input',
   wcl0:'very light: indoor',wcl1:'gliders and park flyers',wcl2:'sport and trainers',wcl3:'scale and pylon',wcl4:'EDF jets',wcl5:'above the usual model range',
   hTerms:'Glossary',hCase:'Case',cth:['Order','Task','Tool','Cost'],prio:['','first','next','later'],
   hAi:'For AI agents: MCP server',aiCfg:'Connect to Claude Desktop',copy:'Copy',copied:'Copied',dl:'Catalog as JSON',mth:['MCP tool','What it does'],
-  mcp:[['get_taxonomy','Lookups: disciplines, fidelity levels, stages, aircraft types'],['search_tools','Text search in Russian or English plus filters'],['get_tool','Full tool card and the workflows that use it'],['find_workflows','Tool chains for a task or aircraft type, with an acceptance check'],['list_gaps','Gaps and what the catalog does not cover'],['list_benchmarks','Reference numbers with sources'],['glossary','RU/EN terms'],['get_case','The Strizh case and its check plan'],['atmosphere','Standard atmosphere 0–20 km'],['reynolds_mach','Reynolds and Mach numbers'],['stall_speed','Stall speed'],['wing_loading','Wing and cubic loading'],['froude_model','Dynamically similar model'],['cavitation','Cavitation number and inception speed for a hydrofoil'],['get_changelog','Version, numbering rules and change history'],['get_validation','Validation matrix: how well codes matched measurements'],['how_to_contribute','Where to send a tool, a correction or a calculation']]}
+  mcp:[['get_taxonomy','Lookups: disciplines, fidelity levels, stages, aircraft types'],['search_tools','Text search in Russian or English plus filters'],['get_tool','Full tool card and the workflows that use it'],['find_workflows','Tool chains for a task or aircraft type, with an acceptance check'],['list_gaps','Gaps and what the catalog does not cover'],['list_benchmarks','Reference numbers with sources'],['glossary','RU/EN terms'],['get_case','The Strizh case and its check plan'],['atmosphere','Standard atmosphere 0–20 km'],['reynolds_mach','Reynolds and Mach numbers'],['stall_speed','Stall speed'],['wing_loading','Wing and cubic loading'],['froude_model','Dynamically similar model'],['cavitation','Cavitation number and inception speed for a hydrofoil'],['parachute_descent','Parachute descent rate or the canopy size for a target rate'],['get_changelog','Version, numbering rules and change history'],['get_validation','Validation matrix: how well codes matched measurements'],['how_to_contribute','Where to send a tool, a correction or a calculation']]}
 };
 UI.en.aiLead='The same data is available to agents through a Python MCP server. It works with the official SDK 1.x and 2.x over stdio or HTTP. The data also sits next to this page as data.json.';
 UI.ru.aiLead=document.querySelector('[data-t=aiLead]').textContent;
@@ -348,7 +368,7 @@ function renderStatic() {
   $('fa').value = st.ac; $('fs').value = st.stage; $('fw').value = st.wf;
   $('legend').innerHTML = ['active', 'stale', 'unknown', 'announced', 'on_request', 'proprietary'].map(s => `<span><span class="pill ${s}">${esc(tr(CAT.statuses[s]))}</span></span>`).join('') +
     `<span><svg width="34" height="10" aria-hidden="true"><path d="M2 5H32" stroke="var(--route)" stroke-width="3.5" stroke-linecap="round"/></svg> ${esc(U('fRoute').toLowerCase())}</span>`;
-  renderFlows(); renderGaps(); renderValidation(); renderHelp(); renderTerms(); renderCase(); renderMcp(); renderVersions(); calcAll(); calcCav();
+  renderFlows(); renderGaps(); renderValidation(); renderHelp(); renderTerms(); renderCase(); renderMcp(); renderVersions(); calcAll(); calcCav(); calcChute();
   $('method').textContent = `${tr(CAT.name)} ${CAT.version}. ${tr(CAT.method)}`;
 }
 
@@ -471,7 +491,7 @@ function renderMcp() {
 }
 
 const num = id => parseFloat($(id).value);
-const UNITS = { ru: { kgm3: ' кг/м³', ms: ' м/с', kmh: ' км/ч', m2s: ' м²/с', kgm2: ' кг/м²', gdm2: ' г/дм²', g: ' г', kg: ' кг', kgm2i: ' кг·м²', kn: ' уз', pa: ' Па' }, en: { kgm3: ' kg/m³', ms: ' m/s', kmh: ' km/h', m2s: ' m²/s', kgm2: ' kg/m²', gdm2: ' g/dm²', g: ' g', kg: ' kg', kgm2i: ' kg·m²', kn: ' kn', pa: ' Pa' } };
+const UNITS = { ru: { kgm3: ' кг/м³', ms: ' м/с', kmh: ' км/ч', m2s: ' м²/с', kgm2: ' кг/м²', gdm2: ' г/дм²', g: ' г', kg: ' кг', kgm2i: ' кг·м²', kn: ' уз', pa: ' Па', m2: ' м²', j: ' Дж', m: ' м' }, en: { kgm3: ' kg/m³', ms: ' m/s', kmh: ' km/h', m2s: ' m²/s', kgm2: ' kg/m²', gdm2: ' g/dm²', g: ' g', kg: ' kg', kgm2i: ' kg·m²', kn: ' kn', pa: ' Pa', m2: ' m²', j: ' J', m: ' m' } };
 const un = k => UNITS[lang][k];
 const res = (id, rows) => { $(id).innerHTML = rows.map(([k, v]) => `<dt class="muted">${esc(k)}</dt><dd>${esc(v)}</dd>`).join(''); };
 function guard(big, list, fn) { try { fn(); } catch (e) { $(big).textContent = '—'; res(list, [[U('bad'), '']]); } }
@@ -509,6 +529,19 @@ function calcCav() {
     res('c_res', [[U('rState'), U(r.cav ? 'cavYes' : 'cavNo')], [U('rNeed'), nf(-num('c_cp'), 2)], [U('rVi'), nf(r.vi * 3.6, 0) + un('kmh') + ' · ' + nf(r.vi / 0.514444, 1) + un('kn')], [U('rPv'), nf(r.pv, 0) + un('pa')]]);
   });
 }
+function calcChute() {
+  guard('p_big', 'p_res', () => {
+    const rg = CALC.CHUTES[$('p_t').value], cd = num('p_cd');
+    const [lo, hi] = rg || [cd, cd];
+    const r = CALC.chute(num('p_m'), lo, hi, num('p_d'), num('p_vt'), num('p_h') || 0, 0);
+    if (!isFinite(r.v)) throw 0;
+    $('p_big').textContent = nf(r.v, 1) + un('ms');
+    const rows = [[U('rRange'), nf(r.vLo, 1) + '–' + nf(r.vHi, 1) + un('ms')], [U('rS0'), nf(r.S, 2) + un('m2')],
+      [U('rE'), nf(r.E, 0) + un('j')], [U('rHeq'), nf(r.hEq, 1) + un('m')]];
+    if (isFinite(r.Dn)) rows.push([U('rDn'), nf(r.Dn, 2) + un('m')]);
+    res('p_res', rows);
+  });
+}
 function renderVersions() {
   $('verh').textContent = U('hVer')(CAT.version);
   $('verrule').textContent = tr(CAT.versioning);
@@ -529,7 +562,9 @@ $('fs').onchange = e => { st.stage = e.target.value; renderAll(); };
 $('fw').onchange = e => { st.wf = e.target.value; renderAll(); };
 $('fq').oninput = e => { st.q = e.target.value; renderAll(); };
 $('gq').oninput = renderTerms;
-document.querySelectorAll('.calc input').forEach(i => i.addEventListener('input', () => { calcAll(); calcCav(); }));
+document.querySelectorAll('.calc input').forEach(i => i.addEventListener('input', () => { calcAll(); calcCav(); calcChute(); }));
+$('p_t').addEventListener('change', () => { const rg = CALC.CHUTES[$('p_t').value]; if (rg) $('p_cd').value = ((rg[0] + rg[1]) / 2).toFixed(3); calcChute(); });
+$('p_cd').addEventListener('input', () => { $('p_t').value = 'custom'; calcChute(); });
 $('c_s').addEventListener('change', calcCav);
 $('copy').onclick = async () => { try { await navigator.clipboard.writeText($('cfg').textContent); $('copy').textContent = U('copied'); } catch (e) { $('copy').textContent = '—'; } };
 const ro = new ResizeObserver(() => drawRoute()); ro.observe($('grid'));

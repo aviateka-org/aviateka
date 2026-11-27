@@ -27,7 +27,7 @@ async def main():
             tools = (await s.list_tools()).tools
             names = sorted(t.name for t in tools)
             print("tools:", names)
-            assert len(names) == 17, names
+            assert len(names) == 18, names
             p = lambda n, a=None: s.call_tool(n, a or {})
             tax = payload(await p("get_taxonomy", {"lang": "en"}))
             assert tax["fidelity"][4]["name"] == "Measured"
@@ -74,6 +74,12 @@ async def main():
             cav = payload(await p("cavitation", {"speed_m_s": 20.58, "depth_m": 0.5, "cp_min": -0.6, "water_temp_c": 28}))
             print(f"cavitation @40 kn, 0.5 m, Cpmin -0.6: sigma {cav['cavitation_number']:.3f}, cavitates {cav['cavitates']}, inception {cav['inception_speed_kn']:.1f} kn")
             assert 0.45 < cav["cavitation_number"] < 0.5 and cav["cavitates"] is True
+            ch1 = payload(await p("parachute_descent", {"mass_kg": 1.0, "diameter_m": 1.0, "target_speed_m_s": 5.0, "lang": "en"}))
+            print(f"parachute 1 kg, flat circular D0 1 m: {ch1['descent_m_s']:.2f} m/s, D0 for 5 m/s {ch1['needed_diameter_m']:.3f} m")
+            assert abs(ch1["descent_m_s"] - 5.129) < 0.01 and abs(ch1["needed_diameter_m"] - 1.026) < 0.002
+            assert ch1["descent_range_m_s"][0] < ch1["descent_m_s"] < ch1["descent_range_m_s"][1]
+            bad = await p("parachute_descent", {"mass_kg": 1.0})
+            assert getattr(bad, "isError", False) or getattr(bad, "is_error", False), bad
             va = payload(await p("get_validation", {"tool_id": "autowing", "quantity": "CL", "lang": "en"}))
             print("validation autowing CL:", [(x["at"], x["diff_pct"]) for x in va["rows"][0]["points"]])
             assert va["count"] == 1 and len(va["rows"][0]["points"]) == 4 and va["rows"][0]["points"][1]["direction"] == "over"

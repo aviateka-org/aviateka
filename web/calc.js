@@ -23,6 +23,19 @@ const CALC = (() => {
     const pl = 101325 + rho * G * depth - pv, sigma = pl / (0.5 * rho * V * V), vi = Math.sqrt(pl / (0.5 * rho * -cpmin));
     return { sigma, vi, cav: sigma < -cpmin, pv, rho };
   }
-  return { atm, reMach, stall, loading, froude, cav };
+  // Parachute: CD0 on nominal area S0; same table as calc.py (CANOPIES)
+  const CHUTES = { flat_circular: [0.75, 0.80], extended_skirt_10: [0.78, 0.87], ringsail: [0.75, 0.90], ringslot: [0.56, 0.65],
+    disk_gap_band: [0.52, 0.58], conical_ribbon: [0.50, 0.55], flat_ribbon: [0.45, 0.50], guide_surface_ribbed: [0.28, 0.42] };
+  function chute(m, lo, hi, D, Vt, h, dT = 0) {
+    if (!(m > 0) || !(lo > 0) || !(hi >= lo)) throw new Error('input');
+    const rho = atm(h, dT).rho, w2 = 2 * m * G, cd = (lo + hi) / 2, out = { rho, cd };
+    if (D > 0) {
+      const S = Math.PI * D * D / 4, v = Math.sqrt(w2 / (rho * cd * S));
+      Object.assign(out, { S, v, vLo: Math.sqrt(w2 / (rho * hi * S)), vHi: Math.sqrt(w2 / (rho * lo * S)), E: 0.5 * m * v * v, hEq: v * v / (2 * G) });
+    }
+    if (Vt > 0) { const Sn = w2 / (rho * cd * Vt * Vt); Object.assign(out, { Sn, Dn: Math.sqrt(4 * Sn / Math.PI) }); }
+    return out;
+  }
+  return { atm, reMach, stall, loading, froude, cav, CHUTES, chute };
 })();
 if (typeof module !== 'undefined') module.exports = CALC;
