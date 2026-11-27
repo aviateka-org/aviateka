@@ -9,23 +9,49 @@ OZ_PER_KG = 35.27396
 FT2_PER_M2 = 10.76391
 
 
-def atmosphere(altitude_m: float, delta_t: float = 0.0) -> dict:
-    """International Standard Atmosphere 0–20 km with a temperature offset (pressure stays standard)."""
+# U.S. Standard Atmosphere 1976 to 86 km (same as ISA up to 32 km): layers in geopotential metres, base temperature, lapse K/m.
+# Источник/source: https://www.pdas.com/atmosdef.html
+R_EARTH = 6356766.0
+ATM_LAYERS = [(0.0, 288.15, -0.0065), (11000.0, 216.65, 0.0), (20000.0, 216.65, 0.001), (32000.0, 228.65, 0.0028),
+              (47000.0, 270.65, 0.0), (51000.0, 270.65, -0.0028), (71000.0, 214.65, -0.002)]
+ATM_TOP = 84852.0
+
+
+def _layer_pressure(hb, tb, lapse, pb, h):
+    if lapse == 0:
+        return pb * math.exp(-G * (h - hb) / (R * tb))
+    return pb * (tb / (tb + lapse * (h - hb))) ** (G / (R * lapse))
+
+
+ATM_BASE_P = [101325.0]
+for _i in range(1, len(ATM_LAYERS)):
+    _hb, _tb, _l = ATM_LAYERS[_i - 1]
+    ATM_BASE_P.append(_layer_pressure(_hb, _tb, _l, ATM_BASE_P[-1], ATM_LAYERS[_i][0]))
+
+
+def geopotential(altitude_m: float) -> float:
+    """Geometric altitude (m) to geopotential altitude (m)."""
+    return R_EARTH * altitude_m / (R_EARTH + altitude_m)
+
+
+def atmosphere(altitude_m: float, delta_t: float = 0.0, geometric: bool = False) -> dict:
+    """U.S. Standard Atmosphere 1976 (equal to ISA below 32 km) from −500 m to 84 852 m geopotential (86 km geometric),
+    with a temperature offset (pressure stays standard). altitude_m is geopotential, as in ISA tables, unless geometric=True."""
     h = float(altitude_m)
-    if not -500 <= h <= 20000:
-        raise ValueError("altitude_m must be between -500 and 20000 m")
-    if h <= 11000:
-        t_std = 288.15 - 0.0065 * h
-        p = 101325.0 * (t_std / 288.15) ** 5.255877
-    else:
-        t_std = 216.65
-        p = 22632.06 * math.exp(-G * (h - 11000) / (R * 216.65))
+    if geometric:
+        h = geopotential(h)
+    if not -500 <= h <= ATM_TOP + 1:
+        raise ValueError("altitude_m must be between -500 and 84852 m geopotential (86 km geometric)")
+    i = max(k for k, layer in enumerate(ATM_LAYERS) if h >= layer[0]) if h >= 0 else 0
+    hb, tb, lapse = ATM_LAYERS[i]
+    t_std = tb + lapse * (h - hb)
+    p = _layer_pressure(hb, tb, lapse, ATM_BASE_P[i], h)
     t = t_std + float(delta_t)
     rho = p / (R * t)
     a = math.sqrt(GAMMA * R * t)
     mu = 1.458e-6 * t ** 1.5 / (t + 110.4)
-    return {"altitude_m": h, "temperature_K": round(t, 3), "temperature_C": round(t - 273.15, 3),
-            "pressure_Pa": round(p, 2), "density_kg_m3": round(rho, 5), "speed_of_sound_m_s": round(a, 3),
+    return {"altitude_m": float(altitude_m), "geopotential_altitude_m": round(h, 1), "temperature_K": round(t, 3), "temperature_C": round(t - 273.15, 3),
+            "pressure_Pa": float(f"{p:.6g}"), "density_kg_m3": float(f"{rho:.6g}"), "speed_of_sound_m_s": round(a, 3),
             "dynamic_viscosity_Pa_s": mu, "kinematic_viscosity_m2_s": mu / rho}
 
 
@@ -286,4 +312,71 @@ def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 
         out.update({"battery_wh": battery_wh, "usable_fraction": usable_fraction,
                     "hover_time_min": battery_wh * usable_fraction / p_draw * 60})
     return out
+
+
+# Ракета: формула Циолковского, без потерь на тяготение и сопротивление. Rocket: ideal rocket equation, no gravity or drag losses.
+ROCKET_SOURCES = {"rocket_equation": "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/ideal-rocket-equation",
+                  "specific_impulse": "https://www.grc.nasa.gov/www/BGH/specimp.html"}
+
+
+def rocket_delta_v(isp_s: float, initial_mass_kg: float, final_mass_kg: float | None = None,
+                   propellant_kg: float | None = None, thrust_N: float | None = None, lang: str = "ru") -> dict:
+    """Ideal velocity gain Δv = Isp·g0·ln(m0/mf) for one stage; with thrust also start thrust-to-weight and burn time."""
+    lang = lang if lang in ("ru", "en") else "ru"
+    if not isp_s or isp_s <= 0:
+        raise ValueError("isp_s must be positive (specific impulse in seconds)")
+    if not initial_mass_kg or initial_mass_kg <= 0:
+        raise ValueError("initial_mass_kg must be positive (everything at lift-off, propellant included)")
+    if final_mass_kg is None and propellant_kg is None:
+        raise ValueError("give final_mass_kg (mass after burnout) or propellant_kg")
+    if final_mass_kg is None:
+        final_mass_kg = initial_mass_kg - propellant_kg
+    if not 0 < final_mass_kg < initial_mass_kg:
+        raise ValueError("final mass must be positive and less than the initial mass")
+    prop = initial_mass_kg - final_mass_kg
+    ve = isp_s * G
+    out = {"isp_s": isp_s, "exhaust_velocity_m_s": ve, "initial_mass_kg": initial_mass_kg, "final_mass_kg": final_mass_kg,
+           "propellant_kg": prop, "mass_ratio": initial_mass_kg / final_mass_kg, "propellant_fraction": prop / initial_mass_kg,
+           "delta_v_m_s": ve * math.log(initial_mass_kg / final_mass_kg), "sources": ROCKET_SOURCES,
+           "note": {"ru": "Идеальный прирост скорости одной ступени: без потерь на тяготение, сопротивление и управление. Реальная ракета набирает заметно меньше.",
+                    "en": "Ideal velocity gain of one stage: no gravity, drag or steering losses. A real rocket gains noticeably less."}[lang]}
+    if thrust_N is not None:
+        if thrust_N <= 0:
+            raise ValueError("thrust_N must be positive")
+        mdot = thrust_N / ve
+        out.update({"thrust_N": thrust_N, "thrust_to_weight_at_start": thrust_N / (initial_mass_kg * G),
+                    "thrust_to_weight_at_burnout": thrust_N / (final_mass_kg * G), "mass_flow_kg_s": mdot, "burn_time_s": prop / mdot})
+    return out
+
+
+# Нагрев в критической точке носка по Саттону и Грейвсу: q = k·sqrt(ρ/Rn)·V³, конвекция, холодная стенка, воздух Земли.
+# Stagnation-point convective heating (Sutton–Graves), cold wall, Earth air. Other sources give k from 1.63e-4 to 1.83e-4.
+SUTTON_GRAVES_K_EARTH = 1.7415e-4
+ENTRY_SOURCES = {"sutton_graves_k": "https://arxiv.org/pdf/2611.16291",
+                 "k_spread": "https://arxiv.org/pdf/2107.13513",
+                 "atmosphere": "https://www.pdas.com/atmosdef.html"}
+
+
+def entry_heating(speed_m_s: float, altitude_m: float, nose_radius_m: float, k: float = SUTTON_GRAVES_K_EARTH,
+                  lang: str = "ru") -> dict:
+    """Convective heat flux at the nose stagnation point during atmospheric entry, plus dynamic pressure and Mach.
+    altitude_m is geometric (height above sea level), up to 86 km."""
+    lang = lang if lang in ("ru", "en") else "ru"
+    if not speed_m_s or speed_m_s <= 0:
+        raise ValueError("speed_m_s must be positive")
+    if not nose_radius_m or nose_radius_m <= 0:
+        raise ValueError("nose_radius_m must be positive")
+    if not k or k <= 0:
+        raise ValueError("k must be positive")
+    a = atmosphere(altitude_m, geometric=True)
+    rho = a["density_kg_m3"]
+    q = k * math.sqrt(rho / nose_radius_m) * speed_m_s ** 3
+    return {"speed_m_s": speed_m_s, "altitude_m": altitude_m, "nose_radius_m": nose_radius_m, "k": k,
+            "density_kg_m3": rho, "mach": speed_m_s / a["speed_of_sound_m_s"],
+            "dynamic_pressure_Pa": 0.5 * rho * speed_m_s ** 2,
+            "heat_flux_W_m2": q, "heat_flux_W_cm2": q / 1e4,
+            "heat_flux_range_W_cm2": [q / k * 1.63e-4 / 1e4, q / k * 1.83e-4 / 1e4],
+            "sources": ENTRY_SOURCES,
+            "note": {"ru": "Только конвекция в критической точке носка при холодной стенке, воздух Земли. Излучение горячего газа за ударной волной не учтено — на очень больших скоростях оно добавляет заметно. Разброс — по разным значениям постоянной в литературе.",
+                     "en": "Convection at the nose stagnation point only, cold wall, Earth air. Radiation from the hot shock layer is not included — at very high speeds it adds noticeably. The range reflects different values of the constant in the literature."}[lang]}
 

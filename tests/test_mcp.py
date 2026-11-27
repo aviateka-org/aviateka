@@ -27,7 +27,7 @@ async def main():
             tools = (await s.list_tools()).tools
             names = sorted(t.name for t in tools)
             print("tools:", names)
-            assert len(names) == 21, names
+            assert len(names) == 23, names
             p = lambda n, a=None: s.call_tool(n, a or {})
             tax = payload(await p("get_taxonomy", {"lang": "en"}))
             assert tax["fidelity"][4]["name"] == "Measured"
@@ -99,6 +99,13 @@ async def main():
             assert getattr(bad, "isError", False) or getattr(bad, "is_error", False)
             q = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "evtol"}))["workflows"]}
             assert "quadcopter" in q, q
+            hi = payload(await p("atmosphere", {"altitude_m": 70000, "geometric": True}))
+            assert abs(hi["density_kg_m3"] - 8.2829e-5) / 8.2829e-5 < 2e-3 and abs(hi["temperature_K"] - 219.585) < 0.01, hi
+            rk = payload(await p("rocket_delta_v", {"isp_s": 325, "initial_mass_kg": 6.57, "final_mass_kg": 1.0}))
+            assert abs(rk["delta_v_m_s"] - 6000) < 10, rk["delta_v_m_s"]   # ERAU worked example: R = 6.57 for 6000 m/s at Isp 325 s
+            en = payload(await p("entry_heating", {"speed_m_s": 7500, "altitude_m": 70000, "nose_radius_m": 1.0}))
+            print(f"entry 7.5 km/s, 70 km, Rn 1 m: {en['heat_flux_W_cm2']:.1f} W/cm2, M {en['mach']:.1f}")
+            assert abs(en["heat_flux_W_cm2"] - 1.7415e-4 * (8.28285e-5) ** 0.5 * 7500 ** 3 / 1e4) < 0.1
             rot = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "autogyro"}))["workflows"]}
             assert rot == {"autogyro"}, rot
             gy = {t["id"] for t in payload(await p("search_tools", {"aircraft": "autogyro"}))["tools"]}
@@ -132,7 +139,7 @@ async def main():
             assert len(json.loads(body.contents[0].text)["tools"]) == len(CAT["tools"])
             pr = await s.get_prompt("plan_design", {"aircraft_type": "racer", "goal": "минимальное время круга"})
             assert "find_workflows" in pr.messages[0].content.text
-            bad = await s.call_tool("atmosphere", {"altitude_m": 50000})
+            bad = await s.call_tool("atmosphere", {"altitude_m": 90000})
             assert getattr(bad, "isError", False) or getattr(bad, "is_error", False); print("error text:", bad.content[0].text)
             print("ALL CHECKS PASSED")
 

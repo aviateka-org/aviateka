@@ -1,4 +1,9 @@
 # Журнал версий, новые сверху / changelog, newest first
+- version: 0.15.0
+  date: '2026-11-27'
+  changes:
+  - ru: 'Калькуляторы для ракет и входа в атмосферу. Стандартная атмосфера расширена с 20 до 86 км (атмосфера США 1976 года, ниже 32 км совпадает с международной): семь слоёв, сверены с таблицами на 20, 32, 50, 70 и 86 км. Высота по-прежнему геопотенциальная, как в таблицах МСА; для высоты над уровнем моря есть параметр geometric. Новые калькуляторы на странице и инструменты MCP (всего 23): «Ракета: прирост скорости» (rocket_delta_v — формула Циолковского, тяга к весу, время работы; сверено с учебным примером ERAU) и «Вход в атмосферу: нагрев носка» (entry_heating — формула Саттона и Грейвса, число Маха, скоростной напор, разброс по постоянной из разных источников). Подъёмная сила аэростата теперь считается и для стратостатов выше 20 км.'
+    en: 'Calculators for rockets and atmospheric entry. The standard atmosphere is extended from 20 to 86 km (US Standard Atmosphere 1976, equal to the international one below 32 km): seven layers, checked against tables at 20, 32, 50, 70 and 86 km. Altitude is still geopotential, as in ISA tables; a geometric parameter gives height above sea level. New page calculators and MCP tools (23 in total): «Rocket velocity gain» (rocket_delta_v — ideal rocket equation, thrust-to-weight, burn time; checked against an ERAU worked example) and «Entry: nose heating» (entry_heating — Sutton–Graves formula, Mach number, dynamic pressure, a range over the constant from different sources). Balloon lift now also works for stratospheric balloons above 20 km.'
 - version: 0.14.0
   date: '2026-11-27'
   changes:

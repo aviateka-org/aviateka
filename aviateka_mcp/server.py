@@ -70,7 +70,7 @@ INSTRUCTIONS = (
     "Start with find_workflows for a task or aircraft type, then search_tools / get_tool for details. "
     "Check list_gaps before promising that a tool exists, and list_benchmarks for expected accuracy. "
     "Statuses: active = code changed within 365 days; stale = older; unknown = date not checked. "
-    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent, buoyancy, rotor_hover. "
+    "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent, buoyancy, rotor_hover, rocket_delta_v, entry_heating. "
     "Covers flying craft of every kind: aircraft and rotorcraft, fabric craft and balloons, airships, seaplanes, WIG and hydrofoil craft, high-speed and entry vehicles, civil rockets; get_classifier shows the craft classes and how well each is covered. get_validation shows how well tools matched measurements. "
     "get_changelog lists versions and what changed; how_to_contribute says how to send corrections and calculations. "
     "Pass lang='en' for English, default is Russian."
@@ -212,9 +212,11 @@ def get_case(case_id: str = "strizh", lang: str = "ru") -> dict:
 
 
 @server.tool()
-def atmosphere(altitude_m: float, delta_t: float = 0.0) -> dict:
-    """International Standard Atmosphere 0–20 km: temperature, pressure, density, speed of sound, viscosity. delta_t shifts temperature (°C) at standard pressure."""
-    return _safe(calc.atmosphere, altitude_m, delta_t)
+def atmosphere(altitude_m: float, delta_t: float = 0.0, geometric: bool = False) -> dict:
+    """U.S. Standard Atmosphere 1976 (equal to ISA below 32 km), −500 m to 86 km: temperature, pressure, density, speed of
+    sound, viscosity. altitude_m is geopotential as in ISA tables; set geometric=True for height above sea level (matters
+    above ~20 km). delta_t shifts temperature (°C) at standard pressure."""
+    return _safe(calc.atmosphere, altitude_m, delta_t, geometric)
 
 
 @server.tool()
@@ -284,6 +286,23 @@ def rotor_hover(mass_kg: float, diameter_m: float, rotors: int = 4, fm: float = 
     Rotors are treated as separate: no coaxial or overlap correction, no frame blockage."""
     return _safe(calc.rotor_hover, mass_kg, diameter_m, rotors, fm, altitude_m, delta_t, drive_efficiency,
                  battery_wh, usable_fraction, _lang(lang))
+
+
+@server.tool()
+def rocket_delta_v(isp_s: float, initial_mass_kg: float, final_mass_kg: float | None = None,
+                   propellant_kg: float | None = None, thrust_N: float | None = None, lang: str = "ru") -> dict:
+    """Ideal velocity gain of one rocket stage: dv = Isp·g0·ln(m0/mf) (no gravity, drag or steering losses).
+    Give final_mass_kg (after burnout) or propellant_kg. With thrust_N also thrust-to-weight at start and burnout,
+    mass flow and burn time."""
+    return _safe(calc.rocket_delta_v, isp_s, initial_mass_kg, final_mass_kg, propellant_kg, thrust_N, _lang(lang))
+
+
+@server.tool()
+def entry_heating(speed_m_s: float, altitude_m: float, nose_radius_m: float, k: float = 1.7415e-4, lang: str = "ru") -> dict:
+    """Atmospheric entry: convective heat flux at the nose stagnation point by Sutton–Graves, q = k·sqrt(rho/Rn)·V³
+    (Earth air, cold wall, no shock-layer radiation), plus Mach and dynamic pressure. altitude_m is geometric, up to 86 km.
+    Returns W/cm² and a range for k from 1.63e-4 to 1.83e-4 found in the literature."""
+    return _safe(calc.entry_heating, speed_m_s, altitude_m, nose_radius_m, k, _lang(lang))
 
 
 @server.tool()

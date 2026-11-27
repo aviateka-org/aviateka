@@ -4,7 +4,7 @@ title: "Авиатека / Aviateka: open library of design tools for aircraft, 
 type: dataset
 authors:
   - name: "Aviateka contributors"
-version: "0.14.0"
+version: "0.15.0"
 date-released: "2026-11-27"
 license: CC-BY-4.0
 repository-code: "https://github.com/aviateka-org/aviateka"

@@ -1,11 +1,17 @@
 // Aviateka calculators — same formulas as mcp/calc.py
 const CALC = (() => {
   const R = 287.053, G = 9.80665, OZ = 35.27396, FT2 = 10.76391;
+  // U.S. Standard Atmosphere 1976 to 86 km, geopotential altitude — same as calc.py
+  const LAYERS = [[0, 288.15, -0.0065], [11000, 216.65, 0], [20000, 216.65, 0.001], [32000, 228.65, 0.0028],
+    [47000, 270.65, 0], [51000, 270.65, -0.0028], [71000, 214.65, -0.002]], RE = 6356766;
+  const lp = (hb, tb, L, pb, h) => L === 0 ? pb * Math.exp(-G * (h - hb) / (R * tb)) : pb * (tb / (tb + L * (h - hb))) ** (G / (R * L));
+  const PB = [101325];
+  for (let i = 1; i < LAYERS.length; i++) PB.push(lp(...LAYERS[i - 1], PB[i - 1], LAYERS[i][0]));
+  const geopot = z => RE * z / (RE + z);
   function atm(h, dT = 0) {
-    if (!(h >= -500 && h <= 20000)) throw new Error('altitude');
-    let Ts, p;
-    if (h <= 11000) { Ts = 288.15 - 0.0065 * h; p = 101325 * (Ts / 288.15) ** 5.255877; }
-    else { Ts = 216.65; p = 22632.06 * Math.exp(-G * (h - 11000) / (R * 216.65)); }
+    if (!(h >= -500 && h <= 84853)) throw new Error('altitude');
+    let i = 0; for (let k = 0; k < LAYERS.length; k++) if (h >= LAYERS[k][0]) i = k;
+    const [hb, tb, L] = LAYERS[i], Ts = tb + L * (h - hb), p = lp(hb, tb, L, PB[i], h);
     const T = Ts + dT, rho = p / (R * T), a = Math.sqrt(1.4 * R * T), mu = 1.458e-6 * T ** 1.5 / (T + 110.4);
     return { T, p, rho, a, mu, nu: mu / rho };
   }
@@ -39,7 +45,7 @@ const CALC = (() => {
   // Lighter than air: same model as calc.py buoyancy() — gas pressure equals ambient, dry air
   const RU = 8.314462618, GASES = { helium: 4.002602e-3, hydrogen: 2.01588e-3, hot_air: null };
   function lift(gas, V, tg, purity, m, h, tAmb) {
-    if (!(gas in GASES) || !(h >= -500 && h <= 20000)) throw new Error('input');
+    if (!(gas in GASES)) throw new Error('input');
     const dT = isFinite(tAmb) ? tAmb + 273.15 - atm(h).T : 0, s = atm(h, dT), rhoA = s.p / (R * s.T);
     let Tg, rhoG;
     if (gas === 'hot_air') { Tg = (isFinite(tg) ? tg : 100) + 273.15; if (!(Tg > s.T)) throw new Error('cold'); rhoG = s.p / (R * Tg); }
@@ -64,6 +70,19 @@ const CALC = (() => {
     out.tmin = wh > 0 ? wh * (usable > 0 && usable <= 1 ? usable : 1) / draw * 60 : NaN;
     return out;
   }
-  return { atm, reMach, stall, loading, froude, cav, CHUTES, chute, GASES, lift, hover };
+  // Rocket: ideal rocket equation — same as calc.py rocket_delta_v()
+  function rocket(isp, m0, mf, T) {
+    if (!(isp > 0) || !(m0 > 0) || !(mf > 0 && mf < m0)) throw new Error('input');
+    const ve = isp * G, prop = m0 - mf, out = { ve, prop, mr: m0 / mf, dv: ve * Math.log(m0 / mf) };
+    if (T > 0) { const md = T / ve; Object.assign(out, { tw0: T / (m0 * G), tw1: T / (mf * G), md, tb: prop / md }); }
+    return out;
+  }
+  // Entry heating: Sutton–Graves, Earth air, geometric altitude — same as calc.py entry_heating()
+  function entry(V, z, Rn, k = 1.7415e-4) {
+    if (!(V > 0) || !(Rn > 0)) throw new Error('input');
+    const s = atm(geopot(z)), q = k * Math.sqrt(s.rho / Rn) * V ** 3;
+    return { rho: s.rho, M: V / s.a, qdyn: 0.5 * s.rho * V * V, q, qLo: q / k * 1.63e-4, qHi: q / k * 1.83e-4 };
+  }
+  return { atm, geopot, reMach, stall, loading, froude, cav, CHUTES, chute, GASES, lift, hover, rocket, entry };
 })();
 if (typeof module !== 'undefined') module.exports = CALC;
