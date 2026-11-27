@@ -11,7 +11,7 @@ disciplines: [airfoil, aero, stability]
 map: [aero, L1]
 fidelity: [L1]
 stages: [concept]
-aircraft: [rc, uav, glider, hpa]
+aircraft: [rc, uav, glider, hpa, paraglider]
 summary:
   ru: Прежняя версия flow5, по ней больше всего уроков.
   en: The predecessor of flow5, with the largest body of tutorials.
@@ -24,3 +24,4 @@ caveat:
 sources:
 - https://sourceforge.net/projects/xflr5/
 - https://amslaurea.unibo.it/id/eprint/29062/3/ALLEGATO_1-TESI-GIACOMO-_PIERINI-Guidelines_XFLR5.pdf
+- https://stefanino-ch.github.io/lepg-py/en/expert/solveEquEqu.html

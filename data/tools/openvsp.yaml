@@ -11,7 +11,7 @@ disciplines: [geometry, aero]
 map: [geometry, L1]
 fidelity: [L1]
 stages: [concept, preliminary]
-aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, wig]
+aircraft: [transport, ga, racer, glider, rc, uav, hale, evtol, wig, hangglider]
 summary:
   ru: Параметрическая геометрия самолёта плюс вихревая решётка и панельный метод VSPAERO.
   en: Parametric aircraft geometry plus the VSPAERO vortex-lattice and panel solver.
@@ -25,3 +25,4 @@ sources:
 - https://github.com/OpenVSP/OpenVSP
 - https://www.nasa.gov/reference/openvsp-vspaero-basics
 - https://www.icas.org/icas_archive/ICAS2022/data/papers/ICAS2022_0126_paper.pdf
+- https://blog.freecad.org/2024/07/30/forged-in-freecad-avian-hang-gliders/

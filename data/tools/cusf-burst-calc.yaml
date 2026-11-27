@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: cusf-burst-calc
+name: CUSF burst calculator
+url: https://github.com/cuspaceflight/cusf-burst-calc
+org: Cambridge University Spaceflight
+last_commit: '2015-03-19'
+license: GPL-3.0
+code: JavaScript
+disciplines: [flightsim]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [balloon]
+summary:
+  ru: Сколько газа залить в шар, чтобы получить нужную скорость подъёма или высоту разрыва.
+  en: How much gas to put in a balloon for a target ascent rate or burst altitude.
+use:
+  ru: Заправка шара-зонда перед запуском.
+  en: Filling a sounding balloon before launch.
+caveat:
+  ru: Исходник 2015 года; живая копия работает на сайте SondeHub.
+  en: Source from 2015; a live copy runs on the SondeHub site.
+sources:
+- https://github.com/cuspaceflight/cusf-burst-calc
+- https://sondehub.org/calc/

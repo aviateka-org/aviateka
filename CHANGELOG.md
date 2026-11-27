@@ -4,6 +4,16 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.6.0 — 2026-11-27
+
+- Тканевые аппараты: пять новых типов — параплан, дельтаплан, парашют, змей и кайт, аэростат — и 21 новая карточка: OpenGlider, LEparagliding с lepg, SingleSkin, parabem, paraFEM, glidersim, наработки Avian для дельтапланов (HG-dev), Vortex Step Method, ASKITE, mem4py, KiteModels.jl, AWEbox, LAKSA, KiteModeler NASA, ChuteMaker, openchute, RocketPy, preCICE, Tawhiri, ASTRA и калькулятор газа CUSF.
+- OpenVSP, XFLR5 и OpenFOAM отмечены для новых типов. Пять цепочек (параплан, дельтаплан, парашют, кайт, шар-зонд), пять пустых ниш (модель полёта дельтаплана, связка «ткань + стропы» для парафойла, раскрытие купола, вингсьют, оболочка теплового аэростата) и восемь терминов.
+- Проверено не всё: условия лицензии ядра lep и дата и лицензия SingleSkin и HG-dev не сверены — страница автора lep, Codeberg и GitLab для проверки были закрыты. У openchute нет файла лицензии.
+
+- Fabric craft: five new types — paraglider, hang glider, parachute, kite, balloon — and 21 new cards: OpenGlider, LEparagliding with lepg, SingleSkin, parabem, paraFEM, glidersim, Avian's hang-glider work (HG-dev), Vortex Step Method, ASKITE, mem4py, KiteModels.jl, AWEbox, LAKSA, NASA KiteModeler, ChuteMaker, openchute, RocketPy, preCICE, Tawhiri, ASTRA and the CUSF gas calculator.
+- OpenVSP, XFLR5 and OpenFOAM are tagged for the new types. Five workflows (paraglider, hang glider, parachute, kite, sounding balloon), five gaps (hang-glider flight model, a fabric + lines loop for parafoils, canopy inflation, wingsuit, hot-air envelope) and eight terms.
+- Not everything is verified: the licence of the lep core and the date and licence of SingleSkin and HG-dev are unchecked — the lep author page, Codeberg and GitLab were closed to our check. openchute has no licence file.
+
 ## 0.5.7 — 2026-11-27
 
 - Версия поднимается сама: новая команда scripts/bump.py пишет запись в журнал и ставит номер во все файлы, а робот свежести вызывает её, когда меняются карточки. После слияния его правок новая версия сама уходит на PyPI и в каталог MCP.

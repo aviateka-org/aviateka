@@ -1,8 +1,8 @@
 {
-  "title": "Авиатека / Aviateka: open library of design tools for aircraft, WIG craft and hydrofoil craft",
+  "title": "Авиатека / Aviateka: open library of design tools for aircraft, fabric craft (paragliders, hang gliders, parachutes, kites, balloons), WIG craft and hydrofoil craft",
   "upload_type": "dataset",
-  "description": "Curated bilingual (RU/EN) catalog of open design tools for aircraft, WIG craft and hydrofoil craft, with workflows, gaps, a validation matrix, calculators and an MCP server.",
+  "description": "Curated bilingual (RU/EN) catalog of open design tools for aircraft, fabric craft (paragliders, hang gliders, parachutes, kites, balloons), WIG craft and hydrofoil craft, with workflows, gaps, a validation matrix, calculators and an MCP server.",
   "creators": [{"name": "Aviateka contributors"}],
   "license": "cc-by-4.0",
-  "keywords": ["aircraft design", "wing in ground effect", "ekranoplan", "hydrofoil", "vortex lattice", "MCP"]
+  "keywords": ["aircraft design", "wing in ground effect", "ekranoplan", "hydrofoil", "paraglider", "parachute", "kite", "vortex lattice", "MCP"]
 }

@@ -4,9 +4,9 @@
 
 [![PyPI](https://img.shields.io/pypi/v/aviateka-mcp?label=PyPI)](https://pypi.org/project/aviateka-mcp/) [![Проверка / Check](https://github.com/aviateka-org/aviateka/actions/workflows/check.yml/badge.svg)](https://github.com/aviateka-org/aviateka/actions/workflows/check.yml) [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-lightgrey)](LICENSE-DATA.md) [![Code: MIT](https://img.shields.io/badge/code-MIT-lightgrey)](LICENSE)
 
-**Открытая библиотека инструментов для проектирования летательных аппаратов, экранопланов и судов на подводных крыльях.** Для людей — страница с картой, для ИИ-агентов — MCP-сервер. Данные на русском и английском.
+**Открытая библиотека инструментов для проектирования летательных аппаратов — от самолётов до парапланов, парашютов, змеев и аэростатов, — экранопланов и судов на подводных крыльях.** Для людей — страница с картой, для ИИ-агентов — MCP-сервер. Данные на русском и английском.
 
-**An open library of design tools for aircraft, WIG craft and hydrofoil craft.** A chart page for people and an MCP server for AI agents. Data in Russian and English.
+**An open library of design tools for aircraft — from airplanes to paragliders, parachutes, kites and balloons — WIG craft and hydrofoil craft.** A chart page for people and an MCP server for AI agents. Data in Russian and English.
 
 - О проекте / About: <https://aviateka-org.github.io/aviateka/>
 - Каталог / Catalog: <https://aviateka-org.github.io/aviateka/catalog.html>
@@ -19,7 +19,7 @@
 
 | Раздел | Section | Где / Where |
 |---|---|---|
-| Карточки 65 открытых программ: аэродинамика, профили, винты, устойчивость, моделирование полёта, конструкция, аэроупругость, оптимизация, гидродинамика | Cards for 65 open tools across aero, airfoils, propulsion, stability, flight simulation, structures, aeroelasticity, MDO, hydrodynamics | `data/tools/` |
+| Карточки 86 открытых программ: аэродинамика, профили, винты, устойчивость, моделирование полёта, конструкция, аэроупругость, оптимизация, гидродинамика, раскрой ткани | Cards for 86 open tools across aero, airfoils, propulsion, stability, flight simulation, structures, aeroelasticity, MDO, hydrodynamics, fabric patterns | `data/tools/` |
 | Рабочие цепочки: с чего начать и чем проверить | Workflows: where to start and how to check | `data/workflows.yaml` |
 | Таблица сверки: насколько программы совпали с опытом | Validation matrix: how well codes matched measurements | `data/validation.yaml` |
 | Пустые ниши с разметкой «окно» и «запрещено» | Gaps marked "window" or "forbidden" | `data/gaps.yaml` |

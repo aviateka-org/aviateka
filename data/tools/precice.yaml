@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: precice
+name: preCICE
+url: https://github.com/precice/precice
+org: preCICE (U. Stuttgart, TU Munich)
+last_commit: '2026-11-26'
+license: LGPL-3.0
+code: C++
+disciplines: [aeroelastic]
+map: [aeroelastic, L3]
+fidelity: [L3]
+stages: [detail]
+aircraft: [parachute]
+summary:
+  ru: 'Библиотека связи решателей: течение и конструкция считаются разными программами и обмениваются данными на каждом шаге.'
+  en: 'A coupling library: flow and structure run in separate codes and exchange data every step.'
+use:
+  ru: 'Раскрытие купола парашюта: решатель течения плюс CalculiX для ткани.'
+  en: 'Parachute inflation: a flow solver plus CalculiX for the fabric.'
+caveat:
+  ru: Сама ничего не считает — только связывает решатели.
+  en: Computes nothing by itself; it only couples solvers.
+sources:
+- https://github.com/precice/precice
+- https://AIA.Springeropen.com/counter/pdf/10.1186/s42774-023-00162-0.pdf

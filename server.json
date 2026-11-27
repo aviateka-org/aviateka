@@ -1,17 +1,17 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.aviateka-org/aviateka",
-  "description": "Open catalog of aircraft, WIG and hydrofoil design tools (RU/EN) with calculators",
+  "description": "Open catalog of design tools for aircraft, fabric craft, WIG and hydrofoils (RU/EN) with calculators",
   "repository": {
     "url": "https://github.com/aviateka-org/aviateka",
     "source": "github"
   },
-  "version": "0.5.7",
+  "version": "0.6.0",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "aviateka-mcp",
-      "version": "0.5.7",
+      "version": "0.6.0",
       "transport": {
         "type": "stdio"
       }

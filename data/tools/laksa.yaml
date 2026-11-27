@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: laksa
+name: LAKSA
+url: https://github.com/UC3M-AWE/laksa
+org: Universidad Carlos III de Madrid
+last_commit: '2026-02-07'
+license: UC3M, academic use only
+code: MATLAB
+disciplines: [flightsim]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [kite]
+summary:
+  ru: Лагранжевы симуляторы змеев на одной, двух и четырёх стропах и привязных аппаратов для ветроэнергетики и буксировки.
+  en: Lagrangian simulators of one-, two- and four-line kites and tethered vehicles for wind energy and traction.
+use:
+  ru: Динамика и устойчивость кайта на стропах.
+  en: Dynamics and stability of a kite on lines.
+caveat:
+  ru: Только для учебных и исследовательских целей; коммерческое использование запрещено.
+  en: Academic and research use only; commercial use is not allowed.
+sources:
+- https://github.com/UC3M-AWE/laksa
+- https://doi.org/10.1088/1742-6596/1037/6/062018

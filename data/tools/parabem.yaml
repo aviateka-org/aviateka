@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: parabem
+name: parabem
+url: https://github.com/booya-at/parabem
+org: booya.at
+last_commit: '2026-02-15'
+license: GPL-3.0
+code: C++, Python
+disciplines: [aero]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [paraglider, kite]
+summary:
+  ru: Двумерный и трёхмерный панельный метод для потенциального течения; через него OpenGlider считает крыло.
+  en: 2D and 3D panel method for potential flow; OpenGlider uses it for quick 3D wing analysis.
+use:
+  ru: Быстрая аэродинамика купола параплана или кайта по геометрии из OpenGlider.
+  en: Quick aerodynamics of a paraglider or kite canopy from OpenGlider geometry.
+caveat:
+  ru: 'Потенциальная теория: срыв и вязкость не учитывает.'
+  en: 'Potential flow: no separation, no viscosity.'
+sources:
+- https://github.com/booya-at/parabem
+- https://github.com/booya-at/OpenGlider

@@ -71,7 +71,7 @@ INSTRUCTIONS = (
     "Check list_gaps before promising that a tool exists, and list_benchmarks for expected accuracy. "
     "Statuses: active = code changed within 365 days; stale = older; unknown = date not checked. "
     "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation. "
-    "Covers aircraft, WIG craft (ekranoplans) and hydrofoil craft. get_validation shows how well tools matched measurements. "
+    "Covers aircraft, fabric craft (paragliders, hang gliders, parachutes, kites, balloons), WIG craft (ekranoplans) and hydrofoil craft. get_validation shows how well tools matched measurements. "
     "get_changelog lists versions and what changed; how_to_contribute says how to send corrections and calculations. "
     "Pass lang='en' for English, default is Russian."
 )
@@ -101,7 +101,7 @@ def search_tools(query: str = "", discipline: str = "", aircraft: str = "", stag
                  include_stale: bool = True, lang: str = "ru", limit: int = 20) -> dict:
     """Search open aircraft-design tools. query: free text in Russian or English (e.g. 'флаттер', 'propeller', 'low Reynolds').
     Filters take taxonomy ids: discipline (aero, airfoil, cfd, propulsion, stability, flightsim, sysid, structures, aeroelastic, mdo, geometry, hydro),
-    aircraft (transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil), stage (concept, preliminary, detail, test),
+    aircraft (transport, ga, racer, glider, rc, uav, hale, evtol, rotorcraft, hpa, flapping, wig, hydrofoil, paraglider, hangglider, parachute, kite, balloon), stage (concept, preliminary, detail, test),
     fidelity (L0, L1, L2, L3, EXP). Active tools come first."""
     lang = _lang(lang)
     words = [w for w in re.split(r"\W+", query.lower()) if w]

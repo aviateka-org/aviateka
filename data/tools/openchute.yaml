@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openchute
+name: openchute
+url: https://github.com/ElvinC/openchute
+org: ElvinC
+last_commit: '2024-11-27'
+license: none
+code: Rust
+disciplines: [geometry]
+map: [geometry, L0]
+fidelity: [L0]
+stages: [detail]
+aircraft: [parachute]
+summary:
+  ru: 'Выкройки осесимметричных куполов: диск-щель-лента, тороидальный, полусферический, крестообразный, ленточно-парусный; площадь купола для оценки сопротивления; PDF и DXF.'
+  en: 'Patterns for axisymmetric canopies: disk-gap-band, toroidal, hemispherical, cross and ringsail; canopy area for drag estimates; PDF and DXF.'
+use:
+  ru: Раскрой купола сложной формы под лазерную резку.
+  en: Cutting complex canopies, laser-ready.
+caveat:
+  ru: Работа в процессе. Файла лицензии в репозитории нет — по умолчанию все права у автора.
+  en: Work in progress. The repository has no licence file, so by default all rights stay with the author.
+sources:
+- https://github.com/ElvinC/openchute

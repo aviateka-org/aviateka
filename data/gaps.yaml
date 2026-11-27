@@ -106,12 +106,79 @@ gaps:
     en: Cavities and air drawn from the surface are two-phase; potential theory cannot describe them. Full CFD or tests are needed.
   sources:
   - https://www.ensta.fr/en/accueil/actualites/how-can-performance-hydrofoils-be-improved
+- id: hangglider-dynamics
+  mark: window
+  title:
+    ru: Открытая модель полёта дельтаплана с балансирным управлением
+    en: Open flight-dynamics model of a weight-shift hang glider
+  near:
+    ru: 'Нелинейные уравнения дельтаплана опубликованы и сверены с натурными замерами крыла (Aeronautical Journal); glidersim уже принимает перенос веса у параплана.'
+    en: 'Nonlinear hang-glider equations are published and checked against full-scale wing data (Aeronautical Journal); glidersim already takes weight shift for paragliders.'
+  why:
+    ru: Уравнения и каркас программы есть, открытой сборки под дельтаплан нет.
+    en: Equations and a code framework exist; no open build for hang gliders.
+  sources:
+  - https://cambridge.org/core/journals/aeronautical-journal/article/modelling-the-flight-dynamics-of-the-hang-glider/96DDBDBED3E0282E48353E453D79B17C
+  - https://github.com/pfheatwole/glidersim
+- id: ram-air-design-loop
+  mark: window
+  title:
+    ru: 'Открытая связка «аэродинамика + ткань + стропы» для параплана и парафойла'
+    en: "Open aero + fabric + lines loop for paragliders and parafoils"
+  near:
+    ru: 'OpenGlider, parabem и paraFEM по отдельности; mem4py с OpenFOAM для воздухозаборного кайта; ASKITE — готовая связка, но только для кайтов с надувной кромкой.'
+    en: 'OpenGlider, parabem and paraFEM separately; mem4py with OpenFOAM for a ram-air kite; ASKITE is an assembled loop, but only for leading-edge inflatable kites.'
+  why:
+    ru: Все звенья есть, собранной открытой цепочки для воздухозаборного крыла нет.
+    en: All links exist; no assembled open chain for a ram-air wing.
+  sources:
+  - https://github.com/booya-at/OpenGlider
+  - https://github.com/awegroup/ASKITE
+- id: canopy-inflation
+  mark: forbidden
+  title:
+    ru: Раскрытие купола парашюта в быстрых методах
+    en: Parachute canopy inflation in fast methods
+  near:
+    ru: 'Установившийся спуск — простые модели жёсткого купола (RocketPy); раскрытие — OpenFOAM или preCICE с моделью ткани.'
+    en: 'Steady descent — simple rigid-canopy models (RocketPy); inflation — OpenFOAM or preCICE with a fabric model.'
+  why:
+    ru: При раскрытии купол сильно и нелинейно меняет форму, поток отрывается и закручивается. Быстрые методы этого не описывают; остаются опытные формулы или полный расчёт с тканью.
+    en: During inflation the canopy deforms strongly and nonlinearly and the flow separates. Fast methods cannot describe it; only empirical formulas or full fluid-structure runs remain.
+  sources:
+  - https://core.ac.uk/download/237678621.pdf
+- id: wingsuit
+  mark: window
+  title:
+    ru: Открытый симулятор вингсьюта
+    en: Open wingsuit simulator
+  near:
+    ru: Диссертации по динамике и устойчивости вингсьюта (Georgia Tech); закрытые игровые симуляторы.
+    en: Theses on wingsuit dynamics and stability (Georgia Tech); closed game simulators.
+  why:
+    ru: Форма костюма зависит от позы пилота; открытой модели мы не нашли.
+    en: Suit shape depends on the pilot's posture; we found no open model.
+  sources:
+  - https://repository.gatech.edu/entities/publication/c8bb2741-40f0-4851-927e-d8e92fab2f59
+- id: hot-air-envelope
+  mark: window
+  title:
+    ru: Открытый расчёт оболочки теплового аэростата и раскроя её клиньев
+    en: Open shape and gore-pattern design for hot-air balloon envelopes
+  near:
+    ru: Опубликованные методы развёртки панелей оболочки (Брно); развёртка ткани в FreeCAD для парусов дельтапланов.
+    en: Published flattening methods for envelope panels (Brno); fabric flattening in FreeCAD for hang-glider sails.
+  why:
+    ru: Производителей мало, а нужные программы немногочисленны и дороги; открытой мы не нашли.
+    en: Makers are few and the useful tools are few and expensive; we found no open one.
+  sources:
+  - https://dspace5old.zcu.cz/bitstream/11025/10628/1/Kubicek.pdf
 out_of_scope:
 - ru: Глиссеры, катамараны и суда на воздушной подушке — только как разбег экраноплана; отдельно не искали.
   en: Planing boats, catamarans and hovercraft — only as a WIG take-off run; not searched separately.
-- ru: Аэростаты и дирижабли — в каталоге нет, не искали.
-  en: Balloons and airships — not covered, not searched.
-- ru: Ракеты — в каталоге нет, не искали.
-  en: Rockets — not covered, not searched.
+- ru: 'Аэростаты — только шары-зонды и стратостаты: заправка, полёт, спуск. Дирижабли не искали.'
+  en: 'Balloons — only sounding and stratospheric balloons: fill, flight, descent. Airships not searched.'
+- ru: Ракеты — только спуск груза на парашюте (RocketPy); сами ракеты не искали.
+  en: Rockets — only payload descent under a parachute (RocketPy); rockets themselves not searched.
 - ru: 'Вертолёты покрыты частично: только программы винтов и вихревых частиц.'
   en: 'Helicopters are covered only partly: rotor and vortex-particle codes.'

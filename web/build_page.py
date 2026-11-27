@@ -42,8 +42,8 @@ landing = landing.replace("</head>", static_pages.head_extra(
     static_pages.dataset_jsonld(cat)) + "</head>", 1)
 catalog = catalog.replace("</head>", static_pages.head_extra(
     cat, "catalog", "Каталог / Catalog | Авиатека",
-    "Карта открытых инструментов проектирования: самолёты, экранопланы, суда на подводных крыльях. "
-    "Chart of open design tools: aircraft, WIG craft, hydrofoils.", "catalog.html") + "</head>", 1)
+    "Карта открытых инструментов проектирования: самолёты, тканевые аппараты, экранопланы, суда на подводных крыльях. "
+    "Chart of open design tools: aircraft, fabric craft, WIG craft, hydrofoils.", "catalog.html") + "</head>", 1)
 plain = ('<nav class="wrap" style="padding-top:12px;font-size:15px">'
          '<a href="tools/index.html">Все инструменты списком / All tools as a list</a> · '
          '<a href="data.json">data.json</a> · <a href="llms.txt">llms.txt</a> · '

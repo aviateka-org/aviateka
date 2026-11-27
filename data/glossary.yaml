@@ -269,3 +269,69 @@
     ru: 'У подводных крыльев обычно раньше флаттера наступает именно дивергенция: вода в ~800 раз плотнее воздуха.'
     en: 'For hydrofoils divergence usually comes before flutter: water is ~800 times denser than air.'
   search: {}
+- id: ram-air
+  term:
+    ru: Воздухозаборное крыло (парафойл)
+    en: Ram-air wing (parafoil)
+  definition:
+    ru: Двухоболочковое тканевое крыло, которое держит форму за счёт набегающего воздуха, входящего в ячейки через передние отверстия.
+    en: A double-skin fabric wing that holds its shape with air rammed into the cells through front openings.
+  search:
+    zh: 翼伞
+    ja: パラフォイル
+- id: ballooning
+  term:
+    ru: Баллонирование ячеек
+    en: Cell ballooning
+  definition:
+    ru: Выпучивание ткани между нервюрами под давлением; меняет профиль, поэтому выкройку делают с припуском.
+    en: The fabric bulges between ribs under pressure; it changes the section, so patterns carry extra width.
+  search: {}
+- id: calage
+  term:
+    ru: Калаж
+    en: Calage
+  definition:
+    ru: Положение точки подвеса пилота относительно хорды купола; задаёт угол атаки и скорость параплана.
+    en: Where the pilot hangs relative to the canopy chord; it sets the paraglider's angle of attack and speed.
+  search: {}
+- id: apparent-mass
+  term:
+    ru: Присоединённая масса
+    en: Apparent mass
+  definition:
+    ru: Воздух, который купол разгоняет вместе с собой; у лёгких объёмных крыльев вроде парафойла заметно меняет динамику.
+    en: The air a canopy accelerates with it; for light, bulky wings such as parafoils it noticeably changes the dynamics.
+  search: {}
+- id: weight-shift
+  term:
+    ru: Балансирное управление
+    en: Weight-shift control
+  definition:
+    ru: Пилот смещает центр масс относительно крыла; так управляют дельтапланом и отчасти парапланом.
+    en: The pilot moves the centre of gravity relative to the wing; hang gliders and partly paragliders are flown this way.
+  search: {}
+- id: gore
+  term:
+    ru: Клин купола
+    en: Gore
+  definition:
+    ru: Одна из одинаковых выкроек, из которых сшит купол парашюта или оболочка аэростата.
+    en: One of the identical panels sewn together into a parachute canopy or balloon envelope.
+  search: {}
+- id: lei-kite
+  term:
+    ru: Кайт с надувной передней кромкой
+    en: Leading-edge inflatable (LEI) kite
+  definition:
+    ru: Однооболочковый кайт, форму которому дают надувная передняя кромка и распорки; под ней поток отрывается, поэтому невязких методов мало.
+    en: A single-skin kite shaped by an inflated leading edge and struts; the flow separates under it, so inviscid methods are not enough.
+  search: {}
+- id: burst-altitude
+  term:
+    ru: Высота разрыва
+    en: Burst altitude
+  definition:
+    ru: Высота, на которой оболочка шара-зонда растягивается до предела и лопается; дальше груз спускается на парашюте.
+    en: The height at which a sounding balloon stretches to its limit and bursts; the payload then descends under a parachute.
+  search: {}

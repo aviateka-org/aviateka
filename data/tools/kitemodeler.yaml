@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: kitemodeler
+name: KiteModeler
+url: https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/kitemodeler
+org: NASA Glenn (T. Benson)
+code: Java
+status: freeware
+disciplines: [aero, stability]
+map: [aero, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [kite]
+summary:
+  ru: 'Учебная программа NASA: выбрать тип змея, размеры и материалы, получить устойчивость и высоту полёта.'
+  en: 'NASA''s teaching program: choose a kite type, size and materials, get stability and flying height.'
+use:
+  ru: Первое знакомство с силами на змее; занятия с детьми.
+  en: A first look at kite forces; classes with children.
+caveat:
+  ru: Учебный уровень; старые апплеты NASA в современных браузерах работают не везде.
+  en: Teaching level; old NASA applets do not run everywhere in modern browsers.
+sources:
+- https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/kitemodeler
+- https://www.grc.nasa.gov/WWW/K-12/airplane/kiteprog.html

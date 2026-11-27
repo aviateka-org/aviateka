@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: hg-dev
+name: HG-dev (Avian)
+url: https://gitlab.com/HG-dev
+org: Avian Hang Gliders (T. Swait), J. Todd
+code: Python, FreeCAD macros, Modelica
+status: unknown
+disciplines: [geometry, aero, flightsim]
+map: [geometry, L1]
+fidelity: [L1]
+stages: [concept, preliminary, detail]
+aircraft: [hangglider]
+summary:
+  ru: 'Открытые наработки британского производителя дельтапланов: макросы FreeCAD разворачивают парус в плоские панели DXF для раскроя, тетради с API OpenVSP, модель каркаса в OpenModelica.'
+  en: 'Open work by a British hang-glider maker: FreeCAD macros flatten the sail into DXF panels for cutting, notebooks driving the OpenVSP API, a frame model in OpenModelica.'
+use:
+  ru: Парус дельтаплана от параметров до раскроя; аэродинамика через OpenVSP.
+  en: A hang-glider sail from parameters to cutting patterns; aerodynamics through OpenVSP.
+caveat:
+  ru: 'Это набор макросов и тетрадей, а не готовая программа. GitLab для нашей проверки закрыт: дата и лицензия не сверены.'
+  en: 'A set of macros and notebooks, not a finished program. GitLab was not reachable for our check: date and licence not verified.'
+sources:
+- https://gitlab.com/HG-dev
+- https://blog.freecad.org/2024/07/30/forged-in-freecad-avian-hang-gliders/
+- https://ushawks.org/forum/viewtopic.php?p=34658
+- https://openmodelica.org/forum/default-topic/3047-hang-glider-model.html

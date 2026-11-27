@@ -155,3 +155,23 @@ aircraft:
   name:
     ru: Судно на подводных крыльях
     en: Hydrofoil craft
+- id: paraglider
+  name:
+    ru: Параплан и парамотор
+    en: Paraglider & paramotor
+- id: hangglider
+  name:
+    ru: Дельтаплан и мотодельтаплан
+    en: Hang glider & trike
+- id: parachute
+  name:
+    ru: Парашют и парафойл
+    en: Parachute & parafoil
+- id: kite
+  name:
+    ru: Воздушный змей, кайт, энергетический змей
+    en: Kite & airborne wind energy
+- id: balloon
+  name:
+    ru: Аэростат и стратостат
+    en: Balloon & stratospheric balloon

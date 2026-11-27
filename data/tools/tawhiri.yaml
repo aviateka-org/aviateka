@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: tawhiri
+name: Tawhiri
+url: https://github.com/cuspaceflight/tawhiri
+org: Cambridge University Spaceflight
+last_commit: '2021-06-29'
+license: GPL-3.0
+code: Python, Cython
+disciplines: [flightsim]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [concept, test]
+aircraft: [balloon, parachute]
+summary:
+  ru: 'Прогноз полёта шара-зонда по ветрам GFS: подъём, разрыв или дрейф на высоте, спуск на парашюте, место посадки.'
+  en: 'Sounding-balloon flight prediction from GFS winds: ascent, burst or float, parachute descent and landing point.'
+use:
+  ru: Где сядет зонд; на нём работает публичный предсказатель SondeHub.
+  en: Where the payload lands; the public SondeHub predictor runs on it.
+caveat:
+  ru: Основная ветка не менялась с 2021 года. Сервер SondeHub — только для некоммерческого использования.
+  en: The main branch has not changed since 2021. The SondeHub server is for non-commercial use only.
+sources:
+- https://github.com/cuspaceflight/tawhiri
+- https://tawhiri.readthedocs.io/
+- https://predict.sondehub.org/

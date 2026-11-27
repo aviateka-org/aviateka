@@ -397,3 +397,156 @@
   check:
     ru: Число кавитации на максимальной скорости больше −Cp min профиля (калькулятор ниже); скорость дивергенции выше максимальной.
     en: Cavitation number at top speed exceeds the section's −Cp min (calculator below); divergence speed above top speed.
+- id: paraglider
+  aircraft: [paraglider]
+  stage: preliminary
+  title:
+    ru: 'Параплан: форма, стропы, раскрой, поведение в полёте'
+    en: 'Paraglider: shape, lines, patterns, flight behaviour'
+  goal:
+    ru: Купол с выкройками и длинами строп, его поляра, равновесие и динамика в полёте, усилия в стропах.
+    en: A canopy with patterns and line lengths, its polar, trim and flight dynamics, and line forces.
+  steps:
+  - tool: openglider
+    what:
+      ru: Форма, дуга, нервюры, стропы, выкройки панелей
+      en: Planform, arc, ribs, lines, panel patterns
+  - tool: leparagliding
+    what:
+      ru: 'Второй путь к той же цели: lep строит крыло, стропы и калаж по таблице параметров'
+      en: 'A second route: lep builds the wing, lines and calage from a parameter table'
+  - tool: xflr5
+    what:
+      ru: Поляры профилей и купола для расчёта равновесия
+      en: Section and canopy polars for the trim calculation
+  - tool: parabem
+    what:
+      ru: Панельный метод по геометрии из OpenGlider
+      en: Panel method on OpenGlider geometry
+  - tool: glidersim
+    what:
+      ru: Динамика полёта, клеванты и акселератор
+      en: Flight dynamics, brakes and speed bar
+  - tool: parafem
+    what:
+      ru: Усилия в стропах и форма надутого купола
+      en: Line forces and inflated canopy shape
+  check:
+    ru: Длины строп из выкройки дают тот же калаж, что в расчёте равновесия; скорость и качество модели в пределах паспорта похожего серийного крыла.
+    en: Line lengths from the patterns give the same calage as the trim calculation; model speed and glide ratio within the data sheet of a similar production wing.
+- id: hangglider
+  aircraft: [hangglider]
+  stage: preliminary
+  title:
+    ru: 'Дельтаплан: аэродинамика, парус, каркас'
+    en: 'Hang glider: aerodynamics, sail, frame'
+  goal:
+    ru: Крыло дельтаплана в OpenVSP, парус в плоских панелях для раскроя и подвижность каркаса.
+    en: A hang-glider wing in OpenVSP, the sail as flat cutting panels and frame kinematics.
+  steps:
+  - tool: openvsp
+    what:
+      ru: Крыло и законцовки в VSPAERO
+      en: Wing and winglets in VSPAERO
+  - tool: hg-dev
+    what:
+      ru: Макросы FreeCAD разворачивают парус в панели DXF; модель каркаса в OpenModelica
+      en: FreeCAD macros flatten the sail into DXF panels; frame model in OpenModelica
+  check:
+    ru: Площадь и крутка паруса, собранного из выкройки, совпадают с моделью OpenVSP.
+    en: Area and twist of the sail assembled from the patterns match the OpenVSP model.
+- id: parachute
+  aircraft: [parachute]
+  stage: detail
+  title:
+    ru: 'Парашют: купол, выкройка, скорость снижения, раскрытие'
+    en: 'Parachute: canopy, pattern, descent rate, inflation'
+  goal:
+    ru: Купол нужной площади с выкройкой, скорость снижения и снос, проверка раскрытия.
+    en: A canopy of the right area with its pattern, descent rate and drift, and an inflation check.
+  steps:
+  - tool: chutemaker
+    what:
+      ru: Выкройка клиньев сферического или тороидального купола
+      en: Gore pattern for a spherical or toroidal canopy
+  - tool: openchute
+    what:
+      ru: Купола сложнее — диск-щель-лента, ленточно-парусный; площадь для сопротивления
+      en: More complex canopies — disk-gap-band, ringsail; area for drag
+  - tool: rocketpy
+    what:
+      ru: Спуск груза на парашюте с ветром
+      en: Payload descent under the canopy with wind
+  - tool: openfoam
+    what:
+      ru: Купол в потоке вместе с моделью ткани
+      en: The canopy in the flow together with a cloth model
+  - tool: precice
+    what:
+      ru: Связь решателя течения и решателя ткани для раскрытия
+      en: Coupling a flow solver and a fabric solver for inflation
+  check:
+    ru: 'Скорость снижения в RocketPy совпадает с формулой V = √(2mg / (ρ·Cd·S)) при Cd выбранного типа купола; площадь S — из выкройки.'
+    en: 'Descent rate in RocketPy matches V = √(2mg / (ρ·Cd·S)) with the Cd of the chosen canopy type; area S comes from the pattern.'
+- id: kite
+  aircraft: [kite]
+  stage: preliminary
+  title:
+    ru: 'Кайт и энергетический змей: аэродинамика, форма под нагрузкой, полёт на тросе'
+    en: 'Kite and energy kite: aerodynamics, loaded shape, tethered flight'
+  goal:
+    ru: Нагрузки на мягкое крыло, его деформация, полёт на тросе и выработка энергии.
+    en: Loads on the soft wing, its deformation, tethered flight and energy yield.
+  steps:
+  - tool: openglider
+    what:
+      ru: Геометрия купола и уздечки
+      en: Canopy and bridle geometry
+  - tool: vsm
+    what:
+      ru: Нагрузки по размаху; проекты SurfPlan через SurfplanAdapter
+      en: Spanwise loads; SurfPlan designs through SurfplanAdapter
+  - tool: askite
+    what:
+      ru: Форма кайта под нагрузкой, уздечка
+      en: Kite shape under load, bridle
+  - tool: kitemodels-jl
+    what:
+      ru: Полёт на тросе, турбулентный ветер
+      en: Tethered flight, turbulent wind
+  - tool: awebox
+    what:
+      ru: Лучшая траектория и мощность
+      en: Optimal trajectory and power
+  check:
+    ru: Подъёмная сила из VSM сверена с трубой или RANS для похожего кайта (у группы TU Delft есть данные кайта V3).
+    en: VSM lift checked against wind-tunnel or RANS data for a similar kite (the TU Delft group publishes V3 kite data).
+- id: balloon
+  aircraft: [balloon]
+  stage: concept
+  title:
+    ru: 'Шар-зонд: заправка, полёт, спуск, место посадки'
+    en: 'Sounding balloon: fill, flight, descent, landing point'
+  goal:
+    ru: Сколько газа заправить, где шар лопнет и где сядет груз на парашюте.
+    en: How much gas to fill, where the balloon bursts and where the payload lands under its parachute.
+  steps:
+  - tool: cusf-burst-calc
+    what:
+      ru: Газ на нужную скорость подъёма или высоту разрыва
+      en: Gas for a target ascent rate or burst altitude
+  - tool: tawhiri
+    what:
+      ru: Прогноз полёта по ветрам GFS
+      en: Flight prediction from GFS winds
+  - tool: astra
+    what:
+      ru: Разброс места посадки методом Монте-Карло
+      en: Monte Carlo landing dispersion
+  - tool: chutemaker
+    what:
+      ru: Парашют для груза
+      en: A parachute for the payload
+  check:
+    ru: Высота разрыва и скорость подъёма из калькулятора совпадают с прогнозом; точка посадки Tawhiri лежит внутри облака ASTRA.
+    en: Burst altitude and ascent rate from the calculator match the prediction; the Tawhiri landing point lies inside the ASTRA cloud.

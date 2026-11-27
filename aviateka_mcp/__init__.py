@@ -1,1 +1,1 @@
-"""Авиатека / Aviateka: open catalog of aircraft, WIG and hydrofoil design tools, with an MCP server."""
+"""Авиатека / Aviateka: open catalog of design tools for aircraft, fabric craft, WIG and hydrofoils, with an MCP server."""

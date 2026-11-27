@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: askite
+name: ASKITE
+url: https://github.com/awegroup/ASKITE
+org: TU Delft AWE group
+last_commit: '2026-06-05'
+license: MIT
+code: Python
+disciplines: [aeroelastic, structures, aero]
+map: [aeroelastic, L2]
+fidelity: [L2]
+stages: [preliminary, detail]
+aircraft: [kite]
+summary:
+  ru: 'Совместный расчёт аэродинамики и конструкции кайта: Vortex Step Method плюс модель частиц и пружин или МКЭ с надувными балками (kite_fem).'
+  en: 'Coupled aero-structural kite simulation: Vortex Step Method plus a particle-spring model or FEM with inflatable beams (kite_fem).'
+use:
+  ru: Форма кайта под нагрузкой, уздечка, деформация; пример — кайт TU Delft V3.
+  en: Kite shape under load, bridle and deformation; the TU Delft V3 kite is the example.
+sources:
+- https://github.com/awegroup/ASKITE
+- https://github.com/awegroup/kite_fem
+- https://github.com/awegroup/Particle_System_Simulator
+- https://doi.org/10.3390/en16073061

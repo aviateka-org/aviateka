@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: kitemodels-jl
+name: KiteModels.jl
+url: https://github.com/OpenSourceAWE/KiteModels.jl
+org: U. Fechner, OpenSourceAWE
+last_commit: '2026-10-29'
+license: MIT
+code: Julia
+disciplines: [flightsim]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [kite]
+summary:
+  ru: Модели кайта и троса для энергетических змеев, с турбулентным ветром.
+  en: Kite and tether models for kite power systems, with turbulent wind.
+use:
+  ru: Полёт кайта на тросе, цикл выработки энергии, отладка автомата.
+  en: Tethered kite flight, the power cycle, control development.
+sources:
+- https://github.com/OpenSourceAWE/KiteModels.jl
+- https://opensourceawe.github.io/KiteModels.jl/dev/

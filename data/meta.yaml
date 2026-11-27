@@ -4,17 +4,17 @@ name:
   ru: Авиатека
   en: Aviateka
 tagline:
-  ru: Открытые инструменты проектирования летательных аппаратов, экранопланов и судов на подводных крыльях
-  en: Open tools for designing aircraft, WIG craft and hydrofoil craft
-as_of: '2026-11-26'
+  ru: Открытые инструменты проектирования летательных аппаратов — от самолётов до парапланов, парашютов и аэростатов, — экранопланов и судов на подводных крыльях
+  en: Open tools for designing aircraft — from airplanes to paragliders, parachutes and balloons — WIG craft and hydrofoil craft
+as_of: '2026-11-27'
 stale_days: 365
 repo: aviateka-org/aviateka
 versioning:
   ru: Номер версии MAJOR.MINOR.PATCH. MINOR растёт, когда добавляются инструменты, типы аппаратов, разделы или инструменты MCP. PATCH — исправления данных без новых разделов. MAJOR — несовместимые изменения схемы данных или имён инструментов MCP. Каждая версия записывается в журнал с датой и списком изменений.
   en: Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 method:
-  ru: Даты — последний коммит основной ветки, снят 26.11.2026. «Жив» — изменения за последние 365 дней. Привязка к типам аппаратов и уровням точности — редакторская оценка.
-  en: Dates are the last commit on the default branch, read 2026-11-26. 'Active' means changed within 365 days. Aircraft-type and fidelity tags are editorial judgement.
+  ru: Даты — последний коммит основной ветки, снят 26–27.11.2026. «Жив» — изменения за последние 365 дней. Привязка к типам аппаратов и уровням точности — редакторская оценка.
+  en: Dates are the last commit on the default branch, read 2026-11-26 and 2026-11-27. 'Active' means changed within 365 days. Aircraft-type and fidelity tags are editorial judgement.
 statuses:
   active:
     ru: жив

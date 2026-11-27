@@ -1,0 +1,28 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: vsm
+name: Vortex Step Method
+url: https://github.com/awegroup/Vortex-Step-Method
+org: TU Delft AWE group
+last_commit: '2026-11-04'
+license: MIT
+code: Python; Julia port
+disciplines: [aero]
+map: [aero, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [kite]
+summary:
+  ru: 'Улучшенная несущая линия для кайтов: циркуляция ищется в точке 3/4 хорды, учитывается сопротивление уздечки. Есть перевод на Julia (VortexStepMethod.jl).'
+  en: 'An enhanced lifting line for kites: circulation is solved at the three-quarter chord, bridle drag included. A Julia port exists (VortexStepMethod.jl).'
+use:
+  ru: Нагрузки по размаху мягкого кайта; SurfplanAdapter переводит проекты SurfPlan в её формат.
+  en: Spanwise loads on a soft kite; SurfplanAdapter converts SurfPlan designs into its format.
+caveat:
+  ru: 'Для кайта с надувной передней кромкой нужны поляры профиля из RANS: невязких методов тут мало.'
+  en: 'Leading-edge inflatable kites need section polars from RANS: inviscid methods are not enough there.'
+sources:
+- https://github.com/awegroup/Vortex-Step-Method
+- https://github.com/OpenSourceAWE/VortexStepMethod.jl
+- https://github.com/jellepoland/SurfplanAdapter
+- https://wes.copernicus.org/preprints/wes-2026-46/

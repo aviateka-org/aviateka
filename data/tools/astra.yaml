@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: astra
+name: ASTRA simulator
+url: https://github.com/sobester/astra_simulator
+org: University of Southampton
+last_commit: '2021-09-01'
+license: BSD-3-Clause
+code: Python
+disciplines: [flightsim]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [concept, test]
+aircraft: [balloon, parachute]
+summary:
+  ru: 'Планировщик полёта высотного шара методом Монте-Карло: облако точек посадки, вывод в KML и CSV.'
+  en: 'Monte Carlo flight planner for high-altitude balloons: a cloud of landing points, KML and CSV output.'
+use:
+  ru: Разброс места посадки и выбор дня запуска.
+  en: Landing dispersion and choosing a launch day.
+caveat:
+  ru: Последний коммит 2021 года; есть форк с поддержкой Python 3.10 (zenitheesc).
+  en: Last commit in 2021; a fork adds Python 3.10 support (zenitheesc).
+sources:
+- https://github.com/sobester/astra_simulator
+- https://github.com/zenitheesc/astra_simulator
+- https://eprints.soton.ac.uk/350844/1/AIAA_202013-1295.pdf

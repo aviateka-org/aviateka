@@ -1,0 +1,28 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: leparagliding
+name: LEparagliding + lepg
+url: https://github.com/stefanino-ch/lepg-py
+org: P. Casellas (Laboratori d'envol); stefanino-ch (lepg)
+last_commit: '2026-10-23'
+license: GPL-3.0 (lepg)
+code: Fortran (lep), Python (lepg)
+disciplines: [geometry, stability]
+map: [geometry, L0]
+fidelity: [L0]
+stages: [concept, preliminary, detail]
+aircraft: [paraglider, parachute]
+summary:
+  ru: 'Программа lep Пере Касельяса строит параплан или парашют-крыло (двухоболочковый и однооболочковый): геометрию, стропы, калаж, выкройки в DXF; lepg — её графическая оболочка.'
+  en: 'Pere Casellas''s lep builds a paraglider or gliding parachute (double or single skin): geometry, lines, calage and DXF patterns; lepg is its graphical front end.'
+use:
+  ru: 'Полный цикл любительского проектирования: от формы до раскроя; изменение калажа при работе акселератора и триммеров.'
+  en: The full amateur design cycle from planform to patterns; calage change with speed bar and trimmers.
+caveat:
+  ru: 'Условия лицензии самого lep мы не проверили: страница автора не открылась. lepg распространяется по GPL-3.0 и включает сборки lep 3.27. Для равновесия нужны поляры из XFLR5 или CFD.'
+  en: 'We did not verify the licence of lep itself: the author''s page could not be opened. lepg is GPL-3.0 and bundles lep 3.27 builds. Equilibrium needs polars from XFLR5 or CFD.'
+sources:
+- https://github.com/stefanino-ch/lepg-py
+- https://stefanino-ch.github.io/lepg-py/en/introduction.html
+- https://stefanino-ch.github.io/lepg-py/en/proc/basicData.html
+- http://laboratoridenvol.com/paragliderdesign/

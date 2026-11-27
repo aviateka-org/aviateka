@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: awebox
+name: AWEbox
+url: https://github.com/awebox/awebox
+org: ALU Freiburg and partners
+last_commit: '2026-09-17'
+license: LGPL-3.0
+code: Python
+disciplines: [mdo, flightsim]
+map: [mdo, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [kite]
+summary:
+  ru: Моделирование и оптимальное управление системами из одного или нескольких змеев для ветроэнергетики.
+  en: Modelling and optimal control of single- and multi-kite airborne wind energy systems.
+use:
+  ru: Лучшая траектория и мощность энергетического змея.
+  en: Optimal trajectory and power of an energy kite.
+caveat:
+  ru: Авторы советуют решатели HSL для IPOPT.
+  en: The authors recommend HSL linear solvers for IPOPT.
+sources:
+- https://github.com/awebox/awebox
+- https://doi.org/10.3390/en16041900

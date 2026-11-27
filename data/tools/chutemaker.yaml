@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: chutemaker
+name: ChuteMaker
+url: https://github.com/rckTom/ChuteMaker
+org: rckTom
+last_commit: '2026-05-27'
+license: GPL-3.0
+code: Python
+disciplines: [geometry]
+map: [geometry, L0]
+fidelity: [L0]
+stages: [detail]
+aircraft: [parachute]
+summary:
+  ru: Выкройки клиньев для сферических и тороидальных парашютов в PDF и SVG, с припуском на шов.
+  en: Gore patterns for spherical and toroidal parachutes as PDF or SVG, with seam allowance.
+use:
+  ru: Раскрой купола для ракеты, зонда или груза.
+  en: Cutting a canopy for a rocket, probe or payload.
+sources:
+- https://github.com/rckTom/ChuteMaker

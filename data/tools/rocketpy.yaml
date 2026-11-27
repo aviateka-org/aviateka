@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: rocketpy
+name: RocketPy
+url: https://github.com/RocketPy-Team/RocketPy
+org: RocketPy Team
+last_commit: '2026-07-21'
+license: MIT
+code: Python
+disciplines: [flightsim]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [concept, preliminary, test]
+aircraft: [parachute]
+summary:
+  ru: Траектория с шестью степенями свободы, включая спуск на парашютах с условиями раскрытия и ветром из прогнозов погоды.
+  en: Six-degree-of-freedom trajectories including parachute descent with deployment triggers and forecast winds.
+use:
+  ru: Скорость снижения и снос груза на парашюте, в том числе сброс с вертолёта.
+  en: Descent rate and drift under a parachute, including a drop from a helicopter.
+sources:
+- https://github.com/RocketPy-Team/RocketPy
+- https://proceedings.scipy.org/articles/majora-212e5952-020

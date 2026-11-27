@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openglider
+name: OpenGlider
+url: https://github.com/booya-at/OpenGlider
+org: booya.at
+last_commit: '2026-02-06'
+license: GPL-3.0
+code: Python
+disciplines: [geometry]
+map: [geometry, L0]
+fidelity: [L0]
+stages: [concept, preliminary, detail]
+aircraft: [paraglider, kite]
+summary:
+  ru: 'Открытый набор для проектирования параплана и кайта: форма, дуга, нервюры, ячейки, стропы, баллонирование, выкройки панелей; есть верстак для FreeCAD.'
+  en: 'An open toolkit for paraglider and kite design: planform, arc, ribs, cells, lines, ballooning and panel patterns; includes a FreeCAD workbench.'
+use:
+  ru: Параметрическая модель крыла и выкройки для раскроя; экспорт геометрии в OBJ и DXF для расчётов.
+  en: A parametric wing model and cutting patterns; OBJ and DXF export for analysis.
+caveat:
+  ru: Авторы сами называют проект незавершённым.
+  en: The authors call it a work in progress.
+sources:
+- https://github.com/booya-at/OpenGlider
+- https://booya-at.github.io/OpenGlider/

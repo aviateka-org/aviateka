@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: parafem
+name: paraFEM
+url: https://github.com/booya-at/paraFEM
+org: booya.at
+last_commit: '2020-01-25'
+license: GPL-3.0
+code: C++, Python
+disciplines: [structures]
+map: [structures, L2]
+fidelity: [L2]
+stages: [preliminary, detail]
+aircraft: [paraglider, kite]
+summary:
+  ru: 'Явный нелинейный МКЭ с элементами мембраны и нити: усилия в стропах и деформация купола под нагрузкой.'
+  en: 'Explicit nonlinear FEM with membrane and truss elements: line forces and canopy deformation under load.'
+use:
+  ru: Нагрузки на стропы и форма надутого купола у параплана и кайта.
+  en: Line loads and the inflated canopy shape of paragliders and kites.
+caveat:
+  ru: Последний коммит 2020 года.
+  en: Last commit in 2020.
+sources:
+- https://github.com/booya-at/paraFEM

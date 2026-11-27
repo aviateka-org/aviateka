@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: glidersim
+name: glidersim
+url: https://github.com/pfheatwole/glidersim
+org: P. F. Heatwole
+last_commit: '2022-07-09'
+license: MIT
+code: Python
+disciplines: [flightsim, stability]
+map: [flightsim, L1]
+fidelity: [L1]
+stages: [concept, preliminary]
+aircraft: [paraglider]
+summary:
+  ru: 'Динамика полёта параплана по паспортным данным крыла: клеванты, акселератор, перенос веса, присоединённая масса воздуха.'
+  en: 'Paraglider flight dynamics from basic wing data: brakes, accelerator, weight shift and apparent mass.'
+use:
+  ru: Модель движения серийного или своего крыла для траекторий, управления и фильтров.
+  en: A motion model of a production or own wing for trajectories, control and filtering.
+caveat:
+  ru: По словам автора, не подходит для прочности, турбулентности, деформаций крыла и режимов за сваливанием. Качество — «альфа».
+  en: The author says it is unsuitable for structures, turbulence, wing deformation and post-stall flight. Alpha quality.
+sources:
+- https://github.com/pfheatwole/glidersim
+- https://pfheatwole.github.io/thesis/
+- https://pypi.org/project/pfh.glidersim/

@@ -1,0 +1,27 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: mem4py
+name: mem4py
+url: https://github.com/pthedens/mem4py
+org: P. Thedens, TU Delft
+last_commit: '2022-06-15'
+license: MIT
+code: Cython
+disciplines: [structures]
+map: [structures, L2]
+fidelity: [L2]
+stages: [preliminary, detail]
+aircraft: [kite]
+summary:
+  ru: МКЭ для надутых мембран методом кинетической динамической релаксации; в связке с OpenFOAM считали форму воздухозаборного кайта.
+  en: Membrane FEM for pressurised structures by kinetic dynamic relaxation; coupled with OpenFOAM it gave the shape of a ram-air kite.
+use:
+  ru: Форма и напряжения ткани у купола под давлением.
+  en: Shape and fabric stress of a pressurised canopy.
+caveat:
+  ru: Последний коммит 2022 года.
+  en: Last commit in 2022.
+sources:
+- https://github.com/pthedens/mem4py
+- https://research.tudelft.nl/files/148762071/energies_16_02603.pdf
+- https://repository.tudelft.nl/file/File_a8cdacd6-64a3-41ef-9c1a-51ceca550f5e

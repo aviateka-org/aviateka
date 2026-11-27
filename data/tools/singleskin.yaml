@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: singleskin
+name: SingleSkin
+url: https://sourceforge.net/projects/singleskin/
+org: DesertEagle (SourceForge)
+code: JavaScript, C#
+status: unknown
+disciplines: [geometry]
+map: [geometry, L0]
+fidelity: [L0]
+stages: [concept, detail]
+aircraft: [paraglider, kite]
+summary:
+  ru: 'Открытая программа для однооболочковых парапланов и змеев: форма крыла, нервюры, уздечка, выкройки в масштабе 1:1 на листах A4 и в DXF. Интерфейс на русском и английском.'
+  en: 'Open software for single-skin paragliders and kites: wing shape, ribs, bridles, 1:1 patterns on A4 sheets and DXF. Russian and English interface.'
+use:
+  ru: Простое однооболочковое крыло своими руками.
+  en: A simple home-built single-skin wing.
+caveat:
+  ru: Дату последнего изменения и точную лицензию не проверяли.
+  en: Last-change date and exact licence not checked.
+sources:
+- https://sourceforge.net/projects/singleskin/
+- https://sourceforge.net/p/singleskin/wiki/
