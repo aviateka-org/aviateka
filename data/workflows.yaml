@@ -811,3 +811,78 @@
   check:
     ru: Перегрузка и суммарный нагрев в пределах, температура под теплозащитой ниже допустимой для конструкции.
     en: G-load and total heat load within limits, temperature under the heatshield below the structure's limit.
+- id: model-rocket
+  aircraft: [rocket]
+  stage: preliminary
+  title:
+    ru: 'Модельная или любительская ракета: двигатель, устойчивость, траектория'
+    en: 'Model or amateur rocket: motor, stability, trajectory'
+  goal:
+    ru: Кривая тяги, запас устойчивости на всём разгоне, апогей и зона приземления с учётом ветра и разброса.
+    en: Thrust curve, stability margin over the whole boost, apogee and landing area with wind and scatter.
+  steps:
+  - tool: openmotor
+    what:
+      ru: Шашка, давление в камере, кривая тяги
+      en: Grain, chamber pressure, thrust curve
+  - tool: openrocket
+    what:
+      ru: Компоновка, центр давления, апогей
+      en: Layout, centre of pressure, apogee
+  - tool: rasaero
+    what:
+      ru: Проверка сопротивления и устойчивости на сверхзвуке
+      en: Check of drag and stability at supersonic speed
+  - tool: rocketpy
+    what:
+      ru: Траектория с ветром и разбросом параметров, спуск на парашюте
+      en: Trajectory with wind and parameter scatter, parachute descent
+  check:
+    ru: Запас устойчивости достаточен от схода с направляющей до конца работы двигателя, а зона приземления помещается в площадку.
+    en: The stability margin is sufficient from rail exit to burnout, and the landing area fits inside the range.
+- id: rocket-engine
+  aircraft: [rocket]
+  stage: concept
+  title:
+    ru: 'Жидкостный ракетный двигатель: выбор топлива и режима'
+    en: 'Liquid rocket engine: choosing propellants and the operating point'
+  goal:
+    ru: Удельный импульс, температура в камере и степень расширения сопла для выбранного топлива; затем траектория выведения.
+    en: Specific impulse, chamber temperature and nozzle expansion ratio for the chosen propellants; then the ascent trajectory.
+  steps:
+  - tool: nasa-cea
+    what:
+      ru: Равновесное горение и теоретические характеристики
+      en: Equilibrium combustion and theoretical performance
+  - tool: rocketcea
+    what:
+      ru: Перебор соотношения компонентов и давления
+      en: Sweeps of mixture ratio and pressure
+  - tool: tudat
+    what:
+      ru: Траектория выведения с этим двигателем
+      en: Ascent trajectory with this engine
+  check:
+    ru: Выбранная точка даёт нужный удельный импульс при температуре в камере, которую выдержит охлаждение.
+    en: The chosen point gives the needed specific impulse at a chamber temperature the cooling can survive.
+- id: planetary
+  aircraft: [planetary]
+  stage: concept
+  title:
+    ru: 'Аппарат для другой планеты: аэростат или самолёт в чужой атмосфере'
+    en: 'Craft for another planet: a balloon or aircraft in a foreign atmosphere'
+  goal:
+    ru: Форма и нагрузки оболочки аэростата для Венеры или Марса; полёт в модели атмосферы Марса.
+    en: Shape and loads of a balloon envelope for Venus or Mars; flight in a Mars atmosphere model.
+  steps:
+  - tool: planetaryballoon
+    what:
+      ru: Форма лепесткового шара под атмосферу планеты
+      en: Lobed balloon shape for the planet's atmosphere
+  - tool: jsbsim
+    what:
+      ru: Полёт в модели атмосферы Марса (FGMars)
+      en: Flight in the Mars atmosphere model (FGMars)
+  check:
+    ru: Плотность, температура и тяготение взяты из модели этой планеты, а не земной; калькуляторы Авиатеки считают только для Земли.
+    en: Density, temperature and gravity come from that planet's model, not Earth's; Aviateka's calculators are for Earth only.

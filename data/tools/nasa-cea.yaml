@@ -1,0 +1,23 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: nasa-cea
+name: NASA CEA
+url: https://github.com/nasa/cea
+org: NASA Glenn
+last_commit: '2026-09-25'
+license: Apache-2.0
+code: Fortran, Python
+disciplines: [propulsion]
+map: [propulsion, L0]
+fidelity: [L0]
+stages: [concept, preliminary]
+aircraft: [rocket, reentry]
+summary:
+  ru: 'Химическое равновесие смесей: продукты сгорания, их свойства, теоретические характеристики ракетного двигателя, параметры ударной трубы. Обновлённая версия классической программы NASA.'
+  en: 'Chemical equilibrium of mixtures: combustion products and their properties, theoretical rocket performance, shock-tube conditions. A modernised version of NASA''s classic code.'
+use:
+  ru: Удельный импульс и температура в камере для выбранного топлива и соотношения компонентов.
+  en: Specific impulse and chamber temperature for a chosen propellant and mixture ratio.
+sources:
+- https://github.com/nasa/cea
+- https://nasa.github.io/cea/

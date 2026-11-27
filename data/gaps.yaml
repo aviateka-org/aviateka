@@ -274,6 +274,62 @@ gaps:
   - https://software.nasa.gov/software/LAR-20310-1
   - https://doaj.org/article/68d76ccf0a49406e88f292c16d9652f3
   - https://www.iccs-meeting.org/archive/iccs2025/papers/159110349.pdf
+- id: jet-vtol
+  mark: window
+  title:
+    ru: Открытый расчёт висения на реактивных струях
+    en: Open jet-borne hover prediction
+  near:
+    ru: 'В NASA опубликованы эмпирические методы для подсасывания к земле и подъёма от фонтана струй; панельные методы годятся, если правильно задать подсасывание воздуха струёй.'
+    en: 'NASA published empirical methods for ground suckdown and fountain lift; panel methods work if jet entrainment is modelled properly.'
+  why:
+    ru: Открытой программы, которая считает потерю подъёма у земли и заглатывание горячего газа для реактивного висения, мы не нашли. Боевые машины вне каталога; речь о гражданских — реактивных ранцах и малых реактивных аппаратах.
+    en: We found no open program for ground lift loss and hot-gas ingestion in jet-borne hover. Combat aircraft are out of scope; this is about civil ones — jet suits and small jet VTOL craft.
+  sources:
+  - https://ntrs.nasa.gov/citations/19920024374
+  - https://ntrs.nasa.gov/api/citations/19880008197/downloads/19880008197.pdf
+- id: exotic-lift
+  mark: window
+  title:
+    ru: Инструменты для необычных схем — ионный ветер, эффект Магнуса, FanWing
+    en: Tools for unusual layouts — ionic wind, Magnus effect, FanWing
+  near:
+    ru: 'Самолёт на ионном ветре МИТ пролетел в 2018 году; облик подбирали геометрическим программированием. Для схем с вращающимися цилиндрами есть только исследовательские расчёты.'
+    en: 'MIT''s ionic-wind aeroplane flew in 2018; its layout was sized with geometric programming. For rotating-cylinder layouts there are only research calculations.'
+  why:
+    ru: Своих программ у этих схем нет; остаётся общий CFD и самостоятельная модель тяги.
+    en: These layouts have no dedicated programs; what remains is general CFD and a home-made thrust model.
+  sources:
+  - https://www.doi.org/10.1038/S41586-018-0707-9
+  - https://en.wikipedia.org/wiki/MIT_EAD_Airframe_Version_2
+- id: planetary-aircraft
+  mark: window
+  title:
+    ru: Открытая цепочка для самолёта или вертолёта другой планеты
+    en: Open chain for an aircraft or rotorcraft on another planet
+  near:
+    ru: 'В JSBSim есть простая модель атмосферы Марса; подробную модель Mars-GRAM раздаёт NASA; PlanetaryBalloon описан для шаров.'
+    en: 'JSBSim has a simple Mars atmosphere model; NASA distributes the detailed Mars-GRAM; PlanetaryBalloon is described for balloons.'
+  why:
+    ru: Нет открытой цепочки, где профиль на очень малых числах Рейнольдса, винт, атмосфера планеты и полёт связаны вместе.
+    en: There is no open chain linking very-low-Reynolds airfoils, the rotor, the planet's atmosphere and flight.
+  sources:
+  - https://jsbsim.sourceforge.net/JSBSim/classJSBSim_1_1FGMars.html
+  - https://ntrs.nasa.gov/api/citations/20210023957/downloads/Mars-GRAM%20User%20Guide.pdf
+- id: hovercraft-design
+  mark: window
+  title:
+    ru: Открытый расчёт судна на воздушной подушке
+    en: Open hovercraft design calculation
+  near:
+    ru: 'Диссертация МИТ прямо называет нехватку программ для таких судов и строит модель в платном MathCAD; FLOTILLA считает волновое сопротивление; оптимизация гибкого ограждения есть в статьях.'
+    en: 'An MIT thesis names the lack of software for such craft outright and builds a model in paid MathCAD; FLOTILLA computes wave resistance; skirt optimisation exists in papers.'
+  why:
+    ru: Нет открытой программы, которая связывает подушку, гибкое ограждение, вентиляторы и ходкость.
+    en: No open program links the cushion, the skirt, the fans and performance.
+  sources:
+  - https://dspace.mit.edu/handle/1721.1/33563
+  - https://www.boatdesign.net/goto/post?id=501823
 out_of_scope:
 - ru: Боевые аппараты и ракетное оружие — вне каталога; общие программы аэродинамики подходят и им, но отдельной ветви не будет.
   en: Combat aircraft and missiles are outside the catalog; general aerodynamics codes apply to them too, but there will be no branch for them.

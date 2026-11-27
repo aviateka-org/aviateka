@@ -407,3 +407,27 @@
     ru: Длина свободного пробега молекул, делённая на размер аппарата. Когда оно велико, газ уже не сплошная среда и нужен метод частиц (DSMC).
     en: Molecular mean free path divided by vehicle size. When it is large the gas is no longer a continuum and a particle method (DSMC) is needed.
   search: {}
+- id: stability-margin-calibres
+  term:
+    ru: Запас устойчивости в калибрах
+    en: Stability margin in calibres
+  definition:
+    ru: Расстояние от центра тяжести ракеты назад до центра давления, делённое на диаметр корпуса.
+    en: The distance from the rocket's centre of gravity back to its centre of pressure, divided by the body diameter.
+  search: {}
+- id: specific-impulse
+  term:
+    ru: Удельный импульс
+    en: Specific impulse
+  definition:
+    ru: Тяга, делённая на расход топлива; показывает, насколько экономно двигатель тратит топливо.
+    en: Thrust divided by propellant flow; shows how economically an engine uses its propellant.
+  search: {}
+- id: skirt
+  term:
+    ru: Гибкое ограждение (юбка)
+    en: Skirt
+  definition:
+    ru: Гибкая оболочка по краю судна на воздушной подушке; удерживает воздух под днищем и даёт пройти над волнами и неровностями.
+    en: The flexible fringe around a hovercraft; it holds the air under the hull and lets the craft pass over waves and bumps.
+  search: {}

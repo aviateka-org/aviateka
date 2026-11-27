@@ -11,7 +11,7 @@ disciplines: [flightsim]
 map: [flightsim, L1]
 fidelity: [L1]
 stages: [concept, preliminary]
-aircraft: [reentry]
+aircraft: [reentry, rocket]
 summary:
   ru: 'Набор TU Delft для динамики полёта в космосе и атмосфере: орбиты, выведение, вход в атмосферу, оптимизация траекторий.'
   en: 'TU Delft toolbox for space and atmospheric flight dynamics: orbits, ascent, atmospheric entry, trajectory optimisation.'

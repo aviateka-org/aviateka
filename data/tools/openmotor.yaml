@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openmotor
+name: openMotor
+url: https://github.com/reilleya/openMotor
+org: A. Reilley
+last_commit: '2026-09-26'
+license: GPL-3.0
+code: Python
+disciplines: [propulsion]
+map: [propulsion, L0]
+fidelity: [L0]
+stages: [concept, preliminary]
+aircraft: [rocket]
+summary:
+  ru: 'Внутренняя баллистика твердотопливного двигателя: форма шашки, давление в камере, кривая тяги.'
+  en: 'Internal ballistics of a solid rocket motor: grain geometry, chamber pressure, thrust curve.'
+use:
+  ru: Подобрать шашку и сопло и получить кривую тяги для OpenRocket или RocketPy.
+  en: Choose the grain and nozzle and get a thrust curve for OpenRocket or RocketPy.
+sources:
+- https://github.com/reilleya/openMotor

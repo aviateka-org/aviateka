@@ -87,6 +87,8 @@ async def main():
             assert {"jsbsim", "airship-simulation", "openvsp"} <= ash, ash
             ent = [w["id"] for w in payload(await p("find_workflows", {"aircraft": "reentry"}))["workflows"]]
             assert ent == ["reentry"], ent
+            rk = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "rocket"}))["workflows"]}
+            assert rk == {"model-rocket", "rocket-engine"}, rk
             rot = {w["id"] for w in payload(await p("find_workflows", {"aircraft": "autogyro"}))["workflows"]}
             assert rot == {"autogyro"}, rot
             gy = {t["id"] for t in payload(await p("search_tools", {"aircraft": "autogyro"}))["tools"]}

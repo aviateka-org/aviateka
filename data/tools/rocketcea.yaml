@@ -1,0 +1,22 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: rocketcea
+name: RocketCEA
+url: https://github.com/sonofeft/RocketCEA
+org: C. Taylor
+last_commit: '2026-01-19'
+license: GPL-3.0
+code: Python, Fortran
+disciplines: [propulsion]
+map: [propulsion, L0]
+fidelity: [L0]
+stages: [concept]
+aircraft: [rocket]
+summary:
+  ru: 'Обёртка CEA для Python: удобные перебор соотношения компонентов, давления и степени расширения сопла.'
+  en: 'A Python wrapper of CEA: easy sweeps of mixture ratio, chamber pressure and nozzle expansion ratio.'
+use:
+  ru: Быстро построить карты удельного импульса для выбора топлива и режима двигателя.
+  en: Quickly map specific impulse to choose propellants and the engine operating point.
+sources:
+- https://github.com/sonofeft/RocketCEA

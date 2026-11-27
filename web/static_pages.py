@@ -202,7 +202,7 @@ def build(cat, dist):
             + "".join(groups))
     open(os.path.join(dist, "tools/index.html"), "w", encoding="utf-8").write(
         page(cat, "tools/index.html", "Все инструменты / All tools | Авиатека",
-             f"{len(cat['tools'])} открытых программ для проектирования самолётов, экранопланов и судов на подводных крыльях. "
+             f"{len(cat['tools'])} открытых программ для проектирования летательных аппаратов всех видов. "
              f"{len(cat['tools'])} open tools for designing aircraft, WIG craft and hydrofoils.", body, 1))
     pages.append("tools/index.html")
 

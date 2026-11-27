@@ -1,0 +1,25 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: rasaero
+name: RASAero II
+url: https://www.rasaero.com/
+org: Rogers Aeroscience (C. Rogers, D. Cooper)
+code: Windows
+status: freeware
+disciplines: [aero, flightsim]
+map: [aero, L0]
+fidelity: [L0]
+stages: [concept, preliminary]
+aircraft: [rocket]
+summary:
+  ru: Аэродинамика и полёт ракет от модельных до исследовательских, в том числе на сверхзвуке; бесплатная, но с закрытым кодом.
+  en: Aerodynamics and flight of rockets from model to sounding rockets, including supersonic; free of charge but closed source.
+use:
+  ru: Сверхзвуковое сопротивление и запас устойчивости в калибрах, когда OpenRocket уже не уверен.
+  en: Supersonic drag and stability margin in calibres where OpenRocket is no longer confident.
+caveat:
+  ru: Только Windows, код закрыт; последняя найденная версия 1.0.2.0 вышла в 2019 году. Цифры точности авторы приводят сами.
+  en: Windows only, closed source; the latest version we found, 1.0.2.0, is from 2019. Accuracy figures are the authors' own.
+sources:
+- https://rocketryforum.com/threads/new-version-of-the-free-rasaero-ii-software-version-1-0-2-0-released.153033/
+- https://www.thrustcurve.org/info/simulators.html

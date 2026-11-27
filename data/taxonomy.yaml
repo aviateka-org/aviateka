@@ -203,3 +203,15 @@ aircraft:
   name:
     ru: Вход в атмосферу (спускаемый аппарат, космоплан)
     en: Atmospheric entry (capsule, spaceplane)
+- id: rocket
+  name:
+    ru: Гражданская ракета (модельная, любительская, исследовательская)
+    en: Civil rocket (model, amateur, research)
+- id: planetary
+  name:
+    ru: Аппарат для другой планеты
+    en: Craft for another planet
+- id: hovercraft
+  name:
+    ru: Судно на воздушной подушке
+    en: Hovercraft

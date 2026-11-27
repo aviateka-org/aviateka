@@ -11,7 +11,7 @@ disciplines: [flightsim]
 map: [flightsim, L1]
 fidelity: [L1]
 stages: [concept, preliminary, test]
-aircraft: [parachute]
+aircraft: [parachute, rocket]
 summary:
   ru: Траектория с шестью степенями свободы, включая спуск на парашютах с условиями раскрытия и ветром из прогнозов погоды.
   en: Six-degree-of-freedom trajectories including parachute descent with deployment triggers and forecast winds.

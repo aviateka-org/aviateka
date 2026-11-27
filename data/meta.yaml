@@ -4,8 +4,8 @@ name:
   ru: Авиатека
   en: Aviateka
 tagline:
-  ru: Открытые инструменты проектирования летательных аппаратов — от самолётов до парапланов, парашютов и аэростатов, — экранопланов и судов на подводных крыльях
-  en: Open tools for designing aircraft — from airplanes to paragliders, parachutes and balloons — WIG craft and hydrofoil craft
+  ru: Открытые инструменты проектирования летательных аппаратов всех видов — от самолётов и винтокрылых, тканевых аппаратов и аэростатов, дирижаблей, гидросамолётов, экранопланов и судов на подводных крыльях, сверхзвуковых и спускаемых аппаратов до гражданских ракет
+  en: Open tools for designing flying craft of every kind — aircraft and rotorcraft, fabric craft and balloons, airships, seaplanes, WIG and hydrofoil craft, high-speed and entry vehicles, civil rockets
 as_of: '2026-11-27'
 stale_days: 365
 repo: aviateka-org/aviateka

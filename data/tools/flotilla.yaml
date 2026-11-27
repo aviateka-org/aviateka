@@ -1,0 +1,24 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: flotilla
+name: FLOTILLA
+url: https://www.boatdesign.net/goto/post?id=501823
+org: L. Lazauskas
+code: Windows
+status: freeware
+disciplines: [hydro]
+map: [hydro, L1]
+fidelity: [L1]
+stages: [concept]
+aircraft: [hovercraft]
+summary:
+  ru: 'Бесплатная программа гидродинамики судов на воздушной подушке: волновое сопротивление от давления подушки на воду.'
+  en: 'Free hydrodynamics program for hovercraft: wave resistance from the cushion pressure on the water.'
+use:
+  ru: Оценка горба сопротивления при выходе на скорость над водой.
+  en: Estimating the drag hump when getting up to speed over water.
+caveat:
+  ru: Описана автором на форуме в 2011 году; где её взять сейчас, мы не проверили.
+  en: Described by the author on a forum in 2011; we did not check where to get it today.
+sources:
+- https://www.boatdesign.net/goto/post?id=501823

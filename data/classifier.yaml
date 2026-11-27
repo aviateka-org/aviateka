@@ -215,7 +215,7 @@ branches:
     name:
       ru: Судно на воздушной подушке
       en: Hovercraft
-    types: []
+    types: [hovercraft]
 - id: space
   name:
     ru: Ракета и космос
@@ -228,7 +228,7 @@ branches:
     name:
       ru: 'Гражданская ракета: метео, геофизика, модели'
       en: 'Civil rocket: sounding, research, model'
-    types: []
+    types: [rocket]
   - id: reentry
     name:
       ru: 'Вход в атмосферу: космоплан, спускаемый аппарат'
@@ -246,7 +246,7 @@ branches:
     name:
       ru: Аппараты для Марса, Венеры, Титана
       en: Craft for Mars, Venus, Titan
-    types: []
+    types: [planetary]
   - id: exotic
     name:
       ru: 'Необычные схемы: Магнус, FanWing, ионолёт'

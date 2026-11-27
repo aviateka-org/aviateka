@@ -4,7 +4,7 @@
 
 ## Русский
 
-Авиатека — открытый каталог программ для проектирования самолётов, тканевых аппаратов (парапланы, дельтапланы, парашюты, змеи, аэростаты), экранопланов и судов на подводных крыльях. Её улучшают те, кто ею пользуется. Знать Git не нужно.
+Авиатека — открытый каталог программ для проектирования летательных аппаратов всех видов: самолётов и винтокрылых, тканевых аппаратов и аэростатов, дирижаблей, гидросамолётов, экранопланов и судов на подводных крыльях, сверхзвуковых и спускаемых аппаратов, гражданских ракет. Её улучшают те, кто ею пользуется. Знать Git не нужно.
 
 ### Четыре способа помочь без Git
 
@@ -66,7 +66,7 @@
 
 ## English
 
-Aviateka is an open catalog of design tools for aircraft, fabric craft (paragliders, hang gliders, parachutes, kites, balloons), WIG craft and hydrofoil craft. The people who use it make it better. No Git needed.
+Aviateka is an open catalog of design tools for flying craft of every kind: aircraft and rotorcraft, fabric craft and balloons, airships, seaplanes, WIG and hydrofoil craft, high-speed and entry vehicles, civil rockets. The people who use it make it better. No Git needed.
 
 ### Four ways to help without Git
 

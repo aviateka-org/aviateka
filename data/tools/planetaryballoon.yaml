@@ -10,7 +10,7 @@ disciplines: [structures]
 map: [structures, L1]
 fidelity: [L1]
 stages: [concept, preliminary]
-aircraft: [balloon]
+aircraft: [balloon, planetary]
 summary:
   ru: 'Программа NASA для формы и нагрузок лепестковых сверхдавленческих шаров: «естественная» форма, постоянный угол, радиус или окружное напряжение лепестка.'
   en: 'NASA program for the shape and loads of lobed super-pressure balloons: natural shape, constant bulge angle, radius or hoop stress.'

@@ -1,0 +1,26 @@
+# Карточка инструмента / tool card. Поля описаны в schema/tool.schema.json
+# Fields are described in schema/tool.schema.json
+id: openrocket
+name: OpenRocket
+url: https://github.com/openrocket/openrocket
+org: OpenRocket community (S. Niskanen and others)
+last_commit: '2026-11-25'
+license: GPL-3.0
+code: Java
+disciplines: [flightsim, stability]
+map: [flightsim, L0]
+fidelity: [L0]
+stages: [concept, preliminary]
+aircraft: [rocket]
+summary:
+  ru: 'Проектирование и полёт модельных и любительских ракет: компоновка, центр тяжести и центр давления на лету, полёт с шестью степенями свободы, ступени, оптимизация.'
+  en: 'Design and flight of model and amateur rockets: layout, live centre of gravity and centre of pressure, six-degree-of-freedom flight, staging, optimisation.'
+use:
+  ru: 'Первый инструмент для ракеты: запас устойчивости, апогей, скорость схода с направляющей.'
+  en: 'The first tool for a rocket: stability margin, apogee, rail-exit speed.'
+caveat:
+  ru: Сами разработчики просят помощи со сверхзвуком — его поддержка ограничена.
+  en: The developers themselves ask for help with supersonic flight — its support is limited.
+sources:
+- https://github.com/openrocket/openrocket
+- https://www.openrocket.info/features.html
