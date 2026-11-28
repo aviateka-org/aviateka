@@ -135,7 +135,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px}
     <p data-t="aiLead">MCP-сервер Авиатеки даёт агенту поиск по программам, рабочие цепочки, пустые ниши, таблицу сверки и шесть инженерных калькуляторов. Агент сам подберёт программу под задачу и проверит, каким её числам можно верить.</p>
     <p id="aiinst"></p>
   </div>
-  <div><pre id="cfg"></pre><p class="small"><a href="catalog.html#ai" data-t="aiMore">Все 23 инструмента MCP</a></p></div>
+  <div><pre id="cfg"></pre><p class="small"><a href="catalog.html#ai" data-t="aiMore">Все 24 инструмента MCP</a></p></div>
 </div></section>
 
 <section class="band sea" id="news"><div class="wrap">
@@ -185,6 +185,7 @@ const UI = {
           ['check', C.validation, 'Таблица сверки', 'Расхождение расчёта с опытом, в процентах, с оговорками'],
           ['gaps', C.gaps, 'Пустые ниши', 'Чего нет нигде, с разметкой: «окно» — занять можно, «запрещено» — мешает физика'],
           ['classes', C.leaves, 'Классификатор аппаратов', `${C.leaves} видов аппаратов по девяти ветвям; видно, какие ${C.uncovered} каталог ещё не покрывает`],
+          ['process', C.standards, 'Порядок разработки', 'Этапы с воротами, способы проверки, порядок доработки и карточка испытания — из стандартов NASA, SAE, FAA и IMO'],
           ['calc', 7, 'Калькуляторы', 'Атмосфера, Рейнольдс и Мах, сваливание, нагрузка на крыло, подобие по Фруду, кавитация, спуск на парашюте'],
           ['gaps', C.benchmarks, 'Эталонные цифры', 'Опорные значения с источниками, чтобы проверить свой расчёт'],
           ['terms', C.glossary, 'Термины', 'Русский и английский, с подсказкой, как искать'],
@@ -198,7 +199,7 @@ const UI = {
   aiLead: 'MCP-сервер Авиатеки даёт агенту поиск по программам, рабочие цепочки, пустые ниши, таблицу сверки и шесть инженерных калькуляторов. Агент сам подберёт программу под задачу и проверит, каким её числам можно верить.',
   instPypi: 'Установка одной командой: uvx aviateka-mcp. Для Claude Desktop — настройка справа.',
   instRepo: 'Пакет на PyPI выйдет с первым выпуском. Пока: склонируйте репозиторий, выполните pip install -e . и python scripts/build_catalog.py.',
-  aiMore: 'Все 23 инструмента MCP', news: (v, d) => `Версия ${v} от ${d}`, allVers: 'Все версии и правила нумерации',
+  aiMore: 'Все 24 инструмента MCP', news: (v, d) => `Версия ${v} от ${d}`, allVers: 'Все версии и правила нумерации',
   ctaH: 'Знаете программу, которой здесь нет?', ctaBtn: 'Предложить инструмент',
   foot: (c, d) => [`Код — ${c}, данные — CC BY 4.0: берите что угодно, только укажите источник.`, `Данные на ${d}`],
   repo: 'Исходники и обсуждение на GitHub', guide: 'Правила участия', aria: 'Круг: каталог, люди пользуются, присылают вклад, хранители проверяют, автопроверка, новая версия; в центре таблица сверки'
@@ -223,6 +224,7 @@ const UI = {
           ['check', C.validation, 'Validation matrix', 'Mismatch between computation and test, in percent, with caveats'],
           ['gaps', C.gaps, 'Gaps', 'What exists nowhere, marked "window" (can be filled) or "forbidden" (physics says no)'],
           ['classes', C.leaves, 'Craft classifier', `${C.leaves} kinds of craft in nine branches; shows the ${C.uncovered} the catalog does not cover yet`],
+          ['process', C.standards, 'Development process', 'Stages with gates, verification methods, the change procedure and a test card — from NASA, SAE, FAA and IMO standards'],
           ['calc', 7, 'Calculators', 'Atmosphere, Reynolds and Mach, stall, wing loading, Froude scaling, cavitation, parachute descent'],
           ['gaps', C.benchmarks, 'Reference numbers', 'Anchor values with sources, to check your own results'],
           ['terms', C.glossary, 'Glossary', 'Russian and English, with search hints'],
@@ -236,7 +238,7 @@ const UI = {
   aiLead: 'The Aviateka MCP server gives an agent tool search, workflows, gaps, the validation matrix and six engineering calculators. The agent can pick a tool for the task and check which of its numbers to trust.',
   instPypi: 'Install in one command: uvx aviateka-mcp. For Claude Desktop, see the settings on the right.',
   instRepo: 'The PyPI package arrives with the first release. Until then: clone the repository, run pip install -e . and python scripts/build_catalog.py.',
-  aiMore: 'All 23 MCP tools', news: (v, d) => `Version ${v}, ${d}`, allVers: 'All versions and numbering rules',
+  aiMore: 'All 24 MCP tools', news: (v, d) => `Version ${v}, ${d}`, allVers: 'All versions and numbering rules',
   ctaH: 'Know a tool that is missing here?', ctaBtn: 'Suggest a tool',
   foot: (c, d) => [`Code is ${c}, data is CC BY 4.0: use anything, just credit the source.`, `Data as of ${d}`],
   repo: 'Source and discussion on GitHub', guide: 'Contributing guide', aria: 'Loop: catalog, people use it, they contribute, maintainers check, automatic checks, new version; the validation matrix in the middle'

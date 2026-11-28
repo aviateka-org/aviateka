@@ -27,7 +27,7 @@ async def main():
             tools = (await s.list_tools()).tools
             names = sorted(t.name for t in tools)
             print("tools:", names)
-            assert len(names) == 23, names
+            assert len(names) == 24, names
             p = lambda n, a=None: s.call_tool(n, a or {})
             tax = payload(await p("get_taxonomy", {"lang": "en"}))
             assert tax["fidelity"][4]["name"] == "Measured"
@@ -128,6 +128,14 @@ async def main():
             print("classifier:", cl["summary"])
             assert cl["summary"]["leaves"] == sum(len(b["leaves"]) for b in cl["branches"]) and len(cl["regulators"]) >= 5
             heli = payload(await p("get_classifier", {"branch": "rotary"}))
+            pr = payload(await p("get_process", {"lang": "en"}))
+            print("process:", pr["summary"], [s["id"] for s in pr["stages"]])
+            assert pr["summary"]["standards"] == len(pr["standards"]) >= 10 and pr["stages"][0]["id"] == "concept"
+            assert all(s["access"] in ("free", "paid") for s in pr["standards"]) and len(pr["change"]["steps"]) == 7
+            ch_only = payload(await p("get_process", {"part": "change"}))
+            assert "change" in ch_only and "stages" not in ch_only
+            badp = await p("get_process", {"part": "nope"})
+            assert getattr(badp, "isError", False) or getattr(badp, "is_error", False), badp
             assert [l["id"] for l in heli["branches"][0]["leaves"]][1] == "helicopter"
             bad = await p("parachute_descent", {"mass_kg": 1.0})
             assert getattr(bad, "isError", False) or getattr(bad, "is_error", False), bad
