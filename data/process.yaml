@@ -1,0 +1,265 @@
+# Порядок разработки и проверки / development process and verification.
+# Как вести проект небольшой командой: этапы с воротами, способы проверки, порядок доработки, карточка испытания.
+# How to run a project with a small team: stages with gates, verification methods, the change procedure, a test card.
+# Собрано из открытых и платных стандартов; у каждого стандарта — дата, доступ и что из него брать.
+intro:
+  ru: 'Готового стандарта для небольшого опытного аппарата — самолёта, экраноплана, судна на подводных крыльях — нет. Авиационные стандарты написаны под сертификацию больших машин и команды; морские правила для экранопланов прямо говорили, что они не руководство по проектированию. Здесь каркас собран из нескольких источников, и из каждого взято то, что по силам одному человеку или маленькой команде.'
+  en: 'There is no ready standard for a small experimental craft — an aircraft, a WIG craft, a hydrofoil. Aviation standards are written for certifying large aircraft by large teams; the IMO rules for WIG craft said outright that they are not a design guide. This framework is assembled from several sources, taking from each what one person or a small team can carry.'
+scope:
+  ru: 'Это порядок работы, а не путь к сертификату. Какие правила действуют для вашего аппарата, решает регулятор вашей страны — смотрите раздел «Классы».'
+  en: 'This is a way of working, not a route to certification. Which rules apply to your craft is for your national regulator to say — see the Classes section.'
+standards:
+- id: nasa-se-handbook
+  name: NASA Systems Engineering Handbook, SP-2016-6105 Rev 2
+  issuer: NASA
+  issued: '2016'
+  access: free
+  url: https://ntrs.nasa.gov/citations/20170001761
+  sources: [https://ntrs.nasa.gov/citations/20170001761, https://www.nasa.gov/seh/5-3-product-verification]
+  gives:
+    ru: 'Жизненный цикл по фазам с точками решения, предварительная и критическая защита проекта, план проверок. Четыре способа проверки — расчёт, осмотр, демонстрация, испытание.'
+    en: 'A phased life cycle with decision points, preliminary and critical design reviews, a verification plan. Four verification methods — analysis, inspection, demonstration, test.'
+  take:
+    ru: 'Этапы с воротами и таблицу «требование → способ проверки → где». Защиты проводить коротко, но письменно.'
+    en: 'Stages with gates and a table "requirement → verification method → where". Hold reviews briefly, but in writing.'
+- id: arp4754b
+  name: SAE ARP4754B — Guidelines for Development of Civil Aircraft and Systems
+  issuer: SAE International (EUROCAE ED-79B)
+  issued: '2023-12-20'
+  access: paid
+  url: https://saemobilus.sae.org/content/arp4754b
+  sources: [https://saemobilus.sae.org/content/arp4754b]
+  gives:
+    ru: 'Разработка «буквой V»: слева сверху вниз требования и проект, справа снизу вверх проверки — деталь, узел, аппарат. Проверка самих требований (те ли мы строим) отдельно от проверки исполнения.'
+    en: 'Development as a "V": requirements and design top-down on the left, verification bottom-up on the right — part, assembly, vehicle. Validation of the requirements themselves (are we building the right thing) separate from verification of the implementation.'
+  take:
+    ru: 'Порядок «V» и привычку проверять требования до постройки. Уровни обеспечения разработки (DAL) для малого аппарата избыточны.'
+    en: 'The V order and the habit of checking requirements before building. Development assurance levels (DAL) are overkill for a small craft.'
+- id: arp4761a
+  name: SAE ARP4761A — Guidelines for Conducting the Safety Assessment Process
+  issuer: SAE International (EUROCAE ED-135)
+  issued: '2023-12-20'
+  access: paid
+  url: https://saemobilus.sae.org/content/ARP4761A
+  sources: [https://saemobilus.sae.org/content/ARP4761A]
+  gives:
+    ru: 'Сначала список опасностей с тяжестью последствий, потом проверка замысла против них, потом проверка готовой системы. Методы — разбор отказов (FMEA), дерево отказов (FTA).'
+    en: 'First a list of hazards with the severity of their effects, then checking the design against them, then checking the finished system. Methods — failure modes and effects (FMEA), fault trees (FTA).'
+  take:
+    ru: 'Список опасностей «что случается → чем кончится → тяжесть → мера → чем проверим» до постройки. Количественные вероятности — только где есть данные.'
+    en: 'A hazard list before building: what happens → effect → severity → mitigation → how we check it. Numerical probabilities only where data exist.'
+- id: eia649c
+  name: SAE EIA-649C — Configuration Management Standard
+  issuer: SAE International
+  issued: '2019-02-07'
+  access: paid
+  url: https://saemobilus.sae.org/standards/eia649c-configuration-management-standard
+  sources: [https://saemobilus.sae.org/standards/eia649c-configuration-management-standard]
+  gives:
+    ru: 'Пять функций учёта версий: план, обозначение, управление изменениями, учёт состояния, сверка.'
+    en: 'Five configuration-management functions: planning, identification, change management, status accounting, verification and audit.'
+  take:
+    ru: 'Номер версии у проекта и у каждого образца; журнал изменений; перед испытанием — сверка, что образец собран по этой версии.'
+    en: 'A version number for the project and every test article; a change log; before a test, a check that the article was built to that version.'
+- id: cfr-21-93
+  name: 14 CFR 21.93 — Classification of changes in type design
+  issuer: FAA (USA)
+  issued: 'в действии / in force'
+  access: free
+  url: https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-21/subpart-D
+  sources: [https://www.ecfr.gov/current/title-14/chapter-I/subchapter-C/part-21/subpart-D]
+  gives:
+    ru: 'Малое изменение — то, что заметно не влияет на массу, центровку, прочность, надёжность, поведение и другие качества, от которых зависит лётная годность. Всё остальное — большое.'
+    en: 'A minor change has no appreciable effect on weight, balance, structural strength, reliability, operational characteristics or other airworthiness characteristics. All other changes are major.'
+  take:
+    ru: 'Этот критерий как вопрос к каждой доработке. Большое изменение пересчитывается целиком до решения.'
+    en: 'Use the criterion as the question for every change. A major change is fully re-analysed before the decision.'
+- id: faa-ac-90-89c
+  name: FAA AC 90-89C — Amateur-Built Aircraft and Ultralight Flight Testing Handbook
+  issuer: FAA (USA)
+  issued: '2023-02-14'
+  access: free
+  url: https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-89C.pdf
+  sources: [https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_90-89C.pdf]
+  gives:
+    ru: 'План испытаний самодельного аппарата, карточки на каждый вылет с записью результата; вариант первой фазы по задачам вместо налёта часов; итог — руководство по эксплуатации с ограничениями.'
+    en: 'A flight-test plan for a home-built aircraft, a test card per flight with the results recorded; a task-based Phase I instead of flight hours; the result is an operating handbook with limits.'
+  take:
+    ru: 'Карточки испытаний и руководство с ограничениями. Ближе всех по духу к опытному аппарату одного строителя.'
+    en: 'Test cards and an operating handbook with limits. Closest in spirit to a one-builder experimental craft.'
+- id: flight-test-buildup
+  name: Build-up approach — flight envelope expansion
+  issuer: NASA Dryden/Armstrong; Flight Test Safety Committee
+  issued: '2021'
+  access: free
+  url: https://flighttestsafety.org/images/Flight_Test_Safety_Fact_21-01edit.pdf
+  sources: [https://flighttestsafety.org/images/Flight_Test_Safety_Fact_21-01edit.pdf, https://ntrs.nasa.gov/citations/20050209998]
+  gives:
+    ru: 'Испытания идут от меньшего риска к большему, шаг за шагом; границы режимов раздвигают осторожно и по согласованию всех дисциплин.'
+    en: 'Tests progress from lower to higher risk, step by step; the envelope is opened cautiously and with all disciplines involved.'
+  take:
+    ru: 'Следующий шаг разрешён только если предыдущий совпал с прогнозом; у каждого шага заранее записаны условия остановки.'
+    en: 'The next step is allowed only if the previous one matched the prediction; every step has stop criteria written in advance.'
+- id: nasa-afrc-factors
+  name: NASA Armstrong — factors of safety for test structures
+  issuer: NASA Armstrong Flight Research Center
+  issued: '2017'
+  access: free
+  url: https://ntrs.nasa.gov/api/citations/20170005546/downloads/20170005546.pdf
+  sources: [https://ntrs.nasa.gov/api/citations/20170005546/downloads/20170005546.pdf]
+  gives:
+    ru: 'Запас прочности 1,5 с проверкой нагрузкой и данными, 2,25 без испытаний и данных.'
+    en: 'A factor of safety of 1.5 with load testing and data, 2.25 with neither test nor data.'
+  take:
+    ru: 'Для лёгкого аппарата выгоднее испытать узел нагрузкой, чем возить лишнюю массу запаса 2,25.'
+    en: 'For a light craft it pays to load-test a joint rather than carry the extra mass of a 2.25 factor.'
+- id: imo-wig
+  name: IMO MSC.1/Circ.1592 — Guidelines for wing-in-ground craft
+  issuer: IMO
+  issued: '2018-05-18'
+  access: free
+  url: https://wwwcdn.imo.org/localresources/en/OurWork/Safety/Documents/MSC.1-CIRC.1592.pdf
+  sources: [https://imo.org/en/OurWork/Safety/Pages/WIG.aspx, https://wwwcdn.imo.org/localresources/en/OurWork/Safety/Documents/MSC.1-CIRC.1592.pdf, https://puc.overheid.nl/nsi/doc/PUC_1798_14/1/]
+  gives:
+    ru: 'Экранопланы типов A, B, C; есть главы о разборе безопасности систем и об управлении безопасностью. Заменили временные правила MSC/Circ.1054 2002 года, где прямо сказано, что готовое правило можно заменить мерой, обоснованной разбором риска.'
+    en: 'WIG craft types A, B, C; chapters on safety assessment of craft systems and on safety management. Replaced the 2002 interim guidelines MSC/Circ.1054, which said outright that a prescriptive rule may be overridden by a measure developed through risk analysis.'
+  take:
+    ru: 'Плавучесть, остойчивость, спасение и разбор риска для всего, что связано с водой.'
+    en: 'Buoyancy, stability, rescue and risk analysis for everything to do with the water.'
+- id: trl
+  name: Technology readiness levels (TRL 1–9)
+  issuer: NASA; ISO 16290:2013
+  issued: '2013'
+  access: free
+  url: https://www.nasa.gov/wp-content/uploads/2017/12/458490main_trl_definitions.pdf
+  sources: [https://www.nasa.gov/wp-content/uploads/2017/12/458490main_trl_definitions.pdf]
+  gives:
+    ru: 'Шкала зрелости от принципа (1) до работы в деле (9); у каждого уровня — критерий выхода.'
+    en: 'A maturity scale from a basic principle (1) to proven operation (9); every level has an exit criterion.'
+  take:
+    ru: 'Честная метка, где проект: расчёт — это 2–3, стенд и модель — 4–5, натурный образец в реальных условиях — 6–7.'
+    en: 'An honest label of where the project is: analysis is 2–3, rigs and models 4–5, a full-scale article in real conditions 6–7.'
+- id: hydrofoil-scaling
+  name: Scaling effects for hydrofoil testing (Chalmers, 2024)
+  issuer: Chalmers University of Technology
+  issued: '2024'
+  access: free
+  url: https://odr.chalmers.se/bitstreams/e66c3b66-038b-4825-abd5-0e1dd3c88b3f/download
+  sources: [https://odr.chalmers.se/bitstreams/e66c3b66-038b-4825-abd5-0e1dd3c88b3f/download]
+  gives:
+    ru: 'Общепринятого способа уменьшать подводное крыло для модели нет; числа Фруда и Рейнольдса одновременно не выдержать, кавитация и захват воздуха масштабируются плохо.'
+    en: 'There is no established way to scale down a hydrofoil; Froude and Reynolds numbers cannot both be matched, and cavitation and ventilation scale poorly.'
+  take:
+    ru: 'Модель по Фруду проверяет устойчивость и управление; захват воздуха и кавитацию — только в натуральную величину.'
+    en: 'A Froude model checks stability and control; ventilation and cavitation only at full scale.'
+methods:
+- id: A
+  name: {ru: Расчёт, en: Analysis}
+  what: {ru: 'Модель и вычисление: когда образца ещё нет.', en: 'A model and a computation: when there is no article yet.'}
+- id: I
+  name: {ru: Осмотр, en: Inspection}
+  what: {ru: 'Осмотр образца или документа: есть ли нужная деталь, совпадает ли с чертежом.', en: 'Examining the article or a document: is the feature there, does it match the drawing.'}
+- id: D
+  name: {ru: Демонстрация, en: Demonstration}
+  what: {ru: 'Показать, что аппарат делает нужное, без подробных замеров.', en: 'Showing the craft does what is needed, without detailed measurement.'}
+- id: T
+  name: {ru: Испытание, en: Test}
+  what: {ru: 'Замер с приборами, чтобы получить число и сравнить с прогнозом.', en: 'Measuring with instruments to get a number and compare it with the prediction.'}
+stages:
+- id: concept
+  catalog_stage: concept
+  trl: 2–3
+  name: {ru: Замысел, en: Concept}
+  do: {ru: 'Компоновка; расчёт ключевых явлений: устойчивость, управление, мощность, нагрузки.', en: 'Layout; analysis of the key phenomena: stability, control, power, loads.'}
+  gate: {ru: 'Все ключевые явления посчитаны; открытые вопросы выписаны.', en: 'All key phenomena analysed; open questions listed.'}
+  methods: [A]
+- id: preliminary
+  catalog_stage: preliminary
+  trl: '3'
+  name: {ru: Предварительный проект, en: Preliminary design}
+  do: {ru: 'Требования с числами; список опасностей с тяжестью; таблица «требование → способ проверки → где»; базовая версия закреплена.', en: 'Requirements with numbers; a hazard list with severity; a table "requirement → method → where"; a baseline version fixed.'}
+  gate: {ru: 'Предварительная защита: у каждой опасности есть мера, у каждого требования — способ проверки.', en: 'Preliminary review: every hazard has a mitigation, every requirement a verification method.'}
+  methods: [A, I]
+- id: rigs
+  catalog_stage: test
+  trl: 4–5
+  name: {ru: Стенды и модели, en: Rigs and models}
+  do: {ru: 'Замеры узлов на стендах, модель по Фруду, сравнение с расчётом.', en: 'Rig tests of components, a Froude-scaled model, comparison with the analysis.'}
+  gate: {ru: 'Замеры совпали с расчётом в допуске — или расчёт поправлен и проект пересчитан.', en: 'Measurements matched the analysis within tolerance — or the analysis was corrected and the design re-run.'}
+  methods: [T]
+- id: detail
+  catalog_stage: detail
+  trl: '5'
+  name: {ru: Рабочий проект, en: Detail design}
+  do: {ru: 'Нагрузки, прочность, узлы, чертежи.', en: 'Loads, strength, joints, drawings.'}
+  gate: {ru: 'Критическая защита: по каждому узлу есть нагрузка и запас.', en: 'Critical design review: every joint has a load and a margin.'}
+  methods: [A]
+- id: build
+  catalog_stage: test
+  trl: 5–6
+  name: {ru: Постройка и проверки на земле, en: Build and ground checks}
+  do: {ru: 'Изготовление, сверка с чертежами, нагружение узлов, проверка систем.', en: 'Manufacture, conformity check against drawings, load tests, systems checks.'}
+  gate: {ru: 'Образец собран ровно по версии; нагружение пройдено.', en: 'The article conforms to the version; load tests passed.'}
+  methods: [I, T]
+- id: trials
+  catalog_stage: test
+  trl: 6–7
+  name: {ru: Ходовые и лётные испытания, en: Trials and flight test}
+  do: {ru: 'По карточкам, от меньшего риска к большему.', en: 'By test cards, from lower to higher risk.'}
+  gate: {ru: 'Ни одно условие остановки не сработало; замеры совпали с прогнозом шага.', en: 'No stop criterion was triggered; measurements matched the step prediction.'}
+  methods: [D, T]
+- id: limits
+  catalog_stage: test
+  trl: '7'
+  name: {ru: Ограничения, en: Operating limits}
+  do: {ru: 'Руководство по эксплуатации: ветер, волна, скорости, массы, действия при отказах.', en: 'An operating handbook: wind, waves, speeds, masses, actions on failures.'}
+  gate: {ru: '—', en: '—'}
+  methods: [D]
+change:
+  rule:
+    ru: 'Доработка любого размера идёт одним порядком. Класс определяет глубину проверки: малое изменение — запись и осмотр, большое — пересчёт всего затронутого до решения.'
+    en: 'A change of any size follows one procedure. Its class sets how deep the check goes: a minor change gets a record and an inspection, a major one a re-analysis of everything affected before the decision.'
+  steps:
+  - {ru: 'Записать, что меняем и зачем.', en: 'Record what changes and why.'}
+  - {ru: 'Определить класс: малое или большое (по критерию 14 CFR 21.93).', en: 'Classify: minor or major (by the 14 CFR 21.93 criterion).'}
+  - {ru: 'Пройти по списку влияния и отметить затронутое.', en: 'Go through the impact checklist and mark what is affected.'}
+  - {ru: 'Пересчитать затронутое; не пересчитанное записать как открытую проверку этого решения.', en: 'Re-analyse what is affected; record anything not re-analysed as an open check of this decision.'}
+  - {ru: 'Решение владельца проекта → новая версия и строка в журнале.', en: 'Decision by the project owner → a new version and a change-log entry.'}
+  - {ru: 'Испытание, сделанное на старой версии, не подтверждает новую, если доработка его задела.', en: 'A test done on the old version does not verify the new one if the change touched it.'}
+  - {ru: 'Перед испытанием сверить, что образец собран по этой версии.', en: 'Before a test, check that the article was built to this version.'}
+  impact:
+  - {id: mass, ru: Масса и центровка, en: Mass and balance}
+  - {id: stability, ru: 'Устойчивость и управление: продольное и боковое', en: 'Stability and control: longitudinal and lateral'}
+  - {id: loads, ru: Нагрузки, прочность, узлы, en: 'Loads, strength, joints'}
+  - {id: performance, ru: 'Мощность, тяга, сопротивление', en: 'Power, thrust, drag'}
+  - {id: water, ru: 'Вода: глубины, захват воздуха, кавитация, плавучесть', en: 'Water: depths, ventilation, cavitation, buoyancy'}
+  - {id: systems, ru: 'Системы: привод, батарея, управление', en: 'Systems: propulsion, battery, controls'}
+  - {id: hazards, ru: Список опасностей, en: Hazard list}
+  - {id: limits, ru: Ограничения в руководстве, en: Operating limits}
+  example:
+    ru: 'Пример из проекта экраноплана на подводном крыле: мачту отодвинули назад от подводного крыла, чтобы погасить раскачку крен-курс. Список влияния сразу нашёл, что подъёмная сила крыла теперь давит на узел мачты через плечо вдвое длиннее — момент вдвое больше, — и что подъёмная сила работает против срабатывания срезного штифта при ударе. Обе проверки без списка были бы пропущены.'
+    en: 'An example from a hydrofoil-assisted WIG project: the mast was moved aft of the hydrofoil to damp a roll-yaw oscillation. The impact checklist at once showed that the foil lift now loads the mast joint through an arm twice as long — twice the moment — and that the lift works against the breakaway shear pin in an impact. Both checks would have been missed without the list.'
+test_card:
+- {ru: 'Номер и дата', en: 'Number and date'}
+- {ru: 'Образец и версия', en: 'Article and version'}
+- {ru: 'Цель — одна фраза', en: 'Goal — one sentence'}
+- {ru: 'Прогноз: число и допуск из расчёта', en: 'Prediction: a number and tolerance from the analysis'}
+- {ru: 'Условия: ветер, волна, место', en: 'Conditions: wind, waves, site'}
+- {ru: 'Порядок по шагам', en: 'Procedure, step by step'}
+- {ru: 'Условия остановки: общие и свои для шага', en: 'Stop criteria: general and step-specific'}
+- {ru: 'Страховка: кто, где, связь', en: 'Safety cover: who, where, communication'}
+- {ru: 'Итог: замер и совпал ли с прогнозом', en: 'Result: the measurement and whether it matched'}
+- {ru: 'Решение: дальше, повторить или стоп — и почему', en: 'Decision: proceed, repeat or stop — and why'}
+conflicts:
+- title: {ru: Авиация и море, en: Aviation and sea}
+  text:
+    ru: 'Авиация требует доказать безопасность до первого полёта; морские правила для экранопланов идут от управления риском. Для аппарата, который падает на скорости, разумно авиационное правило на конструкцию и управление и морское — на плавучесть и спасение.'
+    en: 'Aviation wants safety shown before the first flight; the WIG rules work from risk management. For a craft that falls at speed, the aviation rule fits structure and controls, the marine one buoyancy and rescue.'
+- title: {ru: 'Запас прочности: испытать или нарастить', en: 'Factor of safety: test or add margin'}
+  text:
+    ru: 'Без испытаний запас 2,25, с испытанием нагрузкой — 1,5. Лёгкому аппарату выгоднее испытать.'
+    en: 'Without tests the factor is 2.25, with load testing 1.5. A light craft gains by testing.'
+- title: {ru: Модель и натура, en: Model and full scale}
+  text:
+    ru: 'Модель по Фруду честно покажет устойчивость и управление, но не захват воздуха и кавитацию на подводном крыле — их проверять в натуральную величину.'
+    en: 'A Froude model honestly shows stability and control, but not ventilation and cavitation on a hydrofoil — those need full scale.'

@@ -169,14 +169,32 @@ footer{font-size:14px;color:var(--muted)}
   <div class="scroll"><table class="stack" id="regtable"></table></div>
 </div></section>
 
-<section class="band" id="check"><div class="wrap">
+<section class="band" id="process"><div class="wrap">
+  <h2 data-t="hProc">Порядок разработки: этапы, проверки, доработки</h2>
+  <p class="lead" id="procLead"></p>
+  <div class="scroll"><table class="stack" id="proctable"></table></div>
+  <p class="small muted" id="procMethods"></p>
+  <h2 style="margin-top:28px" data-t="hProcChange">Как вести доработку</h2>
+  <p id="procRule"></p>
+  <ol id="procSteps"></ol>
+  <p class="small" id="procImpact"></p>
+  <p class="small muted" id="procExample"></p>
+  <h2 style="margin-top:28px" data-t="hProcCard">Карточка испытания</h2>
+  <ul class="small" id="procCard"></ul>
+  <h2 style="margin-top:28px" data-t="hProcConf">Где авиация и море расходятся</h2>
+  <div id="procConf"></div>
+  <h2 style="margin-top:28px" data-t="hProcStd">Из каких стандартов это собрано</h2>
+  <div class="scroll"><table class="stack" id="procstd"></table></div>
+</div></section>
+
+<section class="band alt" id="check"><div class="wrap">
   <h2 data-t="hCheck">Таблица сверки: кто чем считал и насколько совпало с опытом</h2>
   <p class="lead" data-t="checkLead">Здесь собираются сравнения программ с опытом: из статей и от участников. Это главная ценность каталога — по ней видно, каким числам программы можно верить.</p>
   <div class="scroll"><table class="stack" id="valtable"></table></div>
   <p><a class="btn" id="sendcalc" href="#" data-t="sendCalc">Прислать свой расчёт</a></p>
 </div></section>
 
-<section class="band alt" id="calc"><div class="wrap">
+<section class="band" id="calc"><div class="wrap">
   <h2 data-t="hCalc">Калькуляторы</h2>
   <p class="muted small" data-t="calcNote">Заполнено примерами: «Стриж» на гонке в Рино и его летающая модель 1:16.</p>
   <div class="calcs">
@@ -290,33 +308,33 @@ footer{font-size:14px;color:var(--muted)}
   </div>
 </div></section>
 
-<section class="band" id="terms"><div class="wrap">
+<section class="band alt" id="terms"><div class="wrap">
   <h2 data-t="hTerms">Термины</h2>
   <label class="f" style="max-width:420px"><span data-t="fSearch">Поиск</span><input id="gq" type="search" autocomplete="off"></label>
   <div class="terms" id="termlist"></div>
 </div></section>
 
-<section class="band alt" id="case"><div class="wrap">
+<section class="band" id="case"><div class="wrap">
   <h2 id="caseh"></h2>
   <p id="cases" class="lead"></p>
   <p id="caseo" class="small muted"></p>
   <div class="scroll"><table class="stack" id="casetable"></table></div>
 </div></section>
 
-<section class="band" id="help"><div class="wrap">
+<section class="band alt" id="help"><div class="wrap">
   <h2 data-t="hHelp">Как помочь</h2>
   <p class="lead" data-t="helpLead">Авиатека открыта и бесплатна. Её улучшают те, кто ей пользуется: присылайте инструменты, исправления, свои расчёты и новые темы. Git знать не нужно — формы принимают обычный текст.</p>
   <div class="helpgrid" id="helpgrid"></div>
   <p class="small muted" id="licline"></p>
 </div></section>
 
-<section class="band alt" id="versions"><div class="wrap">
+<section class="band" id="versions"><div class="wrap">
   <h2 id="verh"></h2>
   <p class="small muted" id="verrule"></p>
   <div class="vers" id="verlist"></div>
 </div></section>
 
-<section class="band" id="ai"><div class="wrap">
+<section class="band alt" id="ai"><div class="wrap">
   <h2 data-t="hAi">Для ИИ-агентов: MCP-сервер</h2>
   <p class="lead" data-t="aiLead">Те же данные доступны агентам через MCP-сервер на Python. Он работает с официальным SDK версий 1.x и 2.x, по stdio или HTTP. Данные также лежат рядом со страницей в data.json.</p>
   <div class="scroll"><table class="stack" id="mcptable"></table></div>
@@ -343,7 +361,7 @@ footer{font-size:14px;color:var(--muted)}
 const CAT = JSON.parse(document.getElementById('cat').textContent);
 const UI = {
  ru:{title:'Авиатека',h1:'Карта открытых инструментов для летательных аппаратов всех видов',fAircraft:'Аппарат',fStage:'Этап',fRoute:'Цепочка на карте',fSearch:'Поиск',all:'все',none:'нет',ph:'флаттер, винт, low Reynolds…',
-  nav:{map:'Карта',tools:'Инструменты',flows:'Цепочки',gaps:'Ниши',classes:'Классы',check:'Сверка',calc:'Калькуляторы',terms:'Термины',case:'«Стриж»',help:'Помочь',versions:'Версии',ai:'Для ИИ'},
+  nav:{map:'Карта',tools:'Инструменты',flows:'Цепочки',gaps:'Ниши',classes:'Классы',process:'Порядок',check:'Сверка',calc:'Калькуляторы',terms:'Термины',case:'«Стриж»',help:'Помочь',versions:'Версии',ai:'Для ИИ'},
   hCheck:'Таблица сверки: кто чем считал и насколько совпало с опытом',checkLead:'Здесь собираются сравнения программ с опытом: из статей и от участников. По ним видно, каким числам программы можно верить.',sendCalc:'Прислать свой расчёт',vth:['Программа','Случай','Расхождение с опытом','Вывод','Источник'],vref:'с чем сравнивали',over:'завышает',under:'занижает',published:'статья',community:'участник',valIn:'Сверка',
   fix:'Предложить правку этой карточки',fixTag:'правка',addTool:'Нет нужного инструмента? Предложите.',
   hHelp:'Как помочь',helpLead:'Авиатека открыта и бесплатна. Её улучшают те, кто ей пользуется: присылайте инструменты, исправления, свои расчёты и новые темы. Git знать не нужно — формы принимают обычный текст.',
@@ -354,6 +372,7 @@ const UI = {
   pick:'Нажмите на инструмент на карте или в таблице.',org:'Кто',lic:'Лицензия',licUnk:'не проверена',date:'Последний код',dateUnk:'не проверяли',status:'Статус',disc:'Дисциплины',fid:'Точность',stages:'Этапы',ac:'Аппараты',use:'Когда брать',caveat:'Осторожно',src:'Источники',inflows:'В цепочках',
   hTools:'Все инструменты',tcount:(n,t)=>`Показано ${n} из ${t}; фильтры сверху действуют и здесь.`,th:['Инструмент','Дисциплина','Точность','Последний код','Статус','Лицензия'],
   hFlows:'Рабочие цепочки: с чего начать и чем проверить',check:'Проверка',show:'Показать на карте',
+hProc:'Порядок разработки: этапы, проверки, доработки',hProcChange:'Как вести доработку',hProcCard:'Карточка испытания',hProcConf:'Где авиация и море расходятся',hProcStd:'Из каких стандартов это собрано',pth:['Этап','Что делаем','Ворота: чтобы идти дальше','Чем проверяем','Зрелость'],psth:['Стандарт','Дата','Доступ','Что даёт','Что брать малой команде'],access:{free:'бесплатно',paid:'платно'},procImpact:'Список влияния — пройти по каждой доработке',procMeth:'Способы проверки',
   hCls:'Классификатор: какие аппараты бывают и что из них покрыто',hFacets:'Сквозные признаки',hRegs:'Как делят аппараты регуляторы',clsLead:s=>`${s.leaves} видов аппаратов в ${s.branches} ветвях: Авиатека покрывает ${s.covered}, частично ${s.partial}, не покрывает ${s.none}.`,cov:{covered:'покрыто',partial:'частично',none:'не покрыто'},leafHint:'Цифры — инструменты · цепочки. Нажмите на лист, чтобы показать его инструменты на карте.',fth:['Признак','Значения','Что меняет в выборе программ'],rth:['Кто','Как делит','Что важно для классификатора'],hGaps:'Чего в открытом доступе нет',gth:['Ниша','Что нашлось рядом','Разметка','Почему'],hBench:'Эталонные цифры для проверки',bth:['Что','Цифры','Зачем'],
   hCalc:'Калькуляторы',calcNote:'Заполнено примерами: «Стриж» на гонке в Рино, его летающая модель 1:16, судно на подводных крыльях на 40 узлах, груз шара-зонда 1 кг под парашютом, тепловой аэростат на 2200 м³, квадрокоптер 1,5 кг, любительская ракета 30 кг и вход в атмосферу с орбитальной скоростью.',cChute:'Парашют: скорость снижения',iCan:'Купол',iCd:'CD0',iD0:'Диаметр D0, м',iVt:'Нужная скорость, м/с',chFlat:'плоский круглый · 0,75–0,80',chSkirt:'с удлинённой кромкой 10 % · 0,78–0,87',chRingsail:'ленточно-парусный · 0,75–0,90',chRingslot:'кольцевой щелевой · 0,56–0,65',chDgb:'диск-щель-лента · 0,52–0,58',chConRib:'конический ленточный · 0,50–0,55',chFlatRib:'плоский ленточный · 0,45–0,50',chGuide:'стабилизирующий с рёбрами · 0,28–0,42',chCustom:'свой CD0',rRange:'Разброс по CD0',rS0:'Площадь ткани S0',rE:'Энергия при посадке',rHeq:'Как прыжок с высоты',rDn:'D0 для нужной скорости',chuteNote:'S0 — вся ткань купола вместе с полюсным отверстием, D0 = √(4·S0/π). У полусферического купола S0 примерно вдвое больше площади его круга в плане. CD0 — по Knacke и AFFDL-TR-78-151.',cLift:'Аэростат: подъёмная сила',iGas:'Газ',gHot:'горячий воздух',gHe:'гелий',gH2:'водород',iVol:'Объём, м³',iTg:'Газ внутри, °C',iPu:'Чистота газа, %',iMb:'Оболочка и груз, кг',iTa:'Воздух снаружи, °C',rK:'Подъём 1 м³',rGross:'Полный подъём',rNet:'Свободный подъём',rVn:'Нужный объём',rDn3:'Диаметр шара этого объёма',cHover:'Винт: мощность висения',iRot:'Винтов',iDp:'Диаметр винта, м',iFm:'Качество винта FM',iEta:'КПД привода',iWh:'Батарея, Вт·ч',iUse:'Тратим ёмкости, %',iDl:'Потеря на корпус, %',rTr:'Тяга одного винта',rDL:'Нагрузка на диск',rVi2:'Скорость потока через винт',rPs:'Мощность на валах',rPe:'Мощность от батареи',rGW:'Удельная тяга',rTime:'Время висения',cRocket:'Ракета: прирост скорости',iIsp:'Удельный импульс, с',iM0:'Масса на старте, кг',iMf:'Масса без топлива, кг',iThr:'Тяга, Н',rVe:'Скорость истечения',rMR:'Отношение масс',rTW0:'Тяга к весу на старте',rTW1:'Тяга к весу в конце',rTb:'Время работы',rMd:'Расход топлива',rocketNote:'Формула Циолковского для одной ступени: прирост скорости без потерь на тяготение и сопротивление воздуха. Реальная ракета набирает заметно меньше.',cEntry:'Вход в атмосферу: нагрев носка',iVe:'Скорость, м/с',iHkm:'Высота, км',iRn:'Радиус носка, м',rQr:'Разброс по постоянной',rQd:'Скоростной напор',entryNote:'Формула Саттона и Грейвса для точки торможения на носке: только конвекция, холодная стенка, воздух Земли, атмосфера США 1976 года до 86 км. Излучение горячего газа не учтено. Разброс — по разным значениям постоянной в литературе.',hoverNote:'Теория импульса: идеальная мощность делится на коэффициент качества винта FM. Замеры NASA у серийных винтов дронов 9–15 дюймов: FM 0,58–0,72, КПД привода (мотор с регулятором) 50–77 %, потеря тяги на корпус 5–15 %. У винтов мельче FM бывает ниже 0,5. Соосные пары не учтены.',rGas:'Масса газа',liftNote:'Давление газа равно наружному, воздух сухой. Масса самого газа уже вычтена. Для гелия и водорода поле «Газ внутри» можно оставить пустым — тогда он той же температуры, что воздух.',cCav:'Кавитация подводного крыла',iD:'Глубина крыла, м',iCp:'Cp min профиля',iTw:'Вода, °C',iSalt:'Вода',sea:'морская',fresh:'пресная',rSig:'Число кавитации σ',rNeed:'Порог −Cp min',rVi:'Начало кавитации',rPv:'Давление пара',cavYes:'кавитирует',rState:'Итог',cavNo:'без кавитации',hVer:v=>`Версии: сейчас ${v}`,cAtm:'Атмосфера, Рейнольдс и Мах',cStall:'Скорость сваливания',cLoad:'Нагрузка на крыло',cFr:'Подобная модель по Фруду',
   iH:'Высота, м',iDT:'ΔT к стандарту, °C',iV:'Скорость, км/ч',iC:'Хорда, м',iM:'Масса, кг',iS:'Площадь крыла, м²',iCL:'CL max',iK:'Масштаб 1:',iI:'Iyy, кг·м²',iRf:'ρ оригинала',iRm:'ρ модели',
@@ -362,9 +381,9 @@ const UI = {
   wcl0:'очень лёгкая: комнатные',wcl1:'парители и парк-флаеры',wcl2:'спортивные и тренеры',wcl3:'копии и пилонные',wcl4:'реактивные с импеллером',wcl5:'выше обычного для моделей',
   hTerms:'Термины',hCase:'Кейс',cth:['Очередь','Задача','Инструмент','Цена'],prio:['','сначала','затем','потом'],
   hAi:'Для ИИ-агентов: MCP-сервер',aiCfg:'Подключение к Claude Desktop',copy:'Копировать',copied:'Скопировано',dl:'Каталог в JSON',mth:['Инструмент MCP','Что делает'],
-  mcp:[['get_taxonomy','Справочники: дисциплины, уровни точности, этапы, типы аппаратов'],['search_tools','Поиск по тексту на русском или английском и по фильтрам'],['get_tool','Полная карточка инструмента и цепочки, где он используется'],['find_workflows','Цепочки под задачу или тип аппарата, с критерием проверки'],['list_gaps','Пустые ниши и что не входит в каталог'],['list_benchmarks','Эталонные цифры с источниками'],['glossary','Термины RU/EN'],['get_case','Кейс «Стриж» и план проверок'],['get_classifier','Классификатор аппаратов: ветви, листья, покрытие каталога, признаки, деление у регуляторов'],['atmosphere','Стандартная атмосфера до 86 км (США, 1976; ниже 32 км совпадает с МСА)'],['reynolds_mach','Числа Рейнольдса и Маха'],['stall_speed','Скорость сваливания'],['wing_loading','Нагрузка и кубическая нагрузка на крыло'],['froude_model','Динамически подобная модель'],['cavitation','Число кавитации и скорость её начала для подводного крыла'],['parachute_descent','Скорость снижения на парашюте или нужный размер купола'],['buoyancy','Подъёмная сила аэростата: гелий, водород, горячий воздух'],['rotor_hover','Мощность висения мультикоптера или вертолёта и время на батарее'],['rocket_delta_v','Прирост скорости ступени ракеты по формуле Циолковского, тяга к весу, время работы'],['entry_heating','Нагрев носка при входе в атмосферу по Саттону и Грейвсу'],['get_changelog','Версия, правила нумерации и журнал изменений'],['get_validation','Таблица сверки: насколько программы совпали с опытом'],['how_to_contribute','Куда прислать инструмент, правку или расчёт']]},
+  mcp:[['get_taxonomy','Справочники: дисциплины, уровни точности, этапы, типы аппаратов'],['search_tools','Поиск по тексту на русском или английском и по фильтрам'],['get_tool','Полная карточка инструмента и цепочки, где он используется'],['find_workflows','Цепочки под задачу или тип аппарата, с критерием проверки'],['list_gaps','Пустые ниши и что не входит в каталог'],['list_benchmarks','Эталонные цифры с источниками'],['glossary','Термины RU/EN'],['get_case','Кейс «Стриж» и план проверок'],['get_classifier','Классификатор аппаратов: ветви, листья, покрытие каталога, признаки, деление у регуляторов'],['get_process','Порядок разработки малой командой: этапы с воротами, способы проверки, порядок доработки, карточка испытания, стандарты-источники'],['atmosphere','Стандартная атмосфера до 86 км (США, 1976; ниже 32 км совпадает с МСА)'],['reynolds_mach','Числа Рейнольдса и Маха'],['stall_speed','Скорость сваливания'],['wing_loading','Нагрузка и кубическая нагрузка на крыло'],['froude_model','Динамически подобная модель'],['cavitation','Число кавитации и скорость её начала для подводного крыла'],['parachute_descent','Скорость снижения на парашюте или нужный размер купола'],['buoyancy','Подъёмная сила аэростата: гелий, водород, горячий воздух'],['rotor_hover','Мощность висения мультикоптера или вертолёта и время на батарее'],['rocket_delta_v','Прирост скорости ступени ракеты по формуле Циолковского, тяга к весу, время работы'],['entry_heating','Нагрев носка при входе в атмосферу по Саттону и Грейвсу'],['get_changelog','Версия, правила нумерации и журнал изменений'],['get_validation','Таблица сверки: насколько программы совпали с опытом'],['how_to_contribute','Куда прислать инструмент, правку или расчёт']]},
  en:{title:'Aviateka',h1:'A chart of open design tools for flying craft of every kind',fAircraft:'Aircraft',fStage:'Stage',fRoute:'Route on the chart',fSearch:'Search',all:'all',none:'none',ph:'flutter, propeller, low Reynolds…',
-  nav:{map:'Chart',tools:'Tools',flows:'Workflows',gaps:'Gaps',classes:'Classes',check:'Validation',calc:'Calculators',terms:'Glossary',case:'Strizh',help:'Contribute',versions:'Versions',ai:'For AI'},
+  nav:{map:'Chart',tools:'Tools',flows:'Workflows',gaps:'Gaps',classes:'Classes',process:'Process',check:'Validation',calc:'Calculators',terms:'Glossary',case:'Strizh',help:'Contribute',versions:'Versions',ai:'For AI'},
   hCheck:'Validation matrix: who computed what and how well it matched measurements',checkLead:'Comparisons of codes against measurements, from papers and from users. They show which numbers a code can be trusted with.',sendCalc:'Send your calculation',vth:['Code','Case','Mismatch with test','Takeaway','Source'],vref:'compared with',over:'over-predicts',under:'under-predicts',published:'paper',community:'user',valIn:'Validation',
   fix:'Suggest a correction to this card',fixTag:'fix',addTool:'Missing a tool? Suggest it.',
   hHelp:'Contribute',helpLead:'Aviateka is open and free. The people who use it make it better: send tools, corrections, your calculations and new topics. No Git needed — the forms take plain text.',
@@ -375,6 +394,7 @@ const UI = {
   pick:'Tap a tool on the chart or in the table.',org:'Who',lic:'Licence',licUnk:'not checked',date:'Last commit',dateUnk:'not checked',status:'Status',disc:'Disciplines',fid:'Fidelity',stages:'Stages',ac:'Aircraft',use:'When to use',caveat:'Watch out',src:'Sources',inflows:'In workflows',
   hTools:'All tools',tcount:(n,t)=>`Showing ${n} of ${t}; the filters above apply here too.`,th:['Tool','Discipline','Fidelity','Last commit','Status','Licence'],
   hFlows:'Workflows: where to start and how to check',check:'Check',show:'Show on chart',
+hProc:'Development process: stages, checks, changes',hProcChange:'How to run a change',hProcCard:'Test card',hProcConf:'Where aviation and marine practice disagree',hProcStd:'The standards this is built from',pth:['Stage','What we do','Gate: what lets us go on','How we verify','Readiness'],psth:['Standard','Date','Access','What it gives','What a small team takes'],access:{free:'free',paid:'paid'},procImpact:'Impact checklist — go through it for every change',procMeth:'Verification methods',
   hCls:'Classifier: what kinds of craft exist and which are covered',hFacets:'Cross-cutting facets',hRegs:'How regulators split craft',clsLead:s=>`${s.leaves} kinds of craft in ${s.branches} branches: Aviateka covers ${s.covered}, partly ${s.partial}, not yet ${s.none}.`,cov:{covered:'covered',partial:'partial',none:'not covered'},leafHint:'Numbers are tools · workflows. Tap a leaf to show its tools on the chart.',fth:['Facet','Values','What it changes in choosing tools'],rth:['Who','How it splits','What matters for the classifier'],hGaps:'What open source does not have',gth:['Gap','Found nearby','Mark','Why'],hBench:'Reference numbers for sanity checks',bth:['What','Numbers','Why it matters'],
   hCalc:'Calculators',calcNote:'Prefilled with examples: Strizh racing at Reno, its 1:16 flying model, a hydrofoil craft at 40 knots, a 1 kg sounding-balloon payload under a parachute, a 2,200 m³ hot-air balloon, a 1.5 kg quadcopter, a 30 kg amateur rocket and an entry at orbital speed.',cChute:'Parachute descent rate',iCan:'Canopy',iCd:'CD0',iD0:'Diameter D0, m',iVt:'Target rate, m/s',chFlat:'flat circular · 0.75–0.80',chSkirt:'10 % extended skirt · 0.78–0.87',chRingsail:'ringsail · 0.75–0.90',chRingslot:'ringslot · 0.56–0.65',chDgb:'disk-gap-band · 0.52–0.58',chConRib:'conical ribbon · 0.50–0.55',chFlatRib:'flat ribbon · 0.45–0.50',chGuide:'ribbed guide surface · 0.28–0.42',chCustom:'custom CD0',rRange:'Range over CD0',rS0:'Fabric area S0',rE:'Landing energy',rHeq:'Like a jump from',rDn:'D0 for the target rate',chuteNote:'S0 is the whole canopy fabric including the vent, D0 = √(4·S0/π). For a hemispherical canopy S0 is about twice the area of its circle in plan. CD0 from Knacke and AFFDL-TR-78-151.',cLift:'Balloon lift',iGas:'Gas',gHot:'hot air',gHe:'helium',gH2:'hydrogen',iVol:'Volume, m³',iTg:'Gas inside, °C',iPu:'Gas purity, %',iMb:'Envelope and load, kg',iTa:'Outside air, °C',rK:'Lift per m³',rGross:'Gross lift',rNet:'Net lift',rVn:'Volume needed',rDn3:'Sphere diameter for it',cHover:'Rotor hover power',iRot:'Rotors',iDp:'Rotor diameter, m',iFm:'Rotor figure of merit FM',iEta:'Drive efficiency',iWh:'Battery, Wh',iUse:'Capacity used, %',iDl:'Body download, %',rTr:'Thrust per rotor',rDL:'Disk loading',rVi2:'Flow speed through rotor',rPs:'Shaft power',rPe:'Battery power',rGW:'Power loading',rTime:'Hover time',cRocket:'Rocket velocity gain',iIsp:'Specific impulse, s',iM0:'Lift-off mass, kg',iMf:'Mass without propellant, kg',iThr:'Thrust, N',rVe:'Exhaust velocity',rMR:'Mass ratio',rTW0:'Thrust-to-weight at start',rTW1:'Thrust-to-weight at burnout',rTb:'Burn time',rMd:'Propellant flow',rocketNote:'Ideal rocket equation for one stage: velocity gain without gravity and air-drag losses. A real rocket gains noticeably less.',cEntry:'Entry: nose heating',iVe:'Speed, m/s',iHkm:'Altitude, km',iRn:'Nose radius, m',rQr:'Range over the constant',rQd:'Dynamic pressure',entryNote:'Sutton–Graves formula for the nose stagnation point: convection only, cold wall, Earth air, US 1976 atmosphere up to 86 km. Hot-gas radiation is not included. The range reflects different values of the constant in the literature.',hoverNote:'Momentum theory: ideal power divided by the rotor figure of merit FM. NASA measurements of production 9–15 in drone rotors: FM 0.58–0.72, drive efficiency (motor with controller) 50–77 %, thrust lost on the body 5–15 %. Smaller rotors can have FM below 0.5. Coaxial pairs are not modelled.',rGas:'Gas mass',liftNote:'Gas pressure equals ambient, dry air. The gas mass is already subtracted. For helium and hydrogen you may leave «Gas inside» empty — it then has the outside air temperature.',cCav:'Hydrofoil cavitation',iD:'Foil depth, m',iCp:'Section Cp min',iTw:'Water, °C',iSalt:'Water',sea:'sea',fresh:'fresh',rSig:'Cavitation number σ',rNeed:'Threshold −Cp min',rVi:'Cavitation starts at',rPv:'Vapour pressure',cavYes:'cavitates',rState:'Result',cavNo:'no cavitation',hVer:v=>`Versions: now ${v}`,cAtm:'Atmosphere, Reynolds and Mach',cStall:'Stall speed',cLoad:'Wing loading',cFr:'Froude-scaled model',
   iH:'Altitude, m',iDT:'ΔT to standard, °C',iV:'Speed, km/h',iC:'Chord, m',iM:'Mass, kg',iS:'Wing area, m²',iCL:'CL max',iK:'Scale 1:',iI:'Iyy, kg·m²',iRf:'ρ full size',iRm:'ρ model',
@@ -383,7 +403,7 @@ const UI = {
   wcl0:'very light: indoor',wcl1:'gliders and park flyers',wcl2:'sport and trainers',wcl3:'scale and pylon',wcl4:'EDF jets',wcl5:'above the usual model range',
   hTerms:'Glossary',hCase:'Case',cth:['Order','Task','Tool','Cost'],prio:['','first','next','later'],
   hAi:'For AI agents: MCP server',aiCfg:'Connect to Claude Desktop',copy:'Copy',copied:'Copied',dl:'Catalog as JSON',mth:['MCP tool','What it does'],
-  mcp:[['get_taxonomy','Lookups: disciplines, fidelity levels, stages, aircraft types'],['search_tools','Text search in Russian or English plus filters'],['get_tool','Full tool card and the workflows that use it'],['find_workflows','Tool chains for a task or aircraft type, with an acceptance check'],['list_gaps','Gaps and what the catalog does not cover'],['list_benchmarks','Reference numbers with sources'],['glossary','RU/EN terms'],['get_case','The Strizh case and its check plan'],['get_classifier','Craft classifier: branches, leaves, catalog coverage, facets, how regulators split craft'],['atmosphere','Standard atmosphere up to 86 km (US 1976; equal to ISA below 32 km)'],['reynolds_mach','Reynolds and Mach numbers'],['stall_speed','Stall speed'],['wing_loading','Wing and cubic loading'],['froude_model','Dynamically similar model'],['cavitation','Cavitation number and inception speed for a hydrofoil'],['parachute_descent','Parachute descent rate or the canopy size for a target rate'],['buoyancy','Balloon and airship lift: helium, hydrogen, hot air'],['rotor_hover','Hover power of a multirotor or helicopter and battery hover time'],['rocket_delta_v','Rocket stage velocity gain by the ideal rocket equation, thrust-to-weight, burn time'],['entry_heating','Nose heating during atmospheric entry by Sutton–Graves'],['get_changelog','Version, numbering rules and change history'],['get_validation','Validation matrix: how well codes matched measurements'],['how_to_contribute','Where to send a tool, a correction or a calculation']]}
+  mcp:[['get_taxonomy','Lookups: disciplines, fidelity levels, stages, aircraft types'],['search_tools','Text search in Russian or English plus filters'],['get_tool','Full tool card and the workflows that use it'],['find_workflows','Tool chains for a task or aircraft type, with an acceptance check'],['list_gaps','Gaps and what the catalog does not cover'],['list_benchmarks','Reference numbers with sources'],['glossary','RU/EN terms'],['get_case','The Strizh case and its check plan'],['get_classifier','Craft classifier: branches, leaves, catalog coverage, facets, how regulators split craft'],['get_process','Development process for small teams: stages with gates, verification methods, the change procedure, a test card, source standards'],['atmosphere','Standard atmosphere up to 86 km (US 1976; equal to ISA below 32 km)'],['reynolds_mach','Reynolds and Mach numbers'],['stall_speed','Stall speed'],['wing_loading','Wing and cubic loading'],['froude_model','Dynamically similar model'],['cavitation','Cavitation number and inception speed for a hydrofoil'],['parachute_descent','Parachute descent rate or the canopy size for a target rate'],['buoyancy','Balloon and airship lift: helium, hydrogen, hot air'],['rotor_hover','Hover power of a multirotor or helicopter and battery hover time'],['rocket_delta_v','Rocket stage velocity gain by the ideal rocket equation, thrust-to-weight, burn time'],['entry_heating','Nose heating during atmospheric entry by Sutton–Graves'],['get_changelog','Version, numbering rules and change history'],['get_validation','Validation matrix: how well codes matched measurements'],['how_to_contribute','Where to send a tool, a correction or a calculation']]}
 };
 UI.en.aiLead='The same data is available to agents through a Python MCP server. It works with the official SDK 1.x and 2.x over stdio or HTTP. The data also sits next to this page as data.json.';
 UI.ru.aiLead=document.querySelector('[data-t=aiLead]').textContent;
@@ -430,7 +450,7 @@ function renderStatic() {
   $('fa').value = st.ac; $('fs').value = st.stage; $('fw').value = st.wf;
   $('legend').innerHTML = ['active', 'stale', 'unknown', 'announced', 'on_request', 'proprietary'].map(s => `<span><span class="pill ${s}">${esc(tr(CAT.statuses[s]))}</span></span>`).join('') +
     `<span><svg width="34" height="10" aria-hidden="true"><path d="M2 5H32" stroke="var(--route)" stroke-width="3.5" stroke-linecap="round"/></svg> ${esc(U('fRoute').toLowerCase())}</span>`;
-  renderFlows(); renderGaps(); renderClassifier(); renderValidation(); renderHelp(); renderTerms(); renderCase(); renderMcp(); renderVersions(); calcAll(); calcCav(); calcChute(); calcLift(); calcHover(); calcRocket(); calcEntry();
+  renderFlows(); renderGaps(); renderClassifier(); renderProcess(); renderValidation(); renderHelp(); renderTerms(); renderCase(); renderMcp(); renderVersions(); calcAll(); calcCav(); calcChute(); calcLift(); calcHover(); calcRocket(); calcEntry();
   $('method').textContent = `${tr(CAT.name)} ${CAT.version}. ${tr(CAT.method)}`;
 }
 
@@ -523,6 +543,24 @@ function renderClassifier() {
   $('facettable').innerHTML = `<thead><tr><th>${a}</th><th>${b}</th><th>${c}</th></tr></thead><tbody>` + cl.facets.map(f => `<tr><td><b>${esc(tr(f.name))}</b></td><td>${esc(tr(f.values))}</td><td>${esc(tr(f.why))}</td></tr>`).join('') + '</tbody>';
   const [x, y, z] = U('rth');
   $('regtable').innerHTML = `<thead><tr><th>${x}</th><th>${y}</th><th>${z}</th></tr></thead><tbody>` + cl.regulators.map(r => `<tr><td><b><a href="${esc(r.source)}">${esc(tr(r.name))}</a></b></td><td>${esc(tr(r.split))}</td><td>${esc(tr(r.note))}</td></tr>`).join('') + '</tbody>';
+}
+
+function renderProcess() {
+  const pr = CAT.process, M = Object.fromEntries(pr.methods.map(m => [m.id, m])), acc = U('access');
+  $('procLead').textContent = tr(pr.intro) + ' ' + tr(pr.scope);
+  const [a, b, c, d, e] = U('pth');
+  $('proctable').innerHTML = `<thead><tr><th>${a}</th><th>${b}</th><th>${c}</th><th>${d}</th><th>${e}</th></tr></thead><tbody>` + pr.stages.map(s =>
+    `<tr><td><b>${esc(tr(s.name))}</b></td><td>${esc(tr(s.do))}</td><td>${esc(tr(s.gate))}</td><td>${s.methods.map(m => esc(tr(M[m].name))).join(', ')}</td><td class="nw">TRL ${esc(s.trl)}</td></tr>`).join('') + '</tbody>';
+  $('procMethods').innerHTML = `<b>${esc(U('procMeth'))}:</b> ` + pr.methods.map(m => `${esc(tr(m.name))} — ${esc(tr(m.what))}`).join(' · ');
+  $('procRule').textContent = tr(pr.change.rule);
+  $('procSteps').innerHTML = pr.change.steps.map(x => `<li>${esc(tr(x))}</li>`).join('');
+  $('procImpact').innerHTML = `<b>${esc(U('procImpact'))}:</b> ` + pr.change.impact.map(x => esc(tr(x))).join(' · ');
+  $('procExample').textContent = tr(pr.change.example);
+  $('procCard').innerHTML = pr.test_card.map(x => `<li>${esc(tr(x))}</li>`).join('');
+  $('procConf').innerHTML = pr.conflicts.map(c => `<p><b>${esc(tr(c.title))}.</b> ${esc(tr(c.text))}</p>`).join('');
+  const [s1, s2, s3, s4, s5] = U('psth');
+  $('procstd').innerHTML = `<thead><tr><th>${s1}</th><th>${s2}</th><th>${s3}</th><th>${s4}</th><th>${s5}</th></tr></thead><tbody>` + pr.standards.map(s =>
+    `<tr><td><b><a href="${esc(s.url)}">${esc(s.name)}</a></b><br><span class="small muted">${esc(s.issuer)}</span></td><td class="nw">${esc(s.issued)}</td><td>${esc(acc[s.access])}</td><td>${esc(tr(s.gives))}</td><td>${esc(tr(s.take))}</td></tr>`).join('') + '</tbody>';
 }
 
 function renderTerms() {

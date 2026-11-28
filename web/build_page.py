@@ -28,6 +28,7 @@ summary = {
         "benchmarks": len(cat["benchmarks"]), "glossary": len(cat["glossary"]),
         "validation": len(cat.get("validation", [])),
         "leaves": cat["classifier"]["summary"]["leaves"], "uncovered": cat["classifier"]["summary"]["none"],
+        "standards": cat["process"]["summary"]["standards"],
     },
 }
 dist = os.path.join(H, "dist")

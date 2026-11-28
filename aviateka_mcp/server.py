@@ -71,7 +71,7 @@ INSTRUCTIONS = (
     "Check list_gaps before promising that a tool exists, and list_benchmarks for expected accuracy. "
     "Statuses: active = code changed within 365 days; stale = older; unknown = date not checked. "
     "Licences marked null were not verified: check the repository. Calculators: atmosphere, reynolds_mach, stall_speed, wing_loading, froude_model, cavitation, parachute_descent, buoyancy, rotor_hover, rocket_delta_v, entry_heating. "
-    "Covers flying craft of every kind: aircraft and rotorcraft, fabric craft and balloons, airships, seaplanes, WIG and hydrofoil craft, high-speed and entry vehicles, civil rockets; get_classifier shows the craft classes and how well each is covered. get_validation shows how well tools matched measurements. "
+    "Covers flying craft of every kind: aircraft and rotorcraft, fabric craft and balloons, airships, seaplanes, WIG and hydrofoil craft, high-speed and entry vehicles, civil rockets; get_classifier shows the craft classes and how well each is covered. get_process gives a development and verification procedure for small teams (stages with gates, verification methods, the change procedure, a test card) built from NASA, SAE ARP4754B/4761A, EIA-649C, 14 CFR 21.93, FAA AC 90-89C and IMO sources. get_validation shows how well tools matched measurements. "
     "get_changelog lists versions and what changed; how_to_contribute says how to send corrections and calculations. "
     "Pass lang='en' for English, default is Russian."
 )
@@ -183,6 +183,24 @@ def get_classifier(lang: str = "ru", branch: str = "") -> dict:
             raise ToolError("unknown branch; use one of " + ", ".join(b["id"] for b in cl["branches"]))
     return L({"principle": cl["principle"], "coverage_rule": cl["coverage_rule"], "summary": cl["summary"],
               "branches": branches, "facets": cl["facets"], "regulators": cl["regulators"]}, lang)
+
+
+@server.tool()
+def get_process(lang: str = "ru", part: str = "") -> dict:
+    """How to run the development of a small experimental craft: stages with gates and readiness levels, the four
+    verification methods (analysis, inspection, demonstration, test), the change procedure with an impact checklist
+    and the minor/major test of 14 CFR 21.93, a test-card template, where aviation and marine practice disagree,
+    and the standards it is built from (NASA SP-2016-6105, SAE ARP4754B, ARP4761A, EIA-649C, FAA AC 90-89C, IMO
+    MSC.1/Circ.1592, TRL) with date, free or paid access and what to take from each.
+    part: optional — standards, stages, methods, change, test_card or conflicts."""
+    lang = _lang(lang)
+    pr = CAT["process"]
+    parts = ("standards", "stages", "methods", "change", "test_card", "conflicts")
+    if part:
+        if part not in parts:
+            raise ToolError("unknown part; use one of " + ", ".join(parts))
+        return L({"intro": pr["intro"], "scope": pr["scope"], part: pr[part]}, lang)
+    return L({k: pr[k] for k in ("intro", "scope", "summary") + parts}, lang)
 
 
 @server.tool()

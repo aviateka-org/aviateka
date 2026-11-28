@@ -4,6 +4,12 @@
 
 Version MAJOR.MINOR.PATCH. MINOR grows when tools, aircraft types, sections or MCP tools are added. PATCH means data fixes without new sections. MAJOR means breaking changes to the data schema or MCP tool names. Every version is logged with its date and changes.
 
+## 0.16.0 — 2026-11-28
+
+- Новый раздел «Порядок разработки» (data/process.yaml): этапы с воротами и уровнями готовности, четыре способа проверки, порядок доработки со списком влияния и критерием малого и большого изменения, карточка испытания, где авиация и море расходятся, 11 стандартов-источников с датой и доступом (NASA SP-2016-6105, SAE ARP4754B, ARP4761A, EIA-649C, 14 CFR 21.93, FAA AC 90-89C, IMO MSC.1/Circ.1592, TRL и др.); MCP-инструмент get_process (24 инструмента); термины TRL, список опасностей, управление конфигурацией.
+
+- New section «Development process» (data/process.yaml): stages with gates and readiness levels, four verification methods, the change procedure with an impact checklist and the minor/major test, a test card, where aviation and marine practice disagree, 11 source standards with date and access (NASA SP-2016-6105, SAE ARP4754B, ARP4761A, EIA-649C, 14 CFR 21.93, FAA AC 90-89C, IMO MSC.1/Circ.1592, TRL and more); MCP tool get_process (24 tools); glossary terms TRL, hazard list, configuration management.
+
 ## 0.15.1 — 2026-11-27
 
 - Калькулятор висения сверен с замерами NASA серийных квадрокоптеров (Russell и др., 2016). Исправлено: прежняя подсказка «у малых винтов FM часто ниже 0,5» слишком пессимистична для обычных винтов дронов — NASA намерило у винтов 9–15 дюймов FM 0,58–0,72; ниже 0,5 бывает у винтов мельче. FM по умолчанию теперь 0,6 вместо 0,5. Добавлен параметр download — потеря тяги на корпус (по NASA 5–15 %); на странице — поле «Потеря тяги на корпус». Проверка на DJI Phantom 3 Advanced: с разбросом замеров NASA калькулятор даёт 19–29 мин висения, середина 24 мин; производитель заявляет до ~23 мин полёта. Два новых эталона: «Серийные квадрокоптеры в висении (NASA, 2016)» и «Сверка калькулятора висения на Phantom 3».

@@ -431,3 +431,33 @@
     ru: Гибкая оболочка по краю судна на воздушной подушке; удерживает воздух под днищем и даёт пройти над волнами и неровностями.
     en: The flexible fringe around a hovercraft; it holds the air under the hull and lets the craft pass over waves and bumps.
   search: {}
+- id: trl
+  term:
+    ru: 'Уровень готовности технологии (TRL)'
+    en: 'Technology readiness level (TRL)'
+  definition:
+    ru: 'Шкала зрелости от 1 (принцип описан) до 9 (работает в деле); у каждого уровня есть критерий выхода. Расчёт — обычно 2–3, стенд и модель — 4–5, натурный образец в реальных условиях — 6–7.'
+    en: 'A maturity scale from 1 (principle described) to 9 (proven in operation); every level has an exit criterion. Analysis is usually 2–3, rigs and models 4–5, a full-scale article in real conditions 6–7.'
+  search:
+    zh: 技术成熟度
+    ja: 技術成熟度レベル
+- id: fha
+  term:
+    ru: 'Список опасностей (FHA)'
+    en: 'Functional hazard assessment (FHA)'
+  definition:
+    ru: 'Таблица до постройки: что может случиться, чем кончится, насколько тяжело, какая мера и чем её проверим. С неё начинается разбор безопасности по SAE ARP4761A.'
+    en: 'A table made before building: what can happen, its effect, how severe, the mitigation and how it is checked. The safety assessment of SAE ARP4761A starts with it.'
+  search:
+    zh: 功能危险评估
+    ja: 機能ハザード評価
+- id: config-management
+  term:
+    ru: 'Управление конфигурацией'
+    en: 'Configuration management'
+  definition:
+    ru: 'Учёт версий изделия: у проекта и каждого образца есть номер, изменения идут через журнал, перед испытанием сверяют, что образец собран по нужной версии (SAE EIA-649C).'
+    en: 'Keeping track of product versions: the project and every test article have a number, changes go through a log, and before a test the article is checked against its version (SAE EIA-649C).'
+  search:
+    zh: 构型管理
+    ja: 構成管理

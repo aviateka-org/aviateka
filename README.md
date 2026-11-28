@@ -25,6 +25,7 @@
 | Пустые ниши с разметкой «окно» и «запрещено» | Gaps marked "window" or "forbidden" | `data/gaps.yaml` |
 | Эталонные цифры, термины, кейс «Стриж» | Reference numbers, glossary, the Strizh case | `data/` |
 | Классификатор летательных аппаратов: 9 ветвей, 34 листа, покрытие каталога по каждому, сквозные признаки, деление у ИКАО, FAA, EASA, РФ и ИМО | Craft classifier: 9 branches, 34 leaves, catalog coverage of each, facets, ICAO, FAA, EASA, Russian and IMO splits | `data/classifier.yaml` |
+| Порядок разработки малой командой: этапы с воротами, способы проверки, порядок доработки, карточка испытания, 11 стандартов-источников с датой и доступом | Development process for small teams: stages with gates, verification methods, change procedure, test card, 11 source standards with date and access | `data/process.yaml` |
 | Калькуляторы: атмосфера, Рейнольдс и Мах, сваливание, нагрузка на крыло, подобие по Фруду, кавитация, спуск на парашюте | Calculators: atmosphere, Reynolds and Mach, stall, wing loading, Froude scaling, cavitation, parachute descent | `aviateka_mcp/calc.py`, `web/calc.js` |
 
 ## MCP-сервер / MCP server
@@ -40,7 +41,7 @@ Claude Desktop:
 { "mcpServers": { "aviateka": { "command": "uvx", "args": ["aviateka-mcp"] } } }
 ```
 
-23 инструмента MCP / 23 MCP tools: `search_tools`, `get_tool`, `find_workflows`, `list_gaps`, `list_benchmarks`, `get_validation`, `glossary`, `get_case`, `get_classifier`, `get_taxonomy`, `get_changelog`, `how_to_contribute`, `atmosphere`, `reynolds_mach`, `stall_speed`, `wing_loading`, `froude_model`, `cavitation`, `parachute_descent`, `buoyancy`, `rotor_hover`, `rocket_delta_v`, `entry_heating`. Работает с официальным MCP SDK 1.x и 2.x. / Works with the official MCP SDK 1.x and 2.x.
+24 инструмента MCP / 24 MCP tools: `search_tools`, `get_tool`, `find_workflows`, `list_gaps`, `list_benchmarks`, `get_validation`, `glossary`, `get_case`, `get_classifier`, `get_process`, `get_taxonomy`, `get_changelog`, `how_to_contribute`, `atmosphere`, `reynolds_mach`, `stall_speed`, `wing_loading`, `froude_model`, `cavitation`, `parachute_descent`, `buoyancy`, `rotor_hover`, `rocket_delta_v`, `entry_heating`. Работает с официальным MCP SDK 1.x и 2.x. / Works with the official MCP SDK 1.x and 2.x.
 
 ## Из исходников / From source
 

@@ -77,8 +77,9 @@ def build():
     changelog = load("changelog.yaml")
     validation = load("validation.yaml") or []
     classifier = load("classifier.yaml")
+    process = load("process.yaml")
     cases = [load(os.path.relpath(p, DATA)) for p in sorted(glob.glob(os.path.join(DATA, "cases", "*.yaml")))]
-    if errors or any(x is BROKEN for x in [meta, tax, workflows, gaps, benchmarks, glossary, changelog, validation, classifier] + cases):
+    if errors or any(x is BROKEN for x in [meta, tax, workflows, gaps, benchmarks, glossary, changelog, validation, classifier, process] + cases):
         return None, None, None, False
 
     D = [d["id"] for d in tax["disciplines"]]
@@ -176,6 +177,7 @@ def build():
         err("data/changelog.yaml", "версии должны идти сверху вниз от новой к старой и не повторяться", "versions must be newest-first and unique")
 
     classifier = build_classifier(classifier, tools, workflows, A)
+    process = build_process(process, S)
 
     cat = {
         "name": meta["name"], "tagline": meta["tagline"],
@@ -189,9 +191,63 @@ def build():
         "tools": tools, "workflows": workflows,
         "gaps": gaps["gaps"], "gap_marks": meta["gap_marks"], "out_of_scope": gaps["out_of_scope"],
         "benchmarks": benchmarks, "glossary": glossary, "cases": cases,
-        "validation": validation, "classifier": classifier,
+        "validation": validation, "classifier": classifier, "process": process,
     }
     return cat, meta, changelog, validated
+
+
+def build_process(pr, stages):
+    """Checks the development-process section: both languages everywhere, unique ids, known methods and catalog stages."""
+    rel = "data/process.yaml"
+    if not isinstance(pr, dict):
+        err(rel, "раздел пуст или это не словарь", "section is empty or not a mapping")
+        return pr
+
+    def both(x, where):
+        if not (isinstance(x, dict) and x.get("ru") and x.get("en")):
+            err(rel, f"{where}: нужны тексты ru и en", f"{where}: ru and en texts are required")
+
+    for k in ("intro", "scope"):
+        both(pr.get(k), k)
+    for key in ("standards", "methods", "stages"):
+        got = [x.get("id") for x in pr.get(key, [])]
+        dup = sorted({i for i in got if got.count(i) > 1})
+        if dup:
+            err(rel, f"{key}: повторяются id: {dup}", f"{key}: duplicate ids: {dup}")
+    for s in pr.get("standards", []):
+        where = f"standards [{s.get('id')}]"
+        for f in ("name", "issuer", "issued", "access", "url"):
+            if not s.get(f):
+                err(rel, f"{where}: нет поля {f}", f"{where}: missing field {f}")
+        if s.get("access") not in ("free", "paid"):
+            err(rel, f"{where}: access — free или paid", f"{where}: access must be free or paid")
+        both(s.get("gives"), where + " gives")
+        both(s.get("take"), where + " take")
+        s.setdefault("sources", [s.get("url")])
+    M = {m["id"] for m in pr.get("methods", [])}
+    for m in pr.get("methods", []):
+        both(m.get("name"), f"methods [{m.get('id')}] name")
+        both(m.get("what"), f"methods [{m.get('id')}] what")
+    for st in pr.get("stages", []):
+        where = f"stages [{st.get('id')}]"
+        for f in ("name", "do", "gate"):
+            both(st.get(f), f"{where} {f}")
+        if st.get("catalog_stage") not in stages:
+            err(rel, f"{where}: неизвестный этап каталога {st.get('catalog_stage')}", f"{where}: unknown catalog stage {st.get('catalog_stage')}")
+        bad = [m for m in st.get("methods", []) if m not in M]
+        if bad:
+            err(rel, f"{where}: неизвестные способы проверки {bad}", f"{where}: unknown verification methods {bad}")
+    ch = pr.get("change") or {}
+    both(ch.get("rule"), "change rule")
+    both(ch.get("example"), "change example")
+    for i, x in enumerate(ch.get("steps", []) + ch.get("impact", []) + pr.get("test_card", [])):
+        both(x, f"change/test_card item {i + 1}")
+    for c in pr.get("conflicts", []):
+        both(c.get("title"), "conflicts title")
+        both(c.get("text"), "conflicts text")
+    pr["summary"] = {"standards": len(pr.get("standards", [])), "free": sum(s.get("access") == "free" for s in pr.get("standards", [])),
+                     "stages": len(pr.get("stages", []))}
+    return pr
 
 
 def build_classifier(cl, tools, workflows, types):
